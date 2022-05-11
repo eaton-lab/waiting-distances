@@ -772,7 +772,7 @@ have occurred on branch $b$ (assuming a uniform recombination rate through time)
 we obtain the probability that recombination on this branch does not change the tree:
 
 \begin{equation*}
-	\mathbb{P}(\textrm{tree unchanged} | \mathcal{S}, \mathcal{G}, b) = 
+	\mathbb{P}(\textrm{tree unchanged} | \mathcal{S},\mathcal{G},b) = 
 	\frac{1}{t^u_b-t^l_b} \int_{t_b^l}^{t_b^u} 
 	\mathbb{P}(\textrm{tree unchanged} | \mathcal{S},\mathcal{G},b,t)dt
 \end{equation*}
@@ -827,7 +827,7 @@ the probability that a recombination does not change the tree.
 \begin{equation}
 	\lambda_{g} = 
 	L(\mathcal{G}) \times r \times 
-	(1 - \mathbb{P}(\text{tree unchanged}|\mathcal{S},\mathcal{G}))
+	(1 - \mathbb{P}(\text{tree unchanged} | \mathcal{S},\mathcal{G}))
 \end{equation}
 
 % \begin{equation}
@@ -872,11 +872,12 @@ We first present the probability that a recombination event occurring on a focal
 
 \begin{equation}
 \begin{aligned}
-    &\mathbb{P}(\textrm{topology unchanged}|b, \mathcal{G},\mathcal{S}) = \frac{1}{t_b^u-t_b^l}\left[\sum_{i=0}^{m-1}p_{b,1}^{(i)}+\sum_{i=m}^{\mathcal{I}_b-1}p_{b,2}^{(i)}\right] \\
+    &\mathbb{P}(\textrm{topology unchanged} | \mathcal{S},\mathcal{G},b) = 
+    \frac{1}{t_b^u-t_b^l}\left[\sum_{i=0}^{m-1}p_{b,1}^{(i)}+\sum_{i=m}^{\mathcal{I}_b-1}p_{b,2}^{(i)}\right] \\
     &where: \\
-    &p_{b,1}^{(i)} = \frac{1}{a_i}\left[T_i+n_i\left(\exp\left(\frac{a_i}{n_i}\sigma_{i+1}\right)-\exp\left(\frac{a_i}{n_i}\sigma_i\right)\right)\left(\sum_{k=i}^{\mathcal{I}_{b+c}-1}P_{ik}+\sum_{k=m}^{\mathcal{I}_b-1}P_{ik}\right)\right] \\
+    &p_{b,1}^{(i)} = \frac{1}{a_i}\left[d_i+n_i\left(\exp\left\{\frac{a_i}{n_i}\sigma_{i+1}\right\}-\exp\left\{\frac{a_i}{n_i}\sigma_i\right\}\right)\left(\sum_{k=i}^{\mathcal{I}_{b+c}-1}P_{ik}+\sum_{k=m}^{\mathcal{I}_b-1}P_{ik}\right)\right] \\
     &and: \\
-    &p_{b,2}^{(i)} = \frac{1}{a_i}\left[2T_i + n_i\left(\exp\left(\frac{a_i}{n_i}\sigma_{i+1}\right)-\exp\left(\frac{a_i}{n_i}\sigma_{i}\right)\right)\left(2\sum_{k=i}^{\mathcal{I}_b-1}P_{ik}+\sum_{k=\mathcal{I}_b}^{\mathcal{I}_{b+c}-1}P_{ik}\right)\right]
+    &p_{b,2}^{(i)} = \frac{1}{a_i}\left[2d_i + n_i\left(\exp\left\{\frac{a_i}{n_i}\sigma_{i+1}\right\}-\exp\left\{\frac{a_i}{n_i}\sigma_{i}\right\}\right)\left(2\sum_{k=i}^{\mathcal{I}_b-1}P_{ik}+\sum_{k=\mathcal{I}_b}^{\mathcal{I}_{b+c}-1}P_{ik}\right)\right]
     \end{aligned}
 \end{equation}
 
@@ -907,16 +908,20 @@ and the probability of a topology-changing recombination event. Even as branch
 lengths increase, reducing the waiting time to the next recombination event, the
 probability that the recombination event will change the topology decreases. 
 Therefore, we follow their approach by approximating the waiting distance to
-a change in topology using an exponential distribution:
-\noindent\hl{I suggest formulating this as a lambda value again, which makes it 
-very clear how it is like the others.}
+a change in topology using an exponential distribution with:
+
+%\begin{equation}
+%\begin{aligned}
+%	&p_r(d|\mathcal{G},\mathcal{S}) = r\beta_\mathcal{S}(\mathcal{G})L(\mathcal{G})\exp\left[-r\beta_\mathcal{S}(\mathcal{G})L(\mathcal{G})d\right]\textrm{,} \\
+%	&where \\
+%	&\beta_\mathcal{S}(\mathcal{G})=1-\mathbb{P}(\textrm{topology unchanged} | \mathcal{G},\mathcal{S}).
+%\end{aligned}
+%\end{equation}
 
 \begin{equation}
-\begin{aligned}
-	&p_r(d|\mathcal{G},\mathcal{S}) = r\beta_\mathcal{S}(\mathcal{G})L(\mathcal{G})\exp\left[-r\beta_\mathcal{S}(\mathcal{G})L(\mathcal{G})d\right]\textrm{,} \\
-	&where \\
-	&\beta_\mathcal{S}(\mathcal{G})=1-\mathbb{P}(\textrm{topology unchanged} | \mathcal{G},\mathcal{S}).
-\end{aligned}
+	\lambda_{g} = 
+	L(\mathcal{G}) \times r \times 
+	(1 - \mathbb{P}(\text{topology unchanged} | \mathcal{S},\mathcal{G}))
 \end{equation}
 
 \section{Demonstration}
@@ -1254,11 +1259,11 @@ Now we derive the overall probability that a recombination event falling on a sp
 Finally, we sum across all branches to find the probability of a recombination event changing the topology of the tree:
 
 \begin{equation*}
-    \mathbb{P}(\textrm{topology unchanged}| \mathcal{G},\mathcal{S}) = \sum_{b=1}^{2N-2}\frac{t_b^u-t_b^l}{L(\mathcal{G})} \times \mathbb{P}(\textrm{topology unchanged}|b, \mathcal{G},\mathcal{S})
+    \mathbb{P}(\textrm{topology unchanged}| \mathcal{G},\mathcal{S}) = \sum_{b \in \mathcal{G}}\frac{t_b^u-t_b^l}{L(\mathcal{G})} \times \mathbb{P}(\textrm{topology unchanged}|b, \mathcal{G},\mathcal{S})
 \end{equation*}
 
 \begin{equation}
-    = \frac{1}{L(\mathcal{G})}\sum_{b=1}^{2N-2}\left[\sum_{i=0}^{m-1}p_{b,1}^{(i)}+\sum_{i=m}^{\mathcal{I}_b-1}p_{b,2}^{(i)}\right]
+    = \frac{1}{L(\mathcal{G})}\sum_{b \in \mathcal{G}}\left[\sum_{i=0}^{m-1}p_{b,1}^{(i)}+\sum_{i=m}^{\mathcal{I}_b-1}p_{b,2}^{(i)}\right]
 \end{equation}
 
 \end{document}
