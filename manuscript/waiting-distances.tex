@@ -169,12 +169,11 @@ on \citep{hudson1983properties},
 % former new paragraph
 % Although it is relatively simple to simulate the coalescent with recombination it has
 % proven more challenging to develop an analytical solution for its expected outcome. 
-however it has since proven more challenging to develop an analytical solution for 
-its expected outcome. 
-This includes 
+%however it has proven challenging to develop analytical solutions for expected outcomes. 
+%This includes 
 % the a inference of 
 %coalescent times on 
-\hl{a distribution of linked } 
+yielding a distribution of linked
 genealogies as well as the 
 % distribution of 
 breakpoints across the genome where recombination occurred 
@@ -186,7 +185,7 @@ this can be represented either as an ancestral recombination graph (ARG)
 % (we will refer to ARGs hereafter; Fig. S1).
 % While our ability to simulate the coalescent with recombination has made substantial progress, likelihood-based inference of recombination events and coalescent times (that is, the ancestral recombination graph -- "ARG") is notoriously difficult \citep{griffiths_ancestral_1996}. 
 % Unfortunately, 
-Inference of ARGs is computationally intensive, highly limited by 
+However, inference of ARGs is computationally intensive, highly limited by 
 sequence information, and can be nearly infinite in possibilities for large 
 genome lengths and numbers of samples \citep{mcvean2005approximating}. 
 % In other words, there
@@ -319,8 +318,8 @@ of possible outcomes of recombination (Fig.~\ref{fig:fig2}):
 (2) shortening of a coalescent time; (3) lengthening of a coalescent time; 
 and (4) a coalescent event that changes the topology (relationships). 
 These can be grouped more generally into three categories: 
-"no change" (type 1), "tree change" (types 2 or 3), and "topology change"
-(type 4). Recently, \citet{deng_distribution_2021} derived a set of solutions for
+"no change" (category 1), "tree change" (categories 2 or 3), and "topology change"
+(category 4). Recently, \citet{deng_distribution_2021} derived a set of solutions for
 the expected waiting distances between these three categories of 
 outcomes for a single population with constant effective population size.
 % Although all three outcomes, and their associated waiting distances, occur 
@@ -333,7 +332,7 @@ outcomes for a single population with constant effective population size.
 % to coalescent model parameters, which may prove useful for future ARG inference 
 % tools. 
 This provides an important advance in establishing a neutral expectation not
-only for a generic recombination events to occur, but for different types 
+only for generic recombination events to occur, but for different categories 
 of events that leave different detectable signatures in the genome.
 % ,which may prove useful for the development of future SMC'-based tools.
 % in genealogical topologies, and for connecting coalescent model parameters to these
@@ -383,20 +382,20 @@ of events that leave different detectable signatures in the genome.
 Here, we extend the methods of \citet{deng_distribution_2021} to an MSC framework
 to approximate the expected waiting distances between different categories of 
 genealogy changes under a parameterized species tree model. In this respect, 
-the waiting distances between recombination events of type 4 may be of greatest 
+the waiting distances between recombination events of category 4 may be of greatest 
 interest, as topology changes leave the most detectable signatures in sequence data, 
 and are relevant to expected gene tree distributions that form an important 
 component of many MSC-based methods.
-However, events of types 1-3 \hl{are also interesting,} as they may occur 
+However, events of categories 1-3 occur 
 disproportionately often in small sample sizes \citep{wilton2015smc}, 
-which are especially common in MSC-type datasets, where
+which are especially common in MSC-type datasets since
 samples are partitioned among species tree intervals. The partitioning of 
 coalescent events among species tree intervals is thus expected to constrain 
-the types of recombination events that will be observed. Consequently, the
+the categories of recombination events that will be observed. Consequently, the
 distributions of waiting distances between different categories of 
 genealogy changes should be highly dependent on, and thus informative about, 
 the species tree model. We refer to this general framework of embedding the 
-SMC' in an MSC model as the MS-SMC.
+SMC' in an MSC model as the MS-SMC'.
 
 
 % The relative frequency
@@ -692,7 +691,7 @@ Additional table with final info could be supplement. Includes I, sister index, 
 % \end{itemize}
 
 
-\subsection{Deriving probabilities of genealogical changes in the MS-SMC}
+\subsection{Deriving probabilities of genealogical changes in the MS-SMC'}
 A recombination can result in one of four categories of outcomes (Fig.~\ref{fig:fig2}), 
 resulting in either no change to the genealogy, a change only to its branch lengths, 
 or a change to its topology. Our first step in deriving probability statements for
