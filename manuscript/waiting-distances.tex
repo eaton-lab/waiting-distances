@@ -91,7 +91,7 @@ changes in genealogical trees, and topologies, for multiple structured populatio
 with branch-specific effective population sizes (i.e., under the multispecies 
 coalescent). Our solutions establish an expectation for genetic linkage  
 in multispecies datasets, and provide a new likelihood framework for 
-fitting species tree models \hl{to sequence data}.
+fitting species tree models to genome alignments.
 
 \section{Introduction}
 
@@ -485,11 +485,11 @@ that will reduce the number of samples from $k$ to $k$-1 in a population
 follows the Kingman coalescent:
 
 \begin{equation}
-	\mathbb{E}(t_k| N_e) = \frac{k(k-1)}{2N_e}
+	\mathbb{E}(t_k| N) = \frac{k(k-1)}{2N}
 \end{equation}
 
 \noindent In a single population model
-with constant $N_e$ this rate decreases monotonically as the number of remaining 
+with constant $N$ this rate decreases monotonically as the number of remaining 
 samples after each coalescence event decreases. In an MSC model, however, 
 the rate of coalescence typically waxes and wanes through time, as the
 transition from one branch interval to the next can be associated with 
@@ -498,7 +498,7 @@ descendant branch intervals are merged.
 
 Based on this generative framework for sampling genealogies, a set of likelihood
 solutions have been developed to fit coalescent model parameters, such as 
-$N_e$ in single population models (\citep{kingman1982coalescent}), 
+$N$ in single population models (\citep{kingman1982coalescent}), 
 or $N_b$ and $W$ values in MSC 
 models \citep{rannala2003bayes}, based on inferred coalescent times. 
 In the latter framework, each species tree branch interval is treated independently, 
@@ -567,7 +567,7 @@ must occur above the time of the cut. This re-connection point is sampled
 probabilistically with an expected waiting time until re-coalescence the 
 same as described above (equations 1 and 2).
 
-In a single population model with constant N$_e$ the re-coalescent probability
+In a single population model with constant $N$ the re-coalescent probability
 after a recombination event decreases monotonically, as each subsequent 
 coalescence event decreases $k$.
 % (e.g., Fig.~1B). 
@@ -633,7 +633,7 @@ Additional table with final info could be supplement. Includes I, sister index, 
 }
 \begin{tabular}[t]{ |c|c|c|c|c|c|c|c|c| }
 	\toprule
-	 & start ($t_i^l$)  & end ($t_i^u$) & pop & $N_e$ ($n_i$)  & N edges ($a_i$) & coal  & length ($d_i$) & branches \\
+	 & start ($t_i^l$)  & end ($t_i^u$) & pop & $N$ ($n_i$)  & N edges ($a_i$) & coal  & length ($d_i$) & branches \\
 	\midrule
 	0 & 0          & $t_7$      & A   & $N_A$     & 3 & $t_7$    & $t_7$ - 0            & 0,1,2 \\
 	1 & $t_7$      & $W_{AB}$   & A   & $N_A$     & 2 & -        & $W_{AB}$ - $t_7$     & 2,7   \\	
@@ -1089,12 +1089,63 @@ Inference of genealogies along a chromosome is a common goal in population genet
 
 %\end{thebibliography}
 
-\section{Appendix: Step-by-Step Solution}
+\section{Appendix 1: Genealogy Table}
+
+\begin{table}[h]
+\centering
+\caption{\label{tab:table-2} 
+	A table summarizing the relationships among branches in the genealogical tree embedded in the species tree in Figure 1. 
+}
+\begin{tabular}[t]{ |c|c|c|c|c|c|c| }
+	\toprule
+	Branch & $I_b$ & $t_b^l$ & $t_b^u$ & Parent & Sibling & $t_b^m$ \\
+	\midrule
+	0  &  1 & 0      & $t_7$  & 7  & 1  & 0          \\
+	1  &  1 & 0      & $t_7$  & 7  & 0  & 0          \\
+	2  &  3 & 0      & $t_9$  & 9  & 8  & $W_{AB}$   \\
+	3  &  1 & 0      & $t_8$  & 8  & 4  & 0          \\
+	4  &  1 & 0      & $t_8$  & 8  & 3  & 0          \\
+	5  &  3 & 0      & $t_{11}$ & 11 & 6  & $W_{ABCD}$ \\
+	6  &  2 & 0      & $t_{11}$ & 11 & 5  & $W_{ABCD}$ \\
+	7  &  5 & $t_7$  & $t_{10}$ & 10 & 9  & $t_9$      \\
+	8  &  2 & $t_8$  & $t_9$  & 9  & 2  & $W_{AB}$   \\
+	9  &  2 & $t_9$  & $t_{10}$ & 10 & 7  & $t_9$      \\
+	10 &  3 & $t_{10}$ & $t_{12}$ & 12 & 11 & $t_{11}$     \\
+	11 &  1 & $t_{11}$ & $t_{12}$ & 12 & 10 & $t_{11}$     \\
+	\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Appendix 2: Step-by-Step Solution}
 
 
 \subsection{Notation Summary}
 
-\hl{make a table to summarize the notation here. Much easier to read than the itemized method currently.}
+\begin{table}[h]
+\centering
+\caption{\label{tab:table-3} 
+	Summary of variables used in waiting distance equations. 
+}
+\begin{tabular}[t]{ |c|l| }
+	\toprule
+	Variable & Description \\
+	\midrule
+	$i$          & Integer-valued interval index to which $t_r$ belongs      \\
+	$a_x$      & The value of $A(t)$ for all $t_r$ in interval $x$   \\	
+	$n_x$          & The value of $N(t_r)$ for all $t_r$ in interval $x$      \\ 
+	$\sigma_x$  & The lower boundary, in generations, of interval $x$ \\
+	$d_x$      & The length, in generations, of the interval $x$ -- i.e., $\sigma_{x+1} - \sigma_{x}$   \\
+	$t_l^b$ & The lower boundary, in generations, of branch $b$  \\
+	$t_u^b$ & The upper boundary, in generations, of branch $b$ \\
+	$t_m^b$ & The time at which a focal branch $b$ is able to coalesce with its sibling branch \\
+	$m$ & Integer-valued interval index whose lower boundary is $t_m^b$ \\
+	$\mathcal{I}_b$          & The number of intervals on branch $b$  \\
+	$\mathcal{G}$          & The genealogical tree \\
+	$\mathcal{S}$   & The species tree with divergence times and branch-specific effective population sizes  \\
+	\bottomrule
+\end{tabular}
+\end{table}
+
 
 \subsection{Notation}
 
@@ -1159,17 +1210,6 @@ We solve first term and later terms separately:
 	= \sum_{k=i+1}^{\mathcal{I}_b-1} e^{\frac{a_i}{n_i}t} P_{ik}
 \end{equation}
 
-Where:
-\begin{itemize}
-  \item $i$ is the interval index to which $t$ belongs
-  \item $a_x$ is the value of A(t) for all $t$ in interval $x$
-  \item $n_x$ is the value of N(t) for all $t$ in interval $x$
-  \item $T_x = \sigma_{x+1} - \sigma_{x}$
-  \item $\mathcal{I}_b$ is the number of intervals on branch $b$
-  \item $\mathcal{G}$ is the current genealogy, and 
-  \item $\mathcal{S}$ is the species tree with divergence times and branch-specific effective population sizes.
-\end{itemize}
-
 Adding these together, we are left with the solution:
 
 \begin{equation}
@@ -1187,7 +1227,7 @@ Having solved for the probability of the genealogical tree being unchanged given
 Plugging in Equation 17 above, we find:
 
 \begin{equation}
-	= \frac{1}{t^u_b-t^l_b}\sum_{i=0}^{\mathcal{I}_b-1}\frac{1}{a_i}T_i + \left(e^{\frac{a_i}{n_i}\sigma_{i+1}}-e^{\frac{a_i}{n_i}\sigma_i}\right)\left[-\frac{n_i}{a_i^2}e^{-\frac{a_i}{n_i}\sigma_{i+1}} + \frac{n_i}{a_i}\left(\sum_{k=i+1}^{\mathcal{I}_b-1}\exp\left(-\frac{a_i}{n_i}\sigma_{i+1}-\sum_{q = i+1}^{k-1}\frac{a_q}{n_q}T_q\right)\frac{1-\exp(-\frac{a_{k}}{n_{k}}T_{k})}{a_{k}}\right)\right]
+	= \frac{1}{t^u_b-t^l_b}\sum_{i=0}^{\mathcal{I}_b-1}\frac{1}{a_i}d_i + \left(e^{\frac{a_i}{n_i}\sigma_{i+1}}-e^{\frac{a_i}{n_i}\sigma_i}\right)\left[-\frac{n_i}{a_i^2}e^{-\frac{a_i}{n_i}\sigma_{i+1}} + \frac{n_i}{a_i}\left(\sum_{k=i+1}^{\mathcal{I}_b-1}\exp\left(-\frac{a_i}{n_i}\sigma_{i+1}-\sum_{q = i+1}^{k-1}\frac{a_q}{n_q}T_q\right)\frac{1-\exp(-\frac{a_{k}}{n_{k}}T_{k})}{a_{k}}\right)\right]
 \end{equation}
 
 \subsubsection{Across the whole tree}
@@ -1264,13 +1304,13 @@ Now we derive the overall probability that a recombination event falling on a sp
 \paragraph{First case --}
 
 \begin{equation}
-	\int_{t_b^l}^{t_b^m}{\mathbb{P}(\textrm{topology unchanged} | b,t,\mathcal{G},\mathcal{S})}=\sum_{i=0}^{m-1}\frac{1}{a_i}\left[T_i+n_i\left(\exp\left(\frac{a_i}{n_i}\sigma_{i+1}\right)-\exp\left(\frac{a_i}{n_i}\sigma_i\right)\right)\left(\sum_{k=i}^{\mathcal{I}_{b+c}-1}P_{ik}+\sum_{k=m}^{\mathcal{I}_b-1}P_{ik}\right)\right]
+	\int_{t_b^l}^{t_b^m}{\mathbb{P}(\textrm{topology unchanged} | b,t,\mathcal{G},\mathcal{S})}=\sum_{i=0}^{m-1}\frac{1}{a_i}\left[d_i+n_i\left(\exp\left(\frac{a_i}{n_i}\sigma_{i+1}\right)-\exp\left(\frac{a_i}{n_i}\sigma_i\right)\right)\left(\sum_{k=i}^{\mathcal{I}_{b+c}-1}P_{ik}+\sum_{k=m}^{\mathcal{I}_b-1}P_{ik}\right)\right]
 \end{equation}
 
 \paragraph{Second case --}
 
 \begin{equation}
-	\int_{t_b^m}^{t_b^u}{\mathbb{P}(\textrm{topology unchanged} | b,t,\mathcal{G},\mathcal{S})}=\sum_{i=m}^{\mathcal{I}_b-1}\frac{1}{a_i}\left[2T_i + n_i\left(\exp\left(\frac{a_i}{n_i}\sigma_{i+1}\right)-\exp\left(\frac{a_i}{n_i}\sigma_i\right)\right)\left(2\sum_{k=i}^{\mathcal{I}_b-1}P_{ik}+\sum_{k=\mathcal{I}_b}^{\mathcal{I}_{b+c}-1}P_{ik}\right)\right]
+	\int_{t_b^m}^{t_b^u}{\mathbb{P}(\textrm{topology unchanged} | b,t,\mathcal{G},\mathcal{S})}=\sum_{i=m}^{\mathcal{I}_b-1}\frac{1}{a_i}\left[2d_i + n_i\left(\exp\left(\frac{a_i}{n_i}\sigma_{i+1}\right)-\exp\left(\frac{a_i}{n_i}\sigma_i\right)\right)\left(2\sum_{k=i}^{\mathcal{I}_b-1}P_{ik}+\sum_{k=\mathcal{I}_b}^{\mathcal{I}_{b+c}-1}P_{ik}\right)\right]
 \end{equation}
 
 \paragraph{Result --}
