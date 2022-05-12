@@ -69,7 +69,7 @@
 \end{center}
 
 % keywords can be removed
-Keywords: Recombination, Phylogeny, SMC, Gene Tree, Species Tree, Concatalescence, ARG
+Keywords: Recombination, Phylogeny, SMC, Geneealogy, Species Tree, Concatalescence, ARG
 
 \RaggedRight
 
@@ -129,7 +129,7 @@ the rate of coalescence, and can vary among different lineages.
 	\centering
 	%\fbox{\rule[-.5cm]{4cm}{4cm} \rule[-.5cm]{4cm}{0cm}}
 	\includegraphics[width=0.99\textwidth]{figures/Fig3-parameters-extend-PFM1.pdf}
-	\caption{A gene tree embedded in a species tree. 
+	\caption{A genealogy embedded in a species tree. 
 	(a) Species tree divergence times ($W$) define ancestral populations. The population 
 	structure constrains which lineages of the genealogy can coalesce. Further, each 
 	population which can have a different effective population size ($N_b$),
@@ -143,7 +143,7 @@ the rate of coalescence, and can vary among different lineages.
 	species tree leads to changing probabilities of each
 	outcome (discussed in Demonstration). Note that the values in (b) and (c) must sum to 1, 
 	since one of those two events must happen, while (d) is showing the probabilities of a 
-	subset of the events in (c). See Table 1 for the full gene tree embedding table for this 
+	subset of the events in (c). See Table 1 for the full genealogy embedding table for this 
 	example.
 	}
 	\label{fig:fig1}
@@ -602,7 +602,7 @@ different species tree intervals.
 A species tree can thus be decomposed into a series of relevant intervals 
 between events that change the rate of coalescence
 % , including within species tree intervals, 
-which we refer to as the gene tree embedding 
+which we refer to as the genealogy embedding 
 table (Table~\ref{tab:table-1}). 
 
 Each branch ($b$) of $\mathcal{G}$ spans one or more intervals
@@ -623,7 +623,7 @@ of ($\mathcal{I}$) can visit each interval of a genealogy branch.
 % For example, edge 2 from Fig.~\ref{fig:fig1} and Table~\ref{tab:table-1} overlaps with 
 % three intervals, such that $I_2$ = (0, 1, 6). 
 These variables,
-and the gene tree embedding table, include all relevant parameters
+and the genealogy embedding table, include all relevant parameters
 for the derivations below. 
 
 To better understand the relationship between the MS-SMC' and the gene 
@@ -632,7 +632,7 @@ we are interested in defining intervals where coalescent rate parameters change.
 To do so, we must identify times at which there are relevant coalescent events 
 between other lineages in the same population, or at which there are relevant 
 species merging events. This involves examining the genealogical tree as it is 
-embedded within the species tree. With the gene tree embedding table, we can 
+embedded within the species tree. With the genealogy embedding table, we can 
 easily isolate the intervals specific to edge 7 by querying the "branches" 
 column of the table and extracting the rows where this column contains our 
 focal edge (for edge 7, these are rows 1, 6, 7, and 8). The number of rows 
@@ -641,7 +641,7 @@ we extract (in this case, 4) is equal to the number of intervals in the edge
 $0$ to $I_b-1$, the information in the columns (e.g. $n_i$, $a_i$) is easily
 adapted for use in the equations presented below. 
 
-To summarize, the gene tree embedding table is simply a set containing all 
+To summarize, the genealogy embedding table is simply a set containing all 
 unique intervals (and their properties) over all edges in the genealogy, 
 and it maps those intervals to the genealogy edges to which they belong. 
 This allows us to easily query relevant intervals for any edge of the 
@@ -667,7 +667,7 @@ Appendix, Table 2).
 \begin{table}[h]
 \centering
 \caption{\label{tab:table-1} 
-	A gene tree embedding table for MS-SMC' calculations for the gene tree and
+	A genealogy embedding table for MS-SMC' calculations for the genealogy and
  	species tree in Figure 1. 
 	% Coalescent waiting times in each interval can be calculated from the number of lineages
 	% present ($k$) and the effective population size ($N_e$). 
@@ -762,7 +762,7 @@ fall into the other categories.
 % to make this work understandable. Think of Rannala and Yang 2003.}
 We begin by assuming knowledge of when and where recombination takes place, in terms 
 of a recombination event bisecting branch $b$ at time $t_r$. %The variable $\sigma$ 
-The index $i$ refers to the gene tree embedding interval in which recombination occurs.
+The index $i$ refers to the genealogy embedding interval in which recombination occurs.
 For no genealogy change to occur the detached branch must re-attach to its original 
 lineage during the same interval in which it detached.
 If it connects to any other existing lineages during this same interval, 
@@ -1357,17 +1357,21 @@ distribution presented in Equation 4.
 % 	\mathbb{P}(\textrm{tree unchanged} | b,t,\mathcal{T},\mathcal{S}) = 
 % 	\int_{t}^{t^u_b}\frac{1}{A(\tau)}p(\tau|t)d\tau
 % \end{equation}
-The intervals within each branch of $\mathcal{G}$ are each assigned an index increasing from $0$ to $\mathcal{I}_b-1$, where $\mathcal{I}_b$ is the total number of intervals in the branch. The times in generations marking the lower and upper bounds of each branch $b$ are notated $t_l^b$ and $t_u^b$, respectively. Each interval of index $x$ is bounded by times $\sigma_x$ and $\sigma_{x+1}$.
+The intervals within each branch of $\mathcal{G}$ are each assigned an index increasing from $0$ to $\mathcal{I}_b-1$, where $\mathcal{I}_b$ is 
+the total number of intervals in the branch. The times in generations marking the lower and upper bounds of each branch $b$ are notated $t_l^b$ and $t_u^b$, 
+respectively. Each interval of index $x$ is bounded by times $\sigma_x$ and $\sigma_{x+1}$.
 
 Where $A(\tau)$ is the number of lineages able to be coalesced with at any time $\tau$, 
 and $p(\tau|t_r)$ is the exponential probability density of coalescing any time 
 after the recombination event. Thus, we are integrating over the probability
 of coalescence along the path of species tree intervals traversed
 by branch $b$, starting at the time of recombination and ending at the 
-end of the branch. If the branch spans only a single gene tree embedding 
+end of the branch. If the branch spans only a single genealogy embedding 
 interval then $A(\tau)$ and $N(\tau)$
 
-Through this series of one or more gene tree embedding intervals the 
+\hl{Fixing this section is required...}
+
+Through this series of one or more genealogy embedding intervals the 
 
 up to that time through the species tree intervals that are traversed
 by branch $b$, which can involve changing numbers of samples over time (A(t)), 
