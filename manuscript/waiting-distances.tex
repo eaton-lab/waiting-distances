@@ -604,11 +604,13 @@ of ($\mathcal{I}$) can visit each interval of a genealogy branch.
 % three intervals, such that $I_2$ = (0, 1, 6). 
 These variables,
 and the gene tree embedding table, include all relevant parameters
-for the derivations below.
+for the derivations below. 
+
+To better understand the relationship between the MS-SMC' and the gene tree embedding table, consider edge 7. We can easily isolate the intervals specific to edge 7 by querying the "branches" column of the table and extracting the rows where this column contains our focal edge. The number of rows we extract is equal to the number of intervals in the edge ($I_b$). If we retain the relative order of the rows and re-index them from $0$ to $I_b-1$, the information in the columns (e.g. $n_i$, $a_i$) can be used in the equations presented below. Altogether, the gene tree embedding table is simply a set containing all unique intervals (and their properties) over all edges in the genealogy, and it maps those intervals to the genealogy edges to which they are belong. This allows us to easily query relevant intervals for any edge of the genealogical tree.
 % , and are also summarized in the Appendix.
 
-\hl{needs updates to figure out how table can align with existing variables names.
-Additional table with final info could be supplement. Includes I, sister index, parent index...}
+%\hl{needs updates to figure out how table can align with existing variables names.
+%Additional table with final info could be supplement. Includes I, sister index, parent index...}
 
 % Unlike in the single-population SMC', the intervals in the multispecies model
 % are branch-specific. For example, the breakpoint $\sigma_{D1}$ in Figure 2c  
@@ -1105,9 +1107,9 @@ Inference of genealogies along a chromosome is a common goal in population genet
 	2  &  3 & 0      & $t_9$  & 9  & 8  & $W_{AB}$   \\
 	3  &  1 & 0      & $t_8$  & 8  & 4  & 0          \\
 	4  &  1 & 0      & $t_8$  & 8  & 3  & 0          \\
-	5  &  3 & 0      & $t_{11}$ & 11 & 6  & $W_{ABCD}$ \\
+	5  &  4 & 0      & $t_{11}$ & 11 & 6  & $W_{ABCD}$ \\
 	6  &  2 & 0      & $t_{11}$ & 11 & 5  & $W_{ABCD}$ \\
-	7  &  5 & $t_7$  & $t_{10}$ & 10 & 9  & $t_9$      \\
+	7  &  4 & $t_7$  & $t_{10}$ & 10 & 9  & $t_9$      \\
 	8  &  2 & $t_8$  & $t_9$  & 9  & 2  & $W_{AB}$   \\
 	9  &  2 & $t_9$  & $t_{10}$ & 10 & 7  & $t_9$      \\
 	10 &  3 & $t_{10}$ & $t_{12}$ & 12 & 11 & $t_{11}$     \\
