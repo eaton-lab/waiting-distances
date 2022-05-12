@@ -710,7 +710,7 @@ fall into the other categories.
 % law of total probability then allows us to use the inverse probability to calculate
 % a waiting distance to a change that falls into any of categories 2, 3, or 4. 
 
-\subsubsection{Probability $t_r$ on branch $b$ does not change the tree:}
+\subsubsection{Probability recombination at $t_r$ on branch $b$ does not change the tree:}
 % \subsubsection{Probability that a recombination event at time $t$ on branch $b$ will not change the tree:}
 % \hl{these sections needs waay more description. What does this all mean? The text here
 % was only restating the section title. You need to build up to the more complex ones by 
@@ -866,9 +866,33 @@ $m$, which is simply the interval whose lower bound is $t_b^m$, is used to break
 the equations into multiple parts and therefore is present as a start and 
 stop point for some summations in this section.
 
+\subsubsection{Probability recombination at $t_r$ on branch $b$ does not change the topology:}
+
+Again we begin by assuming knowledge of the branch on which the recombination event occurs, and of the time at which that event occurs. Unlike the previous approach, when we were simply trying to calculate the probability of a category 1 event, we are now trying to calculate the probability of an event of category 1, 2, or 3. To do this, we must immediately break the problem into two different cases: one in which $t_r$ is lower than $t_b^m$, and one in which $t_r$ is higher than $t_b^m$.
+
+\paragraph{First case --} Given $t \in [\sigma_i, \sigma_{i+1}] \subset [t_b^l,t_{b}^m]$:
+
+In this case, we have integrated coalescence probabilities through three sections in which a re-coalescence can produce a category 1, 2, or 3 event: the lower part of branch $b$ when the disconnected branch can reconnect with itself, the upper part of branch $b$ when it can reconnect with either itself or with its sibling, and all of branch $c$, with which a coalescent would lengthen branches without changing the topology.
+
+\begin{equation}
+	\mathbb{P}(\textrm{topology unchanged} | b,t,\mathcal{G},\mathcal{S}) = 
+	\frac{1}{a_i} + \sum_{k=i}^{\mathcal{I}_{b+c}-1}P_{ik}\exp\left\{\frac{a_i}{n_i}t\right\} + 
+	\sum_{k=m}^{\mathcal{I}_b-1}P_{ik}\exp\left\{\frac{a_i}{n_i}t\right\}
+\end{equation}
+
+\paragraph{Second case --} Given $t \in [\sigma_i, \sigma_{i+1}] \subset [t_b^m,t_b^u]$:
+
+If $t_r$ occurs when the detached branch can immediately coalesce with either the original branch or its sibling, there are only two distinct sections we must integrate across: the first section when the detached branch can re-coalesce with itself or with is sibling, and the second section during which the detached branch can coalesce with its parent. 
+
+\begin{equation}
+	\mathbb{P}(\textrm{topology unchanged} | b,t,\mathcal{G},\mathcal{S}) = 
+	2\left(\frac{1}{a_i} + \sum_{k=i}^{\mathcal{I}_{b}-1}P_{ik}\exp\left\{\frac{a_i}{n_i}t\right\}\right) + 
+	\sum_{\mathcal{I}_b}^{\mathcal{I}_{b+c}-1}P_{ik}\exp\left\{\frac{a_i}{n_i}t\right\}
+\end{equation}
+
 \subsubsection{Probability that a recombination event on branch $b$ will not change the topology:}
 
-We first present the probability that a recombination event occurring on a focal branch $b$ will change the tree topology. As in Section 2.3, this results from integrating through the solution when specifying a particular branch and time (see Appendix). 
+We next present the probability that a recombination event occurring on a focal branch $b$ will change the tree topology. As in Section 2.4, this results from integrating through the solution that specifies both a specific branch and time. 
 
 \begin{equation}
 \begin{aligned}
@@ -1230,7 +1254,7 @@ The second case is solved in a similar manner, although we eliminate the first i
 \end{equation*}
 
 \begin{equation}
-	= 2\left(\frac{1}{a_i} + \sum_{k=i}^{\mathcal{I}_{b}-1}P_{ik}e^{\frac{a_i}{n_i}t}\right) + \sum_{\mathcal{I}=n_b}^{\mathcal{I}_{b+c}-1}P_{ik}e^{\frac{a_i}{n_i}t}
+	= 2\left(\frac{1}{a_i} + \sum_{k=i}^{\mathcal{I}_{b}-1}P_{ik}e^{\frac{a_i}{n_i}t}\right) + \sum_{\mathcal{I}_b}^{\mathcal{I}_{b+c}-1}P_{ik}e^{\frac{a_i}{n_i}t}
 \end{equation}
 
 \subsubsection{Across a full branch}
