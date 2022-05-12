@@ -1073,30 +1073,84 @@ Inference of genealogies along a chromosome is a common goal in population genet
 
 \subsection{Notation}
 
-Assume we have sampled from a species tree $\mathcal{S}$ with $\mathcal{N}$ tips, where each tip represents a sampled individual belonging to one of the species. The species tree consists of a topology describing the history of population divergences, where each branch of the topology has a constant effective diploid population size $N_b$ associated with it. Within each branch, coalescence occurs at a constant per-generation rate of $\frac{1}{2N_b}$. 
+Assume we have sampled from a species tree $\mathcal{S}$ with $\mathcal{N}$ tips, where 
+each tip represents a sampled individual belonging to one of the species. The species tree 
+consists of a topology describing the history of population divergences, where each branch 
+of the topology has a constant effective diploid population size $N_b$ associated with it. 
+Within each branch, coalescence occurs at a constant per-generation rate of $\frac{1}{2N_b}$. 
 
-We begin with a genealogical tree $\mathcal{T}$ sampled from the species tree according to coalescent probabilities. This tree is embedded within the species tree so that the time of coalescence for any two individuals from different species in $\mathcal{T}$ is constrained to occur farther back in time than their species' coalescence times in $\mathcal{S}$.
+We begin with a genealogical tree $\mathcal{G}$ sampled from the species tree according 
+to coalescent probabilities. This tree is embedded within the species tree so that the 
+time of coalescence for any two individuals from different species in $\mathcal{G}$ 
+is constrained to occur farther back in time than their species' coalescence times 
+in $\mathcal{S}$.
 
-In \citet{deng_distribution_2021}, the genealogical tree was broken into a series of intervals so that the number of remaining (not-coalesced) lineages was constant within each interval. In their method, the number of remaining lineages decreases monotonically through time from tipward to rootward intervals as lineages coalesce. Our approach is similar, except that the intervals are branch-specific and correspond to intervals of constant numbers of lineages to coalesce with ($A$) and constant effective population size ($N$). Breakpoints may therefore exist where divergences occur in the species tree (potentially changing both $A$ and $N$) and where coalescent events occur in the genealogical tree (reducing $A$). Unlike in \citet{deng_distribution_2021}, $A$ is no longer monotonic, since \emph{species} coalescent events can increase the number of lineages available for coalescence, while \emph{genealogical} coalescent events always reduce that number. 
+In \citet{deng_distribution_2021}, the genealogical tree was broken into a series of 
+intervals so that the number of remaining (not-coalesced) lineages was constant within
+each interval. In their method, the number of remaining lineages decreases monotonically
+through time from tipward to rootward intervals as lineages coalesce. Our approach is 
+similar, except that the intervals are branch-specific and correspond to intervals of 
+constant numbers of lineages to coalesce with ($A$) and constant effective population 
+size ($N$). Breakpoints may therefore exist where divergences occur in the species 
+tree (potentially changing both $A$ and $N$) and where coalescent events occur in 
+the genealogical tree (reducing $A$). Unlike in \citet{deng_distribution_2021}, $A$ 
+is no longer monotonic, since \emph{species} coalescent events can increase the number
+of lineages available for coalescence, while \emph{genealogical} coalescent events
+always reduce that number. 
 
-The intervals within each branch of $\mathcal{T}$ are each assigned an index increasing from $0$ to $\mathcal{I}_b-1$, where $\mathcal{I}_b$ is the total number of intervals in the branch. The times in generations marking the lower and upper bounds of each branch $b$ are notated $t_l^b$ and $t_u^b$, respectively. Each interval of index $x$ is bounded by times $\sigma_x$ and $\sigma_{x+1}$.
+The intervals within each branch of $\mathcal{T}$ are each assigned an index increasing
+from $0$ to $\mathcal{I}_b-1$, where $\mathcal{I}_b$ is the total number of intervals
+in the branch. The times in generations marking the lower and upper bounds of each 
+branch $b$ are notated $t_l^b$ and $t_u^b$, respectively. Each interval of index $x$
+is bounded by times $\sigma_x$ and $\sigma_{x+1}$.
 
 \subsection{The distribution of distances to any change in a genealogical tree}
-
-Our goal is to derive a distribution of waiting distances to the next tree change from an input species tree and current genealogical tree.
+Our goal is to derive a distribution of waiting distances to the next tree change
+from an input species tree and current genealogical tree.
 
 \subsubsection{Given a branch and a time}
-
-We begin by assuming a specific branch and time of a recombination event. We then integrate across possible times on that branch, and we sum across all branches on the tree to solve for the probability of the genealogy being unchanged given any recombination event. Finally, we incorporate this probability into the exponential distribution presented in Equation 4.
+We begin by assuming a specific branch and time of a recombination event. We then 
+integrate across possible times on that branch, and we sum across all branches on
+the tree to solve for the probability of the genealogy being unchanged given any 
+recombination event. Finally, we incorporate this probability into the exponential
+distribution presented in Equation 4.
 
 \begin{equation}
-	\mathbb{P}(\textrm{tree unchanged} | b,t,\mathcal{T},\mathcal{S}) = \int_{t}^{t^u_b}\frac{1}{A(\tau)}p(\tau|t)d\tau
+	\mathbb{P}(\textrm{tree unchanged} | b,t,\mathcal{T},\mathcal{S}) = 
+	\int_{t}^{t^u_b}\frac{1}{A(\tau)}p(\tau|t)d\tau
 \end{equation}
 
-Where $A(\tau)$ is the number of lineages able to be coalesced with at time $\tau$, and $p(\tau|t)$ is the coalescence rate.
+Where $A(\tau)$ is the number of lineages able to be coalesced with at any time $\tau$, 
+and $p(\tau|t_r)$ is the exponential probability density of coalescing any time 
+after the recombination event. Thus, we are integrating over the probability
+of coalescence along the path of species tree intervals traversed
+by branch $b$, starting at the time of recombination and ending at the 
+end of the branch. If the branch spans only a single gene tree embedding 
+interval then $A(\tau)$ and $N(\tau)$
+
+Through this series of one or more gene tree embedding intervals the 
+
+up to that time through the species tree intervals that are traversed
+by branch $b$, which can involve changing numbers of samples over time (A(t)), 
+and changing effective population sizes (N(t)).
+Here we define the coalescence rate at time $\tau$ as $\frac{A(\tau)}{N(\tau)}$. 
+Note that this differs from \citet{deng_distribution_2021}, 
+since our branch lengths are in units of generations rather than in
+coalescent units. 
+
+% who defined the 
+% coalescent rate over an interval using the more common compound 
+% metric of coalescent time units (time in generations /2N). 
+% For the purposes of our equations it is simpler to  better to define define time in generations from the
+% coalescent probability at any unit of time. per unit
+% time, 
+
+
+% coalescence rate.
 
 \begin{equation}
-	= \int_{t}^{t^u_b}\frac{1}{A(\tau)} \frac{A(\tau)}{N(\tau)}e^{-\int_t^\tau{}\frac{A(s)}{N(s)}ds} d\tau
+	= \int_{t}^{t^u_b}\frac{1}{A(\tau)} \frac{A(\tau)}{N(\tau)}
+	e^{-\int_t^\tau{}\frac{A(s)}{N(s)}ds} d\tau
 \end{equation}
 
 
@@ -1104,7 +1158,7 @@ Where $A(\tau)$ is the number of lineages able to be coalesced with at time $\ta
 	= \int_{t}^{t^u_b}\frac{1}{N(\tau)}e^{-\int_t^\tau{}\frac{A(s)}{N(s)}ds} d\tau
 \end{equation}
 
-Here we have explicitly defined our coalescence rate at time $\tau$ as $\frac{A(\tau)}{N(\tau)}$. Note that this differs from \citet{deng_distribution_2021}, since our branch lengths are in units of generations rather than in coalescent units. 
+
 
 We can now take advantage of the fact that the rate of coalescence is piecewise-constant. We split the equation into one interval $i$ whose length depends on $t$ (it ranges from $t$ until the upper limit of its interval, $\sigma_{i+1}$) and we add to it integrals across intervals that are above it on the same branch, which are predefined by their upper and lower $\sigma$ values:
 
