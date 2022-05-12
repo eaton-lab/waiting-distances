@@ -875,7 +875,7 @@ Again we begin by assuming knowledge of the branch on which the recombination ev
 In this case, we have integrated coalescence probabilities through three sections in which a re-coalescence can produce a category 1, 2, or 3 event: the lower part of branch $b$ when the disconnected branch can reconnect with itself, the upper part of branch $b$ when it can reconnect with either itself or with its sibling, and all of branch $c$, with which a coalescent would lengthen branches without changing the topology.
 
 \begin{equation}
-	\mathbb{P}(\textrm{topology unchanged} | b,t,\mathcal{G},\mathcal{S}) = 
+	\mathbb{P}(\textrm{topology unchanged} | \mathcal{S},\mathcal{G},b,t) = 
 	\frac{1}{a_i} + \sum_{k=i}^{\mathcal{I}_{b+c}-1}P_{ik}\exp\left\{\frac{a_i}{n_i}t\right\} + 
 	\sum_{k=m}^{\mathcal{I}_b-1}P_{ik}\exp\left\{\frac{a_i}{n_i}t\right\}
 \end{equation}
@@ -885,7 +885,7 @@ In this case, we have integrated coalescence probabilities through three section
 If $t_r$ occurs when the detached branch can immediately coalesce with either the original branch or its sibling, there are only two distinct sections we must integrate across: the first section when the detached branch can re-coalesce with itself or with is sibling, and the second section during which the detached branch can coalesce with its parent. 
 
 \begin{equation}
-	\mathbb{P}(\textrm{topology unchanged} | b,t,\mathcal{G},\mathcal{S}) = 
+	\mathbb{P}(\textrm{topology unchanged} | \mathcal{S},\mathcal{G},b,t) = 
 	2\left(\frac{1}{a_i} + \sum_{k=i}^{\mathcal{I}_{b}-1}P_{ik}\exp\left\{\frac{a_i}{n_i}t\right\}\right) + 
 	\sum_{\mathcal{I}_b}^{\mathcal{I}_{b+c}-1}P_{ik}\exp\left\{\frac{a_i}{n_i}t\right\}
 \end{equation}
@@ -912,11 +912,11 @@ determine the probability that a recombination event falling uniformly on the
 tree will change the topology.
 
 \begin{equation*}
-    \mathbb{P}(\textrm{topology unchanged}| \mathcal{G},\mathcal{S}) = \sum_{b=1}^{2N-2}\frac{t_b^u-t_b^l}{L(\mathcal{G})} \times \mathbb{P}(\textrm{topology unchanged}|b, \mathcal{G},\mathcal{S})
+    \mathbb{P}(\textrm{topology unchanged} | \mathcal{S},\mathcal{G}) = \sum_{b \in \mathcal{G}}\frac{t_b^u-t_b^l}{L(\mathcal{G})} \times \mathbb{P}(\textrm{topology unchanged} | \mathcal{S},\mathcal{G},b)
 \end{equation*}
 
 \begin{equation}
-    = \frac{1}{L(\mathcal{G})}\sum_{b=1}^{2N-2}\left[\sum_{i=0}^{m-1}p_{b,1}^{(i)}+\sum_{i=m}^{\mathcal{I}_b-1}p_{b,2}^{(i)}\right]
+    = \frac{1}{L(\mathcal{G})}\sum_{b \in \mathcal{G}}\left[\sum_{i=0}^{m-1}p_{b,1}^{(i)}+\sum_{i=m}^{\mathcal{I}_b-1}p_{b,2}^{(i)}\right]
 \end{equation}
 
 \subsubsection{Waiting distance to the next topology change:}
@@ -1142,6 +1142,7 @@ Inference of genealogies along a chromosome is a common goal in population genet
 	$\mathcal{I}_b$          & The number of intervals on branch $b$  \\
 	$\mathcal{G}$          & The genealogical tree \\
 	$\mathcal{S}$   & The species tree with divergence times and branch-specific effective population sizes  \\
+	$L(\mathcal{G})$ & The total length of branches in genealogy $\mathcal{G}$ \\
 	\bottomrule
 \end{tabular}
 \end{table}
