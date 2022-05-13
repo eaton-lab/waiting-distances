@@ -250,7 +250,7 @@ based on pairwise coalescent times between sequential genealogies,
 % , which methods for inferring ARGs using SMC-based conditional 
 % sampling methods
 % based on SMC-like simulations
-\citep[ARGweaver;][]{rasmussen2014genome, hubisz2020inference}.
+%\citep[ARGweaver;][]{rasmussen2014genome, hubisz2020inference}.
 as well as ARGweaver \citep{rasmussen2014genome, hubisz2020inference}, 
 which infers ARGs from genome alignments using an SMC-based 
 conditional sampling method.
@@ -637,8 +637,8 @@ easily isolate the intervals specific to edge 7 by querying the "branches"
 column of the table and extracting the rows where this column contains our 
 focal edge (for edge 7, these are rows 1, 6, 7, and 8). The number of rows 
 we extract (in this case, 4) is equal to the number of intervals in the edge 
-($I_b$). If we retain the relative order of the rows and re-index them from 
-$0$ to $I_b-1$, the information in the columns (e.g. $n_i$, $a_i$) is easily
+($\mathcal{I}_b$). If we retain the relative order of the rows and re-index them from 
+$0$ to $\mathcal{I}_b-1$, the information in the columns (e.g. $n_i$, $a_i$) is easily
 adapted for use in the equations presented below. 
 
 To summarize, the genealogy embedding table is simply a set containing all 
@@ -912,7 +912,7 @@ branches occur in (i.e., it excludes intervals during which the
 branches are embedded in separate species tree branches).
 We then define $m$ as the index of the lowest interval in $bb'$
 (occurring at time $t_b^m$)  
-such that by indexing from $m$ to $I_b$ we can visit all 
+such that by indexing from $m$ to $\mathcal{I}_b$ we can visit all 
 intervals that are shared by the sibling branches.
 
 % We also introduce a new variable, $t_b^m$, which corresponds to the lowest point
@@ -1258,7 +1258,7 @@ to P.F.M.). Thanks to ... for feedback on ...}
 }
 \begin{tabular}[t]{ |c|c|c|c|c|c|c| }
 	\toprule
-	Branch & $I_b$ & $t_b^l$ & $t_b^u$ & Parent & Sibling & $t_b^m$ \\
+	Branch & $\mathcal{I}_b$ & $t_b^l$ & $t_b^u$ & Parent & Sibling & $t_b^m$ \\
 	\midrule
 	0  &  1 & 0      & $t_7$  & 7  & 1  & 0          \\
 	1  &  1 & 0      & $t_7$  & 7  & 0  & 0          \\
