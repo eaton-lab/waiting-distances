@@ -180,13 +180,6 @@ the rate of coalescence, and can vary among different lineages.
 	\label{fig:fig1}
 \end{figure}
 
-% -----------------------
-% MOVE THIS TO MAIN TEXT
-% ------------------------
-% Note that the first and second types of outcomes sum to 1, since one or
-% the other must happen as a consequence of recombination, whereas the third type
-% is a subset of the second. 
-% -------------------------
 
 Importantly, both the coalescent and MSC are models of the expected distribution of 
 \emph{unlinked} (uncorrelated) genealogies.
@@ -1342,33 +1335,65 @@ even when the ratio of tree to topology changes is high.
 %\end{aligned}
 %\end{equation}
 
-\section{Demonstration}
+\section{Results}
 % \label{sec:others}
 
-We have implemented our solutions in the Python package \emph{ipcoal} 
-\citep{mckenzie_ipcoal_2020}, which is an MSC-focused tool that includes
-a wrapper around the coalescent simulation software \emph{msprime}
-\citep{baumdicker_efficient_2022} paired with tree visualizations from
-\emph{toytree} \citep{eaton_toytree_2020}. 
-% Our MS-SMC functions are implemented in the subpackage \emph{ipcoal.smc}. 
-Here we demonstrate
-the accuracy of our solutions relative to simulated tree sequences.
-Source code is available at \url{https://github.com/eaton-lab/ipcoal}
-with reproducible examples implemented in jupyter notebooks.
+\subsection{Implementation}
+We have implemented our solutions for waiting distance calculations
+under the MS-SMC' in the Python package \emph{ipcoal} \citep{mckenzie_ipcoal_2020}.
+This includes functions that accept a parameterized MSC model and 
+initial genealogy as input, and can return the probabilities of different 
+recombination outcomes given a selected branch and timing of recombination, 
+as well as these probabilities integrated over an entire branch or genealogy. 
+Functions are also available to calculate the likelihood of observed 
+waiting distances between different genealogy changes in an ARG 
+using an exponential probability density parameterized by the MS-SMC'.
+Our \emph{ipcoal} package also includes a coalescent simulation and validation 
+framework built on \emph{msprime} \citep{baumdicker_efficient_2022}
+and \emph{toytree} \citep{eaton_toytree_2020}, for setting up and 
+visualizing MSC models, generating tree sequences, and analyzing waiting
+distances. Source code and example jupyter notebooks are available at
+\url{https://github.com/eaton-lab/ipcoal}.
 
+% tree manipulationpaired with 
+% Source code and example jupyter notebooks are available at
+% \url{https://github.com/eaton-lab/ipcoal}, including validation against 
+% coalescent simulations  software  paired with tree visualizations from
+% % Our MS-SMC functions are implemented in the subpackage \emph{ipcoal.smc}. 
+% Here we demonstrate
+% the accuracy of our solutions relative to simulated tree sequences.
+% Source code is available at 
 % We adapted our solutions to python code, and we implemented them alongside the phylogenomic simulation package \emph{ipcoal} (an MSC-focused wrapper for the popular population genomic simulator \emph{msprime}) \citep{mckenzie_ipcoal_2020,baumdicker_efficient_2022}. Doing so facilitated three simple, illustrative analyses.
 
+\subsection{Demonstration}
 % First, when given a species tree and initial genealogy, we could examine the probability 
-First, given a species tree model and initial genealogy, we can visualize the 
+Given a species tree model and initial genealogy we can visualize the 
 probabilities of different types of outcomes of recombination as a 
-function of the position (time) on a genealogy branch where a recombination 
-event occurs (Fig.~\ref{fig:fig1}). As an example, we show probabilities along
-three selected edges of a genealogy embedded in a species tree model. Our species 
-tree was proposed arbitrarily with a root height of 1e6 generations and 
-includes branch-specific N values. Our sampling in the genealogy includes three individuals
-for population A, two individuals for population B, and one individual for each 
-population C and D. The exact parameterization for the model, as well as the 
-code to replicate the analysis, is documented in our supplementary notebooks.
+function of the where and when it occurs.
+% position (time) on a branch where recombination occurs. 
+For this, we used a 4-tip species tree model with divergence times in 
+units of generations and branch specific effective population sizes 
+(see parameters in Table~S2), and embedded a genealogy for seven samples, 
+including three from lineage A, two from lineage B, and one from lineages 
+C and D. 
+As an demonstration, we show probabilities of recombination outcomes for 
+three selected branches of the genealogy (Fig.~\ref{fig:fig1}). 
+Note that the probability of no-change and tree-change events are inversely
+related (they sum to 1), since one or the other must happen as a consequence 
+of recombination. By contrast, a topology-change event is a subset of the 
+probability of a tree-change (Fig.~\ref{fig:fig1}b-d);  
+recall that a topology-change event is simply a tree-change event
+where a branch re-coalesces with a branch other than itself, 
+its sibling, or its parent.
+
+% We then applied our solutions to calculate probabilities of changes given 
+% ...Our species tree was proposed arbitrarily with a root height of 1e6 generations and 
+% includes branch-specific effective population sizes (Table~S1). 
+% Our sampling in the genealogy includes three individuals
+% for population A, two individuals for population B, and one individual for each 
+% population C and D. The exact parameterization for the model, as well as the 
+% code to replicate the analysis, is documented in our supplementary notebooks.
+% ...
  % tree model 
 % of changes in the genealogy given a recombination event on a specific branch and at a 
 % specific time. \textbf{Figure 3} illustrates the selection of three branches from a genealogy 
@@ -1381,18 +1406,53 @@ code to replicate the analysis, is documented in our supplementary notebooks.
 % and had 
 % with constant Ne of 2e5 across species tree intervals. 
 % Parts 
-%\hl{I left off here, since fig3/fig1 updates are in progress.}
-Fig.~\ref{fig:fig1} panels b, c, and d show the probability that a recombination event 
-falling at each time $t_r$ on the 3 selected genealogy branches results in no change 
-(b), results in a tree change (c), and results in a topology change (d).  
-The tendency of the y-values in (b) to approach 0 and (c) to approach 1 as x-values increase 
-make clear that recombination events falling at the tops of branches 
-(i.e., far right on the x-axis) are increasingly certain to change the branch lengths 
-of the genealogy. This is because any re-coalescence of the detached branch can only occur 
-above the recombination breakpoint. The values in part (d), however, never approach 1 (i.e. 
-certain to produce a topology change). This is because re-coalescence with the parent branch, 
-which would not result in a topology change, is still possible even if 
-a recombination event occurs at the very top of a focal branch. 
+
+In general, the probability of no-change decreases, and the probability
+of tree-change increases, as recombination occurs closer to the top
+end of a branch (further back in time). This makes sense, since when 
+recombination occurs at the top of a branch there is less time
+for it to re-coalesce with its same branch. Although this is a general
+trend, these probabilities do not behave monotonically along the length
+of a branch, as they would in a single-population model \citep{deng_distribution_2021}.
+Instead, probabilities increase or decrease through the length of an 
+interval depending on the probabilities of outcomes in subsequent intervals, 
+which can be higher or lower, and the probabilities that a recombination 
+event can lead to re-coalescence in those intervals.
+
+For example, consider branch 2, which initially exhibits an increase in the
+probability of no-change through its first branch interval from time 0 to
+$t_7$, but then a decrease through the next interval from $t_7$ to $W_{AB}$.
+The observed increase through the first interval is influenced by the fact that
+a re-coalesence in the subsequent interval is more likely to cause a no-change
+event, since that interval contains only two samples instead of three.
+% up recombination occurs in this interval the more likely it is to re-coalesce
+% in the next interval, where only two instead of three samples are present, such
+% that a no-change event is more likely. 
+By contrast, within in the second interval, as recombination occurs closer to 
+the top, it is approaching the next species tree divergence event, where the 
+number of samples will increase again, from 2 to 3, 
+thus decreasing the probability of a no-change event. In this way, 
+the calculated probabilities for the outcome of recombination at any time 
+point incorporates all of the possibilities of re-coalescence at deeper 
+time points.
+% while also incorporating potentially variable coalescence rates within 
+% different species tree intervals.
+
+To better understand probabilities of a tree and topology-change events let 
+us examine branch 7, which spans three species tree intervals. Of particular 
+interest is the divergence in the probabilities of tree-change versus no-change
+across intervals from $W_{AB}$ to $W_{ABC}$....
+% Fig.~\ref{fig:fig1} panels b, c, and d show the probability that a recombination event 
+% falling at each time $t_r$ on the 3 selected genealogy branches results in no change 
+% (b), results in a tree change (c), and results in a topology change (d).  
+% The tendency of the y-values in (b) to approach 0 and (c) to approach 1 as x-values increase 
+% make clear that recombination events falling at the tops of branches 
+% (i.e., far right on the x-axis) are increasingly certain to change the branch lengths 
+% of the genealogy. This is because any re-coalescence of the detached branch can only occur 
+% above the recombination breakpoint. The values in part (d), however, never approach 1 (i.e. 
+% certain to produce a topology change). This is because re-coalescence with the parent branch, 
+% which would not result in a topology change, is still possible even if 
+% a recombination event occurs at the very top of a focal branch. 
 
 %\begin{figure}
 %	\centering
@@ -1402,6 +1462,7 @@ a recombination event occurs at the very top of a focal branch.
 %	 \label{fig:fig3}
 %\end{figure}
 
+\subsection{Validation}
 Next, we tested the effect of variation in basic species tree parameters on expected waiting 
 distances to tree changes and topology changes (Fig.~\ref{fig:fig3}). We started with four 
 different species trees: two imbalanced and two balanced. For each pair, we used a large tree 
@@ -1417,15 +1478,25 @@ value. The decline in expected waiting distances across Ne values and from small
 trees demonstrates that, on average, waiting distances to tree and topology changes decrease 
 with increasing numbers of tips sampled and with increasing Ne values. 
 
-\begin{figure}
+\begin{figure}[t]
 	\centering
 	%\fbox{\rule[-.5cm]{4cm}{4cm} \rule[-.5cm]{4cm}{0cm}}
-	\includegraphics[width=0.9\textwidth]{figures/Fig5-waiting_times_ne_means.pdf}
-	\caption{Mean expected waiting distances for differently parameterized species tree models. We used four different species trees: two 10-tip trees (a, b), each with 1e6-generation root heights, and two 5-tip trees (c, d) that are subselected from each of the larger trees. For each species tree, we iterated over 9 Ne values ranging from 50000 to 250000, generating 1000 unlinked MSC genealogies at each Ne value and calculating the expected waiting distance to a tree change and to a topology change for each. The mean of the expected waiting distances at each Ne value is presented in the scatterplot accompanying each species tree. Note that the y-axis scale changes from the top row (a, b) to the bottom row (c, d).}
+	\includegraphics[width=0.9\textwidth]{figures/Fig4-new-validation.pdf}
+	\caption{
+		\hl{it doesn't seem to me that the two different sized trees here showed a 
+		very revealing insight. If we care about number of tips, then we could create a 
+		plot where one of the axes varies the number of tips, and have many more
+		points of data. I'd like to make this and the next figure a bit more 
+		"dense" in terms of their information-to-space ratios. For now, one idea is
+		to show just one tree size, but I'm thinking moreso that we could add two
+		plots next to each tree.}
+	}
+	% Mean expected waiting distances for differently parameterized species tree models. We used four different species trees: two 10-tip trees (a, b), each with 1e6-generation root heights, and two 5-tip trees (c, d) that are subselected from each of the larger trees. For each species tree, we iterated over 9 Ne values ranging from 50000 to 250000, generating 1000 unlinked MSC genealogies at each Ne value and calculating the expected waiting distance to a tree change and to a topology change for each. The mean of the expected waiting distances at each Ne value is presented in the scatterplot accompanying each species tree. Note that the y-axis scale changes from the top row (a, b) to the bottom row (c, d).}
 	 \label{fig:fig4}
 \end{figure}
 
 
+\subsection{Likelihood framework}
 Finally, we demonstrated that a known sequence of genealogies paired with the accompanying
 observed waiting distances to next topological change for each can be used to estimate the 
 Ne value for species trees with different topologies (Fig.~\ref{fig:fig4}). We used two 
@@ -1439,6 +1510,7 @@ distances). Using these values and a known recombination rate of 1e-9 recombs/bp
 we calculated the likelihood that each of 41 proposed Ne values produced the set of 
 genealogies and waiting distances. Using this approach, we recovered a correctly inferred Ne 
 value of 150000 for both trees.
+
 
 \begin{figure}
 	\centering

@@ -26,8 +26,8 @@
      showgrid="false"
      units="px"
      inkscape:zoom="1.4142136"
-     inkscape:cx="366.63486"
-     inkscape:cy="223.7993"
+     inkscape:cx="430.98156"
+     inkscape:cy="271.17544"
      inkscape:window-width="1950"
      inkscape:window-height="1082"
      inkscape:window-x="333"
@@ -1160,88 +1160,54 @@
        sodipodi:nodetypes="cc" />
     <text
        xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:1.751px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.164156;stroke-opacity:1"
-       x="-14.17755"
-       y="105.03641"
-       id="text5085"
-       transform="rotate(-90)"><tspan
-         sodipodi:role="line"
-         x="-14.17755"
-         y="105.03641"
-         style="font-size:1.751px;text-align:center;text-anchor:middle;stroke-width:0.164156"
-         id="tspan8453">Probability of</tspan><tspan
-         sodipodi:role="line"
-         x="-14.17755"
-         y="107.22516"
-         style="font-weight:bold;font-size:1.751px;text-align:center;text-anchor:middle;stroke-width:0.164156"
-         id="tspan38223">no change</tspan></text>
-    <text
-       xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:3.19019px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.164156;stroke-opacity:1"
-       x="147.73384"
+       x="146.67552"
        y="4.378087"
        id="text5085-0"><tspan
          sodipodi:role="line"
-         x="147.73384"
+         x="146.67552"
          y="4.378087"
          id="tspan8453-0"
-         style="font-size:3.19019px;stroke-width:0.164156">Edge 5</tspan></text>
+         style="font-size:3.19019px;stroke-width:0.164156">Branch 5</tspan></text>
     <text
        xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:1.751px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.164156;stroke-opacity:1"
-       x="-33.047302"
-       y="105.03641"
-       id="text9971"
-       transform="rotate(-90)"><tspan
-         sodipodi:role="line"
-         x="-33.047302"
-         y="105.03641"
-         style="font-size:1.751px;text-align:center;text-anchor:middle;stroke-width:0.164156"
-         id="tspan9969">Probability of</tspan><tspan
-         sodipodi:role="line"
-         x="-33.047302"
-         y="107.22516"
-         style="font-weight:bold;font-size:1.751px;text-align:center;text-anchor:middle;stroke-width:0.164156"
-         id="tspan37613">tree change</tspan></text>
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:1.751px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.164156;stroke-opacity:1"
-       x="-51.433773"
-       y="105.03641"
+       style="font-style:normal;font-weight:normal;font-size:2.11667px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.164156;stroke-opacity:1"
+       x="-51.757561"
+       y="103.93525"
        id="text9977"
        transform="rotate(-90)"><tspan
          sodipodi:role="line"
-         x="-51.433773"
-         y="105.03641"
-         style="font-size:1.751px;text-align:center;text-anchor:middle;stroke-width:0.164156"
+         x="-51.757561"
+         y="103.93525"
+         style="font-weight:normal;font-size:2.11667px;text-align:center;text-anchor:middle;stroke-width:0.164156"
          id="tspan9975">Probability of</tspan><tspan
          sodipodi:role="line"
-         x="-51.433773"
-         y="107.22516"
-         style="font-weight:bold;font-size:1.751px;text-align:center;text-anchor:middle;stroke-width:0.164156"
-         id="tspan36013">topology change</tspan></text>
+         x="-51.757561"
+         y="106.58109"
+         style="font-weight:normal;font-size:2.11667px;text-align:center;text-anchor:middle;stroke-width:0.164156"
+         id="tspan36013">topology-change</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:3.19019px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.164156;stroke-opacity:1"
-       x="176.64449"
+       x="175.58617"
        y="4.378087"
        id="text20120"><tspan
          sodipodi:role="line"
-         x="176.64449"
+         x="175.58617"
          y="4.378087"
          id="tspan20118"
-         style="font-size:3.19019px;stroke-width:0.164156">Edge 7</tspan></text>
+         style="font-size:3.19019px;stroke-width:0.164156">Branch 7</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:3.19019px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.164156;stroke-opacity:1"
-       x="119.18285"
+       x="118.12452"
        y="4.378087"
        id="text21606"><tspan
          sodipodi:role="line"
-         x="119.18285"
+         x="118.12452"
          y="4.378087"
          id="tspan21604"
-         style="font-size:3.19019px;stroke-width:0.164156">Edge 2</tspan></text>
+         style="font-size:3.19019px;stroke-width:0.164156">Branch 2</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:2.39264px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.164156;stroke-opacity:1"
@@ -1392,7 +1358,7 @@
            style="font-weight:normal;font-size:7px;font-family:helvetica;white-space:pre;fill:#282623;fill-opacity:1;stroke:none"
            x="-0.55599999"
            y="9.9549999"
-           id="text978">8</text>
+           id="text978">7</text>
       </g>
       <g
          transform="translate(66.666667,6)"
@@ -2294,24 +2260,24 @@
     </g>
     <text
        xml:space="preserve"
-       style="font-size:5.64444444px;line-height:1.25;font-family:sans-serif;word-spacing:0px;stroke-width:0.284731"
+       style="font-size:4.93888889px;line-height:1.25;font-family:sans-serif;word-spacing:0px;stroke-width:0.284731"
        x="2.0406907"
        y="6.3605795"
        id="text178474"><tspan
          sodipodi:role="line"
          id="tspan178472"
-         style="stroke-width:0.284731;font-size:5.64444444px"
+         style="stroke-width:0.284731;font-size:4.93888889px"
          x="2.0406907"
          y="6.3605795">(a)</tspan></text>
     <text
        xml:space="preserve"
-       style="font-size:5.64444px;line-height:1.25;font-family:sans-serif;word-spacing:0px;stroke-width:0.284731"
+       style="font-size:4.93888889px;line-height:1.25;font-family:sans-serif;word-spacing:0px;stroke-width:0.284731"
        x="92.409706"
        y="6.3605795"
        id="text180142"><tspan
          sodipodi:role="line"
          id="tspan180140"
-         style="font-size:5.64444px;stroke-width:0.284731"
+         style="stroke-width:0.284731;font-size:4.93888889px"
          x="92.409706"
          y="6.3605795">(b)</tspan></text>
     <g
@@ -2375,25 +2341,59 @@
        sodipodi:nodetypes="ccccccccccccccccccc" />
     <text
        xml:space="preserve"
-       style="font-size:5.64444px;line-height:1.25;font-family:sans-serif;word-spacing:0px;stroke-width:0.284731"
+       style="font-size:4.93888889px;line-height:1.25;font-family:sans-serif;word-spacing:0px;stroke-width:0.284731"
        x="92.409706"
        y="28.099531"
        id="text338106"><tspan
          sodipodi:role="line"
          id="tspan338104"
-         style="font-size:5.64444px;stroke-width:0.284731"
+         style="stroke-width:0.284731;font-size:4.93888889px"
          x="92.409706"
          y="28.099531">(c)</tspan></text>
     <text
        xml:space="preserve"
-       style="font-size:5.64444px;line-height:1.25;font-family:sans-serif;word-spacing:0px;stroke-width:0.284731"
+       style="font-size:4.93888889px;line-height:1.25;font-family:sans-serif;word-spacing:0px;stroke-width:0.284731"
        x="92.409706"
        y="48.281788"
        id="text338110"><tspan
          sodipodi:role="line"
          id="tspan338108"
-         style="font-size:5.64444px;stroke-width:0.284731"
+         style="stroke-width:0.284731;font-size:4.93888889px"
          x="92.409706"
          y="48.281788">(d)</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:2.11667px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.164156;stroke-opacity:1"
+       x="-32.994701"
+       y="103.93525"
+       id="text8502"
+       transform="rotate(-90)"><tspan
+         sodipodi:role="line"
+         x="-32.994701"
+         y="103.93525"
+         style="font-weight:normal;font-size:2.11667px;text-align:center;text-anchor:middle;stroke-width:0.164156"
+         id="tspan8498">Probability of</tspan><tspan
+         sodipodi:role="line"
+         x="-32.994701"
+         y="106.58109"
+         style="font-weight:normal;font-size:2.11667px;text-align:center;text-anchor:middle;stroke-width:0.164156"
+         id="tspan8500">tree-change</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:2.11667px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.164156;stroke-opacity:1"
+       x="-13.852552"
+       y="103.93525"
+       id="text9888"
+       transform="rotate(-90)"><tspan
+         sodipodi:role="line"
+         x="-13.852552"
+         y="103.93525"
+         style="font-weight:normal;font-size:2.11667px;text-align:center;text-anchor:middle;stroke-width:0.164156"
+         id="tspan9884">Probability of</tspan><tspan
+         sodipodi:role="line"
+         x="-13.852552"
+         y="106.58109"
+         style="font-weight:normal;font-size:2.11667px;text-align:center;text-anchor:middle;stroke-width:0.164156"
+         id="tspan9886">no-change</tspan></text>
   </g>
 </svg>
