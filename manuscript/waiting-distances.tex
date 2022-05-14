@@ -107,7 +107,7 @@ to a species divergence event that separates them \citep{maddison1997gene,maddis
 Conceptually, the MSC can be viewed as a piecewise model composed of the standard
 coalescent applied to each interval of a "species tree", representing the relationships
 and divergence times among isolated lineages. Genealogies are constrained to be
-embedded within species trees (Fig.~\ref{fig:fig1}), and the joint likelihood of 
+embedded within species trees (Fig.~\ref{fig:fig1}a), and the joint likelihood of 
 MSC model parameters can be estimated from the coalescent times among a 
 distribution of sampled genealogies
 % Analytically, the MSC can be viewed as a piecewise likelihood function composed of the 
@@ -128,28 +128,66 @@ the rate of coalescence, and can vary among different lineages.
 
 \begin{figure}
 	\centering
-	%\fbox{\rule[-.5cm]{4cm}{4cm} \rule[-.5cm]{4cm}{0cm}}
-	\includegraphics[width=0.99\textwidth]{figures/Fig3-parameters-extend-PFM1.pdf}
-	\caption{A genealogy embedded in a species tree. 
-	(a) Species tree divergence times ($W$) define ancestral populations. The population 
-	structure constrains which lineages of the genealogy can coalesce. Further, each 
-	population which can have a different effective population size ($N_b$),
-	which determine rates of coalescence within that population. Viewed backwards in time, 
-	coalescent events (e.g., $t_7$) in the genealogy reduce the number of samples, whereas 
-	species tree divergence events (e.g., $W_{AB}$) increase the number of samples present. 
-	(b-d) Recombination is modeled by detaching a branch at a specific time and 
-	sampling a waiting time until it re-coalesces, leading to either no change, 
-	a tree change (edge lengths), or topology change. We arbitrarily selected edges 2, 5, and 
-	7 to illustrate how piecewise variation in coalescent rates back in time through the 
-	species tree leads to changing probabilities of each
-	outcome (discussed in Demonstration). Note that the values in (b) and (c) must sum to 1, 
-	since one of those two events must happen, while (d) is showing the probabilities of a 
-	subset of the events in (c). See Table 1 for the full genealogy embedding table for this 
-	example.
+	\includegraphics[width=0.99\textwidth]{figures/Fig1-embedding-and-probs-fill.pdf}
+	\caption{
+		The effect of recombination on a genealogy embedded in a species tree
+		can be modeled using the MS-SMC'. 
+		% A genealogy embedded in a species tree exhibits different probabilities
+		% of outcomes of recombination, when viewed backwards in time, depending on 
+		% the timing and branch on which recombination occurs.
+		(a) A parameterized MSC model is composed of discrete intervals separated 
+		by population divergence events ($W$), where the rate of coalescence can vary
+		among intervals with different effective population sizes. The expected waiting
+		time between coalescence events (e.g., $t_9$--$t_{10}$) is a product of these
+		rates and the number of samples present, such that a table can be composed of
+		discrete intervals with constant rates (see Table 1). 
+		% varies with respect to
+		% changing rates of coalescence, as well the number of samples present at any time.
+		% such that the an 
+		 % and estimating
+		% the expected waiting time between coalescence events (e.g., $t_9$--$t_{10}$) 
+		% requires integrating over these rates as they change through time/intervals.
+		% See Table 1 for the full genealogy embedding table for this 
+		% and the number of samples changes.
+		% by the rate of coalescence and the number of samples present.
+		% reduce the number of samples present in an interval, whereas population 
+		% divergence events (e.g., $W_{AB}$) increase the number in the subsequent interval.
+		A recombination event occurring on a branch of a genealogy can cause
+		three possible outcomes (b-d): "no change", "tree change", or "topology 
+		change", and each branch exhibits piecewise variation in these 
+		probabilities across discrete intervals. We derive solutions for 
+		the relative probabilities of these outcomes in the main text by 
+		integrating over the lengths of each branch in a genealogy. 
+		Probabilities were calculated here for three selected branches as a 
+		function of the time at which recombination occurs ($t_r$), given the
+		MSC model parameters in Table~S=2.
+	% 	divergence times ($W$) define ancestral populations. The population 
+	% structure constrains which lineages of the genealogy can coalesce. Further, each 
+	% population which can have a different effective population size ($N_b$),
+	% which determine rates of coalescence within that population. Viewed backwards in time, 
+	% coalescent events (e.g., $t_7$) in the genealogy reduce the number of samples, whereas 
+	% species tree divergence events (e.g., $W_{AB}$) increase the number of samples present. 
+	% (b-d) 
+	% Recombination is modeled by detaching a branch at a specific time and 
+	% sampling a waiting time until it re-coalesces, leading to either no change, 
+	% a tree change (edge lengths), or topology change. We arbitrarily selected edges 2, 5, and 
+	% 7 to illustrate how piecewise variation in coalescent rates back in time through the 
+	% species tree leads to changing probabilities of each
+	% outcome (discussed in Demonstration). Note that the values in (b) and (c) must sum to 1, 
+	% since one of those two events must happen, while (d) is showing the probabilities of a 
+	% subset of the events in (c). See Table 1 for the full genealogy embedding table for this 
+	% example.
 	}
 	\label{fig:fig1}
 \end{figure}
 
+% -----------------------
+% MOVE THIS TO MAIN TEXT
+% ------------------------
+% Note that the first and second types of outcomes sum to 1, since one or
+% the other must happen as a consequence of recombination, whereas the third type
+% is a subset of the second. 
+% -------------------------
 
 Importantly, both the coalescent and MSC are models of the expected distribution of 
 \emph{unlinked} (uncorrelated) genealogies.
@@ -302,25 +340,46 @@ conditional sampling method.
 % developed to describe these as distributions within a statistical phylogenetic framework. 
 
 
-\begin{figure}
+\begin{figure}[h]
 	\centering
 	%\fbox{\rule[-.5cm]{4cm}{4cm} \rule[-.5cm]{4cm}{0cm}}
-	\includegraphics[width=0.9\textwidth]{figures/Fig2-new-recomb-types.pdf}
+	\includegraphics[width=0.99\textwidth]{figures/Fig2-recomb-types-ARG.pdf}
 	\caption{
-	Examples of the four different categories of outcomes from a 
-	recombination event (adapted from \citep{deng_distribution_2021}). 
-	(a) A category 1 event occurs when the dislocated lineage reattaches to the 
-	original lineage. 
-	(b) A category 2 event occurs when a dislocated lineage attaches to its 
-	sibling lineage (the lineage that it originally coalesced with), shortening 
-	both of their branch lengths and extending that of its parental lineage. 
-	(c) A category 3 event occurs when the dislocated lineage attaches to its 
-	parental lineage, lengthening the original lineage and its sibling lineage,
-	and shortening the parental lineage.
-	(d) A category 4 recombination event occurs when the dislocated lineage
-	attaches with any lineage other than itself, its sibling lineage, and its
-	parental lineage. This is the only category of recombination event that
-	changes the topology of the genealogy.
+		An ancestral recombination graph (ARG) represents a genome
+		as a series of genealogies, each spanning a particular length of 
+		genomic positions, and which are separated by recombination breakpoints. 
+		In this example four recombination breakpoints occurred between the 
+		starting genealogy (left) and the final genealogy (right). Recombination
+		events are indicated by panels which show the process by which a lineage
+		is detached (former section shown as blue dotted line) and then 
+		re-coalesces (red) with the other samples. Vertical bars (white) 
+		act as barriers preventing coalescence between samples in different
+		species tree intervals.
+		% ancestor is pruned (blue dotted) 
+		% and replaced by a new sampled ancestor (red).
+		This process can result is one of four categories of outcomes:
+		(1) the detached lineage re-coalesces with its same lineage
+		before the next coalescent event resulting in no change; 
+		(2) the detached lineage re-coalesces with its sibling lineage,
+		shortening their coalescent time;
+		(3) the detached lineage re-coalesces with its parent lineage,
+		lengthening the coalescent time between itself and its sibling;
+		(4) the detached lineage re-coalesces with any other lineage,
+		resulting in a change to the genealogical topology.
+	% Examples of the four different categories of outcomes from a 
+	% recombination event (adapted from \citep{deng_distribution_2021}). 
+	% (a) A category 1 event occurs when the dislocated lineage reattaches to the 
+	% original lineage. 
+	% (b) A category 2 event occurs when a dislocated lineage attaches to its 
+	% sibling lineage (the lineage that it originally coalesced with), shortening 
+	% both of their branch lengths and extending that of its parental lineage. 
+	% (c) A category 3 event occurs when the dislocated lineage attaches to its 
+	% parental lineage, lengthening the original lineage and its sibling lineage,
+	% and shortening the parental lineage.
+	% (d) A category 4 recombination event occurs when the dislocated lineage
+	% attaches with any lineage other than itself, its sibling lineage, and its
+	% parental lineage. This is the only category of recombination event that
+	% changes the topology of the genealogy.
 }
 \label{fig:fig2}
 \end{figure}
