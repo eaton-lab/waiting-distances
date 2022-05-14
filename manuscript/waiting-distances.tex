@@ -31,11 +31,7 @@
 
 
 \usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
-\hypersetup{
-     colorlinks   = true,
-     citecolor    = Indigo,
-     linkcolor    = DarkCyan
-}
+\urlstyle{same}
 \setlength{\RaggedRightParindent}{\parindent}
 \linenumbers
 \linespread{1.15}
@@ -44,11 +40,14 @@
 %%% Once the PDF is generated, you can check the metadata with
 %%% $ pdfinfo template.pdf
 \hypersetup{
-	pdftitle={Estimating Waiting Distances Between Genealogy Changes under a 
+     colorlinks   = true,
+     citecolor    = Indigo,
+     linkcolor    = DarkCyan,
+	pdftitle = {Estimating Waiting Distances Between Genealogy Changes under a 
 		Multi-Species Extension of the Sequentially Markov Coalescent},
-	pdfsubject={Evolutionary biology},
-	pdfauthor={Patrick F. ~McKenzie},
-	pdfkeywords={Recombination, Phylogeny, SMC, Gene Tree, Species Tree, Concatalescence, ARG},
+	pdfsubject = {Evolutionary biology},
+	pdfauthor = {Patrick F. ~McKenzie},
+	pdfkeywords = {Recombination, Phylogeny, SMC, Gene Tree, Species Tree, Concatalescence, ARG},
 }
 
 % \renewcommand{\shorttitle}{MSC Waiting Distance Distribution}
@@ -1250,15 +1249,18 @@ uniformly on the genealogy will not result in a topology change:
 
 \subsubsection{Waiting distance to the next topology change:}
 
-Because the topology of a genealogy either does or does not change
-following a recombination event, we can get the probability that it 
-does change from our solution for the probability that it does not 
-(equation 14), which itself was derived from the joint probability of 
-observing either no change or a tree change. Given an equation for
-the probability of a topology change we can thus model the expected
-distances between topology changes in a genome, given a parameterized
-MSC model, using an exponential probability density with the following 
-rate parameter:
+A recombination event either does or does not change the topology
+of a genealogy, and therefore, from our equation for the probability that 
+it does not change the topology we can get the probability that it does. 
+As with the previous "waiting distance" calculations, the expected distance
+between topology changes in a genome, given a parameterized MSC model, 
+is distributed as an exponential probability density (equation 9). 
+Similar to how a rate parameter was derived for the distribution 
+of waiting distances between recombination events (equation 8), 
+or between tree changes (equation 10), 
+the rate parameter ($\lambda_t$) can be calculated using equation 14 
+to get the expectated distribution of waiting distances between topology 
+changes given a genealogy and an MSC model:
 
 \begin{equation}
 	\lambda_{t} = 
@@ -1267,34 +1269,70 @@ rate parameter:
 \end{equation}
 
 % now present the caveats...
-Unlike with the expected waiting distance to a \emph{tree} change, the exact 
-waiting distance distribution to a \emph{topology} change is more 
-complicated to derive, because of possible intermediate recombination events 
-that change the branch lengths but not the topology. 
-As the branch lengths of intermediate genealogies change this affects the
-rate of subsequent recombination events, and thus 
+This final expectation, however, does come with a caveat. 
+Unlike our exact solution for the expected waiting distance to a 
+\emph{tree} change, the solution for a \emph{topology} change is 
+technically an approximation. 
+This is because we have ignored the possible effects of changes
+intermediate recombination events that cause tree changes 
+throughout the waiting until a topology change event occurs
+% more complicated, % to derive, 
+% waiting distance distribution to a \emph{topology} change is more 
+% solution for a \emph{topology} change is more complicated, % to derive, 
+% due to the possibility of intermediate recombination events 
+% because of the possibility of intermediate recombination events 
+% that change branch lengths but not the topology 
+(e.g., the second and third recombination events in Fig.~\ref{fig:fig2} 
+which occur between the start and the topology change event). 
+These events can potentially change the expected waiting distance
+distribution frequently across the genome, before a topology change 
+event happens.
+% subsequent recombination events, 
+% including the relative probabilities of different categorical types.
+% for the next event.
+% As these events
+% As the branch lengths of intermediate genealogies change this affects the
+% rate of subsequent recombination events, and thus 
 % These events impact the rate of recombination events and 
-the probability
+% the probability
 % that each further recombination event changes
-that such events could change
-the topology of the %newly generated 
-next
-genealogy. This problem similarly arises in a single population model,
+% that such events could change
+% the topology of the %newly generated 
+% next
+% genealogy. 
+This problem similarly arose in the single population model,
 % However, 
 where \citet{deng_distribution_2021} 
-demonstrated the its effect can be ignored. This is because of the 
+demonstrated that its effect can be ignored. This is because of the 
 % demonstrate the approximate 
 % negation of this effect due to the 
-inverse relationship between genealogy length
-and the probability of a topology-changing recombination event. Even as branch 
-lengths increase, reducing the waiting time to the next recombination event, the
-probability that %the recombination event 
-this event 
-will change the topology decreases. 
-Therefore, we follow their approach by approximating the waiting distance to
-a change in topology using an exponential probability density 
+inverse relationship between ($L(\mathcal{G})$) 
+and the probability of a topology-changing recombination event. 
+For example, when branch lengths become very long the expected 
+waiting distance to the next recombination event becomes very small, 
+and similarly the probability that the event will change the 
+topology decreases. Conversely, if branch lengths are as short as possible 
+within the constraints of a species tree model, waiting distances between 
+events will be longer, and more likely to change the topology, since any 
+new sampled ancestor is more likely to be deeply coalesced. 
+Thus, while lengthening of branch length decreases the probability of 
+topology it increases the frequency of overall recombination events, and 
+vice versa, such that tree changes have little overall effect on the 
+probability of topology change. In the next section we validate 
+this expectation by showing that our equations yield accurate 
+waiting distances, when compared to coalescent simulations, 
+even when the ratio of tree to topology changes is high.
+
+
+% , for example, consider the extreme
+% case )
+% Even as branch lengths increase, reducing the waiting time to the 
+% next recombination event, the probability that %the recombination event 
+% this event will change the topology decreases. 
+% Therefore, we follow their approach by approximating the waiting distance to
+% a change in topology using an exponential probability density 
 % distribution 
-with the following rate:
+% with the following rate:
 
 %\begin{equation}
 %\begin{aligned}
