@@ -347,8 +347,9 @@ conditional sampling method.
 	%\fbox{\rule[-.5cm]{4cm}{4cm} \rule[-.5cm]{4cm}{0cm}}
 	\includegraphics[width=0.99\textwidth]{figures/Fig2-recomb-types-ARG.pdf}
 	\caption{
-		An ancestral recombination graph (ARG) represents a genome
-		as a series of genealogies, each spanning a particular length of
+		An ancestral recombination graph (ARG) is composed of 
+		% represents a genome	as 
+		a series of genealogies, each spanning a particular length of
 		the genome,  
 		% genomic positions, 
 		and which are separated by recombination breakpoints. 
@@ -1161,8 +1162,14 @@ which the following equation can be derived:
 
 \begin{equation}
 	\mathbb{P}(\textrm{topology unchanged} | \mathcal{S},\mathcal{G},b,t_r) = 
-	2\left(\frac{1}{a_i} + \sum_{j=i}^{\mathcal{I}_{b}-1}P_{ij}\exp\left\{\frac{a_i}{n_i}t_r\right\}\right) + 
-	\sum_{\mathcal{I}_b}^{\mathcal{I}_{bc}-1}P_{ij}\exp\left\{\frac{a_i}{n_i}t_r\right\}
+		2\bigg(
+			\frac{1}{a_i} + \sum_{j=i}^{\mathcal{I}_{b}-1}P_{ij}\exp\bigg\{
+				\frac{a_i}{n_i}t_r
+			\bigg\}
+		\bigg) + 
+		\sum_{\mathcal{I}_b}^{\mathcal{I}_{bc}-1}P_{ij}\exp\bigg\{
+			\frac{a_i}{n_i}t_r
+		\bigg\}
 \end{equation}
 
 \subsubsection{Probability that a recombination event on branch $b$ will not change the topology:}
@@ -1246,7 +1253,12 @@ uniformly on the genealogy will not result in a topology change:
 Because the topology of a genealogy either does or does not change
 following a recombination event, we can get the probability that it 
 does change from our solution for the probability that it does not 
-(equation 14). ...
+(equation 14), which itself was derived from the joint probability of 
+observing either no change or a tree change. Given an equation for
+the probability of a topology change we can thus model the expected
+distances between topology changes in a genome, given a parameterized
+MSC model, using an exponential probability density with the following 
+rate parameter:
 
 \begin{equation}
 	\lambda_{t} = 
