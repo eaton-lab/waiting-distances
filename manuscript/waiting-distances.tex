@@ -1348,7 +1348,7 @@ as well as these probabilities integrated over an entire branch or genealogy.
 Functions are also available to calculate the likelihood of observed 
 waiting distances between different genealogy changes in an ARG 
 using an exponential probability density parameterized by the MS-SMC'.
-Our \emph{ipcoal} package also includes a coalescent simulation and validation 
+\emph{ipcoal} also includes a coalescent simulation and validation 
 framework built on \emph{msprime} \citep{baumdicker_efficient_2022}
 and \emph{toytree} \citep{eaton_toytree_2020}, for setting up and 
 visualizing MSC models, generating tree sequences, and analyzing waiting
@@ -1369,21 +1369,21 @@ distances. Source code and example jupyter notebooks are available at
 % First, when given a species tree and initial genealogy, we could examine the probability 
 Given a species tree model and initial genealogy we can visualize the 
 probabilities of different types of outcomes of recombination as a 
-function of the where and when it occurs.
+function of when and where it occurs.
 % position (time) on a branch where recombination occurs. 
 For this, we used a 4-tip species tree model with divergence times in 
 units of generations and branch specific effective population sizes 
 (see parameters in Table~S2), and embedded a genealogy for seven samples, 
 including three from lineage A, two from lineage B, and one from lineages 
 C and D. 
-As an demonstration, we show probabilities of recombination outcomes for 
-three selected branches of the genealogy (Fig.~\ref{fig:fig1}). 
+As a demonstration, we show probabilities of different outcomes for 
+three selected branches on the genealogy (Fig.~\ref{fig:fig1}). 
 Note that the probability of no-change and tree-change events are inversely
-related (they sum to 1), since one or the other must happen as a consequence 
+related, and sum to 1, since one or the other must happen as a consequence 
 of recombination. By contrast, a topology-change event is a subset of the 
 probability of a tree-change (Fig.~\ref{fig:fig1}b-d);  
 recall that a topology-change event is simply a tree-change event
-where a branch re-coalesces with a branch other than itself, 
+where a detached branch re-coalesces with a branch other than itself, 
 its sibling, or its parent.
 
 % We then applied our solutions to calculate probabilities of changes given 
