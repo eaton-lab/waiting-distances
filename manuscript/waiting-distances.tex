@@ -21,6 +21,7 @@
 \usepackage{array}
 \usepackage{color}
 \usepackage{soul}
+\usepackage{mathtools}
 
 \usepackage{amsmath}
 \usepackage{amsfonts}       % blackboard math symbols
@@ -212,14 +213,15 @@ early on
 %This includes 
 % the a inference of 
 %coalescent times on 
-as a method for 
+as a method for stochastically
 generating
 % yielding 
-a distribution of linked  
-genealogies as well as the 
+a distribution of linked genealogies and the
+% as well as the 
 % distribution of 
-breakpoints across the genome where recombination occurred 
-(i.e., "waiting distances" between genealogies).
+breakpoints across the genome where recombination occurred.
+% (i.e., "waiting distances").
+ % between genealogies).
 As a data structure,
 this can be represented either as an ancestral recombination graph (ARG)
 \citep{griffiths_ancestral_1996} or tree-sequence \citep{kelleher2016efficient}
@@ -227,12 +229,24 @@ this can be represented either as an ancestral recombination graph (ARG)
 % (we will refer to ARGs hereafter; Fig. S1).
 % While our ability to simulate the coalescent with recombination has made substantial progress, likelihood-based inference of recombination events and coalescent times (that is, the ancestral recombination graph -- "ARG") is notoriously difficult \citep{griffiths_ancestral_1996}. 
 Unfortunately, although generating ARGs is relatively simple, 
-inferring an ARG from sequence data 
+modeling the expected patterns of linked information in ARGs remains 
+challenging, which in turn limits the amount of information that can
+be extracted from sequence data for ARG inference. 
+% The problem of inferring ARGs is thus
+% computationally intensive, and can be nearly 
+% infinite in possibilities for large 
+% genome lengths and numbers of samples \citep{mcvean2005approximating}. 
+% to perform poorly. 
+% have difficulty distinguishing among a nearly infinite range 
+% of equally probable results using the limited amount of information 
+% present between recombination events. 
+% Consequently,
+% inferring an ARG from sequence data 
 % However, inference of ARGs 
-remains highly challenging, as it 
-is computationally intensive, highly limited by 
-sequence information, and can be nearly infinite in possibilities for large 
-genome lengths and numbers of samples \citep{mcvean2005approximating}. 
+% remains highly challenging, as it 
+% is computationally intensive, highly limited by 
+% sequence information, and can be nearly infinite in possibilities for large 
+% genome lengths and numbers of samples \citep{mcvean2005approximating}. 
 % In other words, there
 % are usually very few mutations to provide information about each genealogy, 
 % and ...
@@ -274,19 +288,24 @@ be inferred from sequence data.
 % Further extensions have been developed for modeling variable 
 Examples of inference tools built on the SMC framework include 
 PSMC \citep{li2011inference} and MSMC \citep{schiffels_inferring_2014}
-for inferring changes in effective population sizes
-of single or multiple populations through time, respectively, 
-based on pairwise coalescent times between sequential genealogies, 
-% tools for inferring changes in effective population 
-% sizes through time of single (PSMC) or multiple populations (MSMC) 
-% based on pairwise coalescent times \citep{li2011inference, schiffels_inferring_2014}, 
-% , which methods for inferring ARGs using SMC-based conditional 
-% sampling methods
-% based on SMC-like simulations
-%\citep[ARGweaver;][]{rasmussen2014genome, hubisz2020inference}.
-as well as ARGweaver \citep{rasmussen2014genome, hubisz2020inference}, 
+which use pairwise coalescent times between sequential genealogies
+to infer changes in effective population sizes through time, 
+and ARGweaver \citep{rasmussen2014genome, hubisz2020inference}, 
 which infers ARGs from genome alignments using an SMC-based 
 conditional sampling method.
+% for inferring changes in effective population sizes
+% of single or multiple populations through time, respectively, 
+% based on pairwise coalescent times between sequential genealogies;
+% % tools for inferring changes in effective population 
+% % sizes through time of single (PSMC) or multiple populations (MSMC) 
+% % based on pairwise coalescent times \citep{li2011inference, schiffels_inferring_2014}, 
+% % , which methods for inferring ARGs using SMC-based conditional 
+% % sampling methods
+% % based on SMC-like simulations
+% %\citep[ARGweaver;][]{rasmussen2014genome, hubisz2020inference}.
+% and ARGweaver \citep{rasmussen2014genome, hubisz2020inference}, 
+% which infers ARGs from genome alignments using an SMC-based 
+% conditional sampling method.
 
 % –- using an approach similar to 
 % algorithms for simulating the coalescent with recombination –- 
@@ -393,15 +412,16 @@ conditional sampling method.
 described an important extension to the SMC, termed the SMC', for additionally
 modeling "invisible" recombination events that result in no change between 
 neighboring genealogies, which has been shown to significantly improve SMC-based 
-inferences \citep{wilton2015smc}. Under the SMC', there are thus four categories
-of possible outcomes of recombination (Fig.~\ref{fig:fig2}): 
+inferences \citep{wilton2015smc}. Under the SMC', there are thus \hl{four categories}
+of possible outcomes of recombination 
+(Fig.~\ref{fig:fig2}, Fig.~S\ref{fig:supp-fig2}): 
 (1) no change between sequential genealogies;
 (2) shortening of a coalescent time; (3) lengthening of a coalescent time; 
 and (4) a coalescent event that changes the topology (relationships). 
-These can be grouped more generally into three categories: 
-"no change" (category 1), "tree change" (categories 2 or 3), and "topology change"
+These can be grouped more generally into \hl{three types}: 
+"no-change" (category 1), "tree-change" (categories 2-4), and "topology-change"
 (category 4). Recently, \citet{deng_distribution_2021} derived a set of solutions for
-the expected waiting distances between these three categories of 
+the expected waiting distances of each of these three categories of 
 outcomes for a single population with constant effective population size.
 % Although all three outcomes, and their associated waiting distances, occur 
 % implicitly between sequential genealogies within data generated under the SMC', 
@@ -413,7 +433,7 @@ outcomes for a single population with constant effective population size.
 % to coalescent model parameters, which may prove useful for future ARG inference 
 % tools. 
 This provides an important advance in establishing a neutral expectation not
-only for generic recombination events to occur, but for different categories 
+only for generic recombination events to occur, but for different types 
 of events that leave different detectable signatures in the genome.
 % ,which may prove useful for the development of future SMC'-based tools.
 % in genealogical topologies, and for connecting coalescent model parameters to these
@@ -461,19 +481,28 @@ of events that leave different detectable signatures in the genome.
 
 
 Here, we extend the methods of \citet{deng_distribution_2021} to an MSC framework
-to approximate the expected waiting distances between different categories of 
+to approximate the expected waiting distances between different types of 
 genealogy changes under a parameterized species tree model. In this respect, 
-the waiting distances between recombination events of category 4 may be of greatest 
-interest, as topology changes leave the most detectable signatures in sequence data, 
-and are relevant to expected gene tree distributions that form an important 
-component of many MSC-based methods.
-However, events of categories 1-3 occur 
-disproportionately often in small sample sizes \citep{wilton2015smc}, 
-which are especially common in MSC-type datasets since
-samples are partitioned among species tree intervals. The partitioning of 
+the waiting distances between recombination events that cause topology-change 
+may be of greatest interest, as they leave the most detectable signatures 
+in sequence data, and are relevant to expected gene tree distributions that form
+an important component of many MSC-based methods.
+The waiting distance until a topology-change event can include multiple
+intervening recombination events of the no-change or tree-change type
+(Fig.~\ref{fig:fig2}). 
+The relative occurrence of events that do not result in topology 
+changes can be especially high in small sample sizes \citep{wilton2015smc}, 
+which are common in MSC-type datasets, since samples are partitioned 
+among species tree intervals. 
+% The partitioning of 
+% recombination events that of categories 1-3 occur 
+% disproportionately often in small sample sizes \citep{wilton2015smc}, 
+% which are especially common in MSC-type datasets since
+% samples are partitioned among species tree intervals. 
+The partitioning of 
 coalescent events among species tree intervals is thus expected to constrain 
-the categories of recombination events that will be observed. Consequently, the
-distributions of waiting distances between different categories of 
+the types of recombination events that will be observed. Consequently, the
+distributions of waiting distances between different types of 
 genealogy changes should be highly dependent on, and thus informative about, 
 the species tree model. We refer to this general framework of embedding the 
 SMC' in an MSC model as the MS-SMC'.
@@ -769,8 +798,8 @@ together include all relevant parameters for the derivations below.
  	species tree in Figure 1. The rate of coalescence within each interval can 
  	be calculated from $a$ and $n$, and its length from $d$.
 	% present ($k$) and the effective population size ($N_e$). 
-	To integrate over the probability of coalescence on a specific gene 
-	tree branch (e.g., branch 7 from Figure~\ref{fig:fig1}), involves 
+	To integrate over the probability of coalescence on a specific genealogy
+	branch (e.g., branch 7 from Figure~\ref{fig:fig1}) involves 
 	integrating over all intervals that include that branch (e.g., rows 
 	1, 6, 7, and 8).
 }
@@ -876,35 +905,55 @@ containing $t_r$ and re-connecting to the same branch within it (i.e., $ii$),
 whereas the later terms describe the probability of re-connecting in a different interval
 on the same branch (i.e., $ij$).
 
-
 % where $i$ is the interval index in which $t_r$ occurs. 
+
+% PREVIOUS APPROVED EQUATION 3
 \begin{equation}
 \begin{aligned}
 	&\mathbb{P}(\text{tree unchanged} | \mathcal{S},\mathcal{G},b,t_r) = 
-	\bigg(\frac{1}{a_i} +P_{ii} \exp \bigg\{\frac{a_i}{n_i}t_r\bigg\}\bigg) + 
-	\sum_{j=i+1}^{\mathcal{I}_b - 1} P_{ij} \exp\bigg\{\frac{a_i}{n_i}t_r\bigg\} 
+	\frac{1}{a_i} + f(i,i) \exp \bigg\{\frac{a_i}{n_i}t_r\bigg\} +
+	\sum_{j=i+1}^{\mathcal{I}_b - 1} f(i,j) \exp\bigg\{\frac{a_i}{n_i}t_r\bigg\} 
 \end{aligned}
 \end{equation}
+
 
 \noindent This includes the following two constant values which appear again 
 in later equations.
 
 \begin{equation}
-\begin{aligned}
-	% &P_{ii} = - \frac{1}{a_i} \exp \bigg\{-\frac{a_i}{n_i}(t_i^u - t_r) \bigg\} 
-	&P_{ii} = - \frac{1}{a_i} \exp \bigg\{-\frac{a_i}{n_i}\sigma_{i + 1} \bigg\} 	
+\begin{aligned}	
+	f(i,j) = 
+	\begin{dcases}
+		- \frac{1}{a_i} \exp \bigg\{-\frac{a_i}{n_i}\sigma_{i + 1} \bigg\}, 
+		& \text{if } i=j\\
+		% 
+		\frac{1}{a_j} \left(1 - \exp \bigg\{ -\frac{a_j}{n_j} d_j \bigg\} 
+		\right)
+		% \times
+		\exp \bigg\{ -\frac{a_i}{n_i}\sigma_{i+1} - 
+		\sum_{q=i+1}^{j-1} \frac{a_q}{n_q} d_q \bigg \}, 
+		& \text{if } i\ne j\\
+	\end{dcases}
 \end{aligned}
 \end{equation}
 
-\begin{equation}
-\begin{aligned}
-	&P_{ij} = 
-	\left( \frac{1}{a_j} (1 - \exp \bigg\{ -\frac{a_j}{n_j} d_j \bigg\} \right)
-	\times
-	\exp \bigg\{ -\frac{a_i}{n_i}\sigma_{i+1} - 
-	\sum_{q=i+1}^{j-1} \frac{a_q}{n_q} d_q \bigg \}
-\end{aligned}
-\end{equation}
+% PREVIOUS APPROVED EQUATION 4
+% \begin{equation}
+% \begin{aligned}
+% 	% &P_{ii} = - \frac{1}{a_i} \exp \bigg\{-\frac{a_i}{n_i}(t_i^u - t_r) \bigg\} 
+% 	&P_{ii} = - \frac{1}{a_i} \exp \bigg\{-\frac{a_i}{n_i}\sigma_{i + 1} \bigg\} 	
+% \end{aligned}
+% \end{equation}
+
+% \begin{equation}
+% \begin{aligned}
+% 	&P_{ij} = 
+% 	\left( \frac{1}{a_j} (1 - \exp \bigg\{ -\frac{a_j}{n_j} d_j \bigg\} \right)
+% 	\times
+% 	\exp \bigg\{ -\frac{a_i}{n_i}\sigma_{i+1} - 
+% 	\sum_{q=i+1}^{j-1} \frac{a_q}{n_q} d_q \bigg \}
+% \end{aligned}
+% \end{equation}
 
 
 % \begin{equation}
@@ -936,7 +985,7 @@ we obtain the probability that recombination on this branch does not change the 
 		\exp\bigg\{\frac{a_i}{n_i}\sigma_{i+1}\bigg\} - 
 		\exp\bigg\{\frac{a_i}{n_i}\sigma_i\bigg\}
 	\bigg)
-	\bigg(\sum_{j=i}^{\mathcal{I}_b-1}P_{ij}\bigg)
+	\bigg(\sum_{j=i}^{\mathcal{I}_b-1}f(i,j)\bigg)
 \end{equation}
 
 
@@ -1098,7 +1147,7 @@ intervals if they contain additional species divergence events).
 The first section is notable for representing the core
 difference between this first case and the alternative second case below. 
 When a recombination event occurs in the first section on $b$ there is a span 
-from $t_r$ to $t_b^m$ where $b$ can only re-coalescence with itself, and not yet 
+from $t_r$ to $t_b^m$ where $b$ can re-coalescence with itself but not yet 
 with $b'$, since at least one species divergence event separates them.
 Thus, although re-coalescence can occur in this span of time, it cannot lead to 
 changes in the genealogy. 
@@ -1106,8 +1155,8 @@ In the second section,
 $b$ can re-coalesce with $b$ or $b'$, leading to either no change or a tree 
 change (shortened coalesence time). Finally, in the third section $b$ can 
 only re-coalesce with $c$, leading to a tree change that lengthens $b$'s 
-coalescence time. An integration over the probabilities of any of these events 
-occurring on branch $b$ over any of the three distinct sections leads to the
+coalescence time. An integration over the probabilities of each allowable 
+event on branch $b$ over all three distinct sections leads to the
 following equation:
 % the subsequent two intervals after $t_b^m$, the detached lineage can re-coalesce
 % % either with it 
@@ -1126,9 +1175,29 @@ following equation:
 
 \begin{equation}
 	\mathbb{P}(\textrm{topology unchanged} | \mathcal{S},\mathcal{G},b,t_r) = 
-	\frac{1}{a_i} + \sum_{j=i}^{\mathcal{I}_{bc}-1}P_{ij}\exp\left\{\frac{a_i}{n_i}t_r\right\} + 
-	\sum_{j=m}^{\mathcal{I}_b-1}P_{ij}\exp\left\{\frac{a_i}{n_i}t_r\right\}
+	\frac{1}{a_i} + \sum_{j=i}^{\mathcal{I}_{bc}-1} 
+	f(i,j) \exp\left\{\frac{a_i}{n_i}t_r\right\} + 
+	\sum_{j=m}^{\mathcal{I}_b-1}f(i,j)\exp\left\{\frac{a_i}{n_i}t_r\right\}
 \end{equation}
+
+% \begin{equation}
+% 	\mathbb{P}(\textrm{topology unchanged} | \mathcal{S},\mathcal{G},b,t_r) = \\
+% 	\begin{dcases}
+% 		\frac{1}{a_i} + \sum_{j=i}^{\mathcal{I}_{bc}-1}P_{ij}\exp\left\{\frac{a_i}{n_i}t_r\right\} + 
+% 		\sum_{j=m}^{\mathcal{I}_b-1}P_{ij}\exp\left\{\frac{a_i}{n_i}t_r\right\}, 
+% 		& \text{if } t_r < t_b^m \\
+% 		\\
+% 		2\bigg(
+% 			\frac{1}{a_i} + \sum_{j=i}^{\mathcal{I}_{b}-1}P_{ij}\exp\bigg\{
+% 				\frac{a_i}{n_i}t_r
+% 			\bigg\}
+% 		\bigg) + 
+% 		\sum_{\mathcal{I}_b}^{\mathcal{I}_{bc}-1}P_{ij}\exp\bigg\{
+% 			\frac{a_i}{n_i}t_r
+% 		\bigg\},
+% 		& \text{if } t_r \ge t_b^m \\
+% 	\end{dcases}
+% \end{equation}
 
 
 % \paragraph{Second case --} Given $t_r$ $>$ $t_b^m$ and 
@@ -1155,11 +1224,11 @@ which the following equation can be derived:
 \begin{equation}
 	\mathbb{P}(\textrm{topology unchanged} | \mathcal{S},\mathcal{G},b,t_r) = 
 		2\bigg(
-			\frac{1}{a_i} + \sum_{j=i}^{\mathcal{I}_{b}-1}P_{ij}\exp\bigg\{
+			\frac{1}{a_i} + \sum_{j=i}^{\mathcal{I}_{b}-1}f(i,j)\exp\bigg\{
 				\frac{a_i}{n_i}t_r
 			\bigg\}
 		\bigg) + 
-		\sum_{\mathcal{I}_b}^{\mathcal{I}_{bc}-1}P_{ij}\exp\bigg\{
+		\sum_{j=\mathcal{I}_b}^{\mathcal{I}_{bc}-1}f(i,j)\exp\bigg\{
 			\frac{a_i}{n_i}t_r
 		\bigg\}
 \end{equation}
@@ -1925,5 +1994,10 @@ Finally, we sum across all branches to find the probability of a recombination e
 \begin{equation}
     = \frac{1}{L(\mathcal{G})}\sum_{b \in \mathcal{G}}\left[\sum_{i=0}^{m-1}p_{b,1}^{(i)}+\sum_{i=m}^{\mathcal{I}_b-1}p_{b,2}^{(i)}\right]
 \end{equation}
+
+
+\section{Supplementary Information}
+
+
 
 \end{document}
