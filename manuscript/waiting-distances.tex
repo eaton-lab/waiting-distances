@@ -1768,7 +1768,6 @@ N$_e$ is high, or accentuating differences among intervals when N$_e$ is low.
 		but the topology-change waiting distance exhibits slight bias at very low 
 		N$_e$ values.
 	}
-	% Mean expected waiting distances for differently parameterized species tree models. We used four different species trees: two 10-tip trees (a, b), each with 1e6-generation root heights, and two 5-tip trees (c, d) that are subselected from each of the larger trees. For each species tree, we iterated over 9 Ne values ranging from 50000 to 250000, generating 1000 unlinked MSC genealogies at each Ne value and calculating the expected waiting distance to a tree change and to a topology change for each. The mean of the expected waiting distances at each Ne value is presented in the scatterplot accompanying each species tree. Note that the y-axis scale changes from the top row (a, b) to the bottom row (c, d).}
 	\label{fig:fig-validation}
 \end{figure}
 
@@ -1776,77 +1775,70 @@ N$_e$ is high, or accentuating differences among intervals when N$_e$ is low.
 % summary of this sections first goal, and reference to exhaustive supplement figure.
 To validate our analytical solutions for the probabilities of different 
 recombination event outcomes, and their associated waiting distances, 
-we compared our MS-SMC' calculations with coalescent simulations. 
+we compared predictions of the MS-SMC' with results from stochastic 
+coalescent simulations. 
 We set up three scenarios with increasing amounts of population structure: 
-a single-population model, two-population model, and phylogeny model. 
+a single-population model, two-population model, and phylogeny model
+(Fig.~\ref{fig:fig-validation}a). 
 All analyses used a constant per-site per-generation recombination rate of 
 2e-9, and simulated tree sequences using the coalescent with recombination 
 (i.e., the "hudson" ancestry model in msprime as opposed to the "smc\_prime" model, 
-which is an approximation), unless specified. 
+which is an approximation), unless specified, and using the argument 
+"record\_full\_arg=True", to keep a record of invisible recombination events. 
 For each model we simulated genealogies for the same total number of samples
-(8, unless specified), which were divided evenly among lineages when models 
-include multiple populations (Fig.~\ref{fig:fig-validation}a). We examined 
-results across a range of parameter settings for a fixed diploid effective 
-population size applied to all lineages in a model. 
+(8, unless specified), divided evenly among lineages when models 
+include multiple populations (Fig.~\ref{fig:fig-validation}a). 
+% We examined results across a range of parameter settings for a fixed 
+% diploid effective population size applied to all lineages in a model. 
 % When N$_e$ is low, 
 % population structure is expected to have large effects, whereas when N$_e$ is 
 % high, barriers imposed by population structure are expected to have 
 % limited effects.
 	
-The exponential rate parameter for waiting distances is a product of the 
-per-site per-generation recombination rate ($r$), the sum length of edges on the 
-current genealogy ($L(\mathcal{G})$), and the probability ($\mathbb{P}$) of the 
-specified event type (equations 9, 10, and 14). Across the three models examined,
-$r$ remains constant, but both $L(\mathcal{G})$ and $\mathbb{P}$ vary due to 
-population structure, where the effect of population structure is scaled by N$_e$. 
+The exponential rate parameter for the probability density of waiting distances 
+is a product of the per-site per-generation recombination rate ($r$), the sum 
+of edge lengths on the current genealogy ($L(\mathcal{G})$), and the probability 
+($\mathbb{P}$) of the specified event type (equations 9, 10, and 14). 
+Across the three models examined, $r$ remains constant, but both $L(\mathcal{G})$ 
+and $\mathbb{P}$ can vary due to population structure, where the effect of 
+structure is scaled by N$_e$. 
 Therefore, we examined $L(\mathcal{G})$, $\mathbb{P}$, and the expected waiting 
 distance calculated from their product, for each demographic model across a range 
-of N$_e$ values (Fig.~\ref{fig:fig-validation}b-f). 
-For each value of Ne, 10K tree sequences were simulated. Given the starting tree,
-the probability of each event type and expected waiting distances were calculated
-under the MS-SMC'. To compare this with the result of a simulated coalescent with
-recombination process, we recorded the waiting distance until each recombination
-event type first occurred in each tree sequence, and recorded the frequency at which
-each event type occurred as the first event in a tree sequence, as a measurement
-of its empirical probability.
+of constant N$_e$ values (Fig.~\ref{fig:fig-validation}b-f). 
+For each value of Ne, 10K tree sequences were simulated. Given each starting tree,
+the probability of each event type, and the expected waiting distance to that event
+type, were calculated under the MS-SMC'. To compare this with the result of a 
+simulated coalescent with recombination process, we recorded the waiting distance 
+until each recombination event type first occurred in each tree sequence, and 
+also the frequency at which each event type occurred as the first event in a 
+tree sequence, as a measurement of its empirical probability.
+
+% genealogy lengths
 
 
-For each value of Ne, 10K unlinked genealogies were simulated and used as 
-starting trees for MS-SMC' calculations of either the expected waiting distance 
-until the next tree-change or topology-change event, respectively. 
-The mean and 95\% confidence intervals of these MS-SMC' analytical expectations 
-align well with mean waiting distances observed in 10K simulated 
-tree-sequences, where each tree-sequence contained at least one tree and 
-topology-change event.
 
+% Probabilities of tree and topo-change
+
+
+
+% Waiting distances to tree and topo change
 As expected, waiting distances until tree or topology-change events decrease as
 values of Ne increase, and topology-change waiting distances are always larger
 than tree-change waiting distances. From a more exhaustive exploration of 
 parameter space (Fig.~\ref{supp}) some further generalizations can be made. 
-Waiting distance to tree or topology changes tend to be shorter for
+Waiting distance to tree or topology changes te=nd to be shorter for
 larger numbers of samples; more imbalanced species trees; and in species trees with
 higher incomplete lineage sorting (shorter internal branch lengths in coalescent
 units). 
 
-For a MSC model with relatively shallow divergences, such as a species with 
-population structure, it can be valuable to examine the difference in expectations
-when the population is modeled as a single population versus multiple structured
-populations. For this, we again sampled 10K genealogies across 10 different values
-for constant Ne in either a single or two-population MSC model, in which the 
-split between the two populations occurred 50K generations ago.
-(Fig.~\ref{4b}). 
 
-% what does this mean overall.
-It is interesting here to also take note of the scale of waiting distances 
-across different MSC model scenarios.
-- Previously the expected linkage in phylogenetic datasets could only be computed
-through exhaustive simulations (e.g., \citep{McKenzie}). 
-- In addition to MSC parameters of divergence times and effective population sizes, 
-other factors can also clearly affect the expected distances until ...
-Tree shape, tree size, the distribution of samples among species tree 
-lineages
 
 % second validation
+
+
+
+
+\subsection{Investigating bias in topology-change waiting distances}
 We also investigated the potential bias present in calculations of 
 waiting distances between topology-change events due that may occur
 from ignoring tree-change events that occur during the waiting distance
@@ -1861,12 +1853,6 @@ to the expected waiting distance under the MS-SMC'. We repeated this
 for MSC models with different constant effective population sizes which
 effectively change the ratio of tree to topology-change events. 
 
-... results are...
-
-
-
-
-\subsection{Investigating bias in topology-change waiting distances}
 
 
 % with larger Ne values. This occurs for two reasons: first, genealogies with longer 
@@ -1894,8 +1880,6 @@ effectively change the ratio of tree to topology-change events.
 % with increasing numbers of tips sampled and with increasing Ne values. 
 
 
-
-
 \subsection{Likelihood framework}
 Finally, we demonstrated that a known sequence of genealogies paired with the accompanying
 observed waiting distances to next topological change for each can be used to estimate the 
@@ -1920,8 +1904,17 @@ value of 150000 for both trees.
 	 \label{fig:fig5}
 \end{figure}
 
-\section{Conclusions}
-% \label{sec:others}
+\section{Discussion}
+
+% what does this mean overall.
+It is interesting here to also take note of the scale of waiting distances 
+across different MSC model scenarios.
+- Previously the expected linkage in phylogenetic datasets could only be computed
+through exhaustive simulations (e.g., \citep{McKenzie}). 
+- In addition to MSC parameters of divergence times and effective population sizes, 
+other factors can also clearly affect the expected distances until ...
+Tree shape, tree size, the distribution of samples among species tree 
+lineages
 
 By accounting for the genomic heterogeneity that is expected due to incomplete lineage sorting, the multispecies coalescent model has facilitated the widespread use of multilocus data for phylogenetic inference. As phylogenetic systematics continues to turn toward whole genomes, methods should seek to take advantage of the increased resolution offered by genomic data. The traditional multispecies coalescent model overlooks the process of recombination, assuming that loci represent a single genetic history and that they are completely unlinked. In reality, under a neutral model, species tree parameters and recombination rates will influence the degree of genealogical turnover along a chromosome, potentially resulting in linked loci and/or multiple genealogical topologies per locus. Therefore, not accounting for recombination might mislead analyses. Conversely, incorporating the rates of turnover observed in the data as information could offer further clues for inference of the species tree model that generated it. 
 
