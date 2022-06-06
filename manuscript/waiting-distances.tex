@@ -245,10 +245,11 @@ distributed random variable.
 Although generating ARGs consistent with a demographic model is 
 relatively simple, inferring an ARG from sequence data -- composing  
 recombination breakpoints and local genealogy inferences -- remains highly 
-challenging. This stems in part from the great complexity of this problem, 
+challenging.
+This stems in part from the great complexity of this problem, 
 % and the challenge of distinguishing among many equally probable 
 % results given limited information between recombination events;
-but also reflect limitations of our current models for 
+but also reflects limitations of our current models for 
 extracting historical information from linked genome data.
 
 % about linked genealogies.
@@ -290,7 +291,8 @@ extracting historical information from linked genome data.
 % and ...
 A major advance was achieved through development of the Sequentially Markov 
 Coalescent (SMC), a simpler approximation of the coalescent with recombination
-that restricts the types of recombination events that can occur. Specifically,
+that restricts the types of recombination events that can occur 
+\citep{mcvean2005approximating}. Specifically,
 an edge that is detached from a genealogy by recombination is allowed only to
 re-coalesce with ancestral lineages that contributed genetic material to samples
 in that interval (as opposed to re-coalescing with any ancestral lineage). 
@@ -305,8 +307,7 @@ changes between sequential genealogies
 % models 
 % changes among sequential genealogies 
 % them 
-as a Markov process 
-\citep{mcvean2005approximating}. 
+as a Markov process \citep{mcvean2005approximating}. 
 % Implicit to SMC-based methods is the expectation that recombination occurs at 
 % some rate from which the waiting distance between recombination events can be modeled 
 % as an exponentially distributed random variable. 
@@ -1609,17 +1610,17 @@ at \url{https://github.com/eaton-lab/waiting-distances}.
 Given a parameterized MSC model and initial genealogy the probabilities of 
 different types of outcomes of recombination can be calculated and visualized as 
 a function of when and where recombination occurs. This is demonstrated on an 
-imbalanced 4-tip species tree with \hl{constant} effective population size across 
-branches %(see parameters in Table~S2), 
+imbalanced 4-tip species tree with \hl{constant} effective population size 
+% across branches %(see parameters in Table~S2), 
 and with a genealogy of seven samples embedded, 
 including three from lineage A, two from lineage B, and one from lineages
 C and D (Fig.~\ref{fig:fig1}a; see Fig.~\ref{fig:figS-edge-probabilities} for 
 detailed parameter settings). 
-As a demonstration, the probabilities of no-change, tree-change, and 
-topology-change given a recombination event occurring on a branch at a 
-particular time (equations 3 and 11, respectively) 
-are shown for three selected branches on the example genealogy 
-(Fig.~\ref{fig:fig1}b-d). 
+% As a demonstration, t
+The probabilities of no-change, tree-change, or topology-change events, 
+given a recombination event occurring on a branch at a particular time 
+(equations 3 and 11, respectively) are shown for three selected branches
+on the example genealogy (Fig.~\ref{fig:fig1}b-d). 
 Note that the probability of no-change and tree-change events 
 are inversely related, and sum to 1, since one or the other must occur as a consequence 
 of recombination. By contrast, a topology-change event is a subset of the 
@@ -1655,16 +1656,16 @@ end of a branch (further back in time). This makes sense, since when
 recombination occurs at the top of a branch there is less time for it to re-coalesce 
 with its same branch. Although this is a general trend, these probabilities do not 
 behave monotonically along the length of a branch, as they would in a 
-single-population model with constant Ne \citep{deng_distribution_2021}.
+single-population model with constant N$_e$ \citep{deng_distribution_2021}.
 Instead, probabilities increase or decrease through the length of each
-interval as a function of the probabilities of outcomes in subsequent 
-intervals -- which can be higher or lower -- and the probabilities that 
-a recombination event causes re-coalescence in those intervals.
+interval as a function of the rates of coalescence in subsequent 
+intervals and the probability that a detached lineage will 
+re-coalescence in one of those intervals.
 
 For example, consider branch 2, which initially exhibits an increase in the
 probability of no-change through its first branch interval from time 0 to
 $t_7$, but then a decrease through the next interval from $t_7$ to $W_{AB}$
-(Fig.~\ref{fig:fig2}b).
+(Fig.~\ref{fig:fig1}b).
 The observed increase through the first interval is influenced by the fact that
 a re-coalescence in the subsequent interval is more likely to cause a no-change
 event, since that interval contains only two samples instead of three.
@@ -1699,8 +1700,8 @@ significantly (Fig.~\ref{fig:fig2}c-d).
 The probability of topology-change decreases faster than the probability of 
 tree-change as recombination occurs closer to $t_9$. This is because 
 following $t_9$ there is a large stretch of time during which re-coalescence can
-only occur with the same branch or its sibling, which can result only in tree-change
-events. It is only after $W_{abc}$ that it is once again possible for re-coalescence
+only occur with the same branch or its sibling, neither of which can cause a topology-change
+event. It is only after $W_{abc}$ that it is once again possible for re-coalescence
 to occur with a more distant branch that would result in topology-change. 
 If the effective population size of this species tree interval (AB) were greater
 then the probability of re-coalescence in a deeper interval would be more likely, 
@@ -1754,19 +1755,21 @@ N$_e$ is high, or accentuating differences among intervals when N$_e$ is low.
 		(b) The sum of edge lengths across all starting genealogies for each 
 		model for the lowest and highest N$_e$ values examined 
 		(50K and 500K, respectively).
-		(c-d) The mean and 95\% CI (green circle and fill) are shown for analytical
-		solutions from the first genealogy in each tree sequence, to be compared 
-		with the mean observations across simulated tree sequences (black squares).
+		(c-d) The mean and 95\% CI (green circle and fill) of analytical
+		solutions for the probabilities of recombination event types calculated
+		from the first genealogy in each tree sequence. Results overlap 
+		with the mean frequencies of each event type in simulated tree 
+		sequences (black squares).
 		The probabilities of tree-change or topology-change are 
 		constant with respect to N$_e$ in a single population model, 
 		but vary in models with population structure (also shown with respect to 
 		species tree interval lengths in coalescent units, across the top axis). 
-		Mean MS-SMC' calculated probabilities match simulated frequencies. 
 		(e-f) Waiting distances until tree or topology-change events exhibit 
 		less variance in models with population structure. The MS-SMC' calculated 
-		waiting distance expectations match very closely to simulated values, 
-		but the topology-change waiting distance exhibits slight bias at very low 
-		N$_e$ values.
+		waiting distance expectations match very closely to simulated values.
+		% , however,
+		% whereas the tree-change waiting distance is exact, the the topology-change waiting distance exhibits slight bias at very low 
+		% N$_e$ values.
 	}
 	\label{fig:fig-validation}
 \end{figure}
@@ -1783,8 +1786,8 @@ a single-population model, two-population model, and phylogeny model
 All analyses used a constant per-site per-generation recombination rate of 
 2e-9, and simulated tree sequences using the coalescent with recombination 
 (i.e., the "hudson" ancestry model in msprime as opposed to the "smc\_prime" model, 
-which is an approximation), unless specified, and using the argument 
-"record\_full\_arg=True", to keep a record of invisible recombination events. 
+which is an approximation), unless specified, and used the argument 
+"record\_full\_arg=True", to retain records of invisible recombination events. 
 For each model we simulated genealogies for the same total number of samples
 (8, unless specified), divided evenly among lineages when models 
 include multiple populations (Fig.~\ref{fig:fig-validation}a). 
@@ -1805,7 +1808,7 @@ structure is scaled by N$_e$.
 Therefore, we examined $L(\mathcal{G})$, $\mathbb{P}$, and the expected waiting 
 distance calculated from their product, for each demographic model across a range 
 of constant N$_e$ values (Fig.~\ref{fig:fig-validation}b-f). 
-For each value of Ne, 10K tree sequences were simulated. Given each starting tree,
+For each value of N$_e$, 10K tree sequences were simulated. Given each starting genealogy,
 the probability of each event type, and the expected waiting distance to that event
 type, were calculated under the MS-SMC'. To compare this with the result of a 
 simulated coalescent with recombination process, we recorded the waiting distance 
@@ -1814,31 +1817,56 @@ also the frequency at which each event type occurred as the first event in a
 tree sequence, as a measurement of its empirical probability.
 
 % genealogy lengths
-
-
-
-% Probabilities of tree and topo-change
-
-
+Population structure enforces a limit on the minimum length of coalescent 
+times, since genealogies must be capable of being embedded in the species 
+tree topology.
+This has a clear effect on $L(\mathcal{G})$ at both low and high N$_e$
+(Fig.~\ref{fig:fig-validation}b): population structure shifts
+the minimum and mean $L(\mathcal{G})$ higher. Because all 
+recombination events occur at a rate proportional to $L(\mathcal{G})$ 
+(the opportunity over which recombination can occur), larger $L(\mathcal{G})$ 
+is expected to decrease the waiting distances until each recombination event 
+type, all else being equal. However, all else does not remain equal. Population
+structure also has the opposite effect on waiting distances by decreasing 
+the probability of tree or topology changes (Fig.~\ref{fig:fig-validation}c-d), 
+especially at lower N$_e$ values, where lineages are more often restricted from
+re-coalescing with other lineages outside of the same species tree interval.
+Consequently, the waiting distances until each event type 
+(Fig.~\ref{fig:fig-validation}e-f) represent a balance of the positive and 
+negative effects of population structure on $L(\mathcal{G})$ and $\mathbb{P}$, 
+respectively.
 
 % Waiting distances to tree and topo change
-As expected, waiting distances until tree or topology-change events decrease as
-values of Ne increase, and topology-change waiting distances are always larger
-than tree-change waiting distances. From a more exhaustive exploration of 
-parameter space (Fig.~\ref{supp}) some further generalizations can be made. 
-Waiting distance to tree or topology changes te=nd to be shorter for
-larger numbers of samples; more imbalanced species trees; and in species trees with
-higher incomplete lineage sorting (shorter internal branch lengths in coalescent
-units). 
+The exact solutions for the probabilities of different recombination
+event type outcomes, and for the waiting distance until a tree-change 
+event, appear to converge on the mean outcomes from stochastic 
+coalescent simulations. The degree of matching between our analytical 
+solutions and simulated values is slightly higher when simulations are 
+performed under the assumptions of the SMC' (Fig.~\ref{fig:supplement-smc}), 
+and only slightly ... exact when simulated under the full coalescent with recombination
+(Fig.~\ref{fig:fig-validation}c-e), suggesting that the approximation 
+assumptions inherent to the SMC' do not significantly bias estimated 
+waiting distances in the structured population models examined here.
+
+% waiting distances until tree or topology-change events decrease as
+% values of N$_e$ increase, and topology-change waiting distances are always larger
+% than tree-change waiting distances. 
 
 
+\subsection{Investigating bias in MS-SMC' predictions}
+To investigate whether the SMC' approximation inherent to the MS-SMC' introduces
+a significant bias we compared MS-SMC' predictions to tree sequences simulated
+under both the SMC' (Fig.~\ref{...}) and the full coalescent with recombination 
+(Fig.~\ref{xxx}). In both cases the MS-SMC' predictions appear to converge 
+on the simulated expectations except in the extreme case of high population structure
+and ...
 
-% second validation
+The SMC' approximation to the coalescent with recombination deviates more
+significantly from the full model as the number of recombination events 
+that the SMC' does not model (among ancestors that do not leave sampled 
+descendants) increases. Thus, the SMC' is expected to deviate most significantly
+in highly structure populations with low Ne?
 
-
-
-
-\subsection{Investigating bias in topology-change waiting distances}
 We also investigated the potential bias present in calculations of 
 waiting distances between topology-change events due that may occur
 from ignoring tree-change events that occur during the waiting distance
