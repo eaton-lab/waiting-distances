@@ -23,7 +23,6 @@ from ipcoal.smc.likelihood.likelihood2 import (
 )
 
 logger = logger.bind(name="ipcoal")
-ipcoal.set_log_level("INFO")
 
 
 class Mcmc:
@@ -255,6 +254,9 @@ def main(
     lengths, earr, barr, sarr = simulate_and_get_embeddings(
         sptree, params, nsamples, nsites, recomb, seed)
 
+    # initial random params 
+    init_params = np.repeat(5e5, len(params))
+
     # does a checkpoint file already exist for this run?
     if outpath.exists():
         # get its length, subtract from nsamples, and set burnin to 0
@@ -262,6 +264,7 @@ def main(
         nsampled = sampled.shape[0]
         mcmc_burnin = 0
         mcmc_nsamples = mcmc_nsamples - nsampled
+        init_params = sampled[-1][:-1]
 
     # init MCMC object
     mcmc = Mcmc(
@@ -269,7 +272,7 @@ def main(
         lengths=lengths,
         data=(earr, barr, sarr),
         priors=(1e3, 5e6),
-        init_params=np.repeat(5e5, len(params)),
+        init_params=init_params,
         jumpsize=mcmc_jumpsize,
         seed=seed,
     )
@@ -298,11 +301,11 @@ def command_line():
     parser.add_argument(
         '--root-height', type=float, default=1e6, help='Root height of species tree.')
     parser.add_argument(
-        '--params', type=int, default=[100_000, 200_000, 300_000], nargs="*", help='True Ne values used for simulated data.')
+        '--params', type=float, default=[100_000, 200_000, 300_000], nargs="*", help='True Ne values used for simulated data.')
     parser.add_argument(
         '--recomb', type=float, default=2e-9, help='Recombination rate.')
     parser.add_argument(
-        '--nsites', type=int, default=5e6, help='length of simulated tree sequence')
+        '--nsites', type=float, default=5e6, help='length of simulated tree sequence')
     parser.add_argument(
         '--nsamples', type=int, default=4, help='Number of samples per species lineage')
     parser.add_argument(
@@ -323,6 +326,8 @@ def command_line():
         '--force', type=bool, default=True, help='Overwrite existing file w/ same name.')
     parser.add_argument(
         '--mcmc-jumpsize', type=int, default=30_000, help='MCMC jump size.')
+    parser.add_argument(
+        '--log-level', type=str, default="INFO", help='logger level (DEBUG, INFO, WARNING, ERROR)')
     return parser.parse_args()
 
 
@@ -331,9 +336,13 @@ if __name__ == "__main__":
     # get command line args
     args = command_line()
 
+    # set logger
+    ipcoal.set_log_level(args.log_level)
+
     # limit n threads
     if args.threads:
         set_num_threads(args.threads)
+    
 
     # run main
     main(**vars(args))
