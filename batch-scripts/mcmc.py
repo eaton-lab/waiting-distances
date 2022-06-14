@@ -74,7 +74,7 @@ class Mcmc:
         """Return prior loglikelihood. Uniform priors return 1 if inside bounds, else inf."""
         low = np.all(params >= self.priors[0])
         high = np.all(params <= self.priors[1])
-        return 1 if float(low & high) else np.inf
+        return 1 if float(low & high) else 0
         
     def run(self, nsamples: int=1000, burnin=2000, sample_interval=5, print_interval=25):
         """Run to sample from the posterior distribution.
@@ -106,15 +106,18 @@ class Mcmc:
                         
             # propose new params
             new_params = self.transition()
-            
+
             # get likelihood
-            new_loglik = self.log_likelihood(new_params) * self.prior_uniform(new_params)
+            prior_lik = self.prior_uniform(new_params)
+            if prior_lik:
+                new_loglik = self.log_likelihood(new_params) * prior_lik
+            else:
+                new_loglik = np.inf
             
             # accept or reject
             aratio = self.acceptance(loglik, new_loglik)
             acc += aratio
             its += 1
-            logger.debug(f"acc={acc}, its={its}")
             if aratio > self.rng.random():
                 
                 # proposal accepted
@@ -127,18 +130,20 @@ class Mcmc:
 
                     # print/store depending on if in burnin or not
                     if idx > burnin:
-                        posterior[int(idx / sample_interval)] = list(self.params) + [loglik]
+                        posterior[int(idx / sample_interval)] = list(self.params) + [new_loglik]
                         if not idx % print_interval:
                             elapsed = timedelta(seconds=int(time.time() - start))
                             logger.info(
-                                f"{idx} ({sidx})\t{self.params.astype(int)}, "
-                                f"{new_loglik:.2f}, {acc/its:.2f}, {elapsed}")
+                                f"{sidx}\t{elapsed}\t{acc/its:.2f}\t"
+                                f"{new_loglik:.3f}\tsample\t{self.params.astype(int)}"
+                            )
                     else:
                         if not idx % print_interval:
                             elapsed = timedelta(seconds=int(time.time() - start))
                             logger.info(
-                                f"{idx} ({sidx})\t{self.params.astype(int)}, "
-                                f"{new_loglik:.2f}, {acc/its:.2f}, burnin, {elapsed}")
+                                f"{sidx}\t{elapsed}\t{acc/its:.2f}\t"
+                                f"{new_loglik:.3f}\tburn-in\t{self.params.astype(int)}"
+                            )
                 
                 # advance counter of accepted proposals
                 idx += 1
@@ -146,7 +151,7 @@ class Mcmc:
                 # break when requested number of samples are saved
                 if idx >= nsamples * sample_interval:
                     break
-        logger.info(f"MCMC sampling complete. Means={posterior.mean(axis=0)}")
+        logger.info(f"MCMC sampling complete. Means={posterior.mean(axis=0).round(2)}")
         return posterior
 
 
@@ -321,7 +326,7 @@ def command_line():
     parser.add_argument(
         '--mcmc-burnin', type=int, default=50, help='N accepted iterations before starting sampling')
     parser.add_argument(
-        '--threads', type=int, default=7, help='Max number of threads (0=max)')
+        '--threads', type=int, default=7, help='Max number of threads (0=all detected)')
     parser.add_argument(
         '--force', type=bool, default=True, help='Overwrite existing file w/ same name.')
     parser.add_argument(
