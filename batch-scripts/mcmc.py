@@ -96,7 +96,7 @@ class Mcmc:
         """
         logger.info(f"starting MCMC sampler for {nsamples} samples.")
         space = " " * (5 * len(self.params))
-        logger.info(f"sample\tloglik   \tparams{space}\tacc.ratio\truntime\tcat")
+        logger.info(f"sample\tloglik   \tparams{space}\taccept\truntime\tcat")
         start = time.time()
         posterior = np.zeros(shape=(nsamples, len(self.params) + 1))
         loglik = self.log_likelihood(self.params) * self.prior_uniform(self.params)
