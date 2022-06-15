@@ -95,6 +95,8 @@ class Mcmc:
         np.ndarray
         """
         logger.info(f"starting MCMC sampler for {nsamples} samples.")
+        space = " " * (5 * len(self.params))
+        logger.info(f"sample\tloglik   \tparams{space}\tacc.ratio\truntime\tcat")
         start = time.time()
         posterior = np.zeros(shape=(nsamples, len(self.params) + 1))
         loglik = self.log_likelihood(self.params) * self.prior_uniform(self.params)
@@ -134,15 +136,23 @@ class Mcmc:
                         if not idx % print_interval:
                             elapsed = timedelta(seconds=int(time.time() - start))
                             logger.info(
-                                f"{sidx}\t{elapsed}\t{acc/its:.2f}\t"
-                                f"{new_loglik:.3f}\tsample\t{self.params.astype(int)}"
+                                f"{sidx}\t"
+                                f"{new_loglik:.3f}\t"
+                                f"{self.params.astype(int)}\t"
+                                f"{acc/its:.2f}\t"
+                                f"{elapsed}\t"
+                                f"sample\t"
                             )
                     else:
                         if not idx % print_interval:
                             elapsed = timedelta(seconds=int(time.time() - start))
                             logger.info(
-                                f"{sidx}\t{elapsed}\t{acc/its:.2f}\t"
-                                f"{new_loglik:.3f}\tburn-in\t{self.params.astype(int)}"
+                                f"{sidx}\t"
+                                f"{new_loglik:.3f}\t"
+                                f"{self.params.astype(int)}\t"
+                                f"{acc/its:.2f}\t"
+                                f"{elapsed}\t"
+                                f"burnin\t"
                             )
                 
                 # advance counter of accepted proposals
