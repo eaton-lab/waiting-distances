@@ -280,6 +280,8 @@ def main(
         mcmc_burnin = 0
         mcmc_nsamples = mcmc_nsamples - nsampled
         init_params = sampled[-1][:-1]
+        seed = sampled[-1][-1]
+        logger.info(f"restarting from checkpoint (samples={nsampled})")
 
     # init MCMC object
     mcmc = Mcmc(
