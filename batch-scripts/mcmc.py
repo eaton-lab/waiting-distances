@@ -96,13 +96,15 @@ class Mcmc:
         """
         logger.info(f"starting MCMC sampler for {nsamples} samples.")
         space = " " * (5 * len(self.params))
-        logger.info(f"sample\tloglik   \tparams{space}\taccept\truntime\tcat")
+        logger.info(f"iter\tsample\tloglik   \tparams{space}\taccept\truntime\tcat")
         start = time.time()
+
         posterior = np.zeros(shape=(nsamples, len(self.params) + 1))
         loglik = self.log_likelihood(self.params) * self.prior_uniform(self.params)
-        
-        its = 0
+
         idx = 0
+        sidx = 0   
+        its = 0
         acc = 0
         while 1:
                         
@@ -125,43 +127,31 @@ class Mcmc:
                 # proposal accepted
                 self.params = new_params
                 loglik = new_loglik
-                
+            
                 # only store every Nth accepted result
-                if (idx % sample_interval) == 0:
-                    sidx = int(idx / sample_interval)
-
-                    # print/store depending on if in burnin or not
-                    if idx > burnin:
-                        posterior[int(idx / sample_interval)] = list(self.params) + [new_loglik]
-                        if not idx % print_interval:
-                            elapsed = timedelta(seconds=int(time.time() - start))
-                            logger.info(
-                                f"{sidx}\t"
-                                f"{new_loglik:.3f}\t"
-                                f"{self.params.astype(int)}\t"
-                                f"{acc/its:.2f}\t"
-                                f"{elapsed}\t"
-                                f"sample\t"
-                            )
-                    else:
-                        if not idx % print_interval:
-                            elapsed = timedelta(seconds=int(time.time() - start))
-                            logger.info(
-                                f"{sidx}\t"
-                                f"{new_loglik:.3f}\t"
-                                f"{self.params.astype(int)}\t"
-                                f"{acc/its:.2f}\t"
-                                f"{elapsed}\t"
-                                f"burnin\t"
-                            )
+                if idx > burnin:
+                    if (idx % sample_interval) == 0:
+                        posterior[sidx] = list(self.params) + [new_loglik]
+                        sidx += 1
+                        
+                # print on interval
+                if not idx % print_interval:
+                    elapsed = timedelta(seconds=int(time.time() - start))
+                    stype = "sample" if idx > burnin else "burnin" 
+                    logger.info(
+                        f"{idx}\t{sidx}\t"
+                        f"{new_loglik:.3f}\t"
+                        f"{self.params.astype(int)}\t"
+                        f"{acc/its:.2f}\t"
+                        f"{elapsed}\t{stype}"
+                    )
                 
-                # advance counter of accepted proposals
                 idx += 1
-                
+
                 # break when requested number of samples are saved
-                if idx >= nsamples * sample_interval:
+                if sidx == nsamples:
                     break
-        logger.info(f"MCMC sampling complete. Means={posterior.mean(axis=0).round(2)}")
+        logger.info(f"MCMC sampling complete. Means={posterior.mean(axis=0)}")
         return posterior
 
 
@@ -288,7 +278,7 @@ def main(
         recomb=recomb,
         lengths=lengths,
         data=(earr, barr, sarr),
-        priors=(1e3, 5e6),
+        priors=(1e2, 2e6),
         init_params=init_params,
         jumpsize=mcmc_jumpsize,
         seed=seed,
