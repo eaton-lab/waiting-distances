@@ -150,7 +150,7 @@ class Mcmc:
                     )
 
                 # save to disk and print summary every 1K sidx
-                if sidx and (not sidx % 200):
+                if sidx and (not sidx % 100):
                     np.save(self.outpath, posterior[:sidx])
                     logger.info(f"MCMC current posterior means={posterior[:sidx].mean(axis=0).round(2)}")
                     logger.info(f"MCMC current posterior stds ={posterior[:sidx].std(axis=0).round(2)}\n")
@@ -163,12 +163,12 @@ class Mcmc:
                     logger.info(f"MCMC current posterior ESS ={ess_vals}")
 
                 # adjust jumpsize every 100 during burnin
-                if 100 < idx < burnin:
-                    if not idx % 100:
-                        if acc/its < 44:
-                            self.jumpsize += 1000
-                        if acc/its > 44:
-                            self.jumpsize -= 1000
+                # if 100 < idx < burnin:
+                #     if not idx % 100:
+                #         if acc/its < 44:
+                #             self.jumpsize += 1000
+                #         if acc/its > 44:
+                #             self.jumpsize -= 1000
 
                 # advance counter and break when nsamples reached
                 idx += 1
