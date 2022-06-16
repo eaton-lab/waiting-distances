@@ -158,8 +158,8 @@ class Mcmc:
                     ess_vals = []
                     for col in range(posterior.shape[1]):
                         azdata = az.convert_to_dataset(posterior[:sidx, col])
-                        ess = az.ess(azdata)
-                        ess_vals.append(ess)
+                        ess = az.ess(azdata).x.values
+                        ess_vals.append(float(ess))
                     logger.info(f"MCMC current posterior ESS ={ess_vals}")
 
                 # adjust jumpsize every 100 during burnin
