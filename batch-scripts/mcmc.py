@@ -32,10 +32,11 @@ class Mcmc:
         recomb: float,
         lengths: np.ndarray,
         data: Tuple[np.ndarray, np.ndarray, np.ndarray],
-        priors: Tuple[int, int], 
+        priors: Tuple[int, int],
         init_params: np.ndarray,
         seed: int,
-        jumpsize: int
+        jumpsize: int,
+        outpath: Path,
         ):
         # store the inputs
         self.recomb = recomb
@@ -45,12 +46,13 @@ class Mcmc:
         self.params = init_params
         self.rng = np.random.default_rng(seed)
         self.jumpsize = jumpsize
+        self.outpath = outpath
         assert self.prior_uniform(self.params), "starting values are outside priors."
-        
+
     def transition(self) -> np.ndarray:
         """Jitters the current params to new proposal values."""
         return self.rng.normal(self.params, scale=self.jumpsize)
-    
+
     def acceptance(self, old: float, new: float) -> bool:
         """Return boolean for whether to accept new proposal params."""
         if np.isnan(new):
@@ -59,15 +61,15 @@ class Mcmc:
             accepted = 1 if new < old else np.exp(old - new)
         logger.debug(f"old={old:.2f}, new={new:.2f}, accepted={accepted:.2f}")
         return accepted
-    
+
     def log_likelihood(self, params) -> float:
         """Return log-likelihood of the data (lengths, edicts) given the params."""
         return get_tree_distance_loglik(
-            params, 
-            recomb=self.recomb, 
-            lengths=self.lengths, 
+            params,
+            recomb=self.recomb,
+            lengths=self.lengths,
             embedding_arr=self.data[0],
-            blen_arr=self.data[1], 
+            blen_arr=self.data[1],
             sumlen_arr=self.data[2])
 
     def prior_uniform(self, params: np.ndarray) -> float:
@@ -75,10 +77,10 @@ class Mcmc:
         low = np.all(params >= self.priors[0])
         high = np.all(params <= self.priors[1])
         return 1 if float(low & high) else 0
-        
+
     def run(self, nsamples: int=1000, burnin=2000, sample_interval=5, print_interval=25):
         """Run to sample from the posterior distribution.
-        
+
         Parameters
         ----------
         nsamples: int
@@ -89,7 +91,7 @@ class Mcmc:
             Number of accepted proposals between printing progress to stdout.
         burnin: int
             Number of accepted samples to skip before starting sampling.
-            
+
         Returns
         -------
         np.ndarray
@@ -103,11 +105,11 @@ class Mcmc:
         loglik = self.log_likelihood(self.params) * self.prior_uniform(self.params)
 
         idx = 0
-        sidx = 0   
+        sidx = 0
         its = 0
         acc = 0
         while 1:
-                        
+
             # propose new params
             new_params = self.transition()
 
@@ -117,27 +119,27 @@ class Mcmc:
                 new_loglik = self.log_likelihood(new_params) * prior_lik
             else:
                 new_loglik = np.inf
-            
+
             # accept or reject
             aratio = self.acceptance(loglik, new_loglik)
             acc += aratio
             its += 1
             if aratio > self.rng.random():
-                
+
                 # proposal accepted
                 self.params = new_params
                 loglik = new_loglik
-            
+
                 # only store every Nth accepted result
                 if idx > burnin:
                     if (idx % sample_interval) == 0:
                         posterior[sidx] = list(self.params) + [new_loglik]
                         sidx += 1
-                        
+
                 # print on interval
                 if not idx % print_interval:
                     elapsed = timedelta(seconds=int(time.time() - start))
-                    stype = "sample" if idx > burnin else "burnin" 
+                    stype = "sample" if idx > burnin else "burnin"
                     logger.info(
                         f"{idx}\t{sidx}\t"
                         f"{new_loglik:.3f}\t"
@@ -145,10 +147,20 @@ class Mcmc:
                         f"{acc/its:.2f}\t"
                         f"{elapsed}\t{stype}"
                     )
-                
-                idx += 1
 
-                # break when requested number of samples are saved
+                # save to disk every 1000, and adjust jumpsize
+                if not idx % 1000:
+                    np.save(self.outpath, posterior[:sidx])
+
+                # adjust jumpsize every 5K
+                if not idx % 1000:
+                    if acc/its < 44:
+                        self.jumpsize += 1000
+                    if acc/its > 44:
+                        self.jumpsize -= 1000
+
+                # advance counter and break when nsamples reached
+                idx += 1
                 if sidx == nsamples:
                     break
         logger.info(f"MCMC sampling complete. Means={posterior.mean(axis=0)}")
@@ -156,9 +168,9 @@ class Mcmc:
 
 
 def simulate_and_get_embeddings(
-    sptree: toytree.ToyTree, 
-    params: Dict[str, int], 
-    nsamples: int, 
+    sptree: toytree.ToyTree,
+    params: Dict[str, int],
+    nsamples: int,
     nsites: int,
     recomb: float,
     seed: int,
@@ -167,7 +179,7 @@ def simulate_and_get_embeddings(
     """
     # set Ne values on species tree
     sptree.set_node_data("Ne", mapping=params, inplace=True)
-    
+
     # setup a coalescent simulation model
     model = ipcoal.Model(sptree, nsamples=nsamples, recomb=recomb, seed_trees=seed)
 
@@ -176,7 +188,7 @@ def simulate_and_get_embeddings(
 
     # print some details
     logger.info(f"simulating tree sequence for {nsites:.2g} sites w/ recomb={recomb:.2g}.")
-    
+
     # generate a tree sequence and store to a table
     model.sim_trees(nloci=1, nsites=nsites)
 
@@ -188,19 +200,19 @@ def simulate_and_get_embeddings(
 
     # print some details
     logger.info(f"loading genealogy embedding table for {len(genealogies)} genealogies.")
-    
+
     # get cached embedding tables
     etables = [get_genealogy_embedding_table(model.tree, i, imap) for i in genealogies]
-    
+
     # get combined arrays of embedding data
     earr, barr, sarr = get_data(etables)
-    
+
     # return all data
     return lengths, earr, barr, sarr
 
 
 def get_species_tree(
-    ntips: int, 
+    ntips: int,
     root_height: float,
     ) -> toytree.ToyTree:
     """Return a species tree with same height given ntips."""
@@ -225,16 +237,16 @@ def main(
     mcmc_sample_interval: int,
     mcmc_print_interval: int,
     mcmc_burnin: int,
-    mcmc_jumpsize: int,    
+    mcmc_jumpsize: int,
     force: bool,
     **kwargs,
     ) -> None:
     """Run the main function of the script.
 
     This simulates a tree sequence under a given demographic model
-    and generates a genealogy embedding table representing info on all 
-    genealogies across the chromosome, and their lengths (the ARG 
-    embedded in the MSC model, as a table). 
+    and generates a genealogy embedding table representing info on all
+    genealogies across the chromosome, and their lengths (the ARG
+    embedded in the MSC model, as a table).
 
     An MCMC algorithm is then run to search over the prior parameter
     space of the demographic model parameters to find the best fitting
@@ -259,7 +271,7 @@ def main(
     lengths, earr, barr, sarr = simulate_and_get_embeddings(
         sptree, params, nsamples, nsites, recomb, seed)
 
-    # initial random params 
+    # initial random params
     init_params = np.repeat(5e5, len(params))
 
     # does a checkpoint file already exist for this run?
@@ -282,13 +294,14 @@ def main(
         init_params=init_params,
         jumpsize=mcmc_jumpsize,
         seed=seed,
+        outpath=outpath,
     )
 
     # run MCMC chain
     posterior = mcmc.run(
-        nsamples=mcmc_nsamples, 
-        print_interval=mcmc_print_interval, 
-        sample_interval=mcmc_sample_interval, 
+        nsamples=mcmc_nsamples,
+        print_interval=mcmc_print_interval,
+        sample_interval=mcmc_sample_interval,
         burnin=mcmc_burnin,
     )
 
@@ -349,7 +362,6 @@ if __name__ == "__main__":
     # limit n threads
     if args.threads:
         set_num_threads(args.threads)
-    
 
     # run main
     main(**vars(args))
