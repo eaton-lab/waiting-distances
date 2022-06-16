@@ -154,15 +154,15 @@ class Mcmc:
                     if sidx and (not sidx % 100):
                         np.save(self.outpath, posterior[:sidx])
                         logger.info("checkpoint saved.")
-                        logger.info(f"MCMC current posterior means={posterior[:sidx].mean(axis=0).astype(int)}")
-                        logger.info(f"MCMC current posterior stds ={posterior[:sidx].std(axis=0).astype(int)}")
+                        logger.info(f"MCMC current posterior mean={posterior[:sidx].mean(axis=0).astype(int)}")
+                        logger.info(f"MCMC current posterior std ={posterior[:sidx].std(axis=0).astype(int)}")
 
                         ess_vals = []
                         for col in range(posterior.shape[1]):
                             azdata = az.convert_to_dataset(posterior[:sidx, col])
                             ess = az.ess(azdata).x.values
                             ess_vals.append(int(ess))
-                        logger.info(f"MCMC current posterior ESS  ={ess_vals}\n")
+                        logger.info(f"MCMC current posterior ESS ={ess_vals}\n")
 
                 # adjust jumpsize every 100 during burnin
                 # if 100 < idx < burnin:
@@ -288,15 +288,15 @@ def main(
     init_params = np.repeat(5e5, len(params))
 
     # does a checkpoint file already exist for this run?
-    if outpath.exists():
-        # get its length, subtract from nsamples, and set burnin to 0
-        sampled = np.load(outpath)
-        nsampled = sampled.shape[0]
-        mcmc_burnin = 0
-        mcmc_nsamples = mcmc_nsamples - nsampled
-        init_params = sampled[-1][:-1]
-        seed = sampled[-1][-1]
-        logger.info(f"restarting from checkpoint (samples={nsampled})")
+    # if outpath.exists():
+    #     # get its length, subtract from nsamples, and set burnin to 0
+    #     sampled = np.load(outpath)
+    #     nsampled = sampled.shape[0]
+    #     mcmc_burnin = 0
+    #     mcmc_nsamples = mcmc_nsamples - nsampled
+    #     init_params = sampled[-1][:-1]
+    #     seed = sampled[-1][-1]
+    #     logger.info(f"restarting from checkpoint (samples={nsampled})")
 
     # init MCMC object
     mcmc = Mcmc(
@@ -319,8 +319,8 @@ def main(
     )
 
     # if adding to existing data then concatenate first.
-    if outpath.exists():
-        posterior = np.concatenate([sampled, posterior])
+    # if outpath.exists():
+        # posterior = np.concatenate([sampled, posterior])
     np.save(outpath, posterior)
     logger.info(f"saved posterior w/ {posterior.shape[0]} samples to {outpath}.")
 
