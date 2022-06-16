@@ -150,17 +150,19 @@ class Mcmc:
                     )
 
                 # save to disk and print summary every 1K sidx
-                if sidx and (not sidx % 100):
-                    np.save(self.outpath, posterior[:sidx])
-                    logger.info(f"MCMC current posterior means={posterior[:sidx].mean(axis=0).round(2)}")
-                    logger.info(f"MCMC current posterior stds ={posterior[:sidx].std(axis=0).round(2)}")
+                if not idx % 100:
+                    if sidx and (not sidx % 100):
+                        np.save(self.outpath, posterior[:sidx])
+                        logger.info("checkpoint saved.")
+                        logger.info(f"MCMC current posterior means={posterior[:sidx].mean(axis=0).astype(int)}")
+                        logger.info(f"MCMC current posterior stds ={posterior[:sidx].std(axis=0).astype(int)}")
 
-                    ess_vals = []
-                    for col in range(posterior.shape[1]):
-                        azdata = az.convert_to_dataset(posterior[:sidx, col])
-                        ess = az.ess(azdata).x.values
-                        ess_vals.append(float(ess))
-                    logger.info(f"MCMC current posterior ESS ={ess_vals}\n")
+                        ess_vals = []
+                        for col in range(posterior.shape[1]):
+                            azdata = az.convert_to_dataset(posterior[:sidx, col])
+                            ess = az.ess(azdata).x.values
+                            ess_vals.append(int(ess))
+                        logger.info(f"MCMC current posterior ESS  ={ess_vals}\n")
 
                 # adjust jumpsize every 100 during burnin
                 # if 100 < idx < burnin:
