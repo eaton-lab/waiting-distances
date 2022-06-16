@@ -15,6 +15,7 @@ import ipcoal
 import toytree
 from numba import set_num_threads
 from loguru import logger
+import arviz as az
 
 from ipcoal.smc import get_genealogy_embedding_table
 from ipcoal.smc.likelihood.likelihood2 import (
@@ -148,21 +149,26 @@ class Mcmc:
                         f"{elapsed}\t{stype}"
                     )
 
-                # save to disk every 1000, and adjust jumpsize
-                if not idx % 1000:
+                # save to disk and print summary every 1K sidx
+                if sidx and (not sidx % 200):
                     np.save(self.outpath, posterior[:sidx])
-
-                # adjust jumpsize every 1K
-                if not idx % 1000:
-                    if acc/its < 44:
-                        self.jumpsize += 1000
-                    if acc/its > 44:
-                        self.jumpsize -= 1000
-
-                # print summary every 1K sidx
-                if sidx and (not sidx % 1000):
                     logger.info(f"MCMC current posterior means={posterior[:sidx].mean(axis=0).round(2)}")
                     logger.info(f"MCMC current posterior stds ={posterior[:sidx].std(axis=0).round(2)}\n")
+
+                    ess_vals = []
+                    for col in range(posterior.shape[1]):
+                        azdata = az.convert_to_dataset(posterior[:sidx, col])
+                        ess = az.ess(azdata)
+                        ess_vals.append(ess)
+                    logger.info(f"MCMC current posterior ESS ={ess_vals}")
+
+                # adjust jumpsize every 100 during burnin
+                if 100 < idx < burnin:
+                    if not idx % 100:
+                        if acc/its < 44:
+                            self.jumpsize += 1000
+                        if acc/its > 44:
+                            self.jumpsize -= 1000
 
                 # advance counter and break when nsamples reached
                 idx += 1
