@@ -152,13 +152,16 @@ class Mcmc:
                 if not idx % 1000:
                     np.save(self.outpath, posterior[:sidx])
 
-                # adjust jumpsize every 1K and print means
+                # adjust jumpsize every 1K
                 if not idx % 1000:
                     if acc/its < 44:
                         self.jumpsize += 1000
                     if acc/its > 44:
                         self.jumpsize -= 1000
 
+
+                # print summary every 1K sidx
+                if not sidx % 1000:
                     logger.info(f"MCMC current posterior means={posterior[:sidx].mean(axis=0).round(2)}")
                     logger.info(f"MCMC current posterior stds ={posterior[:sidx].std(axis=0).round(2)}\n")
 
