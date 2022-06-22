@@ -1,0 +1,668 @@
+INFO    | mcmc.py      | CMD: ms-smc-mcmc --log-level INFO --mcmc-nsamples 10000 --mcmc-print-interval 50 --mcmc-sample-interval 5 --mcmc-burnin 1000 --recomb 2e-9 --name combined-234-5Mb --threads 75 --mcmc-jumpsize 20_000 30_000 40_000 --params 200_000 300_000 400_000 --nsites 5e6 --data-type combined --log-file --force
+INFO    | mcmc.py      | true simulated parameters ([200000. 300000. 400000.]).
+INFO    | mcmc.py      | simulating tree sequence for 5e+06 sites w/ recomb=2e-09.
+INFO    | mcmc.py      | loading genealogy embedding table for 37249 genealogies.
+INFO    | mcmc.py      | CMD: ms-smc-mcmc --log-level INFO --mcmc-nsamples 10000 --mcmc-print-interval 50 --mcmc-sample-interval 5 --mcmc-burnin 500 --recomb 2e-9 --name combined-234-5Mb --data-type combined --params 200_000 300_000 400_000 --mcmc-jumpsize 20000 30000 40000 --log-file --nsites 5e6
+INFO    | mcmc.py      | true simulated parameters ([200000. 300000. 400000.]).
+INFO    | mcmc.py      | simulating tree sequence for 5e+06 sites w/ recomb=2e-09.
+INFO    | mcmc.py      | loading genealogy embedding table for 37249 genealogies.
+INFO    | mcmc.py      | CMD: ms-smc-mcmc --log-level INFO --mcmc-nsamples 10000 --mcmc-print-interval 50 --mcmc-sample-interval 5 --mcmc-burnin 500 --recomb 2e-9 --name combined-234-5Mb --data-type combined --params 200_000 300_000 400_000 --mcmc-jumpsize 20000 30000 40000 --log-file --nsites 5e6 --threads 70 --seed 123
+INFO    | mcmc.py      | true simulated parameters ([200000. 300000. 400000.]).
+INFO    | mcmc.py      | simulating tree sequence for 5e+06 sites w/ recomb=2e-09.
+INFO    | mcmc.py      | loading genealogy embedding table for 36862 genealogies.
+INFO    | mcmc.py      | CMD: ms-smc-mcmc --log-level INFO --mcmc-nsamples 10000 --mcmc-print-interval 50 --mcmc-sample-interval 5 --mcmc-burnin 500 --recomb 2e-9 --name combined-234-5Mb --data-type combined --params 200_000 300_000 400_000 --mcmc-jumpsize 20000 30000 40000 --log-file --nsites 1e5 --threads 70 --seed 123
+INFO    | mcmc.py      | true simulated parameters ([200000. 300000. 400000.]).
+INFO    | mcmc.py      | simulating tree sequence for 1e+05 sites w/ recomb=2e-09.
+INFO    | mcmc.py      | loading genealogy embedding table for 742 genealogies.
+INFO    | mcmc.py      | embedding includes 387 sequential topology changes.
+INFO    | mcmc.py      | ([200000. 300000. 400000.]) loglik 6866.0678941168.
+INFO    | mcmc.py      | starting MCMC sampler for 10000 samples.
+INFO    | mcmc.py      | iter	sample	loglik   	params               	accept	runtime	cat
+INFO    | mcmc.py      |    0	   0	6870.892	[480217 488966 551517]	0.62	0:00:00	burnin
+INFO    | mcmc.py      |   50	   0	6866.679	[471757 119190 572521]	0.77	0:00:01	burnin
+INFO    | mcmc.py      |  100	   0	6866.018	[210825 220396 456062]	0.82	0:00:02	burnin
+INFO    | mcmc.py      |  150	   0	6866.783	[346205 198656 100308]	0.83	0:00:03	burnin
+INFO    | mcmc.py      |  200	   0	6865.976	[560910 203822 178102]	0.84	0:00:04	burnin
+INFO    | mcmc.py      |  250	   0	6866.721	[442514 382053 115812]	0.85	0:00:05	burnin
+INFO    | mcmc.py      |  300	   0	6866.244	[433845 327633 241946]	0.85	0:00:05	burnin
+INFO    | mcmc.py      |  350	   0	6865.801	[332951 214696 391331]	0.86	0:00:06	burnin
+INFO    | mcmc.py      |  400	   0	6866.007	[321501  67774 322494]	0.85	0:00:07	burnin
+INFO    | mcmc.py      |  450	   0	6865.843	[391611 271708 226670]	0.86	0:00:08	burnin
+INFO    | mcmc.py      |  500	   0	6866.116	[486506 275810 260002]	0.86	0:00:09	burnin
+INFO    | mcmc.py      | ---------------------------------
+INFO    | mcmc.py      |  550	  10	6866.666	[104584 402108 351852]	0.86	0:00:11	sample
+INFO    | mcmc.py      |  600	  20	6866.798	[228184 156517 175416]	0.87	0:00:12	sample
+INFO    | mcmc.py      |  650	  30	6865.437	[380330 129777 338728]	0.86	0:00:12	sample
+INFO    | mcmc.py      |  700	  40	6865.759	[476622  45249 325554]	0.86	0:00:13	sample
+INFO    | mcmc.py      |  750	  50	6866.057	[636149 212718 195835]	0.87	0:00:14	sample
+INFO    | mcmc.py      |  800	  60	6865.874	[715385 145870 204707]	0.87	0:00:15	sample
+INFO    | mcmc.py      |  850	  70	6865.670	[782134  73304 310066]	0.87	0:00:16	sample
+INFO    | mcmc.py      |  900	  80	6865.771	[810819 103343 314850]	0.87	0:00:18	sample
+INFO    | mcmc.py      |  950	  90	6867.746	[947331 320027 260539]	0.87	0:00:19	sample
+INFO    | mcmc.py      | 1000	 100	6868.988	[852109 703340 104220]	0.87	0:00:20	sample
+INFO    | mcmc.py      | checkpoint saved.
+INFO    | mcmc.py      | MCMC current posterior mean=[576247 244633 239182   6866]
+INFO    | mcmc.py      | MCMC current posterior std =[251159 146995  91383      0]
+INFO    | mcmc.py      | MCMC current posterior ESS =[1, 10, 20, 9]
+
+INFO    | mcmc.py      | 1050	 110	6869.254	[912868 817362  71270]	0.86	0:00:21	sample
+INFO    | mcmc.py      | 1100	 120	6870.440	[ 796816 1149534  150692]	0.86	0:00:22	sample
+INFO    | mcmc.py      | 1150	 130	6870.527	[ 913977 1142141  124259]	0.85	0:00:23	sample
+INFO    | mcmc.py      | 1200	 140	6871.316	[ 687927 1125088  267310]	0.85	0:00:24	sample
+INFO    | mcmc.py      | 1250	 150	6870.648	[ 798702 1270176  146440]	0.85	0:00:25	sample
+INFO    | mcmc.py      | 1300	 160	6870.632	[ 778726 1289075  148402]	0.84	0:00:26	sample
+INFO    | mcmc.py      | 1350	 170	6869.876	[ 785890 1344054   63950]	0.84	0:00:27	sample
+INFO    | mcmc.py      | 1400	 180	6870.640	[ 528775 1240878  264580]	0.84	0:00:28	sample
+INFO    | mcmc.py      | 1450	 190	6868.885	[ 491203 1237270   86562]	0.84	0:00:28	sample
+INFO    | mcmc.py      | 1500	 200	6869.689	[ 580905 1519373   95152]	0.84	0:00:30	sample
+INFO    | mcmc.py      | checkpoint saved.
+INFO    | mcmc.py      | MCMC current posterior mean=[650506 699357 172122   6868]
+INFO    | mcmc.py      | MCMC current posterior std =[217287 484646 101543      1]
+INFO    | mcmc.py      | MCMC current posterior ESS =[5, 1, 2, 1]
+
+INFO    | mcmc.py      | 1550	 210	6869.052	[ 536862 1460711   53124]	0.84	0:00:31	sample
+INFO    | mcmc.py      | 1600	 220	6868.105	[ 232867 1550131   58204]	0.84	0:00:32	sample
+INFO    | mcmc.py      | 1650	 230	6869.374	[ 153033 1826147  385444]	0.84	0:00:32	sample
+INFO    | mcmc.py      | 1700	 240	6869.795	[  13400 1971809  183164]	0.84	0:00:33	sample
+INFO    | mcmc.py      | 1750	 250	6869.142	[  24739 1943524  372890]	0.84	0:00:34	sample
+INFO    | mcmc.py      | 1800	 260	6868.628	[  51807 1967358  269845]	0.84	0:00:35	sample
+INFO    | mcmc.py      | 1850	 270	6868.334	[ 169841 1779910  242235]	0.84	0:00:36	sample
+INFO    | mcmc.py      | 1900	 280	6868.243	[ 156611 1591377   50757]	0.84	0:00:37	sample
+INFO    | mcmc.py      | 1950	 290	6868.422	[ 239841 1473168  224211]	0.84	0:00:38	sample
+INFO    | mcmc.py      | 2000	 300	6868.387	[ 143680 1892577   54437]	0.84	0:00:39	sample
+INFO    | mcmc.py      | checkpoint saved.
+INFO    | mcmc.py      | MCMC current posterior mean=[ 501633 1034409  175687    6868]
+INFO    | mcmc.py      | MCMC current posterior std =[292113 629629 106210      1]
+INFO    | mcmc.py      | MCMC current posterior ESS =[2, 1, 17, 5]
+
+INFO    | mcmc.py      | 2050	 310	6869.624	[ 289667 1867748  267138]	0.84	0:00:40	sample
+INFO    | mcmc.py      | 2100	 320	6868.666	[ 310697 1869639   96343]	0.84	0:00:41	sample
+INFO    | mcmc.py      | 2150	 330	6868.373	[ 247724 1599692  174356]	0.84	0:00:42	sample
+INFO    | mcmc.py      | 2200	 340	6868.490	[ 210429 1481964  267698]	0.84	0:00:43	sample
+INFO    | mcmc.py      | 2250	 350	6868.451	[ 263600 1768919  123155]	0.84	0:00:44	sample
+INFO    | mcmc.py      | 2300	 360	6868.191	[ 205432 1741351   99815]	0.84	0:00:45	sample
+INFO    | mcmc.py      | 2350	 370	6867.890	[ 128403 1427518  176051]	0.85	0:00:46	sample
+INFO    | mcmc.py      | 2400	 380	6867.847	[ 284865 1085368   71028]	0.85	0:00:47	sample
+INFO    | mcmc.py      | 2450	 390	6868.255	[219525 906198 356545]	0.85	0:00:48	sample
+INFO    | mcmc.py      | 2500	 400	6868.134	[390741 591532 328462]	0.85	0:00:49	sample
+INFO    | mcmc.py      | checkpoint saved.
+INFO    | mcmc.py      | MCMC current posterior mean=[ 435941 1150957  171113    6868]
+INFO    | mcmc.py      | MCMC current posterior std =[279838 614110 107127      1]
+INFO    | mcmc.py      | MCMC current posterior ESS =[1, 1, 29, 7]
+
+INFO    | mcmc.py      | 2550	 410	6867.223	[ 89864 691103 302635]	0.85	0:00:50	sample
+INFO    | mcmc.py      | 2600	 420	6867.679	[134301 573350 493227]	0.85	0:00:51	sample
+INFO    | mcmc.py      | 2650	 430	6867.655	[ 50815 585866 383201]	0.85	0:00:52	sample
+INFO    | mcmc.py      | 2700	 440	6867.647	[ 80324 581512 483082]	0.85	0:00:53	sample
+INFO    | mcmc.py      | 2750	 450	6866.883	[218377 430513 112597]	0.85	0:00:54	sample
+INFO    | mcmc.py      | 2800	 460	6869.029	[ 315790 1007757  318184]	0.85	0:00:55	sample
+INFO    | mcmc.py      | 2850	 470	6870.580	[439790 802709 408874]	0.85	0:00:56	sample
+INFO    | mcmc.py      | 2900	 480	6868.074	[435235 345282 471074]	0.85	0:00:57	sample
+INFO    | mcmc.py      | 2950	 490	6866.268	[209541 328910 414795]	0.85	0:00:58	sample
+INFO    | mcmc.py      | 3000	 500	6865.588	[306578 146638 276855]	0.85	0:00:59	sample
+INFO    | mcmc.py      | checkpoint saved.
+INFO    | mcmc.py      | MCMC current posterior mean=[ 392090 1032780  204331    6868]
+INFO    | mcmc.py      | MCMC current posterior std =[270307 604604 130960      1]
+INFO    | mcmc.py      | MCMC current posterior ESS =[2, 5, 13, 8]
+
+INFO    | mcmc.py      | 3050	 510	6865.617	[247639 221363 297488]	0.85	0:01:00	sample
+INFO    | mcmc.py      | 3100	 520	6865.972	[377602  38324 445946]	0.85	0:01:01	sample
+INFO    | mcmc.py      | 3150	 530	6865.497	[427632 153662 255023]	0.85	0:01:02	sample
+INFO    | mcmc.py      | 3200	 540	6867.032	[524214 282846 383256]	0.85	0:01:03	sample
+INFO    | mcmc.py      | 3250	 550	6866.119	[759560 166936 172958]	0.85	0:01:04	sample
+INFO    | mcmc.py      | 3300	 560	6866.777	[748647 285038 220231]	0.85	0:01:05	sample
+INFO    | mcmc.py      | 3350	 570	6867.637	[807340 413941  75824]	0.85	0:01:06	sample
+INFO    | mcmc.py      | 3400	 580	6866.803	[774339  87300 529827]	0.85	0:01:07	sample
+INFO    | mcmc.py      | 3450	 590	6866.424	[659714 206603 344146]	0.86	0:01:08	sample
+INFO    | mcmc.py      | 3500	 600	6865.664	[562037 142723 340918]	0.86	0:01:09	sample
+INFO    | mcmc.py      | checkpoint saved.
+INFO    | mcmc.py      | MCMC current posterior mean=[425572 895390 223344   6867]
+INFO    | mcmc.py      | MCMC current posterior std =[268715 633079 135782      1]
+INFO    | mcmc.py      | MCMC current posterior ESS =[8, 6, 8, 8]
+
+INFO    | mcmc.py      | 3550	 610	6867.657	[658636 210246 482279]	0.86	0:01:10	sample
+INFO    | mcmc.py      | 3600	 620	6870.392	[754583  76972 944947]	0.85	0:01:11	sample
+INFO    | mcmc.py      | 3650	 630	6868.073	[777699  52286 732105]	0.85	0:01:12	sample
+INFO    | mcmc.py      | 3700	 640	6866.192	[624753  60645 511678]	0.85	0:01:13	sample
+INFO    | mcmc.py      | 3750	 650	6866.406	[858169 198727 163702]	0.85	0:01:14	sample
+INFO    | mcmc.py      | 3800	 660	6865.806	[879296  50675 274750]	0.85	0:01:15	sample
+INFO    | mcmc.py      | 3850	 670	6865.861	[1020987   42360  291857]	0.85	0:01:16	sample
+INFO    | mcmc.py      | 3900	 680	6868.323	[1013095  332608  296140]	0.85	0:01:17	sample
+INFO    | mcmc.py      | 3950	 690	6866.184	[1006186   93903  182702]	0.85	0:01:18	sample
+INFO    | mcmc.py      | 4000	 700	6866.477	[802915 159272 125055]	0.85	0:01:19	sample
+INFO    | mcmc.py      | checkpoint saved.
+INFO    | mcmc.py      | MCMC current posterior mean=[480761 785356 249876   6867]
+INFO    | mcmc.py      | MCMC current posterior std =[289355 646007 170290      1]
+INFO    | mcmc.py      | MCMC current posterior ESS =[8, 2, 3, 6]
+
+INFO    | mcmc.py      | 4050	 710	6866.359	[682047 218348 302674]	0.85	0:01:20	sample
+INFO    | mcmc.py      | 4100	 720	6866.642	[655371 190499  97095]	0.85	0:01:21	sample
+INFO    | mcmc.py      | 4150	 730	6867.896	[603539 357506 358217]	0.85	0:01:22	sample
+INFO    | mcmc.py      | 4200	 740	6865.880	[417125 140163 189819]	0.85	0:01:23	sample
+INFO    | mcmc.py      | 4250	 750	6867.730	[354485 128607  77249]	0.85	0:01:24	sample
+INFO    | mcmc.py      | 4300	 760	6865.985	[333984 102481 239105]	0.84	0:01:25	sample
+INFO    | mcmc.py      | 4350	 770	6865.807	[522098 208893 277347]	0.85	0:01:26	sample
+INFO    | mcmc.py      | 4400	 780	6866.340	[569632 217713 127508]	0.85	0:01:27	sample
+INFO    | mcmc.py      | 4450	 790	6865.559	[604567 122436 273956]	0.85	0:01:28	sample
+INFO    | mcmc.py      | 4500	 800	6865.909	[487250  30899 477307]	0.85	0:01:29	sample
+INFO    | mcmc.py      | checkpoint saved.
+INFO    | mcmc.py      | MCMC current posterior mean=[489725 711331 249539   6867]
+INFO    | mcmc.py      | MCMC current posterior std =[275318 635994 164209      1]
+INFO    | mcmc.py      | MCMC current posterior ESS =[8, 2, 3, 3]
+
+INFO    | mcmc.py      | 4550	 810	6865.953	[455386  15986 463808]	0.85	0:01:30	sample
+INFO    | mcmc.py      | 4600	 820	6866.085	[564128 102226 473474]	0.84	0:01:31	sample
+INFO    | mcmc.py      | 4650	 830	6866.402	[317698 153910 559478]	0.84	0:01:32	sample
+INFO    | mcmc.py      | 4700	 840	6867.051	[443896 387161  56144]	0.84	0:01:33	sample
+INFO    | mcmc.py      | 4750	 850	6866.243	[602591 146330 140365]	0.84	0:01:34	sample
+INFO    | mcmc.py      | 4800	 860	6865.498	[558811 102088 320651]	0.84	0:01:35	sample
+INFO    | mcmc.py      | 4850	 870	6865.791	[541227  66670 447868]	0.84	0:01:36	sample
+INFO    | mcmc.py      | 4900	 880	6867.151	[681381 254581  42519]	0.84	0:01:37	sample
+INFO    | mcmc.py      | CMD: ms-smc-mcmc --log-level INFO --mcmc-nsamples 10000 --mcmc-print-interval 50 --mcmc-sample-interval 5 --mcmc-burnin 500 --recomb 2e-9 --name combined-234-5Mb --data-type combined --params 200_000 300_000 400_000 --mcmc-jumpsize 20000 30000 40000 --log-file --nsites 2e6 --threads 70 --seed 123
+INFO    | mcmc.py      | true simulated parameters ([200000. 300000. 400000.]).
+INFO    | mcmc.py      | simulating tree sequence for 2e+06 sites w/ recomb=2e-09.
+INFO    | mcmc.py      | loading genealogy embedding table for 15139 genealogies.
+INFO    | mcmc.py      | embedding includes 7161 sequential topology changes.
+INFO    | mcmc.py      | ([200000. 300000. 400000.]) loglik 135327.83004452317.
+INFO    | mcmc.py      | starting MCMC sampler for 10000 samples.
+INFO    | mcmc.py      | iter	sample	loglik   	params               	accept	runtime	cat
+INFO    | mcmc.py      |    0	   0	135389.107	[518404 517313 474541]	0.50	0:00:01	burnin
+INFO    | mcmc.py      |   50	   0	135327.589	[245874 308034 373037]	0.53	0:00:42	burnin
+INFO    | mcmc.py      |  100	   0	135327.661	[229022 382701 293081]	0.54	0:01:18	burnin
+INFO    | mcmc.py      |  150	   0	135329.185	[173408 561483 277061]	0.54	0:02:02	burnin
+INFO    | mcmc.py      |  200	   0	135328.365	[193087 312721 423621]	0.55	0:02:34	burnin
+INFO    | mcmc.py      |  250	   0	135326.933	[211503 325623 364533]	0.53	0:03:29	burnin
+INFO    | mcmc.py      |  300	   0	135330.137	[213651 594774 276356]	0.53	0:04:08	burnin
+INFO    | mcmc.py      |  350	   0	135329.457	[172438 521747 271684]	0.52	0:04:53	burnin
+INFO    | mcmc.py      |  400	   0	135327.117	[237220 319782 357951]	0.53	0:05:30	burnin
+INFO    | mcmc.py      |  450	   0	135328.263	[151949 390331 401399]	0.53	0:06:11	burnin
+INFO    | mcmc.py      |  500	   0	135330.037	[254728 492781 288608]	0.53	0:06:56	burnin
+INFO    | mcmc.py      | ---------------------------------
+INFO    | mcmc.py      |  550	  10	135326.789	[187228 408575 353405]	0.53	0:07:38	sample
+INFO    | mcmc.py      |  600	  20	135328.031	[166396 538762 312324]	0.52	0:08:22	sample
+INFO    | mcmc.py      |  650	  30	135328.414	[158310 576428 319168]	0.52	0:09:06	sample
+INFO    | mcmc.py      |  700	  40	135327.735	[246591 319449 308216]	0.52	0:09:53	sample
+INFO    | mcmc.py      |  750	  50	135327.804	[255960 350469 299893]	0.52	0:10:33	sample
+INFO    | mcmc.py      |  800	  60	135326.771	[211118 386487 345797]	0.52	0:11:16	sample
+INFO    | mcmc.py      |  850	  70	135326.970	[213616 412936 322308]	0.52	0:11:59	sample
+INFO    | mcmc.py      |  900	  80	135327.844	[255320 375144 330506]	0.52	0:12:46	sample
+INFO    | mcmc.py      |  950	  90	135327.227	[170326 389039 353420]	0.53	0:13:26	sample
+INFO    | mcmc.py      | 1000	 100	135328.058	[191843 499055 348013]	0.52	0:14:18	sample
+INFO    | mcmc.py      | checkpoint saved.
+INFO    | mcmc.py      | MCMC current posterior mean=[210310 419449 332922 135328]
+INFO    | mcmc.py      | MCMC current posterior std =[37332 89225 33699     1]
+INFO    | mcmc.py      | MCMC current posterior ESS =[21, 11, 65, 34]
+
+INFO    | mcmc.py      | 1050	 110	135328.906	[140883 479469 400853]	0.53	0:14:57	sample
+INFO    | mcmc.py      | 1100	 120	135328.790	[180014 562520 284450]	0.52	0:15:40	sample
+INFO    | mcmc.py      | 1150	 130	135329.825	[204420 543099 257949]	0.52	0:16:19	sample
+INFO    | mcmc.py      | 1200	 140	135328.532	[280318 305258 361036]	0.53	0:16:58	sample
+INFO    | mcmc.py      | 1250	 150	135328.625	[143286 458556 335671]	0.52	0:17:50	sample
+INFO    | mcmc.py      | 1300	 160	135327.827	[271004 303330 344459]	0.52	0:18:30	sample
+INFO    | mcmc.py      | 1350	 170	135327.936	[175545 422386 397460]	0.53	0:19:08	sample
+INFO    | mcmc.py      | 1400	 180	135326.862	[194674 423843 326945]	0.53	0:19:49	sample
+INFO    | mcmc.py      | 1450	 190	135328.974	[261685 266671 314011]	0.53	0:20:34	sample
+INFO    | mcmc.py      | 1500	 200	135327.444	[247612 319207 362407]	0.52	0:21:22	sample
+INFO    | mcmc.py      | checkpoint saved.
+INFO    | mcmc.py      | MCMC current posterior mean=[204806 427462 340109 135328]
+INFO    | mcmc.py      | MCMC current posterior std =[ 42135 107835  39889      1]
+INFO    | mcmc.py      | MCMC current posterior ESS =[30, 21, 73, 31]
+
+INFO    | mcmc.py      | 1550	 210	135329.181	[141409 441300 331606]	0.52	0:22:03	sample
+INFO    | mcmc.py      | 1600	 220	135327.261	[197246 343062 391225]	0.52	0:22:55	sample
+INFO    | mcmc.py      | 1650	 230	135327.150	[222803 411245 324799]	0.52	0:23:38	sample
+INFO    | mcmc.py      | 1700	 240	135339.257	[260054 815916 272749]	0.52	0:24:19	sample
+INFO    | mcmc.py      | 1750	 250	135327.116	[172289 386755 360974]	0.52	0:24:59	sample
+INFO    | mcmc.py      | 1800	 260	135328.102	[160331 540526 348213]	0.52	0:25:42	sample
+INFO    | mcmc.py      | 1850	 270	135327.493	[217686 447317 310829]	0.52	0:26:23	sample
+INFO    | mcmc.py      | 1900	 280	135326.969	[216529 337585 370633]	0.52	0:27:12	sample
+INFO    | mcmc.py      | 1950	 290	135327.622	[224345 422780 341296]	0.52	0:27:53	sample
+INFO    | mcmc.py      | 2000	 300	135327.741	[208715 384663 386223]	0.53	0:28:32	sample
+INFO    | mcmc.py      | checkpoint saved.
+INFO    | mcmc.py      | MCMC current posterior mean=[207294 425974 337950 135328]
+INFO    | mcmc.py      | MCMC current posterior std =[ 42734 109476  41098      1]
+INFO    | mcmc.py      | MCMC current posterior ESS =[42, 23, 83, 75]
+
+INFO    | mcmc.py      | 2050	 310	135331.939	[256404 195387 412450]	0.52	0:29:17	sample
+INFO    | mcmc.py      | 2100	 320	135333.316	[ 92345 641347 364264]	0.52	0:29:56	sample
+INFO    | mcmc.py      | 2150	 330	135327.639	[183464 509360 328320]	0.52	0:30:36	sample
+INFO    | mcmc.py      | 2200	 340	135329.902	[153484 671689 291792]	0.52	0:31:29	sample
+INFO    | mcmc.py      | 2250	 350	135327.646	[177190 353534 344718]	0.52	0:32:15	sample
+INFO    | mcmc.py      | 2300	 360	135327.764	[225036 405822 357428]	0.52	0:32:54	sample
+INFO    | mcmc.py      | 2350	 370	135327.833	[199071 334865 321303]	0.52	0:33:35	sample
+INFO    | mcmc.py      | 2400	 380	135331.282	[230756 540412 239705]	0.52	0:34:15	sample
+INFO    | mcmc.py      | 2450	 390	135327.181	[190218 452209 314051]	0.52	0:34:59	sample
+INFO    | mcmc.py      | 2500	 400	135329.050	[196372 571599 284251]	0.52	0:35:40	sample
+INFO    | mcmc.py      | checkpoint saved.
+INFO    | mcmc.py      | MCMC current posterior mean=[204227 433863 337520 135328]
+INFO    | mcmc.py      | MCMC current posterior std =[ 43301 113141  41343      1]
+INFO    | mcmc.py      | MCMC current posterior ESS =[54, 41, 134, 99]
+
+INFO    | mcmc.py      | 2550	 410	135328.325	[179863 552427 332472]	0.52	0:36:27	sample
+INFO    | mcmc.py      | 2600	 420	135328.374	[258734 405543 312330]	0.52	0:37:04	sample
+INFO    | mcmc.py      | 2650	 430	135328.645	[173421 306612 389227]	0.52	0:37:45	sample
+INFO    | mcmc.py      | 2700	 440	135327.241	[179128 440525 318585]	0.52	0:38:29	sample
+INFO    | mcmc.py      | 2750	 450	135328.039	[265689 361112 329241]	0.52	0:39:07	sample
+INFO    | mcmc.py      | 2800	 460	135329.141	[217010 282328 434146]	0.52	0:39:47	sample
+INFO    | mcmc.py      | 2850	 470	135330.191	[292368 337178 365633]	0.52	0:40:24	sample
+INFO    | mcmc.py      | 2900	 480	135329.429	[202586 530092 263218]	0.52	0:41:10	sample
+INFO    | mcmc.py      | 2950	 490	135326.691	[194869 393366 344004]	0.52	0:41:54	sample
+INFO    | mcmc.py      | 3000	 500	135328.579	[216850 416433 379842]	0.52	0:42:36	sample
+INFO    | mcmc.py      | checkpoint saved.
+INFO    | mcmc.py      | MCMC current posterior mean=[205356 425341 339256 135328]
+INFO    | mcmc.py      | MCMC current posterior std =[ 41788 109944  41154      1]
+INFO    | mcmc.py      | MCMC current posterior ESS =[66, 44, 177, 133]
+
+INFO    | mcmc.py      | 3050	 510	135327.219	[209300 443695 323634]	0.52	0:43:23	sample
+INFO    | mcmc.py      | 3100	 520	135329.330	[239912 433590 260554]	0.52	0:44:04	sample
+INFO    | mcmc.py      | 3150	 530	135327.436	[240472 293545 367518]	0.52	0:44:41	sample
+INFO    | mcmc.py      | 3200	 540	135328.562	[168461 405556 307989]	0.52	0:45:32	sample
+INFO    | mcmc.py      | 3250	 550	135327.142	[200149 428298 353220]	0.52	0:46:20	sample
+INFO    | mcmc.py      | 3300	 560	135327.551	[230664 350085 375206]	0.52	0:47:02	sample
+INFO    | mcmc.py      | 3350	 570	135328.610	[220131 481380 334813]	0.52	0:47:53	sample
+INFO    | mcmc.py      | 3400	 580	135326.815	[200842 368140 366946]	0.52	0:48:37	sample
+INFO    | mcmc.py      | 3450	 590	135327.340	[230774 295725 351291]	0.52	0:49:23	sample
+INFO    | mcmc.py      | 3500	 600	135327.297	[174030 396087 385376]	0.52	0:50:04	sample
+INFO    | mcmc.py      | checkpoint saved.
+INFO    | mcmc.py      | MCMC current posterior mean=[206533 416892 341395 135328]
+INFO    | mcmc.py      | MCMC current posterior std =[ 40882 106771  41237      1]
+INFO    | mcmc.py      | MCMC current posterior ESS =[89, 51, 217, 169]
+
+INFO    | mcmc.py      | 3550	 610	135328.229	[173961 562343 318414]	0.52	0:50:44	sample
+INFO    | mcmc.py      | 3600	 620	135327.807	[231284 284989 340603]	0.52	0:51:28	sample
+INFO    | mcmc.py      | 3650	 630	135326.685	[210428 364635 342415]	0.52	0:52:07	sample
+INFO    | mcmc.py      | 3700	 640	135327.232	[234981 377200 341007]	0.52	0:52:50	sample
+INFO    | mcmc.py      | 3750	 650	135328.172	[181816 540649 299828]	0.52	0:53:33	sample
+INFO    | mcmc.py      | 3800	 660	135326.879	[218817 382422 345001]	0.52	0:54:11	sample
+INFO    | mcmc.py      | 3850	 670	135326.824	[198019 393636 360092]	0.52	0:54:53	sample
+INFO    | mcmc.py      | 3900	 680	135327.722	[178675 499140 350367]	0.52	0:55:36	sample
+INFO    | mcmc.py      | 3950	 690	135327.052	[200145 443444 330895]	0.52	0:56:12	sample
+INFO    | mcmc.py      | 4000	 700	135328.397	[148023 505609 322533]	0.53	0:56:48	sample
+INFO    | mcmc.py      | checkpoint saved.
+INFO    | mcmc.py      | MCMC current posterior mean=[206091 416849 341497 135328]
+INFO    | mcmc.py      | MCMC current posterior std =[ 40283 103649  40550      1]
+INFO    | mcmc.py      | MCMC current posterior ESS =[109, 63, 247, 193]
+
+INFO    | mcmc.py      | 4050	 710	135328.259	[249265 271062 332856]	0.53	0:57:22	sample
+INFO    | mcmc.py      | 4100	 720	135327.311	[192271 470210 336942]	0.53	0:58:04	sample
+INFO    | mcmc.py      | 4150	 730	135327.349	[238175 317838 322467]	0.52	0:58:53	sample
+INFO    | mcmc.py      | 4200	 740	135326.714	[191828 393651 343280]	0.52	0:59:39	sample
+INFO    | mcmc.py      | 4250	 750	135327.620	[253899 354431 341100]	0.53	1:00:23	sample
+INFO    | mcmc.py      | 4300	 760	135327.957	[167624 342509 378726]	0.53	1:01:01	sample
+INFO    | mcmc.py      | 4350	 770	135327.446	[202287 433750 298811]	0.53	1:01:35	sample
+INFO    | mcmc.py      | 4400	 780	135328.278	[142068 498407 350364]	0.53	1:02:14	sample
+INFO    | mcmc.py      | 4450	 790	135328.262	[190695 498151 356137]	0.53	1:02:54	sample
+INFO    | mcmc.py      | 4500	 800	135327.018	[222769 318423 344650]	0.53	1:03:38	sample
+INFO    | mcmc.py      | checkpoint saved.
+INFO    | mcmc.py      | MCMC current posterior mean=[205874 414422 342498 135328]
+INFO    | mcmc.py      | MCMC current posterior std =[ 40016 102688  40931      1]
+INFO    | mcmc.py      | MCMC current posterior ESS =[138, 76, 278, 230]
+
+INFO    | mcmc.py      | 4550	 810	135327.092	[189721 414941 317097]	0.52	1:04:32	sample
+INFO    | mcmc.py      | 4600	 820	135328.824	[136548 446676 358602]	0.53	1:05:09	sample
+INFO    | mcmc.py      | 4650	 830	135327.840	[157354 475662 375003]	0.52	1:05:55	sample
+INFO    | mcmc.py      | 4700	 840	135335.318	[238211 177713 477499]	0.52	1:06:40	sample
+INFO    | mcmc.py      | 4750	 850	135327.064	[235368 355534 320581]	0.52	1:07:25	sample
+INFO    | mcmc.py      | 4800	 860	135327.127	[175176 458437 332368]	0.52	1:08:07	sample
+INFO    | mcmc.py      | 4850	 870	135327.685	[253595 301397 321518]	0.52	1:08:57	sample
+INFO    | mcmc.py      | 4900	 880	135326.720	[200158 381262 356283]	0.52	1:09:41	sample
+INFO    | mcmc.py      | 4950	 890	135327.580	[177381 462863 368639]	0.52	1:10:22	sample
+INFO    | mcmc.py      | 5000	 900	135327.688	[173414 489742 359312]	0.52	1:11:11	sample
+INFO    | mcmc.py      | checkpoint saved.
+INFO    | mcmc.py      | MCMC current posterior mean=[206312 410139 343078 135328]
+INFO    | mcmc.py      | MCMC current posterior std =[ 40817 100735  40795      1]
+INFO    | mcmc.py      | MCMC current posterior ESS =[156, 76, 316, 267]
+
+INFO    | mcmc.py      | 5050	 910	135327.357	[235446 393139 309066]	0.52	1:12:01	sample
+INFO    | mcmc.py      | 5100	 920	135328.885	[164416 438341 297825]	0.52	1:12:41	sample
+INFO    | mcmc.py      | 5150	 930	135327.506	[196301 455389 299673]	0.52	1:13:26	sample
+INFO    | mcmc.py      | 5200	 940	135327.789	[257723 355778 302152]	0.52	1:14:06	sample
+INFO    | mcmc.py      | 5250	 950	135328.715	[242874 308565 293652]	0.52	1:14:43	sample
+INFO    | mcmc.py      | 5300	 960	135327.362	[236057 396264 313040]	0.52	1:15:24	sample
+INFO    | mcmc.py      | 5350	 970	135333.269	[223809 354599 465564]	0.52	1:16:10	sample
+INFO    | mcmc.py      | 5400	 980	135326.752	[217471 371918 334502]	0.52	1:16:48	sample
+INFO    | mcmc.py      | 5450	 990	135328.658	[223212 305398 305580]	0.52	1:17:29	sample
+INFO    | mcmc.py      | 5500	1000	135328.542	[266017 377538 335716]	0.52	1:18:03	sample
+INFO    | mcmc.py      | checkpoint saved.
+INFO    | mcmc.py      | MCMC current posterior mean=[208787 406191 342155 135328]
+INFO    | mcmc.py      | MCMC current posterior std =[41954 98346 40745     1]
+INFO    | mcmc.py      | MCMC current posterior ESS =[165, 92, 418, 324]
+
+INFO    | mcmc.py      | 5550	1010	135326.916	[189470 412057 361274]	0.52	1:18:50	sample
+INFO    | mcmc.py      | 5600	1020	135327.110	[177224 446614 327441]	0.52	1:19:26	sample
+INFO    | mcmc.py      | 5650	1030	135327.196	[220632 399302 306576]	0.52	1:20:07	sample
+INFO    | mcmc.py      | 5700	1040	135329.187	[196883 553266 336770]	0.52	1:20:46	sample
+INFO    | mcmc.py      | 5750	1050	135327.487	[166705 419715 332172]	0.52	1:21:27	sample
+INFO    | mcmc.py      | 5800	1060	135327.182	[196019 435975 309642]	0.52	1:22:05	sample
+INFO    | mcmc.py      | 5850	1070	135326.743	[214208 347420 344336]	0.52	1:22:46	sample
+INFO    | mcmc.py      | 5900	1080	135328.107	[144552 486294 353631]	0.52	1:23:28	sample
+INFO    | mcmc.py      | 5950	1090	135327.572	[204683 352486 396788]	0.52	1:24:09	sample
+INFO    | mcmc.py      | 6000	1100	135328.545	[192327 555270 295722]	0.52	1:24:51	sample
+INFO    | mcmc.py      | checkpoint saved.
+INFO    | mcmc.py      | MCMC current posterior mean=[207651 407296 342709 135328]
+INFO    | mcmc.py      | MCMC current posterior std =[41429 96813 41054     1]
+INFO    | mcmc.py      | MCMC current posterior ESS =[190, 104, 495, 371]
+
+INFO    | mcmc.py      | 6050	1110	135328.315	[206999 492395 339093]	0.52	1:25:40	sample
+INFO    | mcmc.py      | 6100	1120	135327.046	[198198 329664 369450]	0.52	1:26:14	sample
+INFO    | mcmc.py      | 6150	1130	135328.584	[145022 561640 353247]	0.52	1:26:57	sample
+INFO    | mcmc.py      | 6200	1140	135328.081	[155652 499467 318607]	0.52	1:27:39	sample
+INFO    | mcmc.py      | 6250	1150	135329.954	[134801 383175 373227]	0.52	1:28:19	sample
+INFO    | mcmc.py      | 6300	1160	135327.440	[215244 355142 384889]	0.52	1:29:05	sample
+INFO    | mcmc.py      | 6350	1170	135327.712	[260873 340169 341740]	0.52	1:29:48	sample
+INFO    | mcmc.py      | 6400	1180	135328.943	[232729 406557 373986]	0.52	1:30:25	sample
+INFO    | mcmc.py      | 6450	1190	135327.770	[163013 488679 317909]	0.53	1:31:04	sample
+INFO    | mcmc.py      | 6500	1200	135327.029	[217664 356150 368418]	0.53	1:31:40	sample
+INFO    | mcmc.py      | checkpoint saved.
+INFO    | mcmc.py      | MCMC current posterior mean=[207161 408352 343244 135328]
+INFO    | mcmc.py      | MCMC current posterior std =[41659 97468 40994     1]
+INFO    | mcmc.py      | MCMC current posterior ESS =[201, 124, 511, 409]
+
+INFO    | mcmc.py      | 6550	1210	135327.717	[171227 423119 392467]	0.53	1:32:26	sample
+INFO    | mcmc.py      | 6600	1220	135326.987	[176612 441834 345325]	0.53	1:33:04	sample
+INFO    | mcmc.py      | 6650	1230	135327.366	[230616 320420 321544]	0.53	1:33:36	sample
+INFO    | mcmc.py      | 6700	1240	135329.343	[130034 584959 346993]	0.53	1:34:23	sample
+INFO    | mcmc.py      | 6750	1250	135326.821	[207968 359667 365165]	0.53	1:35:04	sample
+INFO    | mcmc.py      | 6800	1260	135329.138	[167960 629626 305546]	0.53	1:35:56	sample
+INFO    | mcmc.py      | 6850	1270	135327.161	[185680 357205 344531]	0.53	1:36:44	sample
+INFO    | mcmc.py      | 6900	1280	135327.806	[248451 299752 379238]	0.53	1:37:21	sample
+INFO    | mcmc.py      | 6950	1290	135327.713	[213405 286385 371358]	0.53	1:38:03	sample
+INFO    | mcmc.py      | 7000	1300	135327.878	[158106 418411 337386]	0.53	1:38:50	sample
+INFO    | mcmc.py      | checkpoint saved.
+INFO    | mcmc.py      | MCMC current posterior mean=[205993 409824 343392 135328]
+INFO    | mcmc.py      | MCMC current posterior std =[41307 97178 40612     1]
+INFO    | mcmc.py      | MCMC current posterior ESS =[215, 135, 550, 440]
+
+INFO    | mcmc.py      | 7050	1310	135327.347	[227648 301467 377095]	0.53	1:39:32	sample
+INFO    | mcmc.py      | 7100	1320	135329.224	[236481 500277 294177]	0.53	1:40:17	sample
+INFO    | mcmc.py      | 7150	1330	135327.241	[172623 475133 339733]	0.53	1:41:04	sample
+INFO    | mcmc.py      | 7200	1340	135328.456	[159613 469125 396956]	0.53	1:41:44	sample
+INFO    | mcmc.py      | 7250	1350	135326.756	[192177 377099 361418]	0.53	1:42:27	sample
+INFO    | mcmc.py      | 7300	1360	135328.655	[166470 408354 308008]	0.53	1:43:07	sample
+INFO    | mcmc.py      | 7350	1370	135327.543	[156670 462919 347501]	0.53	1:43:43	sample
+INFO    | mcmc.py      | 7400	1380	135329.859	[221849 295928 294954]	0.53	1:44:29	sample
+INFO    | mcmc.py      | 7450	1390	135326.734	[211566 357386 355554]	0.53	1:45:11	sample
+INFO    | mcmc.py      | 7500	1400	135330.488	[334954 311211 326065]	0.53	1:45:57	sample
+INFO    | mcmc.py      | checkpoint saved.
+INFO    | mcmc.py      | MCMC current posterior mean=[206037 408822 343520 135328]
+INFO    | mcmc.py      | MCMC current posterior std =[41708 96508 40406     1]
+INFO    | mcmc.py      | MCMC current posterior ESS =[228, 148, 644, 493]
+
+INFO    | mcmc.py      | 7550	1410	135327.907	[240317 313504 307717]	0.53	1:46:42	sample
+INFO    | mcmc.py      | 7600	1420	135327.450	[164810 489761 341056]	0.53	1:47:23	sample
+INFO    | mcmc.py      | 7650	1430	135328.678	[264642 408782 297165]	0.53	1:48:05	sample
+INFO    | mcmc.py      | 7700	1440	135331.711	[291962 449976 309105]	0.53	1:48:55	sample
+INFO    | mcmc.py      | 7750	1450	135326.940	[189739 352854 370200]	0.53	1:49:30	sample
+INFO    | mcmc.py      | 7800	1460	135329.819	[166537 424972 285567]	0.53	1:50:17	sample
+INFO    | mcmc.py      | 7850	1470	135327.657	[157744 482017 333928]	0.53	1:50:58	sample
+INFO    | mcmc.py      | 7900	1480	135328.974	[220798 272008 426423]	0.53	1:51:46	sample
+INFO    | mcmc.py      | 7950	1490	135328.530	[195838 348385 424137]	0.53	1:52:20	sample
+INFO    | mcmc.py      | 8000	1500	135326.808	[183395 392213 356010]	0.53	1:52:59	sample
+INFO    | mcmc.py      | checkpoint saved.
+INFO    | mcmc.py      | MCMC current posterior mean=[206607 406796 343337 135328]
+INFO    | mcmc.py      | MCMC current posterior std =[41467 94994 40427     1]
+INFO    | mcmc.py      | MCMC current posterior ESS =[249, 161, 694, 549]
+
+INFO    | mcmc.py      | 8050	1510	135326.710	[198803 363980 349708]	0.53	1:53:44	sample
+INFO    | mcmc.py      | 8100	1520	135327.173	[229262 398318 324712]	0.53	1:54:20	sample
+INFO    | mcmc.py      | 8150	1530	135327.613	[168353 455574 317172]	0.53	1:55:03	sample
+INFO    | mcmc.py      | 8200	1540	135328.148	[147813 525323 340040]	0.53	1:55:42	sample
+INFO    | mcmc.py      | 8250	1550	135327.369	[246055 305970 361486]	0.53	1:56:21	sample
+INFO    | mcmc.py      | 8300	1560	135328.540	[262686 401674 316905]	0.53	1:57:03	sample
+INFO    | mcmc.py      | 8350	1570	135327.010	[192866 372147 378812]	0.53	1:57:46	sample
+INFO    | mcmc.py      | 8400	1580	135328.770	[274663 375322 328108]	0.53	1:58:34	sample
+INFO    | mcmc.py      | 8450	1590	135328.854	[204208 270929 418603]	0.53	1:59:10	sample
+INFO    | mcmc.py      | 8500	1600	135327.568	[165178 500838 345565]	0.53	1:59:54	sample
+INFO    | mcmc.py      | checkpoint saved.
+INFO    | mcmc.py      | MCMC current posterior mean=[206763 404938 343750 135328]
+INFO    | mcmc.py      | MCMC current posterior std =[40918 93463 40554     1]
+INFO    | mcmc.py      | MCMC current posterior ESS =[265, 169, 704, 586]
+
+INFO    | mcmc.py      | 8550	1610	135330.155	[140712 410910 327133]	0.53	2:00:45	sample
+INFO    | mcmc.py      | 8600	1620	135330.064	[128332 480400 332402]	0.53	2:01:24	sample
+INFO    | mcmc.py      | 8650	1630	135327.952	[201605 507105 312322]	0.53	2:02:01	sample
+INFO    | mcmc.py      | 8700	1640	135326.929	[212205 325483 363962]	0.53	2:02:44	sample
+INFO    | mcmc.py      | 8750	1650	135326.848	[181986 421679 348126]	0.53	2:03:21	sample
+INFO    | mcmc.py      | 8800	1660	135329.930	[164348 499193 272879]	0.53	2:04:05	sample
+INFO    | mcmc.py      | 8850	1670	135328.901	[233502 446678 268178]	0.53	2:04:45	sample
+INFO    | mcmc.py      | 8900	1680	135327.687	[167617 499117 355717]	0.53	2:05:28	sample
+INFO    | mcmc.py      | 8950	1690	135326.744	[188263 391817 354089]	0.53	2:06:13	sample
+INFO    | mcmc.py      | 9000	1700	135332.426	[235484 483369 379561]	0.53	2:06:53	sample
+INFO    | mcmc.py      | checkpoint saved.
+INFO    | mcmc.py      | MCMC current posterior mean=[205660 407744 343406 135328]
+INFO    | mcmc.py      | MCMC current posterior std =[40921 93134 40338     1]
+INFO    | mcmc.py      | MCMC current posterior ESS =[266, 181, 777, 622]
+
+INFO    | mcmc.py      | 9050	1710	135327.359	[231027 370360 303366]	0.53	2:07:35	sample
+INFO    | mcmc.py      | 9100	1720	135327.045	[221770 317747 343779]	0.53	2:08:23	sample
+INFO    | mcmc.py      | 9150	1730	135328.195	[219139 307506 315622]	0.53	2:09:05	sample
+INFO    | mcmc.py      | 9200	1740	135327.403	[170135 451183 322709]	0.53	2:09:49	sample
+INFO    | mcmc.py      | 9250	1750	135327.444	[231491 395297 300816]	0.53	2:10:26	sample
+INFO    | mcmc.py      | 9300	1760	135327.819	[270227 292597 341918]	0.53	2:11:06	sample
+INFO    | mcmc.py      | 9350	1770	135328.999	[186588 457670 273695]	0.53	2:11:46	sample
+INFO    | mcmc.py      | 9400	1780	135327.725	[169164 349508 386363]	0.53	2:12:27	sample
+INFO    | mcmc.py      | 9450	1790	135327.468	[166864 487859 327806]	0.53	2:13:15	sample
+INFO    | mcmc.py      | 9500	1800	135329.644	[194463 261756 426499]	0.53	2:13:53	sample
+INFO    | mcmc.py      | checkpoint saved.
+INFO    | mcmc.py      | MCMC current posterior mean=[206041 405769 343546 135328]
+INFO    | mcmc.py      | MCMC current posterior std =[40541 92504 40495     1]
+INFO    | mcmc.py      | MCMC current posterior ESS =[280, 191, 802, 677]
+
+INFO    | mcmc.py      | 9550	1810	135327.293	[200487 395509 307092]	0.53	2:14:39	sample
+INFO    | mcmc.py      | 9600	1820	135328.650	[274813 357429 285708]	0.53	2:15:20	sample
+INFO    | mcmc.py      | 9650	1830	135327.090	[193312 431497 314249]	0.53	2:16:05	sample
+INFO    | mcmc.py      | 9700	1840	135327.626	[255144 286059 353281]	0.53	2:16:47	sample
+INFO    | mcmc.py      | 9750	1850	135328.824	[199693 549310 322234]	0.53	2:17:26	sample
+INFO    | mcmc.py      | 9800	1860	135327.651	[159176 485731 330934]	0.53	2:18:00	sample
+INFO    | mcmc.py      | 9850	1870	135333.413	[298848 249785 449745]	0.53	2:18:46	sample
+INFO    | mcmc.py      | 9900	1880	135327.162	[199929 438889 346411]	0.53	2:19:28	sample
+INFO    | mcmc.py      | 9950	1890	135326.777	[219875 358260 333586]	0.53	2:20:10	sample
+INFO    | mcmc.py      | 10000	1900	135331.163	[352620 313435 288332]	0.53	2:20:50	sample
+INFO    | mcmc.py      | checkpoint saved.
+INFO    | mcmc.py      | MCMC current posterior mean=[206927 403907 343514 135328]
+INFO    | mcmc.py      | MCMC current posterior std =[42048 92388 40389     1]
+INFO    | mcmc.py      | MCMC current posterior ESS =[293, 206, 824, 703]
+
+INFO    | mcmc.py      | 10050	1910	135329.471	[283238 285777 389274]	0.53	2:21:32	sample
+INFO    | mcmc.py      | 10100	1920	135326.943	[219834 391044 319582]	0.53	2:22:12	sample
+INFO    | mcmc.py      | 10150	1930	135329.278	[136393 429069 350424]	0.53	2:22:58	sample
+INFO    | mcmc.py      | 10200	1940	135327.991	[243021 323404 300201]	0.53	2:23:36	sample
+INFO    | mcmc.py      | 10250	1950	135326.831	[202928 366147 367375]	0.53	2:24:20	sample
+INFO    | mcmc.py      | 10300	1960	135327.586	[181494 388373 397497]	0.53	2:25:07	sample
+INFO    | mcmc.py      | 10350	1970	135328.525	[234672 467037 289332]	0.53	2:25:47	sample
+INFO    | mcmc.py      | 10400	1980	135327.235	[175941 474169 328419]	0.53	2:26:27	sample
+INFO    | mcmc.py      | 10450	1990	135328.482	[270564 382895 312193]	0.53	2:27:09	sample
+INFO    | mcmc.py      | 10500	2000	135328.176	[284466 305496 324136]	0.53	2:27:51	sample
+INFO    | mcmc.py      | checkpoint saved.
+INFO    | mcmc.py      | MCMC current posterior mean=[207397 403155 343123 135328]
+INFO    | mcmc.py      | MCMC current posterior std =[41948 91696 40383     1]
+INFO    | mcmc.py      | MCMC current posterior ESS =[306, 213, 840, 740]
+
+INFO    | mcmc.py      | 10550	2010	135327.214	[244636 321675 328998]	0.53	2:28:38	sample
+INFO    | mcmc.py      | 10600	2020	135330.278	[218250 385055 420835]	0.53	2:29:19	sample
+INFO    | mcmc.py      | 10650	2030	135327.336	[241388 364790 343900]	0.53	2:30:03	sample
+INFO    | mcmc.py      | 10700	2040	135330.324	[298001 401433 275823]	0.53	2:30:48	sample
+INFO    | mcmc.py      | 10750	2050	135328.116	[151446 520251 327341]	0.53	2:31:25	sample
+INFO    | mcmc.py      | 10800	2060	135327.316	[204375 406075 303050]	0.53	2:32:02	sample
+INFO    | mcmc.py      | 10850	2070	135328.659	[148827 536579 312061]	0.53	2:32:48	sample
+INFO    | mcmc.py      | 10900	2080	135331.100	[242101 368325 416751]	0.53	2:33:29	sample
+INFO    | mcmc.py      | 10950	2090	135327.621	[177390 478391 361215]	0.53	2:34:10	sample
+INFO    | mcmc.py      | 11000	2100	135327.014	[187135 402247 325092]	0.53	2:34:51	sample
+INFO    | mcmc.py      | checkpoint saved.
+INFO    | mcmc.py      | MCMC current posterior mean=[207290 403686 343197 135328]
+INFO    | mcmc.py      | MCMC current posterior std =[42303 92406 40512     1]
+INFO    | mcmc.py      | MCMC current posterior ESS =[317, 212, 859, 768]
+
+INFO    | mcmc.py      | 11050	2110	135327.005	[221016 316163 352678]	0.53	2:35:32	sample
+INFO    | mcmc.py      | 11100	2120	135327.343	[199204 377536 386101]	0.53	2:36:17	sample
+INFO    | mcmc.py      | 11150	2130	135327.770	[194712 495803 300324]	0.53	2:36:55	sample
+INFO    | mcmc.py      | 11200	2140	135328.986	[243415 468124 309494]	0.53	2:37:35	sample
+INFO    | mcmc.py      | 11250	2150	135327.250	[226767 377560 355846]	0.53	2:38:13	sample
+INFO    | mcmc.py      | 11300	2160	135328.938	[196033 453952 270324]	0.53	2:38:52	sample
+INFO    | mcmc.py      | 11350	2170	135326.826	[186259 388532 364185]	0.53	2:39:35	sample
+INFO    | mcmc.py      | 11400	2180	135328.765	[173134 556133 354066]	0.53	2:40:26	sample
+INFO    | mcmc.py      | 11450	2190	135328.133	[197632 463453 283463]	0.53	2:41:08	sample
+INFO    | mcmc.py      | 11500	2200	135327.739	[153394 455027 373315]	0.53	2:41:57	sample
+INFO    | mcmc.py      | checkpoint saved.
+INFO    | mcmc.py      | MCMC current posterior mean=[206972 403752 343058 135328]
+INFO    | mcmc.py      | MCMC current posterior std =[41921 91917 40549     1]
+INFO    | mcmc.py      | MCMC current posterior ESS =[327, 229, 935, 826]
+
+INFO    | mcmc.py      | 11550	2210	135330.248	[196494 341796 454487]	0.53	2:42:39	sample
+INFO    | mcmc.py      | 11600	2220	135326.714	[201136 362605 357976]	0.53	2:43:22	sample
+INFO    | mcmc.py      | 11650	2230	135327.263	[170377 475120 338619]	0.53	2:44:07	sample
+INFO    | mcmc.py      | 11700	2240	135326.974	[174031 425411 351953]	0.53	2:44:50	sample
+INFO    | mcmc.py      | 11750	2250	135327.870	[230178 328803 303402]	0.53	2:45:35	sample
+INFO    | mcmc.py      | 11800	2260	135326.972	[177813 427853 336161]	0.53	2:46:19	sample
+INFO    | mcmc.py      | 11850	2270	135327.862	[235191 329819 386848]	0.53	2:47:15	sample
+INFO    | mcmc.py      | 11900	2280	135327.950	[160223 398840 402123]	0.53	2:47:58	sample
+INFO    | mcmc.py      | 11950	2290	135327.110	[207017 366048 377212]	0.53	2:48:39	sample
+INFO    | mcmc.py      | 12000	2300	135326.916	[211758 327477 364899]	0.53	2:49:28	sample
+INFO    | mcmc.py      | checkpoint saved.
+INFO    | mcmc.py      | MCMC current posterior mean=[207041 402697 343427 135328]
+INFO    | mcmc.py      | MCMC current posterior std =[41657 91116 40542     1]
+INFO    | mcmc.py      | MCMC current posterior ESS =[351, 225, 985, 874]
+
+INFO    | mcmc.py      | 12050	2310	135328.088	[233119 329494 394359]	0.53	2:50:06	sample
+INFO    | mcmc.py      | 12100	2320	135328.643	[270945 381448 288062]	0.53	2:50:57	sample
+INFO    | mcmc.py      | 12150	2330	135327.064	[195038 415179 314586]	0.53	2:51:37	sample
+INFO    | mcmc.py      | 12200	2340	135329.967	[171952 292028 365032]	0.53	2:52:29	sample
+INFO    | mcmc.py      | 12250	2350	135326.786	[200329 349452 353499]	0.53	2:53:16	sample
+INFO    | mcmc.py      | 12300	2360	135327.356	[223131 317587 384092]	0.53	2:53:59	sample
+INFO    | mcmc.py      | 12350	2370	135326.814	[187355 394110 362340]	0.53	2:54:44	sample
+INFO    | mcmc.py      | 12400	2380	135327.386	[256176 327553 333082]	0.53	2:55:28	sample
+INFO    | mcmc.py      | 12450	2390	135330.262	[312169 266118 288516]	0.53	2:56:11	sample
+INFO    | mcmc.py      | 12500	2400	135328.826	[303867 298395 318697]	0.53	2:56:55	sample
+INFO    | mcmc.py      | checkpoint saved.
+INFO    | mcmc.py      | MCMC current posterior mean=[207814 401115 343318 135328]
+INFO    | mcmc.py      | MCMC current posterior std =[42084 90576 40682     1]
+INFO    | mcmc.py      | MCMC current posterior ESS =[359, 240, 1001, 917]
+
+INFO    | mcmc.py      | 12550	2410	135327.890	[226244 366708 381028]	0.53	2:57:38	sample
+INFO    | mcmc.py      | 12600	2420	135328.369	[231522 315481 406170]	0.53	2:58:24	sample
+INFO    | mcmc.py      | 12650	2430	135328.457	[150129 552760 356946]	0.53	2:59:07	sample
+INFO    | mcmc.py      | 12700	2440	135327.454	[170207 459676 320005]	0.53	2:59:40	sample
+INFO    | mcmc.py      | 12750	2450	135328.064	[173592 373191 414184]	0.53	3:00:18	sample
+INFO    | mcmc.py      | 12800	2460	135330.050	[294550 382500 323705]	0.53	3:00:58	sample
+INFO    | mcmc.py      | 12850	2470	135327.651	[258805 287669 347655]	0.53	3:01:39	sample
+INFO    | mcmc.py      | 12900	2480	135332.809	[290416 389900 225192]	0.53	3:02:19	sample
+INFO    | mcmc.py      | 12950	2490	135327.285	[169674 476887 338144]	0.53	3:02:58	sample
+INFO    | mcmc.py      | 13000	2500	135326.904	[228890 349373 329206]	0.53	3:03:40	sample
+INFO    | mcmc.py      | checkpoint saved.
+INFO    | mcmc.py      | MCMC current posterior mean=[208400 400614 343138 135328]
+INFO    | mcmc.py      | MCMC current posterior std =[42432 90737 40732     1]
+INFO    | mcmc.py      | MCMC current posterior ESS =[357, 254, 1057, 970]
+
+INFO    | mcmc.py      | 13050	2510	135328.106	[189854 519272 336953]	0.53	3:04:22	sample
+INFO    | mcmc.py      | 13100	2520	135327.605	[154547 445928 355297]	0.53	3:05:10	sample
+INFO    | mcmc.py      | 13150	2530	135327.439	[165311 454651 329085]	0.53	3:05:52	sample
+INFO    | mcmc.py      | 13200	2540	135328.767	[237224 453190 274647]	0.53	3:06:29	sample
+INFO    | mcmc.py      | 13250	2550	135328.539	[207495 435046 379275]	0.53	3:07:16	sample
+INFO    | mcmc.py      | 13300	2560	135327.879	[169318 393658 326149]	0.53	3:07:55	sample
+INFO    | mcmc.py      | 13350	2570	135329.669	[298725 328994 351168]	0.53	3:08:36	sample
+INFO    | mcmc.py      | 13400	2580	135328.706	[280432 268034 319083]	0.53	3:09:21	sample
+INFO    | mcmc.py      | 13450	2590	135327.591	[186755 429610 379551]	0.53	3:10:00	sample
+INFO    | mcmc.py      | 13500	2600	135328.884	[192006 278796 416369]	0.53	3:10:48	sample
+INFO    | mcmc.py      | checkpoint saved.
+INFO    | mcmc.py      | MCMC current posterior mean=[208258 400525 343158 135328]
+INFO    | mcmc.py      | MCMC current posterior std =[42391 90124 40700     1]
+INFO    | mcmc.py      | MCMC current posterior ESS =[373, 261, 1125, 1008]
+
+INFO    | mcmc.py      | 13550	2610	135328.318	[204811 355083 412880]	0.53	3:11:28	sample
+INFO    | mcmc.py      | 13600	2620	135327.989	[249151 316492 302874]	0.53	3:12:03	sample
+INFO    | mcmc.py      | 13650	2630	135327.468	[237804 307286 376574]	0.53	3:12:45	sample
+INFO    | mcmc.py      | 13700	2640	135326.942	[176898 426867 353648]	0.53	3:13:27	sample
+INFO    | mcmc.py      | 13750	2650	135330.216	[209042 566648 255828]	0.53	3:14:04	sample
+INFO    | mcmc.py      | 13800	2660	135327.048	[203992 323061 362051]	0.53	3:14:45	sample
+INFO    | mcmc.py      | 13850	2670	135330.755	[205166 515589 376918]	0.53	3:15:23	sample
+INFO    | mcmc.py      | 13900	2680	135328.346	[216743 316748 415755]	0.53	3:16:05	sample
+INFO    | mcmc.py      | 13950	2690	135327.032	[205640 415858 313025]	0.53	3:16:50	sample
+INFO    | mcmc.py      | 14000	2700	135329.682	[170767 291556 380675]	0.53	3:17:36	sample
+INFO    | mcmc.py      | checkpoint saved.
+INFO    | mcmc.py      | MCMC current posterior mean=[208441 400505 343131 135328]
+INFO    | mcmc.py      | MCMC current posterior std =[42138 90483 40819     1]
+INFO    | mcmc.py      | MCMC current posterior ESS =[390, 272, 1154, 1047]
+
+INFO    | mcmc.py      | 14050	2710	135329.487	[201151 380990 273572]	0.53	3:18:22	sample
+INFO    | mcmc.py      | 14100	2720	135327.205	[209793 382449 371516]	0.53	3:19:09	sample
+INFO    | mcmc.py      | 14150	2730	135327.931	[202173 300662 406606]	0.53	3:19:56	sample
+INFO    | mcmc.py      | 14200	2740	135326.982	[200383 332604 356891]	0.53	3:20:37	sample
+INFO    | mcmc.py      | 14250	2750	135326.909	[232099 337228 342334]	0.53	3:21:17	sample
+INFO    | mcmc.py      | 14300	2760	135328.178	[243261 338158 382848]	0.53	3:22:00	sample
+INFO    | mcmc.py      | 14350	2770	135327.003	[204876 340481 337644]	0.53	3:22:43	sample
+INFO    | mcmc.py      | 14400	2780	135326.882	[183149 431503 338294]	0.53	3:23:29	sample
+INFO    | mcmc.py      | 14450	2790	135326.992	[174694 396699 363052]	0.53	3:24:12	sample
+INFO    | mcmc.py      | 14500	2800	135327.746	[196022 500982 322959]	0.53	3:24:54	sample
+INFO    | mcmc.py      | checkpoint saved.
+INFO    | mcmc.py      | MCMC current posterior mean=[208277 399440 343681 135328]
+INFO    | mcmc.py      | MCMC current posterior std =[41744 89986 40869     1]
+INFO    | mcmc.py      | MCMC current posterior ESS =[424, 287, 1166, 1094]
+
+INFO    | mcmc.py      | 14550	2810	135328.922	[219450 430857 375468]	0.53	3:25:32	sample
+INFO    | mcmc.py      | 14600	2820	135328.292	[257552 400898 318971]	0.53	3:26:14	sample
+INFO    | mcmc.py      | 14650	2830	135327.924	[246241 411022 304832]	0.53	3:26:50	sample
+INFO    | mcmc.py      | 14700	2840	135327.529	[212643 436127 346308]	0.53	3:27:34	sample
+INFO    | mcmc.py      | 14750	2850	135327.238	[224560 308909 375936]	0.53	3:28:11	sample
+INFO    | mcmc.py      | 14800	2860	135327.530	[230980 353900 372553]	0.53	3:28:54	sample
+INFO    | mcmc.py      | 14850	2870	135328.123	[167714 434458 308762]	0.53	3:29:35	sample
+INFO    | mcmc.py      | 14900	2880	135326.893	[214058 326993 359872]	0.53	3:30:12	sample
+INFO    | mcmc.py      | 14950	2890	135327.253	[227304 303460 345656]	0.53	3:30:56	sample
+INFO    | mcmc.py      | 15000	2900	135330.109	[230334 230018 419726]	0.53	3:31:44	sample
+INFO    | mcmc.py      | checkpoint saved.
+INFO    | mcmc.py      | MCMC current posterior mean=[208819 398190 343765 135328]
+INFO    | mcmc.py      | MCMC current posterior std =[41664 89510 40810     1]
+INFO    | mcmc.py      | MCMC current posterior ESS =[434, 287, 1211, 1150]
+
+INFO    | mcmc.py      | 15050	2910	135328.669	[139312 425575 391495]	0.53	3:32:26	sample
+INFO    | mcmc.py      | 15100	2920	135328.100	[245285 271717 387031]	0.53	3:33:10	sample
+INFO    | mcmc.py      | 15150	2930	135327.752	[264833 299853 324922]	0.53	3:33:55	sample
+INFO    | mcmc.py      | 15200	2940	135327.023	[225913 372787 315930]	0.53	3:34:31	sample
+INFO    | mcmc.py      | 15250	2950	135329.584	[212486 569566 302631]	0.53	3:35:18	sample
+INFO    | mcmc.py      | 15300	2960	135331.725	[184153 238128 422339]	0.53	3:35:55	sample
+INFO    | mcmc.py      | 15350	2970	135328.787	[281137 288534 300799]	0.53	3:36:37	sample
+INFO    | mcmc.py      | 15400	2980	135328.427	[234270 350871 283517]	0.53	3:37:15	sample
+INFO    | mcmc.py      | 15450	2990	135326.890	[209180 331265 364844]	0.53	3:38:00	sample
+INFO    | mcmc.py      | 15500	3000	135329.451	[141947 365563 383368]	0.53	3:38:46	sample
+INFO    | mcmc.py      | checkpoint saved.
+INFO    | mcmc.py      | MCMC current posterior mean=[208806 397355 343941 135328]
+INFO    | mcmc.py      | MCMC current posterior std =[41558 89072 40958     1]
+INFO    | mcmc.py      | MCMC current posterior ESS =[463, 303, 1231, 1215]
+
+INFO    | mcmc.py      | 15550	3010	135327.067	[233065 330291 360027]	0.53	3:39:36	sample
+INFO    | mcmc.py      | 15600	3020	135327.945	[196288 368629 303812]	0.53	3:40:11	sample
+INFO    | mcmc.py      | 15650	3030	135327.182	[191588 367979 386918]	0.53	3:40:57	sample
+INFO    | mcmc.py      | 15700	3040	135327.015	[203494 335356 377848]	0.53	3:41:42	sample
+INFO    | mcmc.py      | 15750	3050	135329.320	[183550 438172 413093]	0.53	3:42:26	sample
+INFO    | mcmc.py      | 15800	3060	135328.268	[279906 338452 326531]	0.53	3:43:07	sample
+INFO    | mcmc.py      | 15850	3070	135329.850	[179584 423968 429936]	0.53	3:43:52	sample
+INFO    | mcmc.py      | 15900	3080	135327.601	[262519 319495 343184]	0.53	3:44:30	sample
+INFO    | mcmc.py      | 15950	3090	135330.425	[339909 298158 323824]	0.53	3:45:18	sample
+INFO    | mcmc.py      | 16000	3100	135327.046	[183827 456976 333768]	0.53	3:46:01	sample
+INFO    | mcmc.py      | checkpoint saved.
+INFO    | mcmc.py      | MCMC current posterior mean=[208958 396350 344069 135328]
+INFO    | mcmc.py      | MCMC current posterior std =[41583 88625 40753     1]
+INFO    | mcmc.py      | MCMC current posterior ESS =[485, 312, 1296, 1266]
+
+INFO    | mcmc.py      | 16050	3110	135327.526	[229568 323337 384364]	0.53	3:46:42	sample
+INFO    | mcmc.py      | 16100	3120	135328.048	[171451 367162 413759]	0.53	3:47:26	sample
+INFO    | mcmc.py      | 16150	3130	135328.131	[231267 410601 281288]	0.53	3:48:07	sample
+INFO    | mcmc.py      | 16200	3140	135328.776	[245323 327243 283542]	0.53	3:48:54	sample
+INFO    | mcmc.py      | 16250	3150	135329.358	[201543 413566 267418]	0.53	3:49:38	sample
+INFO    | mcmc.py      | 16300	3160	135328.265	[190998 442328 386139]	0.53	3:50:20	sample
+INFO    | mcmc.py      | 16350	3170	135327.427	[209421 426710 353973]	0.53	3:50:59	sample
+INFO    | mcmc.py      | 16400	3180	135326.937	[224668 385167 330203]	0.53	3:51:42	sample
+INFO    | mcmc.py      | 16450	3190	135330.363	[221445 324680 444884]	0.53	3:52:33	sample
+INFO    | mcmc.py      | 16500	3200	135328.886	[213416 405780 394467]	0.53	3:53:20	sample
+INFO    | mcmc.py      | checkpoint saved.
+INFO    | mcmc.py      | MCMC current posterior mean=[208743 396573 344080 135328]
+INFO    | mcmc.py      | MCMC current posterior std =[41409 88032 40769     1]
+INFO    | mcmc.py      | MCMC current posterior ESS =[511, 330, 1354, 1300]
+
+INFO    | mcmc.py      | 16550	3210	135327.828	[165076 364346 359610]	0.53	3:53:58	sample
+INFO    | mcmc.py      | 16600	3220	135328.919	[296540 319027 338285]	0.53	3:54:42	sample
+INFO    | mcmc.py      | 16650	3230	135328.005	[206179 343993 408654]	0.53	3:55:21	sample
+INFO    | mcmc.py      | 16700	3240	135330.573	[148243 377440 462254]	0.53	3:56:04	sample
+INFO    | mcmc.py      | 16750	3250	135328.971	[156889 349015 358351]	0.53	3:56:45	sample
+INFO    | mcmc.py      | 16800	3260	135329.798	[121029 541114 366845]	0.53	3:57:21	sample
+INFO    | mcmc.py      | 16850	3270	135329.471	[268370 394847 343987]	0.53	3:58:05	sample
+INFO    | mcmc.py      | 16900	3280	135327.214	[188260 421394 313069]	0.53	3:58:47	sample

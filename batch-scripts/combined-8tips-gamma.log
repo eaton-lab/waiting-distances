@@ -1,0 +1,10 @@
+DEBUG   | logger_setup.py | ipcoal v.0.4.dev1 logging enabled
+INFO    | mcmc.py      | CMD: ms-smc-mcmc --log-level DEBUG --mcmc-nsamples 10000 --mcmc-print-interval 50 --mcmc-sample-interval 5 --mcmc-burnin 200 --recomb 2e-9 --name combined-8tips-gamma --data-type combine --log-file --nsites 1e5 --threads 70 --seed 123 --nloci 100 --ntips 8 --nsamples 1 --params 1e5 1e5 1e5 1e5 1e5 1e5 1e5 1e5 2e5 2.2e5 2.4e5 2.6e5 2.8e5 3e5 3.2e5
+INFO    | mcmc.py      | true simulated parameters ([100000. 100000. 100000. 100000. 100000. 100000. 100000. 100000. 200000.
+ 220000. 240000. 260000. 280000. 300000. 320000.]).
+INFO    | mcmc.py      | simulating 100 tree sequences for 1e+05 sites w/ recomb=2e-09.
+INFO    | mcmc.py      | loading genealogy embedding table for [967, 958, 972, 1013, 908, 907, 943, 985, 982, 995, 972, 938, 941, 967, 940, 875, 971, 873, 969, 973, 970, 861, 895, 929, 867, 933, 934, 969, 873, 1010, 1010, 875, 959, 983, 942, 1009, 971, 1035, 1058, 1051, 1032, 962, 911, 937, 987, 1009, 945, 959, 917, 843, 963, 951, 1019, 1062, 954, 990, 931, 971, 1011, 976, 954, 986, 1045, 940, 965, 971, 974, 910, 876, 937, 974, 919, 994, 905, 948, 964, 965, 1019, 1048, 917, 1016, 1027, 924, 927, 929, 841, 995, 883, 951, 901, 1013, 1007, 1008, 977, 993, 992, 984, 962, 940, 986] genealogies.
+DEBUG   | logger_setup.py | ipcoal v.0.4.dev1 logging enabled
+INFO    | mcmc.py      | CMD: ms-smc-mcmc --log-level DEBUG --mcmc-nsamples 10000 --mcmc-print-interval 50 --mcmc-sample-interval 5 --mcmc-burnin 200 --recomb 2e-9 --name combined-8tips-gamma --data-type combine --log-file --nsites 1e5 --threads 70 --seed 123 --nloci 100 --prior g 3 100_000 --params 100_000 200_000 300_000 --mcmc-jumpsize 10000 20000 30000
+INFO    | mcmc.py      | true simulated parameters ([100000. 200000. 300000.]).
+INFO    | mcmc.py      | simulating 100 tree sequences for 1e+05 sites w/ recomb=2e-09.

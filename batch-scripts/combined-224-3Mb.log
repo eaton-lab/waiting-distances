@@ -1,0 +1,20 @@
+INFO    | mcmc.py      | CMD: ms-smc-mcmc --log-level INFO --mcmc-nsamples 10000 --mcmc-print-interval 50 --mcmc-sample-interval 2 --mcmc-burnin 1000 --recomb 2e-9 --name combined-224-3Mb --data-type combined --params 20_000 20_000 40_000 --mcmc-jumpsize 20000 20000 400000 --log-file --nsites 3e6 --threads 70 --seed 123
+INFO    | mcmc.py      | true simulated parameters ([20000. 20000. 40000.]).
+INFO    | mcmc.py      | simulating tree sequence for 3e+06 sites w/ recomb=2e-09.
+INFO    | mcmc.py      | loading genealogy embedding table for 2161 genealogies.
+INFO    | mcmc.py      | embedding includes 301 sequential topology changes.
+INFO    | mcmc.py      | ([20000. 20000. 40000.]) loglik 20765.088631856244.
+INFO    | mcmc.py      | starting MCMC sampler for 10000 samples.
+INFO    | mcmc.py      | iter	sample	loglik   	params               	accept	runtime	cat
+INFO    | mcmc.py      |    0	   0	23015.600	[518404 511542 245414]	0.50	0:00:00	burnin
+INFO    | mcmc.py      | CMD: ms-smc-mcmc --log-level INFO --mcmc-nsamples 10000 --mcmc-print-interval 50 --mcmc-sample-interval 2 --mcmc-burnin 1000 --recomb 2e-9 --name combined-224-3Mb --data-type combined --params 200_000 200_000 400_000 --mcmc-jumpsize 20000 20000 400000 --log-file --nsites 3e6 --threads 70 --seed 123
+INFO    | mcmc.py      | true simulated parameters ([200000. 200000. 400000.]).
+INFO    | mcmc.py      | simulating tree sequence for 3e+06 sites w/ recomb=2e-09.
+INFO    | mcmc.py      | loading genealogy embedding table for 20673 genealogies.
+INFO    | mcmc.py      | embedding includes 9171 sequential topology changes.
+INFO    | mcmc.py      | ([200000. 200000. 400000.]) loglik 183984.818297371.
+INFO    | mcmc.py      | starting MCMC sampler for 10000 samples.
+INFO    | mcmc.py      | iter	sample	loglik   	params               	accept	runtime	cat
+INFO    | mcmc.py      |    0	   0	184028.020	[518404 511542 245414]	0.50	0:00:02	burnin
+INFO    | mcmc.py      |   50	   0	183980.161	[288837 256368 369250]	0.06	0:08:36	burnin
+INFO    | mcmc.py      |  100	   0	183981.412	[256847 187793 358708]	0.06	0:15:52	burnin

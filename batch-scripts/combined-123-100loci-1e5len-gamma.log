@@ -1,0 +1,892 @@
+DEBUG   | logger_setup.py | ipcoal v.0.4.dev1 logging enabled
+INFO    | mcmc.py      | CMD: ms-smc-mcmc --log-level DEBUG --mcmc-nsamples 10000 --mcmc-print-interval 50 --mcmc-sample-interval 5 --mcmc-burnin 200 --recomb 2e-9 --name combined-123-100loci-1e5len-gamma --data-type combine --log-file --nsites 1e5 --threads 70 --seed 123 --nloci 100 --prior g 3 100_000 --params 100_000 200_000 300_000 --mcmc-jumpsize 10000 20000 30000
+INFO    | mcmc.py      | true simulated parameters ([100000. 200000. 300000.]).
+INFO    | mcmc.py      | simulating 100 tree sequences for 1e+05 sites w/ recomb=2e-09.
+INFO    | mcmc.py      | loading genealogy embedding table for [543, 545, 518, 517, 525, 517, 478, 541, 531, 539, 452, 517, 549, 468, 548, 469, 480, 492, 484, 460, 526, 446, 488, 496, 519, 497, 547, 408, 587, 454, 561, 518, 499, 469, 515, 504, 510, 566, 564, 490, 482, 484, 471, 526, 487, 517, 502, 557, 482, 568, 484, 531, 487, 534, 434, 467, 496, 521, 485, 526, 547, 519, 495, 416, 466, 591, 615, 476, 475, 536, 518, 544, 518, 477, 553, 594, 541, 478, 595, 477, 531, 534, 410, 491, 438, 499, 516, 545, 516, 444, 527, 555, 467, 524, 505, 456, 534, 626, 539, 560] genealogies.
+DEBUG   | logger_setup.py | ipcoal v.0.4.dev1 logging enabled
+INFO    | mcmc.py      | CMD: ms-smc-mcmc --log-level DEBUG --mcmc-nsamples 10000 --mcmc-print-interval 50 --mcmc-sample-interval 5 --mcmc-burnin 200 --recomb 2e-9 --name combined-123-100loci-1e5len-gamma --data-type combined --log-file --nsites 1e5 --threads 70 --seed 123 --nloci 100 --prior g 3 100_000 --params 100_000 200_000 300_000 --mcmc-jumpsize 10000 20000 30000
+INFO    | mcmc.py      | true simulated parameters ([100000. 200000. 300000.]).
+INFO    | mcmc.py      | simulating 100 tree sequences for 1e+05 sites w/ recomb=2e-09.
+INFO    | mcmc.py      | loading genealogy embedding table for [543, 545, 518, 517, 525, 517, 478, 541, 531, 539, 452, 517, 549, 468, 548, 469, 480, 492, 484, 460, 526, 446, 488, 496, 519, 497, 547, 408, 587, 454, 561, 518, 499, 469, 515, 504, 510, 566, 564, 490, 482, 484, 471, 526, 487, 517, 502, 557, 482, 568, 484, 531, 487, 534, 434, 467, 496, 521, 485, 526, 547, 519, 495, 416, 466, 591, 615, 476, 475, 536, 518, 544, 518, 477, 553, 594, 541, 478, 595, 477, 531, 534, 410, 491, 438, 499, 516, 545, 516, 444, 527, 555, 467, 524, 505, 456, 534, 626, 539, 560] genealogies.
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+DEBUG   | embedding.py | concat genealogy index: 0
+INFO    | mcmc.py      | ([100000. 200000. 300000.]) loglik 456223.217.
+INFO    | mcmc.py      | starting MCMC sampler for 10000 samples.
+INFO    | mcmc.py      | iter	sample	loglik   	params               	accept	runtime	cat
+DEBUG   | mcmc.py      | loglik=457747.0/457691.3, aratio=0.00, params=[490108 492644 538637], False
+DEBUG   | mcmc.py      | loglik=457680.9/457691.3, aratio=1.00, params=[509202 511542 480906], True
+INFO    | mcmc.py      |    0	   0	457680.927	[509202 511542 480906]	0.50	0:00:09	burnin
+DEBUG   | mcmc.py      | loglik=457672.8/457680.9, aratio=1.00, params=[506036 505094 483821], True
+DEBUG   | mcmc.py      | loglik=457735.7/457672.8, aratio=0.00, params=[517958 491672 513829], False
+DEBUG   | mcmc.py      | loglik=457654.2/457672.8, aratio=1.00, params=[521356 491894 474467], True
+DEBUG   | mcmc.py      | loglik=457748.7/457654.2, aratio=0.00, params=[499281 508453 520716], False
+DEBUG   | mcmc.py      | loglik=457745.5/457654.2, aratio=0.00, params=[528904 488975 512924], False
+DEBUG   | mcmc.py      | loglik=457635.6/457654.2, aratio=1.00, params=[525282 491997 463614], True
+DEBUG   | mcmc.py      | loglik=457556.9/457635.6, aratio=1.00, params=[537545 448556 452509], True
+DEBUG   | mcmc.py      | loglik=457693.5/457556.9, aratio=0.00, params=[546143 483789 482309], False
+DEBUG   | mcmc.py      | loglik=457614.3/457556.9, aratio=0.00, params=[544826 423324 495407], False
+DEBUG   | mcmc.py      | loglik=457521.7/457556.9, aratio=1.00, params=[530807 435775 450668], True
+DEBUG   | mcmc.py      | loglik=457528.1/457521.7, aratio=0.00, params=[553706 421411 451647], False
+DEBUG   | mcmc.py      | loglik=457492.4/457521.7, aratio=1.00, params=[531090 436882 436222], True
+DEBUG   | mcmc.py      | loglik=457441.7/457492.4, aratio=1.00, params=[522468 407118 442711], True
+DEBUG   | mcmc.py      | loglik=457393.5/457441.7, aratio=1.00, params=[517037 395946 433216], True
+DEBUG   | mcmc.py      | loglik=457451.2/457393.5, aratio=0.00, params=[502675 423248 446386], False
+DEBUG   | mcmc.py      | loglik=457367.7/457393.5, aratio=1.00, params=[520009 387177 426867], True
+DEBUG   | mcmc.py      | loglik=457545.7/457367.7, aratio=0.00, params=[529539 417567 477984], False
+DEBUG   | mcmc.py      | loglik=457372.8/457367.7, aratio=0.01, params=[515012 389169 430718], False
+DEBUG   | mcmc.py      | loglik=457493.0/457367.7, aratio=0.00, params=[513804 403442 476121], False
+DEBUG   | mcmc.py      | loglik=457286.2/457367.7, aratio=1.00, params=[513529 381509 397013], True
+DEBUG   | mcmc.py      | loglik=457365.6/457286.2, aratio=0.00, params=[517754 379882 434051], False
+DEBUG   | mcmc.py      | loglik=457368.8/457286.2, aratio=0.00, params=[518341 378534 436483], False
+DEBUG   | mcmc.py      | loglik=457287.8/457286.2, aratio=0.20, params=[510494 358035 421801], False
+DEBUG   | mcmc.py      | loglik=457319.4/457286.2, aratio=0.00, params=[508372 414671 388095], False
+DEBUG   | mcmc.py      | loglik=457281.0/457286.2, aratio=1.00, params=[510717 388710 389982], True
+DEBUG   | mcmc.py      | loglik=457442.7/457281.0, aratio=0.00, params=[519271 423335 431558], False
+DEBUG   | mcmc.py      | loglik=457133.4/457281.0, aratio=1.00, params=[506940 334140 370590], True
+DEBUG   | mcmc.py      | loglik=457059.5/457133.4, aratio=1.00, params=[504087 317276 351489], True
+DEBUG   | mcmc.py      | loglik=457040.1/457059.5, aratio=1.00, params=[511960 310149 343815], True
+DEBUG   | mcmc.py      | loglik=457049.2/457040.1, aratio=0.00, params=[514500 304444 353250], False
+DEBUG   | mcmc.py      | loglik=457102.1/457040.1, aratio=0.00, params=[514506 350174 334658], False
+DEBUG   | mcmc.py      | loglik=457124.3/457040.1, aratio=0.00, params=[526096 296035 395411], False
+DEBUG   | mcmc.py      | loglik=457140.6/457040.1, aratio=0.00, params=[512698 324822 380208], False
+DEBUG   | mcmc.py      | loglik=457042.4/457040.1, aratio=0.11, params=[509923 302821 354239], False
+DEBUG   | mcmc.py      | loglik=457105.8/457040.1, aratio=0.00, params=[505537 318364 373638], False
+DEBUG   | mcmc.py      | loglik=457065.6/457040.1, aratio=0.00, params=[527600 318355 339140], False
+DEBUG   | mcmc.py      | loglik=457017.4/457040.1, aratio=1.00, params=[506359 289523 358110], True
+DEBUG   | mcmc.py      | loglik=457030.4/457017.4, aratio=0.00, params=[502776 287739 369664], False
+DEBUG   | mcmc.py      | loglik=456922.7/457017.4, aratio=1.00, params=[506901 250897 351913], True
+DEBUG   | mcmc.py      | loglik=457008.0/456922.7, aratio=0.00, params=[505787 270724 376057], False
+DEBUG   | mcmc.py      | loglik=456869.4/456922.7, aratio=1.00, params=[511958 221129 357759], True
+DEBUG   | mcmc.py      | loglik=456862.3/456869.4, aratio=1.00, params=[504897 229229 346334], True
+DEBUG   | mcmc.py      | loglik=456919.6/456862.3, aratio=0.00, params=[515981 218533 390222], False
+DEBUG   | mcmc.py      | loglik=456864.3/456862.3, aratio=0.14, params=[525517 219398 348247], False
+DEBUG   | mcmc.py      | loglik=456740.5/456862.3, aratio=1.00, params=[497389 194721 322346], True
+DEBUG   | mcmc.py      | loglik=456787.3/456740.5, aratio=0.00, params=[494103 188187 367850], False
+DEBUG   | mcmc.py      | loglik=456745.1/456740.5, aratio=0.01, params=[504412 211710 295123], False
+DEBUG   | mcmc.py      | loglik=456690.2/456740.5, aratio=1.00, params=[498891 191544 289555], True
+DEBUG   | mcmc.py      | loglik=456608.4/456690.2, aratio=1.00, params=[482307 172803 265275], True
+DEBUG   | mcmc.py      | loglik=456750.5/456608.4, aratio=0.00, params=[490718 205936 316944], False
+DEBUG   | mcmc.py      | loglik=456564.0/456608.4, aratio=1.00, params=[486704 126072 299178], True
+DEBUG   | mcmc.py      | loglik=456597.9/456564.0, aratio=0.00, params=[491232 130752 320139], False
+DEBUG   | mcmc.py      | loglik=456563.1/456564.0, aratio=1.00, params=[488053 118595 310031], True
+DEBUG   | mcmc.py      | loglik=456580.8/456563.1, aratio=0.00, params=[469229 145814 296289], False
+DEBUG   | mcmc.py      | loglik=456602.5/456563.1, aratio=0.00, params=[503599 143001 293429], False
+DEBUG   | mcmc.py      | loglik=456581.1/456563.1, aratio=0.00, params=[476392 116504 341412], False
+DEBUG   | mcmc.py      | loglik=456470.8/456563.1, aratio=1.00, params=[459539  73570 285983], True
+DEBUG   | mcmc.py      | loglik=456454.4/456470.8, aratio=1.00, params=[461530  76395 246504], True
+DEBUG   | mcmc.py      | loglik=456460.3/456454.4, aratio=0.00, params=[438778  83232 281882], False
+DEBUG   | mcmc.py      | loglik=456459.4/456454.4, aratio=0.01, params=[472374  61998 250926], False
+DEBUG   | mcmc.py      | loglik=456494.2/456454.4, aratio=0.00, params=[462469 106935 272941], False
+DEBUG   | mcmc.py      | loglik=456457.8/456454.4, aratio=0.02, params=[433880  94292 269422], False
+DEBUG   | mcmc.py      | loglik=456448.6/456454.4, aratio=1.00, params=[455948 108364 192888], True
+DEBUG   | mcmc.py      | loglik=456440.6/456448.6, aratio=1.00, params=[441285 115790 178892], True
+DEBUG   | mcmc.py      | loglik=456441.9/456440.6, aratio=0.28, params=[441463 111014 196073], False
+DEBUG   | mcmc.py      | loglik=456437.9/456440.6, aratio=1.00, params=[430446 126490 164221], True
+DEBUG   | mcmc.py      | loglik=456442.0/456437.9, aratio=0.02, params=[433793 128818 166275], False
+DEBUG   | mcmc.py      | loglik=456450.5/456437.9, aratio=0.00, params=[434521 118545 105490], False
+DEBUG   | mcmc.py      | loglik=456424.6/456437.9, aratio=1.00, params=[425840  98951 187642], True
+DEBUG   | mcmc.py      | loglik=456414.3/456424.6, aratio=1.00, params=[408387  97456 167399], True
+DEBUG   | mcmc.py      | loglik=456416.7/456414.3, aratio=0.12, params=[411509  76445 188950], False
+DEBUG   | mcmc.py      | loglik=456421.1/456414.3, aratio=0.00, params=[418158 105965 170657], False
+DEBUG   | mcmc.py      | loglik=456421.9/456414.3, aratio=0.00, params=[417435 107527 156527], False
+DEBUG   | mcmc.py      | loglik=456418.6/456414.3, aratio=0.02, params=[398131  71861 164532], False
+DEBUG   | mcmc.py      | loglik=456419.0/456414.3, aratio=0.01, params=[412666  98757 204620], False
+DEBUG   | mcmc.py      | loglik=456422.0/456414.3, aratio=0.00, params=[414071 101969 208085], False
+DEBUG   | mcmc.py      | loglik=456435.7/456414.3, aratio=0.00, params=[411550 132682 191288], False
+DEBUG   | mcmc.py      | loglik=456430.9/456414.3, aratio=0.00, params=[404486 100235 117826], False
+DEBUG   | mcmc.py      | loglik=456431.5/456414.3, aratio=0.00, params=[414857  61873 170186], False
+DEBUG   | mcmc.py      | loglik=456476.4/456414.3, aratio=0.00, params=[412278  63530 106473], False
+DEBUG   | mcmc.py      | loglik=456423.1/456414.3, aratio=0.00, params=[409494 105659 215898], False
+DEBUG   | mcmc.py      | loglik=456401.5/456414.3, aratio=1.00, params=[388746  91214 191950], True
+DEBUG   | mcmc.py      | loglik=456404.8/456401.5, aratio=0.05, params=[385717  79183 235986], False
+DEBUG   | mcmc.py      | loglik=456399.0/456401.5, aratio=1.00, params=[370648 129300 168728], True
+DEBUG   | mcmc.py      | loglik=456401.2/456399.0, aratio=0.10, params=[357508 151332 151735], False
+DEBUG   | mcmc.py      | loglik=456399.3/456399.0, aratio=0.80, params=[379482 114507 178187], True
+DEBUG   | mcmc.py      | loglik=456450.2/456399.3, aratio=0.00, params=[391394 141840 234557], False
+DEBUG   | mcmc.py      | loglik=456402.7/456399.3, aratio=0.04, params=[383569 103135 155181], False
+DEBUG   | mcmc.py      | loglik=456398.9/456399.3, aratio=1.00, params=[377219 117635 178794], True
+DEBUG   | mcmc.py      | loglik=456413.1/456398.9, aratio=0.00, params=[363657 152287 188007], False
+DEBUG   | mcmc.py      | loglik=456398.3/456398.9, aratio=1.00, params=[380671 100105 169018], True
+DEBUG   | mcmc.py      | loglik=456399.6/456398.3, aratio=0.27, params=[382810  98719 205408], False
+DEBUG   | mcmc.py      | loglik=456413.8/456398.3, aratio=0.00, params=[379885  93997 131122], False
+DEBUG   | mcmc.py      | loglik=456396.7/456398.3, aratio=1.00, params=[368916 119783 198576], True
+DEBUG   | mcmc.py      | loglik=456404.2/456396.7, aratio=0.00, params=[367249 129250 208346], False
+DEBUG   | mcmc.py      | loglik=456389.2/456396.7, aratio=1.00, params=[362899  91068 229069], True
+DEBUG   | mcmc.py      | loglik=456407.5/456389.2, aratio=0.00, params=[362401  48154 253626], False
+DEBUG   | mcmc.py      | loglik=456404.9/456389.2, aratio=0.00, params=[377686  94361 244963], False
+DEBUG   | mcmc.py      | loglik=456394.6/456389.2, aratio=0.00, params=[370105 109896 206461], False
+DEBUG   | mcmc.py      | loglik=456387.7/456389.2, aratio=1.00, params=[359483  86462 234821], True
+DEBUG   | mcmc.py      | loglik=456380.6/456387.7, aratio=1.00, params=[346417 104832 228910], True
+DEBUG   | mcmc.py      | loglik=456380.6/456380.6, aratio=1.00, params=[342430  99374 245357], True
+DEBUG   | mcmc.py      | loglik=456386.5/456380.6, aratio=0.00, params=[342366  83085 273940], False
+DEBUG   | mcmc.py      | loglik=456368.1/456380.6, aratio=1.00, params=[330545  86544 229198], True
+DEBUG   | mcmc.py      | loglik=456369.7/456368.1, aratio=0.21, params=[326066  79257 251447], False
+DEBUG   | mcmc.py      | loglik=456373.0/456368.1, aratio=0.01, params=[335874  80355 209181], False
+DEBUG   | mcmc.py      | loglik=456365.8/456368.1, aratio=1.00, params=[329078 103373 220792], True
+DEBUG   | mcmc.py      | loglik=456367.8/456365.8, aratio=0.10, params=[320706 138657 192812], False
+DEBUG   | mcmc.py      | loglik=456381.3/456365.8, aratio=0.00, params=[326162 138595 223685], False
+DEBUG   | mcmc.py      | loglik=456364.3/456365.8, aratio=1.00, params=[313313  73397 220721], True
+DEBUG   | mcmc.py      | loglik=456383.8/456364.3, aratio=0.00, params=[317209  51347 252312], False
+DEBUG   | mcmc.py      | loglik=456354.4/456364.3, aratio=1.00, params=[297844  78300 212344], True
+DEBUG   | mcmc.py      | loglik=456346.2/456354.4, aratio=1.00, params=[300102  97365 210056], True
+DEBUG   | mcmc.py      | loglik=456367.7/456346.2, aratio=0.00, params=[321430 138892 159163], False
+DEBUG   | mcmc.py      | loglik=456365.7/456346.2, aratio=0.00, params=[302515  75889 187016], False
+DEBUG   | mcmc.py      | loglik=456351.3/456346.2, aratio=0.01, params=[309662 107827 197494], False
+DEBUG   | mcmc.py      | loglik=456331.2/456346.2, aratio=1.00, params=[279169 128165 193354], True
+DEBUG   | mcmc.py      | loglik=456333.5/456331.2, aratio=0.11, params=[282545 126447 192854], False
+DEBUG   | mcmc.py      | loglik=456330.9/456331.2, aratio=1.00, params=[274307 107011 189077], True
+DEBUG   | mcmc.py      | loglik=456360.0/456330.9, aratio=0.00, params=[263423  84908 157656], False
+DEBUG   | mcmc.py      | loglik=456342.6/456330.9, aratio=0.00, params=[288151 132481 161684], False
+DEBUG   | mcmc.py      | loglik=456322.4/456330.9, aratio=1.00, params=[261535 143744 174551], True
+DEBUG   | mcmc.py      | loglik=456329.5/456322.4, aratio=0.00, params=[256775 147094 143092], False
+DEBUG   | mcmc.py      | loglik=456329.8/456322.4, aratio=0.00, params=[252414  96441 182185], False
+DEBUG   | mcmc.py      | loglik=456348.0/456322.4, aratio=0.00, params=[271235 174925 203043], False
+DEBUG   | mcmc.py      | loglik=456322.7/456322.4, aratio=0.76, params=[266965 133121 198330], False
+DEBUG   | mcmc.py      | loglik=456305.7/456322.4, aratio=1.00, params=[238284 143113 176387], True
+DEBUG   | mcmc.py      | loglik=456322.4/456305.7, aratio=0.00, params=[243026 166853 141704], False
+DEBUG   | mcmc.py      | loglik=456319.1/456305.7, aratio=0.00, params=[246958 124105 163094], False
+DEBUG   | mcmc.py      | loglik=456297.5/456305.7, aratio=1.00, params=[232497 142113 211373], True
+INFO    | mcmc.py      |   50	   0	456297.456	[232497 142113 211373]	0.40	0:06:43	burnin
+DEBUG   | mcmc.py      | loglik=456340.9/456297.5, aratio=0.00, params=[216950  79224 191290], False
+DEBUG   | mcmc.py      | loglik=456306.9/456297.5, aratio=0.00, params=[234353 146701 163765], False
+DEBUG   | mcmc.py      | loglik=456296.8/456297.5, aratio=1.00, params=[230381 137049 195756], True
+DEBUG   | mcmc.py      | loglik=456301.8/456296.8, aratio=0.01, params=[236327 140793 230284], False
+DEBUG   | mcmc.py      | loglik=456299.1/456296.8, aratio=0.10, params=[231768 147755 187644], False
+DEBUG   | mcmc.py      | loglik=456318.7/456296.8, aratio=0.00, params=[248006 155909 156773], False
+DEBUG   | mcmc.py      | loglik=456300.9/456296.8, aratio=0.02, params=[219725 106576 206618], False
+DEBUG   | mcmc.py      | loglik=456306.1/456296.8, aratio=0.00, params=[234252 168233 183208], False
+DEBUG   | mcmc.py      | loglik=456288.8/456296.8, aratio=1.00, params=[221115 137479 227978], True
+DEBUG   | mcmc.py      | loglik=456299.7/456288.8, aratio=0.00, params=[231318 129324 255358], False
+DEBUG   | mcmc.py      | loglik=456297.2/456288.8, aratio=0.00, params=[226751 109677 236448], False
+DEBUG   | mcmc.py      | loglik=456292.9/456288.8, aratio=0.02, params=[214394 116863 203608], False
+DEBUG   | mcmc.py      | loglik=456298.2/456288.8, aratio=0.00, params=[222445 170897 174069], False
+DEBUG   | mcmc.py      | loglik=456313.9/456288.8, aratio=0.00, params=[237117 174107 211805], False
+DEBUG   | mcmc.py      | loglik=456306.9/456288.8, aratio=0.00, params=[232054 161126 234401], False
+DEBUG   | mcmc.py      | loglik=456321.1/456288.8, aratio=0.00, params=[230266 125431 146919], False
+DEBUG   | mcmc.py      | loglik=456299.5/456288.8, aratio=0.00, params=[231781 152529 216151], False
+DEBUG   | mcmc.py      | loglik=456282.9/456288.8, aratio=1.00, params=[205481 170152 225789], True
+DEBUG   | mcmc.py      | loglik=456278.4/456282.9, aratio=1.00, params=[202134 123403 250043], True
+DEBUG   | mcmc.py      | loglik=456290.0/456278.4, aratio=0.00, params=[220913 121527 236289], False
+DEBUG   | mcmc.py      | loglik=456282.3/456278.4, aratio=0.02, params=[191915 106244 268924], False
+DEBUG   | mcmc.py      | loglik=456273.2/456278.4, aratio=1.00, params=[196992 131480 239992], True
+DEBUG   | mcmc.py      | loglik=456276.5/456273.2, aratio=0.03, params=[194184 162744 261329], False
+DEBUG   | mcmc.py      | loglik=456276.0/456273.2, aratio=0.06, params=[200668 128730 240312], False
+DEBUG   | mcmc.py      | loglik=456286.7/456273.2, aratio=0.00, params=[200795 151062 167129], False
+DEBUG   | mcmc.py      | loglik=456265.0/456273.2, aratio=1.00, params=[185064 144550 258761], True
+DEBUG   | mcmc.py      | loglik=456279.0/456265.0, aratio=0.00, params=[200115 136940 274938], False
+DEBUG   | mcmc.py      | loglik=456264.6/456265.0, aratio=1.00, params=[183424 165313 247577], True
+DEBUG   | mcmc.py      | loglik=456285.1/456264.6, aratio=0.00, params=[184492 180349 290567], False
+DEBUG   | mcmc.py      | loglik=456260.9/456264.6, aratio=1.00, params=[169567 178491 184513], True
+DEBUG   | mcmc.py      | loglik=456288.7/456260.9, aratio=0.00, params=[175312 143310 159153], False
+DEBUG   | mcmc.py      | loglik=456257.0/456260.9, aratio=1.00, params=[168350 178337 196382], True
+DEBUG   | mcmc.py      | loglik=456251.6/456257.0, aratio=1.00, params=[152499 203224 187669], True
+DEBUG   | mcmc.py      | loglik=456267.2/456251.6, aratio=0.00, params=[163586 192399 161287], False
+DEBUG   | mcmc.py      | loglik=456282.5/456251.6, aratio=0.00, params=[165076 167498 148126], False
+DEBUG   | mcmc.py      | loglik=456244.4/456251.6, aratio=1.00, params=[148495 165837 222851], True
+DEBUG   | mcmc.py      | loglik=456251.9/456244.4, aratio=0.00, params=[136813 173369 190517], False
+DEBUG   | mcmc.py      | loglik=456255.6/456244.4, aratio=0.00, params=[157592 149750 211711], False
+DEBUG   | mcmc.py      | loglik=456261.4/456244.4, aratio=0.00, params=[145370 227002 158891], False
+DEBUG   | mcmc.py      | loglik=456244.7/456244.4, aratio=0.82, params=[149079 151909 253373], True
+DEBUG   | mcmc.py      | loglik=456247.2/456244.7, aratio=0.08, params=[140088 150160 235093], False
+DEBUG   | mcmc.py      | loglik=456245.0/456244.7, aratio=0.73, params=[150877 151575 266328], True
+DEBUG   | mcmc.py      | loglik=456256.8/456245.0, aratio=0.00, params=[165755 134360 264414], False
+DEBUG   | mcmc.py      | loglik=456239.0/456245.0, aratio=1.00, params=[144523 176245 237027], True
+DEBUG   | mcmc.py      | loglik=456238.5/456239.0, aratio=1.00, params=[142807 184491 228354], True
+DEBUG   | mcmc.py      | loglik=456237.4/456238.5, aratio=1.00, params=[142455 181193 242729], True
+DEBUG   | mcmc.py      | loglik=456258.0/456237.4, aratio=0.00, params=[119084 151195 221246], False
+DEBUG   | mcmc.py      | loglik=456251.2/456237.4, aratio=0.00, params=[165281 154338 247682], False
+DEBUG   | mcmc.py      | loglik=456242.3/456237.4, aratio=0.01, params=[145011 155566 253610], False
+DEBUG   | mcmc.py      | loglik=456261.1/456237.4, aratio=0.00, params=[130561 168106 182315], False
+DEBUG   | mcmc.py      | loglik=456238.1/456237.4, aratio=0.55, params=[133901 211171 267950], True
+DEBUG   | mcmc.py      | loglik=456258.6/456238.1, aratio=0.00, params=[129891 237885 307874], False
+DEBUG   | mcmc.py      | loglik=456252.9/456238.1, aratio=0.00, params=[134685 240571 273228], False
+DEBUG   | mcmc.py      | loglik=456253.6/456238.1, aratio=0.00, params=[144947 235823 241479], False
+DEBUG   | mcmc.py      | loglik=456243.0/456238.1, aratio=0.01, params=[134284 234245 246086], False
+DEBUG   | mcmc.py      | loglik=456241.4/456238.1, aratio=0.03, params=[143421 203965 251881], False
+DEBUG   | mcmc.py      | loglik=456243.8/456238.1, aratio=0.00, params=[148396 192010 262688], False
+DEBUG   | mcmc.py      | loglik=456250.7/456238.1, aratio=0.00, params=[142160 217857 276290], False
+DEBUG   | mcmc.py      | loglik=456229.6/456238.1, aratio=1.00, params=[120182 223247 234358], True
+DEBUG   | mcmc.py      | loglik=456225.4/456229.6, aratio=1.00, params=[104031 217877 236008], True
+DEBUG   | mcmc.py      | loglik=456224.9/456225.4, aratio=1.00, params=[104602 232322 280860], True
+DEBUG   | mcmc.py      | loglik=456227.3/456224.9, aratio=0.09, params=[104852 240377 283387], False
+DEBUG   | mcmc.py      | loglik=456233.7/456224.9, aratio=0.00, params=[105009 258159 285154], False
+DEBUG   | mcmc.py      | loglik=456229.9/456224.9, aratio=0.01, params=[103622 244660 294549], False
+DEBUG   | mcmc.py      | loglik=456228.8/456224.9, aratio=0.02, params=[101669 185646 262933], False
+DEBUG   | mcmc.py      | loglik=456222.6/456224.9, aratio=1.00, params=[ 95665 246544 254478], True
+DEBUG   | mcmc.py      | loglik=456229.2/456222.6, aratio=0.00, params=[103340 263634 248049], False
+DEBUG   | mcmc.py      | loglik=456225.6/456222.6, aratio=0.06, params=[ 77952 239677 250567], False
+DEBUG   | mcmc.py      | loglik=456224.1/456222.6, aratio=0.20, params=[104919 234019 248014], True
+DEBUG   | mcmc.py      | loglik=456236.8/456224.1, aratio=0.00, params=[103580 263356 195668], False
+DEBUG   | mcmc.py      | loglik=456244.3/456224.1, aratio=0.00, params=[117513 248427 294446], False
+DEBUG   | mcmc.py      | loglik=456246.0/456224.1, aratio=0.00, params=[106449 186857 206081], False
+DEBUG   | mcmc.py      | loglik=456225.0/456224.1, aratio=0.41, params=[ 98759 251380 239254], False
+DEBUG   | mcmc.py      | loglik=456221.1/456224.1, aratio=1.00, params=[ 96555 213170 281130], True
+DEBUG   | mcmc.py      | loglik=456224.7/456221.1, aratio=0.03, params=[ 96765 230336 308479], False
+DEBUG   | mcmc.py      | loglik=456224.0/456221.1, aratio=0.06, params=[ 93380 198421 282885], True
+DEBUG   | mcmc.py      | loglik=456265.6/456224.0, aratio=0.00, params=[ 80187 154059 295437], False
+DEBUG   | mcmc.py      | loglik=456224.8/456224.0, aratio=0.45, params=[ 94754 193471 288750], False
+DEBUG   | mcmc.py      | loglik=456224.3/456224.0, aratio=0.98, params=[ 83329 204146 318867], True
+DEBUG   | mcmc.py      | loglik=456224.3/456224.3, aratio=1.00, params=[ 82022 219528 337562], True
+DEBUG   | mcmc.py      | loglik=456236.0/456224.3, aratio=0.00, params=[ 95200 236281 348307], False
+DEBUG   | mcmc.py      | loglik=456228.8/456224.3, aratio=0.01, params=[ 84446 205050 357388], False
+DEBUG   | mcmc.py      | loglik=456223.0/456224.3, aratio=1.00, params=[ 93470 209366 315068], True
+DEBUG   | mcmc.py      | loglik=456223.8/456223.0, aratio=0.35, params=[104072 208873 299106], False
+DEBUG   | mcmc.py      | loglik=456232.3/456223.0, aratio=0.00, params=[119106 211584 296606], False
+DEBUG   | mcmc.py      | loglik=456223.0/456223.0, aratio=0.79, params=[105296 203849 283126], True
+DEBUG   | mcmc.py      | loglik=456250.0/456223.0, aratio=0.00, params=[121732 229031 323131], False
+DEBUG   | mcmc.py      | loglik=456227.0/456223.0, aratio=0.02, params=[ 90964 196402 270861], False
+DEBUG   | mcmc.py      | loglik=456226.2/456223.0, aratio=0.04, params=[114544 192731 260117], False
+DEBUG   | mcmc.py      | loglik=456230.9/456223.0, aratio=0.00, params=[112634 212125 310120], False
+DEBUG   | mcmc.py      | loglik=456224.2/456223.0, aratio=0.31, params=[100529 229660 295302], False
+DEBUG   | mcmc.py      | loglik=456226.4/456223.0, aratio=0.03, params=[114952 218570 264798], False
+DEBUG   | mcmc.py      | loglik=456239.5/456223.0, aratio=0.00, params=[108476 250838 305387], False
+DEBUG   | mcmc.py      | loglik=456223.2/456223.0, aratio=0.78, params=[107159 212513 277365], True
+DEBUG   | mcmc.py      | loglik=456264.8/456223.2, aratio=0.00, params=[118181 261801 323216], False
+DEBUG   | mcmc.py      | loglik=456225.7/456223.2, aratio=0.10, params=[101020 188469 307378], False
+DEBUG   | mcmc.py      | loglik=456232.9/456223.2, aratio=0.00, params=[122172 219084 278415], False
+DEBUG   | mcmc.py      | loglik=456241.8/456223.2, aratio=0.00, params=[115584 171573 225479], False
+DEBUG   | mcmc.py      | loglik=456225.6/456223.2, aratio=0.10, params=[102813 210181 313460], False
+DEBUG   | mcmc.py      | loglik=456224.5/456223.2, aratio=0.24, params=[112519 210223 262773], False
+DEBUG   | mcmc.py      | loglik=456224.8/456223.2, aratio=0.18, params=[109724 211926 245710], True
+DEBUG   | mcmc.py      | loglik=456224.0/456224.8, aratio=1.00, params=[ 99048 194944 283065], True
+DEBUG   | mcmc.py      | loglik=456232.1/456224.0, aratio=0.00, params=[104326 175989 265883], False
+DEBUG   | mcmc.py      | loglik=456229.1/456224.0, aratio=0.01, params=[ 92234 182503 303112], False
+DEBUG   | mcmc.py      | loglik=456224.5/456224.0, aratio=0.47, params=[111405 199403 264553], True
+DEBUG   | mcmc.py      | loglik=456226.4/456224.5, aratio=0.15, params=[116543 195091 257638], False
+DEBUG   | mcmc.py      | loglik=456234.8/456224.5, aratio=0.00, params=[131083 165944 265846], False
+DEBUG   | mcmc.py      | loglik=456231.4/456224.5, aratio=0.00, params=[112151 193279 325774], False
+DEBUG   | mcmc.py      | loglik=456228.9/456224.5, aratio=0.01, params=[100796 230668 218327], False
+DEBUG   | mcmc.py      | loglik=456237.2/456224.5, aratio=0.00, params=[129594 207552 286493], False
+DEBUG   | mcmc.py      | loglik=456231.1/456224.5, aratio=0.00, params=[110285 205647 220347], False
+DEBUG   | mcmc.py      | loglik=456222.8/456224.5, aratio=1.00, params=[104814 217013 255902], True
+DEBUG   | mcmc.py      | loglik=456223.0/456222.8, aratio=0.90, params=[103009 201452 272834], True
+DEBUG   | mcmc.py      | loglik=456228.1/456223.0, aratio=0.01, params=[ 92895 192881 268304], False
+DEBUG   | mcmc.py      | loglik=456224.4/456223.0, aratio=0.25, params=[105298 192603 281880], False
+DEBUG   | mcmc.py      | loglik=456272.8/456223.0, aratio=0.00, params=[100484 145337 238954], False
+DEBUG   | mcmc.py      | loglik=456227.3/456223.0, aratio=0.01, params=[114956 226159 258406], False
+DEBUG   | mcmc.py      | loglik=456231.0/456223.0, aratio=0.00, params=[102018 176518 275546], False
+DEBUG   | mcmc.py      | loglik=456222.3/456223.0, aratio=1.00, params=[ 92376 206235 306825], True
+DEBUG   | mcmc.py      | loglik=456228.5/456222.3, aratio=0.00, params=[ 94309 222031 337784], False
+DEBUG   | mcmc.py      | loglik=456225.7/456222.3, aratio=0.04, params=[ 88512 207051 338663], False
+DEBUG   | mcmc.py      | loglik=456222.9/456222.3, aratio=0.56, params=[ 94673 231976 301628], True
+DEBUG   | mcmc.py      | loglik=456266.4/456222.9, aratio=0.00, params=[105540 264775 358193], False
+DEBUG   | mcmc.py      | loglik=456225.3/456222.9, aratio=0.10, params=[ 84662 265496 237984], False
+DEBUG   | mcmc.py      | loglik=456227.0/456222.9, aratio=0.02, params=[ 88490 260186 305839], False
+DEBUG   | mcmc.py      | loglik=456226.1/456222.9, aratio=0.04, params=[ 96490 226886 319241], False
+DEBUG   | mcmc.py      | loglik=456220.5/456222.9, aratio=1.00, params=[ 84261 223364 295808], True
+DEBUG   | mcmc.py      | loglik=456224.5/456220.5, aratio=0.02, params=[ 85379 267633 287710], False
+DEBUG   | mcmc.py      | loglik=456221.7/456220.5, aratio=0.29, params=[ 81241 246779 261303], True
+DEBUG   | mcmc.py      | loglik=456228.9/456221.7, aratio=0.00, params=[ 84795 255080 223404], False
+DEBUG   | mcmc.py      | loglik=456224.0/456221.7, aratio=0.08, params=[ 94884 216194 249079], False
+DEBUG   | mcmc.py      | loglik=456240.1/456221.7, aratio=0.00, params=[100910 270953 302448], False
+DEBUG   | mcmc.py      | loglik=456224.2/456221.7, aratio=0.08, params=[ 83153 231880 252022], False
+DEBUG   | mcmc.py      | loglik=456224.3/456221.7, aratio=0.07, params=[ 88124 248974 238504], False
+DEBUG   | mcmc.py      | loglik=456228.3/456221.7, aratio=0.00, params=[ 81655 239397 234732], False
+DEBUG   | mcmc.py      | loglik=456228.7/456221.7, aratio=0.00, params=[ 87728 240788 224854], False
+DEBUG   | mcmc.py      | loglik=456222.5/456221.7, aratio=0.48, params=[ 79525 265592 261427], False
+DEBUG   | mcmc.py      | loglik=456225.0/456221.7, aratio=0.04, params=[ 80586 278259 284993], False
+DEBUG   | mcmc.py      | loglik=456223.7/456221.7, aratio=0.16, params=[ 78185 277703 269365], False
+DEBUG   | mcmc.py      | loglik=456222.9/456221.7, aratio=0.34, params=[ 82077 269674 272468], True
+DEBUG   | mcmc.py      | loglik=456231.7/456222.9, aratio=0.00, params=[ 65124 303188 244571], False
+DEBUG   | mcmc.py      | loglik=456231.4/456222.9, aratio=0.00, params=[ 66558 258557 246390], False
+DEBUG   | mcmc.py      | loglik=456230.8/456222.9, aratio=0.00, params=[ 76268 280982 324702], False
+DEBUG   | mcmc.py      | loglik=456227.7/456222.9, aratio=0.01, params=[ 73172 263344 242220], False
+DEBUG   | mcmc.py      | loglik=456226.4/456222.9, aratio=0.02, params=[ 89040 275732 240644], False
+DEBUG   | mcmc.py      | loglik=456225.3/456222.9, aratio=0.08, params=[ 78502 263088 243082], False
+DEBUG   | mcmc.py      | loglik=456235.8/456222.9, aratio=0.00, params=[ 78284 285359 209701], False
+DEBUG   | mcmc.py      | loglik=456220.8/456222.9, aratio=1.00, params=[ 91057 226066 267626], True
+DEBUG   | mcmc.py      | loglik=456224.2/456220.8, aratio=0.03, params=[ 92089 262409 266786], False
+DEBUG   | mcmc.py      | loglik=456226.8/456220.8, aratio=0.00, params=[ 86557 226867 240073], False
+DEBUG   | mcmc.py      | loglik=456221.8/456220.8, aratio=0.45, params=[ 82977 220344 317226], True
+DEBUG   | mcmc.py      | loglik=456232.5/456221.8, aratio=0.00, params=[ 76918 192716 357428], False
+DEBUG   | mcmc.py      | loglik=456220.9/456221.8, aratio=1.00, params=[ 91033 229742 295861], True
+DEBUG   | mcmc.py      | loglik=456224.4/456220.9, aratio=0.04, params=[ 81148 239213 331802], False
+DEBUG   | mcmc.py      | loglik=456225.7/456220.9, aratio=0.01, params=[ 82178 254440 322219], False
+DEBUG   | mcmc.py      | loglik=456224.3/456220.9, aratio=0.03, params=[ 93476 257003 277010], False
+DEBUG   | mcmc.py      | loglik=456220.3/456220.9, aratio=1.00, params=[ 89449 236807 274020], True
+DEBUG   | mcmc.py      | loglik=456222.7/456220.3, aratio=0.08, params=[ 94259 226020 249262], False
+DEBUG   | mcmc.py      | loglik=456223.1/456220.3, aratio=0.06, params=[ 84438 237536 251350], False
+DEBUG   | mcmc.py      | loglik=456223.1/456220.3, aratio=0.06, params=[ 92162 208619 317717], False
+DEBUG   | mcmc.py      | loglik=456223.0/456220.3, aratio=0.07, params=[ 86070 259822 250206], False
+DEBUG   | mcmc.py      | loglik=456262.8/456220.3, aratio=0.00, params=[ 66185 179033 280731], False
+DEBUG   | mcmc.py      | loglik=456221.8/456220.3, aratio=0.21, params=[ 90260 219954 264994], False
+DEBUG   | mcmc.py      | loglik=456221.2/456220.3, aratio=0.37, params=[ 90446 231735 259775], False
+DEBUG   | mcmc.py      | loglik=456224.5/456220.3, aratio=0.02, params=[ 82602 260395 242096], False
+DEBUG   | mcmc.py      | loglik=456223.3/456220.3, aratio=0.05, params=[ 92769 201273 283590], False
+DEBUG   | mcmc.py      | loglik=456221.0/456220.3, aratio=0.51, params=[ 87252 250296 272026], False
+DEBUG   | mcmc.py      | loglik=456223.1/456220.3, aratio=0.06, params=[ 97997 233475 290989], False
+DEBUG   | mcmc.py      | loglik=456227.1/456220.3, aratio=0.00, params=[ 90452 201357 261545], False
+DEBUG   | mcmc.py      | loglik=456227.3/456220.3, aratio=0.00, params=[ 93590 228353 329807], False
+DEBUG   | mcmc.py      | loglik=456235.4/456220.3, aratio=0.00, params=[ 78843 195101 273263], False
+DEBUG   | mcmc.py      | loglik=456228.8/456220.3, aratio=0.00, params=[ 97147 254277 297099], False
+DEBUG   | mcmc.py      | loglik=456230.0/456220.3, aratio=0.00, params=[ 77017 228337 246725], False
+DEBUG   | mcmc.py      | loglik=456221.6/456220.3, aratio=0.27, params=[ 86450 251084 258235], True
+DEBUG   | mcmc.py      | loglik=456240.0/456221.6, aratio=0.00, params=[ 93300 302540 277385], False
+DEBUG   | mcmc.py      | loglik=456226.0/456221.6, aratio=0.02, params=[ 71570 283129 254118], False
+DEBUG   | mcmc.py      | loglik=456223.0/456221.6, aratio=0.30, params=[ 80700 270929 264542], False
+DEBUG   | mcmc.py      | loglik=456225.0/456221.6, aratio=0.04, params=[ 81421 245283 243974], False
+DEBUG   | mcmc.py      | loglik=456221.0/456221.6, aratio=1.00, params=[ 77722 242484 307511], True
+DEBUG   | mcmc.py      | loglik=456232.5/456221.0, aratio=0.00, params=[ 81376 280508 320063], False
+DEBUG   | mcmc.py      | loglik=456231.0/456221.0, aratio=0.00, params=[ 69744 228481 262851], False
+DEBUG   | mcmc.py      | loglik=456222.6/456221.0, aratio=0.17, params=[ 84904 254432 297715], False
+DEBUG   | mcmc.py      | loglik=456221.7/456221.0, aratio=0.43, params=[ 87263 222351 313752], True
+DEBUG   | mcmc.py      | loglik=456227.1/456221.7, aratio=0.00, params=[ 92633 230594 329286], False
+DEBUG   | mcmc.py      | loglik=456237.4/456221.7, aratio=0.00, params=[ 85961 188858 257863], False
+DEBUG   | mcmc.py      | loglik=456227.3/456221.7, aratio=0.00, params=[ 84945 258748 318201], False
+DEBUG   | mcmc.py      | loglik=456225.2/456221.7, aratio=0.04, params=[ 79005 251437 329232], False
+DEBUG   | mcmc.py      | loglik=456225.4/456221.7, aratio=0.03, params=[ 79009 207127 298420], False
+DEBUG   | mcmc.py      | loglik=456222.5/456221.7, aratio=0.38, params=[ 92583 248107 281929], True
+DEBUG   | mcmc.py      | loglik=456224.4/456222.5, aratio=0.12, params=[105429 236280 260510], False
+DEBUG   | mcmc.py      | loglik=456227.7/456222.5, aratio=0.01, params=[ 98344 244842 301361], False
+DEBUG   | mcmc.py      | loglik=456248.6/456222.5, aratio=0.00, params=[106021 272161 309005], False
+DEBUG   | mcmc.py      | loglik=456230.7/456222.5, aratio=0.00, params=[102409 226110 323897], False
+DEBUG   | mcmc.py      | loglik=456224.2/456222.5, aratio=0.18, params=[ 90632 265021 250778], False
+DEBUG   | mcmc.py      | loglik=456220.5/456222.5, aratio=1.00, params=[ 87387 238555 268101], True
+DEBUG   | mcmc.py      | loglik=456224.4/456220.5, aratio=0.02, params=[ 86598 239543 241640], False
+DEBUG   | mcmc.py      | loglik=456228.6/456220.5, aratio=0.00, params=[ 91485 219361 233070], False
+DEBUG   | mcmc.py      | loglik=456241.5/456220.5, aratio=0.00, params=[109599 281731 196445], False
+DEBUG   | mcmc.py      | loglik=456220.9/456220.5, aratio=0.65, params=[ 85621 235345 265534], False
+DEBUG   | mcmc.py      | loglik=456240.4/456220.5, aratio=0.00, params=[ 85029 214589 218583], False
+DEBUG   | mcmc.py      | loglik=456231.2/456220.5, aratio=0.00, params=[ 86980 250752 337890], False
+DEBUG   | mcmc.py      | loglik=456221.9/456220.5, aratio=0.21, params=[ 96920 236868 256194], True
+DEBUG   | mcmc.py      | loglik=456226.7/456221.9, aratio=0.01, params=[ 95278 221088 233749], False
+DEBUG   | mcmc.py      | loglik=456221.1/456221.9, aratio=1.00, params=[ 85941 245538 261795], True
+INFO    | mcmc.py      |  100	   0	456221.103	[ 85941 245538 261795]	0.30	0:14:14	burnin
+DEBUG   | mcmc.py      | loglik=456225.6/456221.1, aratio=0.01, params=[ 70839 264165 255406], False
+DEBUG   | mcmc.py      | loglik=456227.0/456221.1, aratio=0.00, params=[ 84063 242450 233813], False
+DEBUG   | mcmc.py      | loglik=456243.5/456221.1, aratio=0.00, params=[ 96491 247970 183361], False
+DEBUG   | mcmc.py      | loglik=456221.8/456221.1, aratio=0.51, params=[ 86193 257655 275943], True
+DEBUG   | mcmc.py      | loglik=456223.9/456221.8, aratio=0.14, params=[ 84043 210264 330003], False
+DEBUG   | mcmc.py      | loglik=456221.3/456221.8, aratio=1.00, params=[ 91865 225588 301083], True
+DEBUG   | mcmc.py      | loglik=456237.0/456221.3, aratio=0.00, params=[ 79609 239987 380316], False
+DEBUG   | mcmc.py      | loglik=456222.6/456221.3, aratio=0.26, params=[ 91700 203832 288643], False
+DEBUG   | mcmc.py      | loglik=456221.1/456221.3, aratio=1.00, params=[ 88990 214672 285650], True
+DEBUG   | mcmc.py      | loglik=456226.4/456221.1, aratio=0.01, params=[ 78078 224076 261348], False
+DEBUG   | mcmc.py      | loglik=456224.1/456221.1, aratio=0.04, params=[106182 204284 295923], False
+DEBUG   | mcmc.py      | loglik=456226.8/456221.1, aratio=0.00, params=[ 95943 225376 325112], False
+DEBUG   | mcmc.py      | loglik=456225.6/456221.1, aratio=0.01, params=[ 87534 195874 297884], False
+DEBUG   | mcmc.py      | loglik=456222.6/456221.1, aratio=0.24, params=[ 91709 203846 304400], False
+DEBUG   | mcmc.py      | loglik=456221.6/456221.1, aratio=0.66, params=[ 86968 211885 300050], True
+DEBUG   | mcmc.py      | loglik=456226.1/456221.6, aratio=0.01, params=[ 96896 189062 284132], False
+DEBUG   | mcmc.py      | loglik=456221.4/456221.6, aratio=1.00, params=[ 87932 216764 278543], True
+DEBUG   | mcmc.py      | loglik=456226.1/456221.4, aratio=0.01, params=[ 90802 271305 240117], False
+DEBUG   | mcmc.py      | loglik=456243.5/456221.4, aratio=0.00, params=[ 85979 166334 305791], False
+DEBUG   | mcmc.py      | loglik=456228.1/456221.4, aratio=0.00, params=[ 80587 214663 259945], False
+DEBUG   | mcmc.py      | loglik=456241.1/456221.4, aratio=0.00, params=[ 79503 184104 277080], False
+DEBUG   | mcmc.py      | loglik=456228.4/456221.4, aratio=0.00, params=[105554 212719 318439], False
+DEBUG   | mcmc.py      | loglik=456223.9/456221.4, aratio=0.10, params=[ 73432 263920 259134], True
+DEBUG   | mcmc.py      | loglik=456229.9/456223.9, aratio=0.00, params=[ 86517 289324 277251], False
+DEBUG   | mcmc.py      | loglik=456241.1/456223.9, aratio=0.00, params=[ 93380 298133 288834], False
+DEBUG   | mcmc.py      | loglik=456245.1/456223.9, aratio=0.00, params=[ 51718 272292 246436], False
+DEBUG   | mcmc.py      | loglik=456225.8/456223.9, aratio=0.15, params=[ 72618 260382 251533], False
+DEBUG   | mcmc.py      | loglik=456224.6/456223.9, aratio=0.62, params=[ 70716 278746 302969], True
+DEBUG   | mcmc.py      | loglik=456238.4/456224.6, aratio=0.00, params=[ 79314 294363 326916], False
+DEBUG   | mcmc.py      | loglik=456227.8/456224.6, aratio=0.05, params=[ 63923 288397 319327], False
+DEBUG   | mcmc.py      | loglik=456257.1/456224.6, aratio=0.00, params=[ 46989 260386 245059], False
+DEBUG   | mcmc.py      | loglik=456228.6/456224.6, aratio=0.03, params=[ 55476 282065 328817], False
+DEBUG   | mcmc.py      | loglik=456240.1/456224.6, aratio=0.00, params=[ 58124 276181 237427], False
+DEBUG   | mcmc.py      | loglik=456232.1/456224.6, aratio=0.00, params=[ 64186 286696 242375], False
+DEBUG   | mcmc.py      | loglik=456225.1/456224.6, aratio=0.50, params=[ 80645 261433 314361], False
+DEBUG   | mcmc.py      | loglik=456236.6/456224.6, aratio=0.00, params=[ 86650 294058 300828], False
+DEBUG   | mcmc.py      | loglik=456229.7/456224.6, aratio=0.01, params=[ 57294 269447 277890], False
+DEBUG   | mcmc.py      | loglik=456237.9/456224.6, aratio=0.00, params=[ 82127 282559 333608], False
+DEBUG   | mcmc.py      | loglik=456224.2/456224.6, aratio=1.00, params=[ 69486 265114 267302], True
+DEBUG   | mcmc.py      | loglik=456223.2/456224.2, aratio=1.00, params=[ 83593 263874 289839], True
+DEBUG   | mcmc.py      | loglik=456222.9/456223.2, aratio=1.00, params=[ 80355 263498 296725], True
+DEBUG   | mcmc.py      | loglik=456224.0/456222.9, aratio=0.34, params=[ 80165 259063 311912], False
+DEBUG   | mcmc.py      | loglik=456221.5/456222.9, aratio=1.00, params=[ 76449 246938 273880], True
+DEBUG   | mcmc.py      | loglik=456223.3/456221.5, aratio=0.17, params=[ 79764 265378 298614], False
+DEBUG   | mcmc.py      | loglik=456229.1/456221.5, aratio=0.00, params=[ 79897 255307 228731], False
+DEBUG   | mcmc.py      | loglik=456225.6/456221.5, aratio=0.02, params=[ 69700 232256 282534], False
+DEBUG   | mcmc.py      | loglik=456250.6/456221.5, aratio=0.00, params=[ 59574 206221 276976], False
+DEBUG   | mcmc.py      | loglik=456230.2/456221.5, aratio=0.00, params=[ 75017 205212 287370], False
+DEBUG   | mcmc.py      | loglik=456223.8/456221.5, aratio=0.13, params=[ 67177 271245 279580], False
+DEBUG   | mcmc.py      | loglik=456236.4/456221.5, aratio=0.00, params=[ 64712 254398 239646], False
+DEBUG   | mcmc.py      | loglik=456223.4/456221.5, aratio=0.14, params=[ 85701 250606 306637], False
+DEBUG   | mcmc.py      | loglik=456236.7/456221.5, aratio=0.00, params=[ 74664 250003 220013], False
+DEBUG   | mcmc.py      | loglik=456224.1/456221.5, aratio=0.09, params=[ 78701 232270 336651], False
+DEBUG   | mcmc.py      | loglik=456228.3/456221.5, aratio=0.00, params=[ 78971 286696 297734], False
+DEBUG   | mcmc.py      | loglik=456258.8/456221.5, aratio=0.00, params=[ 78060 216698 199413], False
+DEBUG   | mcmc.py      | loglik=456223.7/456221.5, aratio=0.12, params=[ 78602 265665 303836], False
+DEBUG   | mcmc.py      | loglik=456247.0/456221.5, aratio=0.00, params=[ 69641 255914 207168], False
+DEBUG   | mcmc.py      | loglik=456221.1/456221.5, aratio=1.00, params=[ 78630 250199 301596], True
+DEBUG   | mcmc.py      | loglik=456221.5/456221.1, aratio=0.72, params=[ 75285 231815 310327], True
+DEBUG   | mcmc.py      | loglik=456230.0/456221.5, aratio=0.00, params=[ 82821 204276 363662], False
+DEBUG   | mcmc.py      | loglik=456223.3/456221.5, aratio=0.19, params=[ 71095 245923 329392], False
+DEBUG   | mcmc.py      | loglik=456243.0/456221.5, aratio=0.00, params=[ 69092 188372 304655], False
+DEBUG   | mcmc.py      | loglik=456221.0/456221.5, aratio=1.00, params=[ 79551 250615 298839], True
+DEBUG   | mcmc.py      | loglik=456222.8/456221.0, aratio=0.23, params=[ 67389 261921 305254], False
+DEBUG   | mcmc.py      | loglik=456220.4/456221.0, aratio=1.00, params=[ 78706 244785 286343], True
+DEBUG   | mcmc.py      | loglik=456228.3/456220.4, aratio=0.00, params=[ 70860 275112 331735], False
+DEBUG   | mcmc.py      | loglik=456223.7/456220.4, aratio=0.03, params=[ 91061 233116 314490], True
+DEBUG   | mcmc.py      | loglik=456224.8/456223.7, aratio=0.33, params=[ 92236 242403 307819], True
+DEBUG   | mcmc.py      | loglik=456244.6/456224.8, aratio=0.00, params=[ 99625 261390 331518], False
+DEBUG   | mcmc.py      | loglik=456244.1/456224.8, aratio=0.00, params=[113529 244417 311974], False
+DEBUG   | mcmc.py      | loglik=456235.4/456224.8, aratio=0.00, params=[ 98735 274804 287313], False
+DEBUG   | mcmc.py      | loglik=456264.6/456224.8, aratio=0.00, params=[ 91175 303118 347991], False
+DEBUG   | mcmc.py      | loglik=456223.9/456224.8, aratio=1.00, params=[ 93529 205804 321030], True
+DEBUG   | mcmc.py      | loglik=456256.8/456223.9, aratio=0.00, params=[106960 232915 372928], False
+DEBUG   | mcmc.py      | loglik=456236.1/456223.9, aratio=0.00, params=[100485 230245 342013], False
+DEBUG   | mcmc.py      | loglik=456222.7/456223.9, aratio=1.00, params=[ 84796 217095 273081], True
+DEBUG   | mcmc.py      | loglik=456222.7/456222.7, aratio=1.00, params=[ 75937 242191 267947], True
+DEBUG   | mcmc.py      | loglik=456232.9/456222.7, aratio=0.00, params=[ 78793 236408 228800], False
+DEBUG   | mcmc.py      | loglik=456222.1/456222.7, aratio=1.00, params=[ 77249 241171 320325], True
+DEBUG   | mcmc.py      | loglik=456236.0/456222.1, aratio=0.00, params=[ 92900 255899 332888], False
+DEBUG   | mcmc.py      | loglik=456233.8/456222.1, aratio=0.00, params=[ 82500 234807 369435], False
+DEBUG   | mcmc.py      | loglik=456227.9/456222.1, aratio=0.00, params=[ 62930 230200 306727], False
+DEBUG   | mcmc.py      | loglik=456229.4/456222.1, aratio=0.00, params=[ 74225 263850 343282], False
+DEBUG   | mcmc.py      | loglik=456225.1/456222.1, aratio=0.04, params=[ 96555 246816 290373], False
+DEBUG   | mcmc.py      | loglik=456245.1/456222.1, aratio=0.00, params=[ 91296 267589 347626], False
+DEBUG   | mcmc.py      | loglik=456229.2/456222.1, aratio=0.00, params=[ 69864 231804 367837], False
+DEBUG   | mcmc.py      | loglik=456230.1/456222.1, aratio=0.00, params=[ 84131 210421 250274], False
+DEBUG   | mcmc.py      | loglik=456225.8/456222.1, aratio=0.02, params=[ 82538 244436 332229], False
+DEBUG   | mcmc.py      | loglik=456222.0/456222.1, aratio=1.00, params=[ 79428 250086 309762], True
+DEBUG   | mcmc.py      | loglik=456227.1/456222.0, aratio=0.01, params=[ 76482 275832 238925], False
+DEBUG   | mcmc.py      | loglik=456227.7/456222.0, aratio=0.00, params=[ 79402 221289 357533], False
+DEBUG   | mcmc.py      | loglik=456220.1/456222.0, aratio=1.00, params=[ 82601 234309 291440], True
+DEBUG   | mcmc.py      | loglik=456226.2/456220.1, aratio=0.00, params=[ 77828 223233 263740], False
+DEBUG   | mcmc.py      | loglik=456222.4/456220.1, aratio=0.13, params=[ 67747 257635 302528], False
+DEBUG   | mcmc.py      | loglik=456222.5/456220.1, aratio=0.08, params=[ 88525 207679 286022], False
+DEBUG   | mcmc.py      | loglik=456226.1/456220.1, aratio=0.00, params=[ 81851 221312 256338], False
+DEBUG   | mcmc.py      | loglik=456225.6/456220.1, aratio=0.00, params=[ 85438 218747 253909], False
+DEBUG   | mcmc.py      | loglik=456223.4/456220.1, aratio=0.03, params=[ 86218 231058 251425], False
+DEBUG   | mcmc.py      | loglik=456222.2/456220.1, aratio=0.13, params=[ 81786 262156 287366], False
+DEBUG   | mcmc.py      | loglik=456231.7/456220.1, aratio=0.00, params=[ 65728 226459 277058], False
+DEBUG   | mcmc.py      | loglik=456229.7/456220.1, aratio=0.00, params=[ 76620 209008 274515], False
+DEBUG   | mcmc.py      | loglik=456227.0/456220.1, aratio=0.00, params=[ 82027 213833 261946], False
+DEBUG   | mcmc.py      | loglik=456226.1/456220.1, aratio=0.00, params=[ 59724 248058 319513], False
+DEBUG   | mcmc.py      | loglik=456240.2/456220.1, aratio=0.00, params=[ 65758 204172 286660], False
+DEBUG   | mcmc.py      | loglik=456224.5/456220.1, aratio=0.01, params=[ 86014 202375 323803], False
+DEBUG   | mcmc.py      | loglik=456225.0/456220.1, aratio=0.01, params=[ 76022 226814 344610], False
+DEBUG   | mcmc.py      | loglik=456228.2/456220.1, aratio=0.00, params=[ 85478 237608 230533], False
+DEBUG   | mcmc.py      | loglik=456224.7/456220.1, aratio=0.01, params=[ 95585 210873 323719], False
+DEBUG   | mcmc.py      | loglik=456221.4/456220.1, aratio=0.35, params=[ 73554 249299 306771], True
+DEBUG   | mcmc.py      | loglik=456221.8/456221.4, aratio=0.60, params=[ 75081 252279 273126], False
+DEBUG   | mcmc.py      | loglik=456232.0/456221.4, aratio=0.00, params=[ 51418 251703 317724], False
+DEBUG   | mcmc.py      | loglik=456230.4/456221.4, aratio=0.00, params=[ 78019 247715 355499], False
+DEBUG   | mcmc.py      | loglik=456232.5/456221.4, aratio=0.00, params=[ 83444 298155 285907], False
+DEBUG   | mcmc.py      | loglik=456224.9/456221.4, aratio=0.03, params=[ 75394 222180 343008], False
+DEBUG   | mcmc.py      | loglik=456222.0/456221.4, aratio=0.55, params=[ 74599 257301 306267], False
+DEBUG   | mcmc.py      | loglik=456221.6/456221.4, aratio=0.72, params=[ 76736 226565 307600], True
+DEBUG   | mcmc.py      | loglik=456220.3/456221.6, aratio=1.00, params=[ 82570 237180 298770], True
+DEBUG   | mcmc.py      | loglik=456221.9/456220.3, aratio=0.17, params=[ 89471 250196 255282], False
+DEBUG   | mcmc.py      | loglik=456229.3/456220.3, aratio=0.00, params=[ 81813 191919 307856], False
+DEBUG   | mcmc.py      | loglik=456231.5/456220.3, aratio=0.00, params=[ 86753 213470 237211], False
+DEBUG   | mcmc.py      | loglik=456226.4/456220.3, aratio=0.00, params=[ 84411 195689 316396], False
+DEBUG   | mcmc.py      | loglik=456247.4/456220.3, aratio=0.00, params=[ 96752 264219 342705], False
+DEBUG   | mcmc.py      | loglik=456220.7/456220.3, aratio=0.71, params=[ 77912 252789 283217], True
+DEBUG   | mcmc.py      | loglik=456224.6/456220.7, aratio=0.03, params=[ 64312 262722 283835], False
+DEBUG   | mcmc.py      | loglik=456221.2/456220.7, aratio=0.51, params=[ 90911 229305 300386], True
+DEBUG   | mcmc.py      | loglik=456226.1/456221.2, aratio=0.01, params=[ 90499 227582 331795], False
+DEBUG   | mcmc.py      | loglik=456222.4/456221.2, aratio=0.28, params=[ 90046 216107 265338], False
+DEBUG   | mcmc.py      | loglik=456224.5/456221.2, aratio=0.03, params=[106557 192658 278703], False
+DEBUG   | mcmc.py      | loglik=456220.4/456221.2, aratio=1.00, params=[ 80917 230727 297004], True
+DEBUG   | mcmc.py      | loglik=456225.4/456220.4, aratio=0.01, params=[ 81345 234283 248384], False
+DEBUG   | mcmc.py      | loglik=456228.9/456220.4, aratio=0.00, params=[ 72687 216820 278243], False
+DEBUG   | mcmc.py      | loglik=456229.3/456220.4, aratio=0.00, params=[ 61974 227315 309613], False
+DEBUG   | mcmc.py      | loglik=456224.5/456220.4, aratio=0.03, params=[ 66720 237020 333120], False
+DEBUG   | mcmc.py      | loglik=456223.5/456220.4, aratio=0.04, params=[ 98053 223710 304113], False
+DEBUG   | mcmc.py      | loglik=456225.7/456220.4, aratio=0.00, params=[ 88568 239580 324152], False
+DEBUG   | mcmc.py      | loglik=456222.6/456220.4, aratio=0.10, params=[ 89968 249029 290726], False
+DEBUG   | mcmc.py      | loglik=456225.0/456220.4, aratio=0.02, params=[ 61651 253261 305176], False
+DEBUG   | mcmc.py      | loglik=456229.3/456220.4, aratio=0.00, params=[ 86434 265394 314661], False
+DEBUG   | mcmc.py      | loglik=456229.1/456220.4, aratio=0.00, params=[ 91874 239692 330507], False
+DEBUG   | mcmc.py      | loglik=456229.4/456220.4, aratio=0.00, params=[ 79117 200288 287414], False
+DEBUG   | mcmc.py      | loglik=456231.7/456220.4, aratio=0.00, params=[ 76507 225045 245782], False
+DEBUG   | mcmc.py      | loglik=456223.4/456220.4, aratio=0.04, params=[ 91043 248662 294287], False
+DEBUG   | mcmc.py      | loglik=456221.2/456220.4, aratio=0.48, params=[ 78739 242992 309928], False
+DEBUG   | mcmc.py      | loglik=456250.0/456220.4, aratio=0.00, params=[ 62777 187569 313669], False
+DEBUG   | mcmc.py      | loglik=456233.9/456220.4, aratio=0.00, params=[ 88141 270627 320284], False
+DEBUG   | mcmc.py      | loglik=456227.0/456220.4, aratio=0.00, params=[ 90692 262361 295995], False
+DEBUG   | mcmc.py      | loglik=456221.1/456220.4, aratio=0.45, params=[ 83521 240332 265116], True
+DEBUG   | mcmc.py      | loglik=456229.9/456221.1, aratio=0.00, params=[ 75654 234431 244598], False
+DEBUG   | mcmc.py      | loglik=456226.6/456221.1, aratio=0.00, params=[ 72851 225987 273584], False
+DEBUG   | mcmc.py      | loglik=456223.3/456221.1, aratio=0.12, params=[ 77309 264390 256137], False
+DEBUG   | mcmc.py      | loglik=456253.8/456221.1, aratio=0.00, params=[ 73162 182503 266917], False
+DEBUG   | mcmc.py      | loglik=456221.2/456221.1, aratio=0.76, params=[ 98642 220577 270304], False
+DEBUG   | mcmc.py      | loglik=456222.3/456221.1, aratio=0.28, params=[ 87343 259844 272121], False
+DEBUG   | mcmc.py      | loglik=456226.0/456221.1, aratio=0.01, params=[ 86533 269418 291559], False
+DEBUG   | mcmc.py      | loglik=456222.6/456221.1, aratio=0.28, params=[ 70592 240977 290184], False
+DEBUG   | mcmc.py      | loglik=456223.7/456221.1, aratio=0.08, params=[ 75666 223137 285721], False
+DEBUG   | mcmc.py      | loglik=456226.8/456221.1, aratio=0.00, params=[ 71313 224660 280755], False
+DEBUG   | mcmc.py      | loglik=456223.2/456221.1, aratio=0.13, params=[ 78686 250130 255316], False
+DEBUG   | mcmc.py      | loglik=456222.0/456221.1, aratio=0.34, params=[ 92527 234642 251582], False
+DEBUG   | mcmc.py      | loglik=456227.2/456221.1, aratio=0.00, params=[ 95685 246878 223501], False
+DEBUG   | mcmc.py      | loglik=456240.6/456221.1, aratio=0.00, params=[ 83386 229170 209795], False
+DEBUG   | mcmc.py      | loglik=456223.7/456221.1, aratio=0.09, params=[ 70218 268804 268873], False
+DEBUG   | mcmc.py      | loglik=456226.5/456221.1, aratio=0.00, params=[ 89487 223700 238954], False
+DEBUG   | mcmc.py      | loglik=456224.9/456221.1, aratio=0.02, params=[ 79858 221282 267047], False
+DEBUG   | mcmc.py      | loglik=456222.1/456221.1, aratio=0.31, params=[ 93596 222136 256764], False
+DEBUG   | mcmc.py      | loglik=456225.8/456221.1, aratio=0.01, params=[ 95901 264709 253588], False
+DEBUG   | mcmc.py      | loglik=456230.0/456221.1, aratio=0.00, params=[ 77655 226501 246927], False
+DEBUG   | mcmc.py      | loglik=456220.0/456221.1, aratio=1.00, params=[ 86248 233304 280780], True
+DEBUG   | mcmc.py      | loglik=456225.4/456220.0, aratio=0.00, params=[101942 219468 308293], False
+DEBUG   | mcmc.py      | loglik=456227.9/456220.0, aratio=0.00, params=[ 94584 245923 221052], False
+DEBUG   | mcmc.py      | loglik=456221.1/456220.0, aratio=0.44, params=[ 73351 247464 294120], False
+DEBUG   | mcmc.py      | loglik=456229.4/456220.0, aratio=0.00, params=[ 94023 245100 320305], False
+DEBUG   | mcmc.py      | loglik=456220.7/456220.0, aratio=0.46, params=[ 95098 222439 283780], False
+DEBUG   | mcmc.py      | loglik=456220.3/456220.0, aratio=0.77, params=[ 86034 243532 277474], True
+DEBUG   | mcmc.py      | loglik=456229.6/456220.3, aratio=0.00, params=[107514 247798 273048], False
+DEBUG   | mcmc.py      | loglik=456224.7/456220.3, aratio=0.02, params=[ 83743 234126 332900], False
+DEBUG   | mcmc.py      | loglik=456237.8/456220.3, aratio=0.00, params=[103702 290025 241929], False
+DEBUG   | mcmc.py      | loglik=456223.3/456220.3, aratio=0.05, params=[ 86169 267313 258405], False
+DEBUG   | mcmc.py      | loglik=456225.0/456220.3, aratio=0.01, params=[ 72555 270559 254885], False
+DEBUG   | mcmc.py      | loglik=456226.9/456220.3, aratio=0.00, params=[ 95873 259064 282957], False
+DEBUG   | mcmc.py      | loglik=456221.1/456220.3, aratio=0.45, params=[ 83287 231764 270992], False
+DEBUG   | mcmc.py      | loglik=456228.0/456220.3, aratio=0.00, params=[ 91268 219329 235030], False
+DEBUG   | mcmc.py      | loglik=456222.7/456220.3, aratio=0.08, params=[ 91943 230578 248577], False
+DEBUG   | mcmc.py      | loglik=456226.1/456220.3, aratio=0.00, params=[ 94034 254801 292522], False
+DEBUG   | mcmc.py      | loglik=456221.6/456220.3, aratio=0.28, params=[ 81485 246161 262160], True
+DEBUG   | mcmc.py      | loglik=456231.6/456221.6, aratio=0.00, params=[ 60033 244618 276970], False
+DEBUG   | mcmc.py      | loglik=456224.6/456221.6, aratio=0.07, params=[ 71097 278845 301934], False
+DEBUG   | mcmc.py      | loglik=456223.2/456221.6, aratio=0.22, params=[ 75066 261943 260282], True
+DEBUG   | mcmc.py      | loglik=456222.0/456223.2, aratio=1.00, params=[ 69479 257520 298103], True
+DEBUG   | mcmc.py      | loglik=456230.4/456222.0, aratio=0.00, params=[ 68494 277744 341725], False
+DEBUG   | mcmc.py      | loglik=456224.2/456222.0, aratio=0.13, params=[ 63651 264162 317933], False
+DEBUG   | mcmc.py      | loglik=456231.9/456222.0, aratio=0.00, params=[ 94974 245770 326031], False
+DEBUG   | mcmc.py      | loglik=456229.8/456222.0, aratio=0.00, params=[ 78770 297529 286235], False
+DEBUG   | mcmc.py      | loglik=456225.1/456222.0, aratio=0.04, params=[ 75394 259256 249634], False
+DEBUG   | mcmc.py      | loglik=456227.2/456222.0, aratio=0.01, params=[ 65083 233764 353454], False
+DEBUG   | mcmc.py      | loglik=456236.5/456222.0, aratio=0.00, params=[ 74804 267854 362387], False
+DEBUG   | mcmc.py      | loglik=456251.8/456222.0, aratio=0.00, params=[ 58663 203825 282552], False
+DEBUG   | mcmc.py      | loglik=456226.0/456222.0, aratio=0.02, params=[ 62976 245776 342664], False
+DEBUG   | mcmc.py      | loglik=456223.6/456222.0, aratio=0.22, params=[ 64278 264614 299684], False
+DEBUG   | mcmc.py      | loglik=456224.5/456222.0, aratio=0.07, params=[ 70571 263106 262374], False
+DEBUG   | mcmc.py      | loglik=456225.8/456222.0, aratio=0.02, params=[ 74946 270176 317826], False
+DEBUG   | mcmc.py      | loglik=456241.8/456222.0, aratio=0.00, params=[ 66687 194541 302610], False
+DEBUG   | mcmc.py      | loglik=456225.8/456222.0, aratio=0.02, params=[ 73243 272020 318610], False
+DEBUG   | mcmc.py      | loglik=456226.5/456222.0, aratio=0.01, params=[ 78107 284913 290839], False
+DEBUG   | mcmc.py      | loglik=456242.4/456222.0, aratio=0.00, params=[ 82289 261596 369546], False
+DEBUG   | mcmc.py      | loglik=456221.4/456222.0, aratio=1.00, params=[ 73110 240284 307030], True
+DEBUG   | mcmc.py      | loglik=456246.1/456221.4, aratio=0.00, params=[ 56945 202005 318566], False
+DEBUG   | mcmc.py      | loglik=456222.0/456221.4, aratio=0.53, params=[ 72019 238900 293953], False
+DEBUG   | mcmc.py      | loglik=456226.6/456221.4, aratio=0.00, params=[ 70816 228584 277300], False
+DEBUG   | mcmc.py      | loglik=456224.4/456221.4, aratio=0.06, params=[ 68929 264896 322916], False
+DEBUG   | mcmc.py      | loglik=456220.7/456221.4, aratio=1.00, params=[ 77508 251236 282180], True
+DEBUG   | mcmc.py      | loglik=456221.7/456220.7, aratio=0.36, params=[ 81107 253029 300820], False
+DEBUG   | mcmc.py      | loglik=456238.6/456220.7, aratio=0.00, params=[ 93453 302426 270470], False
+DEBUG   | mcmc.py      | loglik=456221.9/456220.7, aratio=0.31, params=[ 81501 260687 287419], False
+DEBUG   | mcmc.py      | loglik=456223.1/456220.7, aratio=0.09, params=[ 81432 268748 258077], False
+DEBUG   | mcmc.py      | loglik=456223.0/456220.7, aratio=0.12, params=[ 69420 267380 278794], False
+DEBUG   | mcmc.py      | loglik=456232.9/456220.7, aratio=0.00, params=[ 77830 249577 362991], False
+DEBUG   | mcmc.py      | loglik=456236.4/456220.7, aratio=0.00, params=[ 97032 282195 284976], False
+DEBUG   | mcmc.py      | loglik=456221.4/456220.7, aratio=0.40, params=[ 96093 230079 284875], True
+DEBUG   | mcmc.py      | loglik=456236.5/456221.4, aratio=0.00, params=[103650 270961 280059], False
+DEBUG   | mcmc.py      | loglik=456224.5/456221.4, aratio=0.04, params=[107059 199477 296784], False
+DEBUG   | mcmc.py      | loglik=456223.5/456221.4, aratio=0.11, params=[101742 239966 256297], False
+DEBUG   | mcmc.py      | loglik=456224.3/456221.4, aratio=0.04, params=[110577 213109 252450], False
+DEBUG   | mcmc.py      | loglik=456223.0/456221.4, aratio=0.24, params=[ 83463 209667 317832], False
+DEBUG   | mcmc.py      | loglik=456238.9/456221.4, aratio=0.00, params=[104088 274004 282798], False
+DEBUG   | mcmc.py      | loglik=456226.7/456221.4, aratio=0.01, params=[ 96211 251680 293251], False
+DEBUG   | mcmc.py      | loglik=456229.1/456221.4, aratio=0.00, params=[ 89788 201613 254275], False
+DEBUG   | mcmc.py      | loglik=456226.8/456221.4, aratio=0.00, params=[101601 247284 281258], False
+DEBUG   | mcmc.py      | loglik=456221.7/456221.4, aratio=0.67, params=[ 97620 231069 257284], False
+DEBUG   | mcmc.py      | loglik=456220.8/456221.4, aratio=1.00, params=[ 95156 225191 267410], True
+DEBUG   | mcmc.py      | loglik=456225.0/456220.8, aratio=0.02, params=[ 96223 238381 302607], False
+DEBUG   | mcmc.py      | loglik=456229.0/456220.8, aratio=0.00, params=[ 99593 239694 216508], False
+DEBUG   | mcmc.py      | loglik=456226.6/456220.8, aratio=0.00, params=[ 92149 230879 328086], False
+DEBUG   | mcmc.py      | loglik=456227.8/456220.8, aratio=0.00, params=[103074 245385 284814], False
+DEBUG   | mcmc.py      | loglik=456222.3/456220.8, aratio=0.26, params=[ 84037 223152 269062], False
+DEBUG   | mcmc.py      | loglik=456220.6/456220.8, aratio=1.00, params=[ 88323 238659 267039], True
+DEBUG   | mcmc.py      | loglik=456242.5/456220.6, aratio=0.00, params=[ 82396 210125 223578], False
+DEBUG   | mcmc.py      | loglik=456227.8/456220.6, aratio=0.00, params=[ 93066 271430 230189], False
+DEBUG   | mcmc.py      | loglik=456224.0/456220.6, aratio=0.03, params=[ 93474 250222 288105], False
+DEBUG   | mcmc.py      | loglik=456220.5/456220.6, aratio=1.00, params=[ 88986 223790 297737], True
+DEBUG   | mcmc.py      | loglik=456224.2/456220.5, aratio=0.03, params=[ 79118 225903 266928], False
+DEBUG   | mcmc.py      | loglik=456220.6/456220.5, aratio=1.00, params=[ 79622 251865 281295], True
+DEBUG   | mcmc.py      | loglik=456222.9/456220.6, aratio=0.11, params=[ 75764 259566 261517], False
+DEBUG   | mcmc.py      | loglik=456224.3/456220.6, aratio=0.02, params=[ 75599 228604 273082], False
+DEBUG   | mcmc.py      | loglik=456223.2/456220.6, aratio=0.10, params=[ 72381 264073 311336], False
+DEBUG   | mcmc.py      | loglik=456227.3/456220.6, aratio=0.00, params=[ 97746 253179 289118], False
+DEBUG   | mcmc.py      | loglik=456227.4/456220.6, aratio=0.00, params=[ 58699 288202 288346], False
+DEBUG   | mcmc.py      | loglik=456220.3/456220.6, aratio=1.00, params=[ 86058 228865 277650], True
+DEBUG   | mcmc.py      | loglik=456220.4/456220.3, aratio=0.99, params=[ 86051 226379 299354], True
+DEBUG   | mcmc.py      | loglik=456223.6/456220.4, aratio=0.05, params=[ 75841 216600 307511], False
+DEBUG   | mcmc.py      | loglik=456223.3/456220.4, aratio=0.06, params=[ 83564 243789 317912], False
+DEBUG   | mcmc.py      | loglik=456249.7/456220.4, aratio=0.00, params=[ 58316 201398 296428], False
+DEBUG   | mcmc.py      | loglik=456221.3/456220.4, aratio=0.45, params=[ 76485 235506 285720], True
+DEBUG   | mcmc.py      | loglik=456232.0/456221.3, aratio=0.00, params=[ 63490 230531 278953], False
+DEBUG   | mcmc.py      | loglik=456232.4/456221.3, aratio=0.00, params=[ 69114 238964 249537], False
+DEBUG   | mcmc.py      | loglik=456263.9/456221.3, aratio=0.00, params=[ 52293 221553 252198], False
+DEBUG   | mcmc.py      | loglik=456222.9/456221.3, aratio=0.24, params=[ 69041 242062 294130], False
+DEBUG   | mcmc.py      | loglik=456223.8/456221.3, aratio=0.08, params=[ 78518 278328 273001], False
+DEBUG   | mcmc.py      | loglik=456222.2/456221.3, aratio=0.49, params=[ 70359 240853 300118], True
+DEBUG   | mcmc.py      | loglik=456242.6/456222.2, aratio=0.00, params=[ 69468 237957 225726], False
+DEBUG   | mcmc.py      | loglik=456223.5/456222.2, aratio=0.28, params=[ 71748 249476 329014], False
+DEBUG   | mcmc.py      | loglik=456220.2/456222.2, aratio=1.00, params=[ 81149 241171 284325], True
+DEBUG   | mcmc.py      | loglik=456224.9/456220.2, aratio=0.01, params=[ 65767 265255 274321], False
+DEBUG   | mcmc.py      | loglik=456221.2/456220.2, aratio=0.42, params=[ 74338 241643 308940], True
+DEBUG   | mcmc.py      | loglik=456231.8/456221.2, aratio=0.00, params=[ 61097 238038 279526], False
+DEBUG   | mcmc.py      | loglik=456221.7/456221.2, aratio=0.62, params=[ 71833 239408 306946], True
+DEBUG   | mcmc.py      | loglik=456234.3/456221.7, aratio=0.00, params=[ 62356 281536 361031], False
+DEBUG   | mcmc.py      | loglik=456221.5/456221.7, aratio=1.00, params=[ 71814 251461 292975], True
+INFO    | mcmc.py      |  150	   0	456221.453	[ 71814 251461 292975]	0.26	0:22:35	burnin
+DEBUG   | mcmc.py      | loglik=456225.3/456221.5, aratio=0.03, params=[ 72068 260482 330584], False
+DEBUG   | mcmc.py      | loglik=456222.1/456221.5, aratio=0.52, params=[ 74569 264572 295784], False
+DEBUG   | mcmc.py      | loglik=456230.4/456221.5, aratio=0.00, params=[ 61771 275401 256389], False
+DEBUG   | mcmc.py      | loglik=456220.6/456221.5, aratio=1.00, params=[ 81382 251336 284563], True
+DEBUG   | mcmc.py      | loglik=456223.7/456220.6, aratio=0.04, params=[ 81294 234041 256487], False
+DEBUG   | mcmc.py      | loglik=456220.6/456220.6, aratio=1.00, params=[ 85874 229058 302123], True
+DEBUG   | mcmc.py      | loglik=456221.1/456220.6, aratio=0.51, params=[ 88549 216545 281190], True
+DEBUG   | mcmc.py      | loglik=456223.5/456221.1, aratio=0.10, params=[ 82918 225257 262166], False
+DEBUG   | mcmc.py      | loglik=456244.3/456221.1, aratio=0.00, params=[ 68600 187292 305500], False
+DEBUG   | mcmc.py      | loglik=456225.2/456221.1, aratio=0.02, params=[ 77598 207602 310252], False
+DEBUG   | mcmc.py      | loglik=456224.8/456221.1, aratio=0.02, params=[ 93246 231312 237016], False
+DEBUG   | mcmc.py      | loglik=456227.4/456221.1, aratio=0.00, params=[ 71988 232595 264630], False
+DEBUG   | mcmc.py      | loglik=456221.2/456221.1, aratio=0.98, params=[ 89011 213489 290400], True
+DEBUG   | mcmc.py      | loglik=456230.6/456221.2, aratio=0.00, params=[ 92902 184711 345593], False
+DEBUG   | mcmc.py      | loglik=456220.3/456221.2, aratio=1.00, params=[ 79920 242426 292826], True
+DEBUG   | mcmc.py      | loglik=456221.5/456220.3, aratio=0.32, params=[ 76228 251111 307739], False
+DEBUG   | mcmc.py      | loglik=456222.0/456220.3, aratio=0.18, params=[ 82959 258294 289601], False
+DEBUG   | mcmc.py      | loglik=456223.1/456220.3, aratio=0.06, params=[ 78953 264534 300036], False
+DEBUG   | mcmc.py      | loglik=456227.3/456220.3, aratio=0.00, params=[ 68631 222204 294959], False
+DEBUG   | mcmc.py      | loglik=456256.4/456220.3, aratio=0.00, params=[ 63893 208811 244579], False
+DEBUG   | mcmc.py      | loglik=456229.6/456220.3, aratio=0.00, params=[ 73468 257632 236964], False
+DEBUG   | mcmc.py      | loglik=456221.8/456220.3, aratio=0.24, params=[ 73447 263406 293548], False
+DEBUG   | mcmc.py      | loglik=456224.2/456220.3, aratio=0.02, params=[ 66366 265159 277243], False
+DEBUG   | mcmc.py      | loglik=456221.9/456220.3, aratio=0.23, params=[ 70662 243810 298135], False
+DEBUG   | mcmc.py      | loglik=456222.4/456220.3, aratio=0.13, params=[ 77429 233248 325956], False
+DEBUG   | mcmc.py      | loglik=456228.4/456220.3, aratio=0.00, params=[ 70817 219629 283130], False
+DEBUG   | mcmc.py      | loglik=456222.7/456220.3, aratio=0.10, params=[ 79531 240554 323153], True
+DEBUG   | mcmc.py      | loglik=456224.7/456222.7, aratio=0.13, params=[ 81230 278781 276674], False
+DEBUG   | mcmc.py      | loglik=456229.3/456222.7, aratio=0.00, params=[ 86338 214696 358193], False
+DEBUG   | mcmc.py      | loglik=456221.7/456222.7, aratio=1.00, params=[ 77705 224060 305746], True
+DEBUG   | mcmc.py      | loglik=456227.6/456221.7, aratio=0.00, params=[ 82398 202654 349035], False
+DEBUG   | mcmc.py      | loglik=456226.2/456221.7, aratio=0.01, params=[ 65719 229517 305835], False
+DEBUG   | mcmc.py      | loglik=456224.8/456221.7, aratio=0.04, params=[ 84504 232861 333067], False
+DEBUG   | mcmc.py      | loglik=456246.9/456221.7, aratio=0.00, params=[ 74463 221585 220356], False
+DEBUG   | mcmc.py      | loglik=456223.5/456221.7, aratio=0.11, params=[ 90316 210493 265667], True
+DEBUG   | mcmc.py      | loglik=456225.6/456223.5, aratio=0.10, params=[114592 201201 279077], False
+DEBUG   | mcmc.py      | loglik=456246.9/456223.5, aratio=0.00, params=[ 81179 185327 252106], False
+DEBUG   | mcmc.py      | loglik=456251.5/456223.5, aratio=0.00, params=[ 86805 187401 225860], False
+DEBUG   | mcmc.py      | loglik=456221.5/456223.5, aratio=1.00, params=[ 89446 210292 294223], True
+DEBUG   | mcmc.py      | loglik=456232.6/456221.5, aratio=0.00, params=[ 80707 197626 271977], False
+DEBUG   | mcmc.py      | loglik=456254.2/456221.5, aratio=0.00, params=[ 83712 179682 240206], False
+DEBUG   | mcmc.py      | loglik=456225.8/456221.5, aratio=0.02, params=[ 88615 193476 308263], False
+DEBUG   | mcmc.py      | loglik=456223.4/456221.5, aratio=0.14, params=[102610 200998 297305], False
+DEBUG   | mcmc.py      | loglik=456220.7/456221.5, aratio=1.00, params=[ 83151 228662 305707], True
+DEBUG   | mcmc.py      | loglik=456220.5/456220.7, aratio=1.00, params=[ 83040 239874 299139], True
+DEBUG   | mcmc.py      | loglik=456223.5/456220.5, aratio=0.04, params=[105402 222422 279606], False
+DEBUG   | mcmc.py      | loglik=456221.7/456220.5, aratio=0.28, params=[ 83952 236482 261418], False
+DEBUG   | mcmc.py      | loglik=456235.8/456220.5, aratio=0.00, params=[ 88142 261793 337218], False
+DEBUG   | mcmc.py      | loglik=456225.5/456220.5, aratio=0.01, params=[ 76493 215970 343387], False
+DEBUG   | mcmc.py      | loglik=456226.2/456220.5, aratio=0.00, params=[ 94635 254363 291769], False
+DEBUG   | mcmc.py      | loglik=456223.5/456220.5, aratio=0.05, params=[ 82586 265309 292451], False
+DEBUG   | mcmc.py      | loglik=456231.2/456220.5, aratio=0.00, params=[ 82172 281391 311697], False
+DEBUG   | mcmc.py      | loglik=456234.6/456220.5, aratio=0.00, params=[ 67349 226114 261526], False
+DEBUG   | mcmc.py      | loglik=456231.2/456220.5, aratio=0.00, params=[ 74566 278490 333280], False
+DEBUG   | mcmc.py      | loglik=456228.3/456220.5, aratio=0.00, params=[ 78449 227582 249492], False
+DEBUG   | mcmc.py      | loglik=456221.8/456220.5, aratio=0.32, params=[ 79776 235412 318690], False
+DEBUG   | mcmc.py      | loglik=456226.0/456220.5, aratio=0.00, params=[ 92889 207472 252237], False
+DEBUG   | mcmc.py      | loglik=456224.5/456220.5, aratio=0.02, params=[ 86195 243544 240429], False
+DEBUG   | mcmc.py      | loglik=456221.7/456220.5, aratio=0.24, params=[ 96410 232272 285020], True
+DEBUG   | mcmc.py      | loglik=456227.7/456221.7, aratio=0.00, params=[ 88289 189461 300147], False
+DEBUG   | mcmc.py      | loglik=456222.3/456221.7, aratio=0.50, params=[103654 218313 276538], True
+DEBUG   | mcmc.py      | loglik=456224.8/456222.3, aratio=0.10, params=[ 96334 219154 319150], True
+DEBUG   | mcmc.py      | loglik=456224.5/456224.8, aratio=1.00, params=[100057 207121 314536], True
+DEBUG   | mcmc.py      | loglik=456222.9/456224.5, aratio=1.00, params=[100097 238812 268958], True
+DEBUG   | mcmc.py      | loglik=456225.8/456222.9, aratio=0.06, params=[ 96888 242985 299017], False
+DEBUG   | mcmc.py      | loglik=456222.4/456222.9, aratio=1.00, params=[ 99203 218980 296241], True
+DEBUG   | mcmc.py      | loglik=456222.8/456222.4, aratio=0.68, params=[101524 216589 293712], True
+DEBUG   | mcmc.py      | loglik=456220.9/456222.8, aratio=1.00, params=[ 85301 232380 306036], True
+DEBUG   | mcmc.py      | loglik=456224.9/456220.9, aratio=0.02, params=[ 78176 208801 328053], False
+DEBUG   | mcmc.py      | loglik=456234.7/456220.9, aratio=0.00, params=[ 82354 255524 354242], False
+DEBUG   | mcmc.py      | loglik=456224.7/456220.9, aratio=0.03, params=[ 80126 242520 332222], False
