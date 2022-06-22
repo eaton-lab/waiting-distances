@@ -557,7 +557,7 @@ genealogy changes under a parameterized species tree model. In this respect,
 the waiting distances between recombination events that cause topology-change 
 may be of greatest interest, as they leave the most detectable signatures 
 in sequence data, and are relevant to expected gene tree distributions that form
-an important component of many MSC-based methods.
+an important component of many MSC-based methods \citep{ADD-SOME-HERE}.
 The waiting distance until a topology-change event can include multiple
 intervening recombination events of the no-change or tree-change type
 (Fig.~\ref{fig:fig2}). 
@@ -626,6 +626,24 @@ SMC' in an MSC model as the MS-SMC'.
 % springer + gatesy
 
 % inference, argweaver-D
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
 
 \section{Approach}
 \subsection{Comparison to \citet{deng_distribution_2021}}
@@ -1571,6 +1589,29 @@ in our validations below.
 %\end{aligned}
 %\end{equation}
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
 \section{Results}
 % \label{sec:others}
 
@@ -1774,8 +1815,7 @@ N$_e$ is high, or accentuating differences among intervals when N$_e$ is low.
 	\label{fig:fig-validation}
 \end{figure}
 
-
-% summary of this sections first goal, and reference to exhaustive supplement figure.
+% we simulated data under 3 models to validate our results
 To validate our analytical solutions for the probabilities of different 
 recombination event outcomes, and their associated waiting distances, 
 we compared predictions of the MS-SMC' with results from stochastic 
@@ -1791,14 +1831,13 @@ which is an approximation), unless specified, and used the argument
 For each model we simulated genealogies for the same total number of samples
 (8, unless specified), divided evenly among lineages when models 
 include multiple populations (Fig.~\ref{fig:fig-validation}a). 
-% We examined results across a range of parameter settings for a fixed 
-% diploid effective population size applied to all lineages in a model. 
 % When N$_e$ is low, 
 % population structure is expected to have large effects, whereas when N$_e$ is 
 % high, barriers imposed by population structure are expected to have 
 % limited effects.
-	
-The exponential rate parameter for the probability density of waiting distances 
+
+% results are composed of L, P, and L x P, which are calculated from sims in this way...
+The exponential rate parameter ($\lambda$) for a probability density of waiting distances 
 is a product of the per-site per-generation recombination rate ($r$), the sum 
 of edge lengths on the current genealogy ($L(\mathcal{G})$), and the probability 
 ($\mathbb{P}$) of the specified event type (equations 9, 10, and 14). 
@@ -1816,7 +1855,7 @@ until each recombination event type first occurred in each tree sequence, and
 also the frequency at which each event type occurred as the first event in a 
 tree sequence, as a measurement of its empirical probability.
 
-% genealogy lengths
+% L and P have opposing effects on waiting distances given Ne
 Population structure enforces a limit on the minimum length of coalescent 
 times, since genealogies must be capable of being embedded in the species 
 tree topology.
@@ -1836,11 +1875,14 @@ Consequently, the waiting distances until each event type
 negative effects of population structure on $L(\mathcal{G})$ and $\mathbb{P}$, 
 respectively.
 
-% Waiting distances to tree and topo change
-The exact solutions for the probabilities of different recombination
-event type outcomes, and for the waiting distance until a tree-change 
-event, appear to converge on the mean outcomes from stochastic 
-coalescent simulations. The degree of matching between our analytical 
+% Analytical predictions are very accurate, even better given SMC' approximation.
+The exact analytical solutions under the MS-SMC' for the probabilities 
+of different recombination event type outcomes, and for the 
+waiting distance until a tree-change event, appear to converge on the 
+mean expectations from stochastic coalescent simulations 
+(Fig.~\ref{fig:fig-validation}c-f).
+
+The degree of matching between our analytical 
 solutions and simulated values is slightly higher when simulations are 
 performed under the assumptions of the SMC' (Fig.~\ref{fig:supplement-smc}), 
 and only slightly ... exact when simulated under the full coalescent with recombination
@@ -1854,6 +1896,7 @@ waiting distances in the structured population models examined here.
 
 
 \subsection{Investigating bias in MS-SMC' predictions}
+% in addition to SMC' approximation, topo-change has additional bias.
 To investigate whether the SMC' approximation inherent to the MS-SMC' introduces
 a significant bias we compared MS-SMC' predictions to tree sequences simulated
 under both the SMC' (Fig.~\ref{...}) and the full coalescent with recombination 
@@ -1928,13 +1971,54 @@ value of 150000 for both trees.
 	\centering
 	%\fbox{\rule[-.5cm]{4cm}{4cm} \rule[-.5cm]{4cm}{0cm}}
 	\includegraphics[width=0.9\textwidth]{figures/Fig6-constant_ne_inf.pdf}
-	\caption{Inference of species tree Ne values from genealogies, observed waiting distances to topology changes, and recombination rate. We generated two different species trees: Both have root heights of 1e6 generations, but one has five tips, an unbalanced topology, and identical internode lengths, while the other has ten tips, an irregular topology, and irregular branch lengths. Using a recombination rate of 1e-9 recombs/bp/generation and a constant Ne value of 150000 over all branches, we generated a 5MB tree sequence from each species tree using \emph{ipcoal}. Then, we decomposed the alignment into segments bounded by topology changes in the genealogies, and we recorded the initial genealogy for each segment. Finally, we calculated the likelihood of the set of genealogies and waiting distances, along with the recombination rate, at 41 different proposed Ne values. For both sequence alignments, 150000 was correctly inferred as the Ne value.}
-	 \label{fig:fig5}
+	\caption{
+		Inference of species tree Ne values from genealogies, observed waiting 
+		distances to topology changes, and recombination rate. We generated two different 
+		species trees: Both have root heights of 1e6 generations, but one has five tips, 
+		an unbalanced topology, and identical internode lengths, while the other has ten 
+		tips, an irregular topology, and irregular branch lengths. Using a recombination 
+		rate of 1e-9 recombs/bp/generation and a constant Ne value of 150000 over all 
+		branches, we generated a 5MB tree sequence from each species tree using 
+		\emph{ipcoal}. Then, we decomposed the alignment into segments bounded by 
+		topology changes in the genealogies, and we recorded the initial genealogy 
+		for each segment. Finally, we calculated the likelihood of the set of 
+		genealogies and waiting distances, along with the recombination rate, at 41 
+		different proposed Ne values. For both sequence alignments, 150000 was 
+		correctly inferred as the Ne value.
+	}
+	\label{fig:fig5}
 \end{figure}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 
 \section{Discussion}
 
-% what does this mean overall.
+% Summarize what we did
+We began with a simple question: what is the expected turnover rate in 
+topologies along a genome under a species tree model? We generalized a 
+recent solution that used a single population and constant Ne, instead 
+structuring the equations to accept an arbitrary species tree topology 
+and a different, arbitrary Ne value for each species tree branch. These
+solutions lay a groundwork for exploring how species tree structures 
+affect neutral expectations of genealogical heterogeneity across chromosomes.
+
+% what do our results mean overall.
 It is interesting here to also take note of the scale of waiting distances 
 across different MSC model scenarios.
 - Previously the expected linkage in phylogenetic datasets could only be computed
@@ -1944,13 +2028,43 @@ other factors can also clearly affect the expected distances until ...
 Tree shape, tree size, the distribution of samples among species tree 
 lineages
 
-By accounting for the genomic heterogeneity that is expected due to incomplete lineage sorting, the multispecies coalescent model has facilitated the widespread use of multilocus data for phylogenetic inference. As phylogenetic systematics continues to turn toward whole genomes, methods should seek to take advantage of the increased resolution offered by genomic data. The traditional multispecies coalescent model overlooks the process of recombination, assuming that loci represent a single genetic history and that they are completely unlinked. In reality, under a neutral model, species tree parameters and recombination rates will influence the degree of genealogical turnover along a chromosome, potentially resulting in linked loci and/or multiple genealogical topologies per locus. Therefore, not accounting for recombination might mislead analyses. Conversely, incorporating the rates of turnover observed in the data as information could offer further clues for inference of the species tree model that generated it. 
+% importance to phylogenetics
+By accounting for the genomic heterogeneity that is expected due to incomplete 
+lineage sorting, the multispecies coalescent model has facilitated the widespread 
+use of multilocus data for phylogenetic inference. As phylogenetic systematics 
+continues to turn toward whole genomes, methods should seek to take advantage 
+of the increased resolution offered by genomic data. The traditional multispecies 
+coalescent model overlooks the process of recombination, assuming that loci 
+represent a single genetic history and that they are completely unlinked. In 
+reality, under a neutral model, species tree parameters and recombination 
+rates will influence the degree of genealogical turnover along a chromosome, 
+potentially resulting in linked loci and/or multiple genealogical topologies 
+per locus. Therefore, not accounting for recombination might mislead analyses. 
+Conversely, incorporating the rates of turnover observed in the data as 
+information could offer further clues for inference of the species tree 
+model that generated it. 
 
- We began with a simple question: what is the expected turnover rate in topologies along a genome under a species tree model? We generalized a recent solution that used a single population and constant Ne, instead structuring the equations to accept an arbitrary species tree topology and a different, arbitrary Ne value for each species tree branch. These solutions lay a groundwork for exploring how species tree structures affect neutral expectations of genealogical heterogeneity across chromosomes.
 
 %Inference of genealogies along a chromosome is a common goal in population genetics, and similar efforts have been undertaken in phylogenetics. Often, the goal of such efforts is to detect signals of introgression or selection. However, the phylogenetic approaches usually do not explicitly incorporate a model for recombination \citep[e.g.,][]{li2019recombination}. A notable exception to this is ARGweaver-D, which accepts models with population divergence and migration event parameters. Rather than derive probabilities of sequences of genealogical trees, ARGweaver-D uses an MCMC to sample the sequences. This approach is a powerful extension of the single-population ARGweaver method and has been applied successfully to study evolution of hominins, but it is limited to small numbers of samples. Challenges remain for studying properties of tree sequences for larger sets of samples.
 
-Inference of genealogies along a chromosome is a common goal in population genetics, and similar efforts have been undertaken in phylogenetics. Often, the goal of such efforts is to detect signals of introgression or selection. However, the phylogenetic approaches usually do not explicitly incorporate a model for recombination \citep[e.g.,][]{li2019recombination}. Applications of our solutions might provide valuable null hypotheses of genealogical turnover rates by which introgression or selection might be detected. Beyond its use for detecting patterns resulting from non-neutral processes, incorporating recombination in phylogenetic-scale models could also help improve species tree inference. For example, to the extent that they are observable, the empirical distribution of waiting distances to topology changes might be inferred and compared against the expected waiting distances for a proposed species tree model (e.g., \textbf{Figure 5}). Further approaches could determine the distribution of waiting distances to specific types of topology changes, such as those that split up a focal clade.
+Inference of genealogies along a chromosome is a common goal in population genetics, 
+and similar efforts have been undertaken in phylogenetics. Often, the goal of such 
+efforts is to detect signals of introgression or selection. However, the phylogenetic 
+approaches usually do not explicitly incorporate a model for recombination 
+\citep[e.g.,][]{li2019recombination}. Applications of our solutions might provide 
+valuable null hypotheses of genealogical turnover rates by which introgression or 
+selection might be detected. Beyond its use for detecting patterns resulting from 
+non-neutral processes, incorporating recombination in phylogenetic-scale models 
+could also help improve species tree inference. For example, to the extent that 
+they are observable, the empirical distribution of waiting distances to topology 
+changes might be inferred and compared against the expected waiting distances for 
+a proposed species tree model (e.g., \textbf{Figure 5}). Further approaches could 
+determine the distribution of waiting distances to specific types of topology 
+changes, such as those that split up a focal clade.
+
+
+
+
 
 
 \subsubsection{Acknowledgements}
@@ -2044,6 +2158,19 @@ to P.F.M.). \hl{Thanks to Yun Deng for guidance on preliminary ideas and to...}
 
 %\end{thebibliography}
 
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 \section{Supplementary Information}
