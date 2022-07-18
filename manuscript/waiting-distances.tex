@@ -2367,29 +2367,38 @@ solutions lay a groundwork for exploring how species tree structures
 affect neutral expectations of genealogical heterogeneity across chromosomes.
 
 % what do our results mean overall.
-It is interesting here to also take note of the scale of waiting distances 
-across different MSC model scenarios.
-- Previously the expected linkage in phylogenetic datasets could only be computed
-through exhaustive simulations (e.g., \citep{mckenzie_multispecies_2020}.
-- In addition to MSC parameters of divergence times and effective population sizes, 
-other factors can also clearly affect the expected distances until ...
-Tree shape, tree size, the distribution of samples among species tree 
-lineages
+A primary result of our work is demonstrating the mechanistic link between species tree
+%parameters and the length of genomic intervals that represent a single genealogy. 
+%Because of low levels of incomplete lineage sorting, highly 
+structured models might have much longer waiting distances than single-population models. 
+Previously the expected linkage in phylogenetic datasets could only be computed
+through exhaustive simulations (e.g., \citep{mckenzie_multispecies_2020}. With our analytical results it is clear how 
+in addition to MSC parameters of divergence times and effective population sizes, 
+other factors can also clearly affect the expected distances until genealogy changes. These factors include 
+tree shape, tree size, and the distribution of samples among species tree 
+lineages. Therefore, the scale at which we observe neutral turnover across 
+genealogies is highly dependent on the species tree model. 
 
 % importance to phylogenetics
-By accounting for the genomic heterogeneity that is expected due to incomplete 
-lineage sorting, the multispecies coalescent model has facilitated the widespread 
-use of multilocus data for phylogenetic inference. As phylogenetic systematics 
-continues to turn toward whole genomes, methods should seek to take advantage 
+%By accounting for the genomic heterogeneity that is expected due to incomplete 
+%lineage sorting, t
+The multispecies coalescent model has facilitated the widespread 
+use of multilocus data for phylogenetic inference by accounting for genomic heterogeneity. 
+%However, the MSC does not consider autocorrelation along the genome due to linkage, and it assumes 
+%that each locus represents only a single genealogy. In reality, these assumptions might 
+%often be violated \citep{gatesy_concatenation_2013}. 
+As phylogenetic systematics 
+continues to turn toward whole genomes, methods should seek to extend the MSC to take advantage 
 of the increased resolution offered by genomic data. The traditional multispecies 
 coalescent model overlooks the process of recombination, assuming that loci 
 represent a single genetic history and that they are completely unlinked. In 
 reality, under a neutral model, species tree parameters and recombination 
 rates will influence the degree of genealogical turnover along a chromosome, 
 potentially resulting in linked loci and/or multiple genealogical topologies 
-per locus. Therefore, not accounting for recombination might mislead analyses. 
-Conversely, incorporating the rates of turnover observed in the data as 
-information could offer further clues for inference of the species tree 
+per locus. Therefore, not accounting for recombination might mislead summary statistics methods (CITE ASTRAL, MP-EST). 
+Methods have been designed to account for this by operating directly on SNP frequencies \citep{bryant2012inferring,chifman2014quartet,vachaspati2018svdquest}, 
+but we propose that incorporating the rates of turnover observed in the data as 
+information could actually offer useful new information for inferring the species tree 
 model that generated it. 
 
 
