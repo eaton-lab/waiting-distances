@@ -2164,6 +2164,20 @@ likelihood surface towards lower $r$ and higher $N_e$. This demonstrates that ev
 for a simple two population model, ignoring population structure can significantly
 bias spatial genealogical inference methods.
 
+\hl{Add paragraph about variable $N_e$ model.}
+\begin{figure}[t]
+	\centering
+	%\fbox{\rule[-.5cm]{4cm}{4cm} \rule[-.5cm]{4cm}{0cm}}
+	\includegraphics[width=0.55\textwidth]{figures/likelihood-posteriors.pdf}
+	\caption{
+		MS-SMC' likelihood framework. 
+		ARGs were simulated under a two-population species tree model with variable 
+		$N_e$. (e) A joint posterior distribution of $N_e$ parameters inferred 
+		by Bayesian MCMC from tree and topology-change waiting distances.
+	}
+	\label{fig:fig-likelihood-posterior}
+\end{figure}
+
 
 % MSC model parameters can predict waiting distances, we can also perform the 
 % inverse operation, and find the maximum likelihood MSC model to explain a
@@ -2268,7 +2282,6 @@ there is little population structure, and so the waiting distance
 expectation remains relatively constant for the same reason as in a 
 single population model. Overall, MSC models do not appear to exhibit a greater
 bias than a single population model from this effect.
-
 
 
 \begin{figure}[t]
@@ -2539,6 +2552,13 @@ to P.F.M.). Thanks to Yun Deng for guidance on preliminary ideas and to the Eato
 
 
 \newpage
+
+\section{Supplementary Information}
+
+\beginsupplement
+
+
+
 \section{Appendix: Derivations}
 
 \subsection{Notation}
@@ -3321,11 +3341,6 @@ topology of the tree:
 
 
 
-\section{Supplementary Information}
-
-
-
-\beginsupplement
 
 \begin{figure}[p]
 	\centering
