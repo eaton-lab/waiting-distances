@@ -2234,7 +2234,7 @@ We also investigated whether inhomogeneity in the probability of topology
 changes during the waiting distance between topology-change events 
 causes bias. 
 % caused by tree-change events. 
-For this, we employed a similar approach to \citep{deng_distribution_2021}, 
+For this, we employed a similar approach to \citet{deng_distribution_2021}, 
 who examined the fold-difference in parameters affecting waiting distance
 estimations between a starting tree and a subsequent genealogy that 
 experienced a tree-change but not a topology-change. 
@@ -2277,8 +2277,8 @@ bias than a single population model from this effect.
 	\includegraphics[width=0.55\textwidth]{figures/likelihood-posteriors.pdf}
 	\caption{
 		MS-SMC' likelihood framework. 
-		ARGs were simulated under a two-population species tree model with variable 
-		$N_e$. (e) A joint posterior distribution of $N_e$ parameters inferred 
+		(a) ARGs were simulated under a two-population species tree model with variable 
+		$N_e$. (b) A joint posterior distribution of $N_e$ parameters inferred 
 		by Bayesian MCMC from tree and topology-change waiting distances.
 	}
 	\label{fig:fig-likelihood-posterior}
@@ -2360,7 +2360,7 @@ bias than a single population model from this effect.
 % Summarize what we did
 We began with a simple question: what is the expected turnover rate in 
 topologies along a genome under a species tree model? We generalized a 
-recent solution that used a single population and constant Ne, instead 
+recent solution that used a single population and constant Ne \citep{deng_distribution_2021}, instead 
 structuring the equations to accept an arbitrary species tree topology 
 and a different, arbitrary Ne value for each species tree branch. These
 solutions lay a groundwork for exploring how species tree structures 
