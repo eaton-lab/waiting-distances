@@ -2331,18 +2331,22 @@ reality, under a neutral model, species tree parameters and recombination
 rates will influence the degree of genealogical turnover along a chromosome, 
 potentially resulting in linked loci and/or multiple genealogical topologies 
 per locus. Therefore, not accounting for recombination might mislead summary statistics methods \citep{liu2010maximum,gatesy_concatenation_2013,zhang2018astral}. 
-Methods have been designed to account for this by operating directly on SNP frequencies \citep{bryant2012inferring,chifman2014quartet,vachaspati2018svdquest}, 
-but we propose that incorporating the rates of turnover observed in the data as 
+While methods have been designed to account for this by operating directly on SNP frequencies \citep{bryant2012inferring,chifman2014quartet,vachaspati2018svdquest}, 
+we propose that incorporating the rates of turnover observed in the data as 
 information could actually offer useful new information for inferring the species tree 
 model that generated it. 
 
 
 %Inference of genealogies along a chromosome is a common goal in population genetics, and similar efforts have been undertaken in phylogenetics. Often, the goal of such efforts is to detect signals of introgression or selection. However, the phylogenetic approaches usually do not explicitly incorporate a model for recombination \citep[e.g.,][]{li2019recombination}. A notable exception to this is ARGweaver-D, which accepts models with population divergence and migration event parameters. Rather than derive probabilities of sequences of genealogical trees, ARGweaver-D uses an MCMC to sample the sequences. This approach is a powerful extension of the single-population ARGweaver method and has been applied successfully to study evolution of hominins, but it is limited to small numbers of samples. Challenges remain for studying properties of tree sequences for larger sets of samples.
-
-Rather than inferring the species tree model, many modern genomic methods aim to 
-infer ARGs for analyzing local patterns along the genome \citep{rasmussen2014genome, hubisz2020inference, kelleher2019inferring, speidel2019method}.
-In phylogenetics, the goal of such 
-efforts is often to detect signals of introgression or selection. 
+Finally, since we are able to calculate the likelihood of observing any set of waiting 
+distances associated with an ARG, we speculate that incorporating our waiting distance 
+expectations could assist ARG-inference methods by extending likelihood-based methods such 
+as ARGweaver, ARGweaver-D, tsinfer, and relate \citep{rasmussen2014genome, hubisz2020inference, kelleher2019inferring, speidel2019method}. 
+%Rather than inferring the species tree model, many modern genomic methods aim to 
+%These  methods aim to 
+%infer ARGs analyzing local patterns along the genome.
+In phylogenetics, the goal of ARG inference 
+is often to detect signals of introgression or selection. 
 However, even in the case of a neutral coalescent process 
 with constant effective populations sizes and constant recombination rate 
 across the span of a genome, highly structured demographic models can exhibit
@@ -2355,10 +2359,6 @@ butterflies \citep{zhang2016genome} and felids \citep{li2019recombination}.
 Our results here highlight the fact that demographic history plays an 
 important role in establishing a null hypothesis for the expected rate 
 of turnover of genealogies along the genome.
-
-Finally, since we are able to calculate the likelihood of observing any set of waiting 
-distances associated with an ARG, we speculate that incorporating our waiting distance 
-expectations could assist in ARG inference by extending likelihood-based methods such as ARGweaver and ARGweaver-D. 
 
 %Beyond its use for detecting patterns resulting from 
 %non-neutral processes, incorporating recombination in phylogenetic-scale models 
