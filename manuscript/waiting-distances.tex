@@ -2331,7 +2331,9 @@ reality, under a neutral model, species tree parameters and recombination
 rates will influence the degree of genealogical turnover along a chromosome, 
 potentially resulting in linked loci and/or multiple genealogical topologies 
 per locus. Therefore, not accounting for recombination might mislead summary statistics methods \citep{liu2010maximum,gatesy_concatenation_2013,zhang2018astral}. 
-While methods have been designed to account for this by operating directly on SNP frequencies \citep{bryant2012inferring,chifman2014quartet,vachaspati2018svdquest}, 
+Some methods bypass genealogy inference by operating directly on SNP frequencies \citep{bryant2012inferring,chifman2014quartet,vachaspati2018svdquest}, 
+and therefore avoid bias from ignoring recombination. 
+To extend these methods and/or to improve gene-tree-based methods, 
 we propose that incorporating the rates of turnover observed in the data as 
 information could actually offer useful new information for inferring the species tree 
 model that generated it. 
