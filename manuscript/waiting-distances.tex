@@ -1112,7 +1112,7 @@ over the ordered intervals above $i$ on branch $b$ (e.g., Fig.~\ref{fig:fig3}b).
 		at time $t_r$ in interval $i$ and re-coalescing in interval $j$. The 
 		function $f(i,j)$ takes $i$ and $j$ as arguments for a given branch, 
 		and iterates over the probability of recombination in $i$, and not
-		re-coalescing in the intervals between $i$ and $j$, which is described
+		re-coalescing in the intervals between $i$ and $j$, the set of which is described
 		as $\mathcal{Q}_b(i,j)$. 
 	}
 	\label{fig:fig3}
@@ -1768,8 +1768,8 @@ of population structure in our validations below.
 \subsection{Implementation}
 We have implemented our solutions for waiting distance calculations
 under the MS-SMC' in the Python package \emph{ipcoal} \citep{mckenzie_ipcoal_2020}.
-This includes functions that accept a parameterized MSC model, initial genealogy, 
-and recombination rate as input, and return the probabilities of different 
+This software includes functions that accept a parameterized MSC model, initial genealogy, 
+and recombination rate as input and that return the probabilities of different 
 recombination event types. The probabilities can be calculated for specific 
 branches and times, for entire branches, or for entire genealogies. 
 Functions are also available to calculate the likelihood of observed 
@@ -1779,9 +1779,9 @@ The latter code is written in \emph{numpy} \citep{harris2020array} using
 jit-compilation with \emph{numba} \citep{lam2015numba}, and tree operations
 with \emph{toytree} \citep{eaton_toytree_2020}.
 Below we explore the influence of MSC model parameters on waiting distances, 
-and validate our solutions against expectations from coalescent simulations 
+we validate our solutions against expectations from coalescent simulations 
 implemented in \emph{ipcoal} and \emph{msprime} \citep{baumdicker_efficient_2022},
-and investigate potential biases.
+and we investigate potential biases.
 % models, visualizing results, and validating our equations.
 Source code is available at \url{https://github.com/eaton-lab/ipcoal}.
 Jupyter notebooks demonstrating the MS-SMC' calculations and with 
@@ -1801,12 +1801,12 @@ at \url{https://github.com/eaton-lab/waiting-distances}.
 \subsection{Demonstration}
 % First, when given a species tree and initial genealogy, we could examine the probability 
 Given a parameterized MSC model and initial genealogy the probabilities of 
-different types of outcomes of recombination can be calculated and visualized as 
+different types of recombination outcomes can be calculated and visualized as 
 a function of when and where recombination occurs. This is demonstrated on an 
 imbalanced 4-tip species tree with constant effective population size 
 % across branches %(see parameters in Table~S2), 
 and with a genealogy of seven samples embedded, 
-including three from lineage A, two from lineage B, and one from lineages
+including three from lineage A, two from lineage B, and one from each of lineages
 C and D (Fig.~\ref{fig:fig1}a; see Fig.~\ref{fig:figS-edge-probabilities} for 
 detailed parameter settings). 
 % As a demonstration, t
@@ -1815,7 +1815,7 @@ given a recombination event occurring on a branch at a particular time
 (equations 3 and 11, respectively) are shown for three selected branches
 on the example genealogy (Fig.~\ref{fig:fig1}b-d). 
 Note that the probability of no-change and tree-change events 
-are inversely related, and sum to 1, since one or the other must occur as a consequence 
+are inversely related and sum to 1, since one or the other must occur as a consequence 
 of recombination. By contrast, a topology-change event is a subset of the 
 probability of a tree-change; 
 % recall that a topology-change event is 
@@ -1845,7 +1845,7 @@ a branch other than itself, its sibling, or its parent.
 
 In general, the probability of a no-change event decreases, and the probability
 of a tree-change event increases, as recombination occurs closer to the top
-end of a branch (further back in time). This makes sense, since when 
+end of a branch (further back in time). This makes intuitive sense, since when 
 recombination occurs at the top of a branch there is less time for it to re-coalesce 
 with its same branch. Although this is a general trend, these probabilities do not 
 behave monotonically along the length of a branch, as they would in a 
@@ -2371,12 +2371,16 @@ bias than a single population model from this effect.
 
 
 % Summarize what we did
-We began with a simple question: what is the expected turnover rate in 
-topologies along a genome under a species tree model? We generalized a 
-recent solution that used a single population and constant Ne \citep{deng_distribution_2021}, instead 
-structuring the equations to accept an arbitrary species tree topology 
-and a different, arbitrary Ne value for each species tree branch. These
-solutions lay a groundwork for exploring how species tree structures 
+%We began with a simple question: what is the expected turnover rate in 
+%topologies along a genome under a species tree model? We generalized a 
+%recent solution that used a single population and constant Ne \citep{deng_distribution_2021}, instead 
+We solved for the expected turnover rate in genealogical trees and topologies 
+along a genome under an arbitrary species tree topology with arbitrary 
+divergence times and Ne values for each species tree branch.
+%structuring the equations to accept an arbitrary species tree topology 
+%and a different, arbitrary Ne value for each species tree branch. 
+These
+solutions, extended from initial work by \citep{deng_distribution_2021} lay a groundwork for exploring how species tree structures 
 affect neutral expectations of genealogical heterogeneity across chromosomes.
 
 % what do our results mean overall.
@@ -2436,7 +2440,7 @@ of turnover of genealogies along the genome.
 
 Finally, since we are able to calculate the likelihood of observing any set of waiting 
 distances associated with an ARG, we speculate that incorporating our waiting distance 
-expectations could assist in ARG inference by extending existing methods such as ARGweaver and ARGweaver-D. 
+expectations could assist in ARG inference by extending likelihood-based methods such as ARGweaver and ARGweaver-D. 
 
 %Beyond its use for detecting patterns resulting from 
 %non-neutral processes, incorporating recombination in phylogenetic-scale models 
