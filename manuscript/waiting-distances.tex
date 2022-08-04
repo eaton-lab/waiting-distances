@@ -1095,16 +1095,16 @@ its original branch, either in the same interval from which it detached, or in a
 later interval on the same branch (Fig.~\ref{fig:fig3}a). %during the same interval in which it detached.
 If it connects to any other lineage this will cause a change to either the tree 
 or topology. 
-The interval in which recombination occurs at time $t_r$ on branch $b$ is 
-labeled $i$. Equation 3 describes the probability of a no-change event 
+Equation 3 describes the probability of a no-change event 
 given a genealogy embedded in a species tree, and the timing and branch on 
-which recombination occurs. The first two terms describe the probability 
-that the subtree both detaches and re-attaches to the same branch during 
-interval $i$ (i.e., $ii$), while the last term describes the probability 
-that it detaches in $i$ and re-coalesces in a later interval on branch $b$
-(i.e., $ij$). For this latter term, we define an indexing variable 
-$\mathcal{J}_b(i)$ = $\{j \in \mathcal{I}_b ~|~ j > i\}$, for iterating 
-over the ordered intervals above $i$ on branch $b$ (e.g., Fig.~\ref{fig:fig3}b).
+which recombination occurs. The interval in which recombination occurs at 
+time $t_r$ on branch $b$ is labeled $i$. 
+The first two terms describe the probability that the subtree re-coalesces 
+during interval $i$ on branch $b$ (i.e., $ii$), 
+while the latter term describes the probability that it re-coalesces 
+during a later interval on branch $b$ (i.e., $ij$). For this, we define 
+an indexing variable $\mathcal{J}_b(i)$ = $\{j \in \mathcal{I}_b ~|~ j > i\}$, 
+for iterating over the ordered intervals above $i$ on branch $b$ (e.g., Fig.~\ref{fig:fig3}b).
 % and does not re-coalesce with any other lineages during this interval. The
 % later term describes a sum over all subsequent intervals on $b$, 
 % the probability that this subtree coalesces with its originating 
@@ -1140,7 +1140,7 @@ over the ordered intervals above $i$ on branch $b$ (e.g., Fig.~\ref{fig:fig3}b).
 \end{equation}
 
 
-\noindent This includes the following function, $f(i,j)$, which 
+\noindent This equation is simplified by use of the function $f(i,j)$, which 
 returns the piece-wise constant probabilities of re-coalescence between
 pairs of intervals. When $j=i$, this involves the probability of 
 coalescing over the remaining length of interval $i$; 
