@@ -2318,9 +2318,11 @@ A primary result of our work is demonstrating the mechanistic link between speci
 %Because of low levels of incomplete lineage sorting, highly 
 structured models might have much longer waiting distances than single-population models. 
 Previously, the expected linkage in phylogenetic datasets could only be computed
-through exhaustive simulations (e.g., \citep{mckenzie_multispecies_2020}. With our analytical results it is clear how 
+through exhaustive simulations (e.g., \citep{mckenzie_multispecies_2020}. 
+With our analytical results it is clear how 
 in addition to MSC parameters of divergence times and effective population sizes, 
-other factors can also clearly affect the expected distances until genealogy changes. These factors include 
+other factors can also clearly affect the expected distances until genealogy 
+changes. These factors include 
 tree shape, tree size, and the distribution of samples among species tree 
 lineages. Therefore, the scale at which we observe neutral turnover across 
 genealogies is highly dependent on the species tree model. 
@@ -2341,8 +2343,10 @@ represent a single genetic history and that they are completely unlinked. In
 reality, under a neutral model, species tree parameters and recombination 
 rates will influence the degree of genealogical turnover along a chromosome, 
 potentially resulting in linked loci and/or multiple genealogical topologies 
-per locus. Therefore, not accounting for recombination might mislead summary statistics methods \citep{liu2010maximum,gatesy_concatenation_2013,zhang2018astral}. 
-Some methods bypass genealogy inference by operating directly on SNP frequencies \citep{bryant2012inferring,chifman2014quartet,vachaspati2018svdquest}, 
+per locus. Therefore, not accounting for recombination might mislead 
+summary statistics methods \citep{liu2010maximum,gatesy_concatenation_2013,zhang2018astral}. 
+Some methods bypass genealogy inference by operating directly on SNP 
+frequencies \citep{bryant2012inferring,chifman2014quartet,vachaspati2018svdquest}, 
 and therefore avoid bias from ignoring recombination. 
 To extend these methods and/or to improve gene-tree-based methods, 
 we propose that incorporating the rates of turnover observed in the data as 
@@ -2351,27 +2355,38 @@ model that generated it.
 
 
 %Inference of genealogies along a chromosome is a common goal in population genetics, and similar efforts have been undertaken in phylogenetics. Often, the goal of such efforts is to detect signals of introgression or selection. However, the phylogenetic approaches usually do not explicitly incorporate a model for recombination \citep[e.g.,][]{li2019recombination}. A notable exception to this is ARGweaver-D, which accepts models with population divergence and migration event parameters. Rather than derive probabilities of sequences of genealogical trees, ARGweaver-D uses an MCMC to sample the sequences. This approach is a powerful extension of the single-population ARGweaver method and has been applied successfully to study evolution of hominins, but it is limited to small numbers of samples. Challenges remain for studying properties of tree sequences for larger sets of samples.
-Finally, since we are able to calculate the likelihood of observing any set of waiting 
-distances associated with an ARG, we speculate that incorporating our waiting distance 
-expectations could assist ARG-inference methods by extending likelihood-based methods such 
-as ARGweaver, ARGweaver-D, tsinfer, and relate \citep{rasmussen2014genome, hubisz2020inference, kelleher2019inferring, speidel2019method}. 
 %Rather than inferring the species tree model, many modern genomic methods aim to 
 %These  methods aim to 
 %infer ARGs analyzing local patterns along the genome.
 In phylogenetics, the goal of ARG inference 
 is often to detect signals of introgression or selection. 
 However, even in the case of a neutral coalescent process 
-with constant effective populations sizes and constant recombination rate 
+with constant effective population sizes and with a constant recombination rate 
 across the span of a genome, highly structured demographic models can exhibit
-high spatial variance in the expected waiting distances until topology changes. 
+high spatial variance in the expected waiting distances until genealogical 
+topology changes (e.g. Fig.~\ref{fig:fig-validation}). 
+Until now, there has been no analytical approach for generating a null hypothesis 
+concerning the expected length of regions spanned by a single genealogical topology under absolute neutrality.
+Our results allow us to calculate these expectations and to probe null hypotheses concerning the probability 
+of observing specific windows representing a particular genealogy under arbitrary demographic models. 
+While the MSC allows us to calculate the probability of observing a particular 
+genealogy in the first place, the equations here represent a further step by 
+generating a density function that represents the likelihood of \emph{persistence} 
+of that topology across some region of the genome, under neutrality alone. 
 This finding is particularly important for the practice of identifying evidence 
 of selection or introgression based on the spatial distribution of gene tree 
 patterns. For example, sliding-window analyses for detecting introgression have 
 been used to identify putatively introgressed loci in \emph{Heliconius} 
 butterflies \citep{zhang2016genome} and felids \citep{li2019recombination}. 
-Our results here highlight the fact that demographic history plays an 
-important role in establishing a null hypothesis for the expected rate 
-of turnover of genealogies along the genome.
+Further, since we are able to calculate the likelihood of observing any sequence of waiting 
+distances associated with an ARG, we speculate that incorporating our waiting distance 
+expectations could be incorporated into ARG-inference methods like
+ARGweaver, ARGweaver-D, tsinfer, and relate \citep{rasmussen2014genome, hubisz2020inference, kelleher2019inferring, speidel2019method} 
+as an additional source of information. 
+
+%Our results here highlight the fact that demographic history plays an 
+%important role in establishing a null hypothesis for the expected rate 
+%of turnover of genealogies along the genome.
 
 %Beyond its use for detecting patterns resulting from 
 %non-neutral processes, incorporating recombination in phylogenetic-scale models 
