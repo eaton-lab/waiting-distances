@@ -2305,27 +2305,47 @@ bias spatial genealogical inference methods.
 %recent solution that used a single population and constant Ne \citep{deng_distribution_2021}, instead 
 We solved for the expected turnover rate in genealogical trees and topologies 
 along a genome under an arbitrary species tree topology with arbitrary 
-divergence times and Ne values for each species tree branch.
+divergence times, and with arbitrary Ne values for each species tree branch.
 %structuring the equations to accept an arbitrary species tree topology 
 %and a different, arbitrary Ne value for each species tree branch. 
-These
-solutions, extended from initial work by \citep{deng_distribution_2021} lay a groundwork for exploring how species tree structures 
-affect neutral expectations of genealogical heterogeneity across chromosomes.
+These solutions, extended from initial work by \citep{deng_distribution_2021}, 
+lay a groundwork for exploring how variation in species tree parameters 
+affects neutral expectations of genealogical heterogeneity across chromosomes.
 
 % what do our results mean overall.
-A primary result of our work is demonstrating the mechanistic link between species tree
-%parameters and the length of genomic intervals that represent a single genealogy. 
-%Because of low levels of incomplete lineage sorting, highly 
-structured models might have much longer waiting distances than single-population models. 
-Previously, the expected linkage in phylogenetic datasets could only be computed
-through exhaustive simulations (e.g., \citep{mckenzie_multispecies_2020}. 
-With our analytical results it is clear how 
-in addition to MSC parameters of divergence times and effective population sizes, 
-other factors can also clearly affect the expected distances until genealogy 
-changes. These factors include 
-tree shape, tree size, and the distribution of samples among species tree 
-lineages. Therefore, the scale at which we observe neutral turnover across 
+A primary result of our work is solving the mechanistic link between a given species tree 
+and the length of a genomic interval representing a single genealogy 
+(i.e. the waiting distance until a genealogy change). 
+With our analytical results it is clear how MSC parameters of divergence times and 
+effective population sizes influence these waiting distances, most obviously 
+by constraining the number and identity of available lineages and by dictating 
+the coalescence rate. 
+These parameters also affect the rate of recombination events along the genome, since the 
+number of recombination events per base pair is dependent on the total branch 
+lengths of the underlying genealogies. By preventing coalescence between select lineages, 
+species tree divergence events enforce minimum branch lengths for the genealogies, 
+increasing the number of recombination events per base pair. Similarly, variation in Ne 
+affects the per-base-pair recombination rate, since coalescences farther back in time 
+increase the total branch lengths of the genealogies.
+Topological and sampling parameters can also affect the expected distances until genealogy 
+changes -- including tree shape, tree size (i.e. number of tips), and the distribution of samples among species tree 
+lineages. These factors all exert their influence through the same general mechanisms: affecting the 
+probability of coalescence among certain lineages by constraining the availability of those lineages 
+for coalescence with each other in each segment of the species tree, and by influencing the 
+rate of recombination by affecting the total branch length of the genealogies. 
+Taken together, it is clear that the scale at which we observe neutral turnover across 
 genealogies is highly dependent on the species tree model. 
+%Because of low levels of incomplete lineage sorting, highly 
+%structured models might have much longer waiting distances than single-population models. 
+Previously, the expected linkage in phylogenetic datasets could only be computed 
+through exhaustive simulations (e.g., \citep{mckenzie_multispecies_2020}. While such methods
+are useful for estimating the \emph{mean} linkage across all genealogies under a 
+specific demographic model, they are less helpful for estimating the 
+persistence of individual genealogies. To generate an approximate distribution 
+of waiting distances locally on a chromosome using simulation methods, 
+simulations generating a full probability distribution would have to be 
+run individually for each genealogy in a sequence. 
+This is not a tractable solution across long sequences of genealogies. 
 
 % importance to phylogenetics
 %By accounting for the genomic heterogeneity that is expected due to incomplete 
