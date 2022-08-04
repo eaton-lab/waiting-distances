@@ -2318,8 +2318,8 @@ and the length of a genomic interval representing a single genealogy
 (i.e. the waiting distance until a genealogy change). 
 With our analytical results it is clear how MSC parameters of divergence times and 
 effective population sizes influence these waiting distances, most obviously 
-by constraining the number and identity of available lineages and by dictating 
-the coalescence rate. 
+by constraining the number and identity of available lineages and by determining 
+the coalescence rate in each branch of the species tree. 
 These parameters also affect the rate of recombination events along the genome, since the 
 number of recombination events per base pair is dependent on the total branch 
 lengths of the underlying genealogies. By preventing coalescence between select lineages, 
@@ -2385,21 +2385,24 @@ The ultimate goal of ARG inference in phylogenomic or population genomic studies
 is often to detect signals of introgression or selection. 
 However, even in the case of a neutral coalescent process 
 with constant effective population sizes and with a constant recombination rate 
-across the span of a genome, highly structured demographic models can exhibit
-high spatial variance in the expected waiting distances until genealogical 
-topology changes \hl{(e.g. Fig.~\ref{fig:fig-validation}) --- actually this might not be a good example of 
-\emph{spatial} variance in the \emph{expected} waiting distances}. 
+across the genome, highly structured demographic models can exhibit
+high variance in the expected waiting distances until genealogical 
+topology changes (e.g. Fig.~\ref{fig:fig-validation}). As genealogical trees and 
+topologies vary along the genome, the waiting distance probability distribution 
+does too -- the result of this is that certain genealogies are expected to persist longer than others 
+due to their topology and coalescence times relative to the demographic model. 
 Until now, there has been no analytical approach for generating a null hypothesis 
-concerning the expected length of regions spanned by a single genealogical topology under absolute neutrality.
-Our results allow us to calculate these expectations and to probe null hypotheses concerning the probability 
-of observing specific windows representing a particular genealogy under arbitrary demographic models. 
-While the MSC allows us to calculate the probability of observing a particular 
-genealogy in the first place, the equations here represent a further step by 
+that describes the expected length of a region spanned by a particular genealogy under absolute neutrality.
+Our results allow us to calculate this null expectations and to probe null hypotheses concerning the probability 
+of observing specific waiting distances under different demographic models. 
+Of course, the MSC already allowed us to calculate the probability of observing a particular 
+genealogy at some location in the genome, but the equations here represent a further step by 
 generating a density function that represents the likelihood of \emph{persistence} 
-of that topology across some region of the genome, under neutrality alone. 
+of that topology across some region, under neutrality alone. 
 This finding is particularly important for the practice of identifying evidence 
 of selection or introgression based on the spatial distribution of gene tree 
-patterns. For example, sliding-window analyses for detecting introgression have 
+patterns, which is an increasingly popular goal of phylogenomic studies. 
+For example, sliding-window analyses for detecting introgression have 
 been used to identify putatively introgressed loci in \emph{Heliconius} 
 butterflies \citep{zhang2016genome} and felids \citep{li2019recombination}. 
 Further, since we are able to calculate the likelihood of observing any sequence of waiting 
