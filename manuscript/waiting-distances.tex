@@ -2341,34 +2341,37 @@ Previously, the expected linkage in phylogenetic datasets could only be computed
 through exhaustive simulations (e.g., \citep{mckenzie_multispecies_2020}. While such methods
 are useful for estimating the \emph{mean} linkage across all genealogies under a 
 specific demographic model, they are less helpful for estimating the 
-persistence of individual genealogies. To generate an approximate distribution 
+persistence of \emph{individual} genealogies in localized regions. To generate an approximate distribution 
 of waiting distances locally on a chromosome using simulation methods, 
 simulations generating a full probability distribution would have to be 
-run individually for each genealogy in a sequence. 
-This is not a tractable solution across long sequences of genealogies. 
+run individually for each genealogy in the sequence. 
+While possible across single, short segments, this is not a tractable solution across long 
+sequences of genealogies or across many replicates. 
 
 % importance to phylogenetics
 %By accounting for the genomic heterogeneity that is expected due to incomplete 
 %lineage sorting, t
-The multispecies coalescent model has facilitated the widespread 
-use of multilocus data for phylogenetic inference by accounting for genomic heterogeneity. 
-%However, the MSC does not consider autocorrelation along the genome due to linkage, and it assumes 
+While the multispecies coalescent model has facilitated the widespread 
+use of multilocus data for phylogenetic inference by accounting for genomic heterogeneity, 
+it does not consider autocorrelation along the genome due to linkage.
+%, and it assumes 
 %that each locus represents only a single genealogy. In reality, these assumptions might 
 %often be violated \citep{gatesy_concatenation_2013}. 
-As phylogenetic systematics 
-continues to turn toward whole genomes, methods should seek to extend the MSC to take advantage 
-of the increased resolution offered by genomic data. The traditional multispecies 
-coalescent model overlooks the process of recombination, assuming that loci 
-represent a single genetic history and that they are completely unlinked. In 
-reality, under a neutral model, species tree parameters and recombination 
-rates will influence the degree of genealogical turnover along a chromosome, 
-potentially resulting in linked loci and/or multiple genealogical topologies 
+%As phylogenetic systematics 
+%continues to turn toward whole genomes, methods should seek to extend the MSC to take advantage 
+%of the increased resolution offered by genomic data. 
+Specifically, the MSC overlooks the process of recombination, assuming that each locus 
+represents a single genetic history and that multiple loci are completely unlinked from one another. 
+From our results, and from previous work, we know that species tree parameters and recombination 
+rates will dictate the rate and magnitude of genealogical turnover along a chromosome, 
+potentially resulting in -- in some cases -- high linkage between loci, and 
+-- in other cases -- multiple genealogical topologies 
 per locus. Therefore, not accounting for recombination might mislead 
 summary statistics methods \citep{liu2010maximum,gatesy_concatenation_2013,zhang2018astral}. 
 Some methods bypass genealogy inference by operating directly on SNP 
 frequencies \citep{bryant2012inferring,chifman2014quartet,vachaspati2018svdquest}, 
-and therefore avoid bias from ignoring recombination. 
-To extend these methods and/or to improve gene-tree-based methods, 
+and therefore might largely avoid bias from ignoring recombination. 
+To extend these SNP-based methods and/or to improve gene-tree-based methods to better delimit gene tree breakpoints, 
 we propose that incorporating the rates of turnover observed in the data as 
 information could actually offer useful new information for inferring the species tree 
 model that generated it. 
