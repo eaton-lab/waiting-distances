@@ -2322,35 +2322,35 @@ by constraining the number and identity of available lineages and by determining
 the coalescence rate in each branch of the species tree. 
 These parameters also affect the rate of recombination events along the genome, since the 
 number of recombination events per base pair is dependent on the total branch 
-length of each underlying genealogy. By preventing coalescence between select lineages forward in time, 
+length of each underlying genealogy. By preventing coalescence between select lineages toward the present, 
 species tree divergence events enforce minimum branch lengths for the genealogies, 
 increasing the number of recombination events per base pair. Similarly, by affecting coalescence rates, variation in Ne 
 affects the per-base-pair recombination rate. This is because coalescences farther back in time 
-(expected to be more common if Ne is large)
+(which are expected to be more common if Ne is large)
 increase the total branch lengths of the genealogies.
 Topological and sampling parameters, including tree shape, tree size (i.e. number of tips), 
 and the distribution of samples among species tree 
-lineages, can also affect the expected distances until genealogy 
-changes. These factors all exert their influence via the same general mechanisms as above: affecting the 
+lineages, similarly affect the expected distances until genealogy 
+changes. These factors all exert their influence via the same general mechanisms as above: they affect the 
 probability of coalescence among certain lineages by constraining the availability of those lineages 
-for coalescence with each other within the species tree, and by influencing the 
-rate of recombination by affecting the total branch length of the genealogies. 
+for coalescence with each other, and they influence the 
+rate of recombination by affecting the total branch length of each genealogy. 
 Taken together, it is clear that the scale at which we observe neutral turnover across 
 genealogies is highly dependent on the species tree model. The potential 
-intricacy of this species tree model alongside potential variation in individual genealogies 
-can lead to genealogical turnover (and therefore, linkage) patterns that are highly complex. 
+intricacy of this species tree model alongside expected variation in individual genealogies 
+can lead to patterns of genealogical turnover (and therefore, linkage) that are highly complex. 
 %Because of low levels of incomplete lineage sorting, highly 
 %structured models might have much longer waiting distances than single-population models. 
 Previously, the expected linkage in phylogenetic datasets could only be computed 
 through exhaustive simulations (e.g., \citep{mckenzie_multispecies_2020}. While such methods
-are useful for estimating the \emph{mean} linkage across all genealogies under a 
+are practical for estimating the \emph{mean} linkage across all genealogies under a 
 specific demographic model, they are less helpful for estimating the 
 persistence of \emph{individual} genealogies in localized regions. To generate an approximate distribution 
 of waiting distances locally on a chromosome using simulation methods, 
-simulations generating a full probability distribution would have to be 
+simulations generating a full probability distribution must be 
 run individually for each genealogy in the sequence. 
-While possible across single, short segments, this is not a tractable solution across long 
-sequences of genealogies or across many replicates. 
+Although this is benign across single, short segments, it is not a tractable solution across long 
+sequences of genealogies and/or across many replicates. 
 
 % importance to phylogenetics
 %By accounting for the genomic heterogeneity that is expected due to incomplete 
