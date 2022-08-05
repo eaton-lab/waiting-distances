@@ -2136,21 +2136,22 @@ distances between events in an ARG proposed from sequence data.
 
 Given one or more ARGs each composing a sequence of genealogies 
 G = ($\mathcal{G}_1, \mathcal{G}_2, ..., \mathcal{G}_n$) and 
-interval lengths X = ($x_1, x_2, ..., x_n$), a subset of genealogies 
-can be extracted representing each tree-change event, e.g., 
-$G_g$ = ($\mathcal{G}_1, \mathcal{G}_i, ...$). The lengths of intervals 
-between these events can be summed as tree-change waiting distances
-X$_g$ = ($\sum_{i=1}^j X_i, \sum_{i=j}^{k} X_i, ..., $). The same could be 
+their interval lengths in the genome X = ($x_1, x_2, ..., x_n$), a subset 
+of genealogies can be extracted representing unique genealogies between 
+tree-change events, $G_g$ = ($\mathcal{G}_1, \mathcal{G}_i, ...$). The lengths 
+between these events can be summed to get tree-change waiting distances
+X$_g$ = ($\sum_{i=1}^j x_i, \sum_{i=j}^{k} x_i, ..., $). The same could be 
 done for topology-change events. Then, given a parameterized species 
 tree $\mathcal{S}$ and recombination rate $r$ we can obtain a sequence of 
-exponential rate parameters $\Lambda_g = (\lambda_1, \lambda_i, ...)$
-from equations 10 or 14. 
-The likelihood of each waiting distance (X$_g$) between tree or topology change
-events can then be calculated from each exponential probability density
-function (equation 8) parameterized by the sequence of rate parameters 
-($\Lambda_g$). The set of species tree parameters that maximize the 
-summed log-likelihood of all observed distances between events is the 
-maximum likelihood solution.
+exponential rate parameters $\Lambda_g = (\lambda_1, \lambda_i, ...)$ for
+each genealogy from equations 10 or 14. 
+The likelihood of each observed waiting distance (X$_g$) between tree or
+topology change events can then be calculated from a series of exponential 
+probability density functions (equation 8) parameterized by their 
+corresponding rate parameters ($\Lambda_g$). 
+The set of MSC model parameters -- which affect $\Lambda_g$ -- 
+that maximize the summed log-likelihood of all observed distances 
+between recombination events represents the maximum likelihood solution.
 
 We first implemented this approach for a simple two-population model with 
 constant $N_e$=200K and a population divergence at 500K generations. 
@@ -2167,27 +2168,58 @@ likelihood surface exhibited a distinct peak at the true values
 (Fig.~\ref{fig:fig-likelihood}c). The summed log-likelihoods from both tree 
 and topology change distances provided the most informative likelihood surface
 (Fig.~\ref{fig:fig-likelihood}d).
-We also inferred a likelihood surface for a misspecified model, representing a 
-single population with constant $N_e$. In this case, the $\Lambda_g$ rate 
-parameters are calculated without enforcing a population split.
-This clearly introduces a significant bias in estimation, shifting the 
-likelihood surface towards lower $r$ and higher $N_e$. This demonstrates that even 
+We also inferred a likelihood surface for a misspecified model, in which 
+the genealogies were generated under a 2-population model, but 
+the $\Lambda_g$ rate parameters were calculated for a single population 
+model with constant $N_e$. Model misspecification introduces a significant 
+bias in parameter estimation, shifting the likelihood surface towards lower $r$ 
+and higher $N_e$ (Fig.~\ref{fig:fig-likelihood}e). This demonstrates that even 
 for a simple two population model, ignoring population structure can significantly
 bias spatial genealogical inference methods.
 
-\hl{Add paragraph about variable $N_e$ model.}
 \begin{figure}[t]
 	\centering
 	%\fbox{\rule[-.5cm]{4cm}{4cm} \rule[-.5cm]{4cm}{0cm}}
 	\includegraphics[width=0.55\textwidth]{figures/likelihood-posteriors.pdf}
 	\caption{
-		MS-SMC' likelihood framework. 
-		ARGs were simulated under a two-population species tree model with variable 
-		$N_e$. (e) A joint posterior distribution of $N_e$ parameters inferred 
-		by Bayesian MCMC from tree and topology-change waiting distances.
+		Joint inference of MSC model parameters using waiting distances 
+		calculated under the MS-SMC'. (a) ARGs were simulated under a two-population 
+		MSC model with variable $N_e$. (b) Posterior distributions of $N_e$ values 
+		inferred for three populations from tree and topology-change waiting 
+		distances.
 	}
 	\label{fig:fig-likelihood-posterior}
 \end{figure}
+
+To examine the accuracy of MSC parameter inference on more complex 
+models, we implemented a Metropolis-Hastings Markov chain Monte Carlo 
+(MCMC) algorithm to infer Bayesian posterior distributions of MSC model 
+parameters under a 2-population model with variable $N_e$ 
+(Fig.~\ref{fig:fig-likelihood-posterior}a).
+The input ARGs were simulated using the same settings as above, 
+but under this more complex MSC model, and in this case, 
+we sampled 8 haplotypes per population. We set a uniform prior on 
+$N_e$ between 1e$^2$-1e$^7$, and ran the MCMC chain to sample 
+10K values, sampling every 5th iteration following a 1K iteration 
+burnin. For simplicity, we fixed the population divergence time to 
+the correct value of 500K to focus solely on $N_e$ estimation. 
+
+The resulting maximum \emph{a posteriori} probability estimates of 
+model parameters are highly accurate, all falling within 0.5 
+standard deviations of the true values 
+(Fig.~\ref{fig:fig-likelihood-posterior}b). 
+This result is encouraging, considering that it may be possible, under
+some MSC models, for many different parameter combinations to yield 
+similar waiting distance expectations, which could cause identifiability
+issues. However, by combining information from both tree and topology 
+waiting distances this problem may be reduced. Our results suggest 
+that MSC model parameters can be identifiable from genealogical 
+waiting distances, at least for relatively simple models like the ones
+examined here, but further theoretical and empirical work will be needed
+to explore this issue in greater detail.
+% Anecdotally, we found that using multiple independent ARGs improves 
+% the accuracy of this joint inference method compared to a single 
+% larger ARG. This suggests that ...
 
 
 % MSC model parameters can predict waiting distances, we can also perform the 
@@ -3307,17 +3339,18 @@ representing the lower bounds of $b$ and $b'$, respectively.
 In our MSC-based model we must also incorporate potential 
 constraints imposed by population barriers, and so $t_b^m$ occurs at 
 the maximum of $t_b^l$, $t_{b'}^l$, and any population divergence 
-events ($W$) that separate $b$ and $b'$ (Fig.~\ref{fig:figS-tbm}a-c).
+events that separate $b$ and $b'$ (Fig.~\ref{fig:figS-tbm}a-c).
 
 
 \begin{figure}[t]
 	\centering
 	\includegraphics[width=0.95\textwidth]{figures/FigS-tbm.pdf}
 	\caption{
-		To calculate the probability that recombination on a genealogy branch
-		($b$) leads to a topology change involves summing over the probabilities 
-		that a detached lineage does not re-coalesce with either
-		itself ($b$), its sibling ($b'$) or its parent ($c$) branches. At the time 
+		To calculate the probability that recombination on genealogy branch 
+		$b$ leads to a topology change involves summing over the probabilities 
+		that the detached lineage does not re-coalesce with either
+		itself, its sibling, or its parent ($b$, $b'$ or $c$, respectively). 
+		At the time 
 		recombination occurs ($t_r$) the branches $b$ and $b'$ can either exist 
 		in different species tree intervals (a) or the same interval (b). This 
 		restricts the probability of tree-change outcomes (e.g., shortened coalescent 
