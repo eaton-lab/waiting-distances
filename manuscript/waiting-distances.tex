@@ -2740,9 +2740,11 @@ bias than a single population model from this effect.
 
 \subsection{Notation}
 
-Information from the genealogy embedding table can be used to calculate the 
+Information from the genealogy embedding table (described in the following paragraph) can be used 
+in equations that 
+calculate the 
 probabilities of no-change, tree-change, and topology-change events under the 
-MS-SMC'. These equations, described below, use the terms defined in 
+MS-SMC'. These equations, described throughout rest of the Appendix, use the terms defined in 
 Table~\ref{tab:table-notation}. 
 % What is a species tree
 A parameterized species tree, $\mathcal{S}$, is a multispecies coalescent 
@@ -2814,17 +2816,19 @@ event separating them.
 Given a genealogy embedded in a species tree, a series of discrete
 time intervals can be defined that are delimited 
 by events that change the rate of coalescence. 
-We refer to this as a genealogy embedding table (e.g., Table~\ref{tab:table-1}). 
+We refer to this 
+set of discrete time intervals and their associated properties
+as a genealogy embedding table (e.g., Table~\ref{tab:table-1}). 
 In the waiting distance solutions for a single population with constant $N_e$ 
 by \citet{deng_distribution_2021}, this table is delimited only by coalescent 
 events, and the intervals are non-overlapping. 
 Because N$_e$ is constant in their framework, only $k$ differs between 
-intervals, and this determines differences in rates of coalescence, 
-which decrease in subsequent intervals from the tips towards the root. 
+intervals. Therefore, changes in $k$ alone determine differences in rates of coalescence, 
+with $k$ decreasing monotonically in subsequent intervals from the tips towards the root. 
 Our approach is similar, but adds additional complexity (Fig.~\ref{fig:fig1}). 
 In the multispecies framework, genealogy embedding intervals are specific to each 
-species tree branch, and correspond to time intervals with a constant 
-$k$ and $N_e$ in any species tree interval. 
+species tree branch, with each one corresponding to a time interval with a constant 
+$k$ and $N_e$ in a specific species tree branch. 
 Breakpoints between intervals arise where divergences 
 occur in the species tree (increasing $k$ and potentially changing $N_e$) 
 and where coalescent events occur in the genealogy (reducing $k$). 
@@ -2833,7 +2837,7 @@ branches can overlap in time.
 
 Each branch on $\mathcal{G}$ will span one or more genealogy embedding 
 intervals. The ordered set of intervals on a specific branch, $b$, is 
-defined as $\mathcal{I}_b$. The lower and upper bound of each interval is 
+defined as $\mathcal{I}_b$. The lower and upper time bounding each interval is 
 $\sigma_x$ and $\mu_x$, respectively, where $x$ is the index of the 
 interval in the genealogy embedding table. The lower and upper bounds of
 each branch are defined as $t_b^l$ and $t_b^u$, respectively. 
@@ -2905,7 +2909,7 @@ each branch are defined as $t_b^l$ and $t_b^u$, respectively.
 The probabilities of different recombination event types under the 
 MS-SMC' are calculated from the probability that recombination occurs on 
 a specific branch and the probabilities that the resulting detached 
-subtree re-coalesces with any other available branch above that time. 
+subtree subsequently re-coalesces with any other available branch above that time. 
 The opportunity for recombination to occur on a branch is scaled by 
 its length in generations ($t_b^u$ - $t_b^l$). Similarly, the 
 probability of re-coalescence on a branch is scaled by its length
@@ -2931,8 +2935,8 @@ similar to equations 1-2.
 
 The probability that a tree is unchanged by a recombination event -- meaning that 
 no coalescent times are changed -- is the probability that the detached subtree 
-re-coalesces with the same branch it detached from. Thus, we can integrate over the
-length from the time of recombination ($t_r$) to the top of the branch ($t_b^u$), the 
+re-coalesces with the same branch it detached from. Thus, we can integrate 
+from the time of recombination ($t_r$) to the top of the branch ($t_b^u$) over the 
 probability of sampling the same branch times the exponential probability density
 of re-coalescing at any time on that branch above the time of recombination 
 ($\tau - t_r$). We take this integral with respect to $\tau$, where 
