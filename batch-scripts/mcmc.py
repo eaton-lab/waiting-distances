@@ -5,6 +5,7 @@
 """
 
 from typing import Tuple, Dict
+from abc import ABC, abstractmethod
 import argparse
 import time
 from pathlib import Path
@@ -15,38 +16,38 @@ import ipcoal
 import toytree
 from numba import set_num_threads
 from loguru import logger
-import arviz as az
 
-from ipcoal.smc import get_genealogy_embedding_table
-from ipcoal.smc.likelihood.likelihood2 import (
-    get_data,
-    get_tree_distance_loglik
-)
+# optional. If installed the ESS will be printed.
+try:
+    import arviz as az
+except ImportError:
+    pass
+
 
 logger = logger.bind(name="ipcoal")
 
 
-class Mcmc:
+class Mcmc(ABC):
     """A custom Metropolis-Hastings sampler."""
     def __init__(
         self,
         recomb: float,
         lengths: np.ndarray,
-        data: Tuple[np.ndarray, np.ndarray, np.ndarray],
+        embedding: ipcoal.smc.likelihood.Embedding,
         priors: Tuple[int, int],
         init_params: np.ndarray,
         seed: int,
-        jumpsize: int,
+        # jumpsize: int,
         outpath: Path,
         ):
         # store the inputs
         self.recomb = recomb
         self.lengths = lengths
-        self.data = data
+        self.embedding = embedding
         self.priors = np.array([priors[0]] * len(init_params)), np.array([priors[1]] * len(init_params))
-        self.params = init_params
+        self.params = np.array(init_params)
         self.rng = np.random.default_rng(seed)
-        self.jumpsize = jumpsize
+        self.jumpsize = 20_000 #self.params * 0.125
         self.outpath = outpath
         assert self.prior_uniform(self.params), "starting values are outside priors."
 
@@ -54,7 +55,8 @@ class Mcmc:
         """Jitters the current params to new proposal values."""
         return self.rng.normal(self.params, scale=self.jumpsize)
 
-    def acceptance(self, old: float, new: float) -> bool:
+    @classmethod
+    def acceptance(cls, old: float, new: float) -> bool:
         """Return boolean for whether to accept new proposal params."""
         if np.isnan(new):
             accepted = 0
@@ -63,15 +65,9 @@ class Mcmc:
         logger.debug(f"old={old:.2f}, new={new:.2f}, accepted={accepted:.2f}")
         return accepted
 
+    @abstractmethod
     def log_likelihood(self, params) -> float:
         """Return log-likelihood of the data (lengths, edicts) given the params."""
-        return get_tree_distance_loglik(
-            params,
-            recomb=self.recomb,
-            lengths=self.lengths,
-            embedding_arr=self.data[0],
-            blen_arr=self.data[1],
-            sumlen_arr=self.data[2])
 
     def prior_uniform(self, params: np.ndarray) -> float:
         """Return prior loglikelihood. Uniform priors return 1 if inside bounds, else inf."""
@@ -109,6 +105,7 @@ class Mcmc:
         sidx = 0
         its = 0
         acc = 0
+        pidx = 0
         while 1:
 
             # propose new params
@@ -142,7 +139,7 @@ class Mcmc:
                     elapsed = timedelta(seconds=int(time.time() - start))
                     stype = "sample" if idx > burnin else "burnin"
                     logger.info(
-                        f"{idx}\t{sidx}\t"
+                        f"{idx:>4}\t{sidx:>4}\t"
                         f"{new_loglik:.3f}\t"
                         f"{self.params.astype(int)}\t"
                         f"{acc/its:.2f}\t"
@@ -150,22 +147,25 @@ class Mcmc:
                     )
 
                 # save to disk and print summary every 1K sidx
-                if not idx % 100:
-                    if sidx and (not sidx % 100):
-                        np.save(self.outpath, posterior[:sidx])
-                        logger.info("checkpoint saved.")
-                        logger.info(f"MCMC current posterior mean={posterior[:sidx].mean(axis=0).astype(int)}")
-                        logger.info(f"MCMC current posterior std ={posterior[:sidx].std(axis=0).astype(int)}")
+                if sidx and (not sidx % 100) and sidx != pidx:
+                    np.save(self.outpath, posterior[:sidx])
+                    logger.info("checkpoint saved.")
+                    logger.info(f"MCMC current posterior mean={posterior[:sidx].mean(axis=0).astype(int)}")
+                    logger.info(f"MCMC current posterior std ={posterior[:sidx].std(axis=0).astype(int)}")
 
+                    # print mcmc if optional pkg arviz is installed.
+                    if sys.modules.get("arviz"):
                         ess_vals = []
                         for col in range(posterior.shape[1]):
                             azdata = az.convert_to_dataset(posterior[:sidx, col])
                             ess = az.ess(azdata).x.values
                             ess_vals.append(int(ess))
                         logger.info(f"MCMC current posterior ESS ={ess_vals}\n")
+                    pidx = sidx
 
-                # adjust jumpsize every 100 during burnin
-                # if 100 < idx < burnin:
+                # adjust tuning of the jumpsize during burnin
+                #if idx < burnin:
+                #    self.jumpsize = self.params * 0.2
                 #     if not idx % 100:
                 #         if acc/its < 44:
                 #             self.jumpsize += 1000
@@ -180,6 +180,45 @@ class Mcmc:
         return posterior
 
 
+class McmcTree(Mcmc):
+    def log_likelihood(self, params) -> float:
+        """Return log-likelihood of the data (lengths, edicts) given the params."""    
+        return ipcoal.smc.likelihood.get_tree_distance_loglik(
+            embedding=self.embedding,
+            params=params,
+            recomb=self.recomb,
+            lengths=self.lengths
+        )
+
+class McmcTopology(Mcmc):
+    def log_likelihood(self, params) -> float:
+        """Return log-likelihood of the data (lengths, edicts) given the params."""
+        return ipcoal.smc.likelihood.get_topology_distance_loglik(
+            embedding=self.embedding,
+            params=params,
+            recomb=self.recomb,
+            lengths=self.lengths
+        )
+
+class McmcCombined(Mcmc):
+    def log_likelihood(self, params) -> float:
+        """Return log-likelihood of the data (lengths, edicts) given the params."""    
+        loglik0 = ipcoal.smc.likelihood.get_tree_distance_loglik(
+            embedding=self.embedding[0],
+            params=params,
+            recomb=self.recomb,
+            lengths=self.lengths[0],
+        )
+        loglik1 = ipcoal.smc.likelihood.get_topology_distance_loglik(
+            embedding=self.embedding[1],
+            params=params,
+            recomb=self.recomb,
+            lengths=self.lengths[1],
+        )
+        return loglik0 + loglik1
+
+
+
 def simulate_and_get_embeddings(
     sptree: toytree.ToyTree,
     params: Dict[str, int],
@@ -187,7 +226,8 @@ def simulate_and_get_embeddings(
     nsites: int,
     recomb: float,
     seed: int,
-    ) -> Tuple:
+    data_type: str,
+    ) -> Tuple[np.ndarray, ipcoal.smc.likelihood.Embedding]:
     """Simulate a tree sequence, get embedding info, and return.
     """
     # set Ne values on species tree
@@ -205,9 +245,6 @@ def simulate_and_get_embeddings(
     # generate a tree sequence and store to a table
     model.sim_trees(nloci=1, nsites=nsites)
 
-    # get lengths for every genealogy
-    lengths = model.df.nbps.values
-
     # load genealogies
     genealogies = toytree.mtree(model.df.genealogy)
 
@@ -215,13 +252,25 @@ def simulate_and_get_embeddings(
     logger.info(f"loading genealogy embedding table for {len(genealogies)} genealogies.")
 
     # get cached embedding tables
-    etables = [get_genealogy_embedding_table(model.tree, i, imap) for i in genealogies]
-
-    # get combined arrays of embedding data
-    earr, barr, sarr = get_data(etables)
-
+    if data_type == "tree":
+        lengths = model.df.nbps.values
+        edata = ipcoal.smc.likelihood.TreeEmbedding(model.tree, genealogies, imap)
+    elif data_type == "topology":
+        lengths = ipcoal.smc.likelihood.get_topology_interval_lengths(model)
+        logger.info(f"embedding includes {len(lengths)} sequential topology changes.")        
+        edata = ipcoal.smc.likelihood.TopologyEmbedding(model.tree, genealogies, imap)
+    elif data_type == "combined":
+        lengths0 = model.df.nbps.values
+        edata0 = ipcoal.smc.likelihood.TreeEmbedding(model.tree, genealogies, imap)
+        lengths1 = ipcoal.smc.likelihood.get_topology_interval_lengths(model)
+        edata1 = ipcoal.smc.likelihood.TopologyEmbedding(model.tree, genealogies, imap)
+        logger.info(f"embedding includes {len(lengths)} sequential topology changes.")                
+        lengths = [lengths0, lengths1]
+        edata = [edata0, edata1]
+    else:
+        raise TypeError(f"data_type {data_type} arg not recognized: should be tree, topology, or combined.")
     # return all data
-    return lengths, earr, barr, sarr
+    return lengths, edata
 
 
 def get_species_tree(
@@ -250,8 +299,10 @@ def main(
     mcmc_sample_interval: int,
     mcmc_print_interval: int,
     mcmc_burnin: int,
-    mcmc_jumpsize: int,
+    # mcmc_jumpsize: int,
     force: bool,
+    data_type: str,
+    *args,
     **kwargs,
     ) -> None:
     """Run the main function of the script.
@@ -277,12 +328,13 @@ def main(
     sptree = get_species_tree(ntips, root_height)
 
     # convert params to dict
-    params = {i: params[i] for i in range(sptree.nnodes)}
+    params = np.array(params)
+    params_dict = {i: params[i] for i in range(sptree.nnodes)}
 
     # simulate genealogies under MSC topology and parameters
     # and get the ARG and embedding data.
-    lengths, earr, barr, sarr = simulate_and_get_embeddings(
-        sptree, params, nsamples, nsites, recomb, seed)
+    args = (sptree, params_dict, nsamples, nsites, recomb, seed, data_type)
+    lengths, edata = simulate_and_get_embeddings(*args)
 
     # initial random params
     init_params = np.repeat(5e5, len(params))
@@ -299,16 +351,24 @@ def main(
     #     logger.info(f"restarting from checkpoint (samples={nsampled})")
 
     # init MCMC object
-    mcmc = Mcmc(
+    if data_type == "tree":
+        mcmc_tool = McmcTree
+    elif data_type == "topology":
+        mcmc_tool = McmcTopology
+    else:
+        mcmc_tool = McmcCombined
+
+    mcmc = mcmc_tool(
         recomb=recomb,
         lengths=lengths,
-        data=(earr, barr, sarr),
+        embedding=edata,
         priors=(1e2, 2e6),
         init_params=init_params,
-        jumpsize=mcmc_jumpsize,
+        # jumpsize=mcmc_jumpsize,
         seed=seed,
         outpath=outpath,
     )
+    logger.info(f"log-likelihood of true params ({params}): {mcmc.log_likelihood(params):.3f}")
 
     # run MCMC chain
     posterior = mcmc.run(
@@ -334,7 +394,7 @@ def command_line():
     parser.add_argument(
         '--root-height', type=float, default=1e6, help='Root height of species tree.')
     parser.add_argument(
-        '--params', type=float, default=[100_000, 200_000, 300_000], nargs="*", help='True Ne values used for simulated data.')
+        '--params', type=float, default=[200_000, 200_000, 200_000], nargs="*", help='True Ne values used for simulated data.')
     parser.add_argument(
         '--recomb', type=float, default=2e-9, help='Recombination rate.')
     parser.add_argument(
@@ -342,39 +402,41 @@ def command_line():
     parser.add_argument(
         '--nsamples', type=int, default=4, help='Number of samples per species lineage')
     parser.add_argument(
-        '--seed', type=int, default=123, help='Random number generator seed')
+        '--seed', type=int, default=666, help='Random number generator seed')
     parser.add_argument(
-        '--name', type=str, default='test', help='Prefix path for output files')
+        '--name', type=str, default='smc', help='Prefix path for output files')
     parser.add_argument(
-        '--mcmc-nsamples', type=int, default=300, help='Number of samples in posterior')
+        '--mcmc-nsamples', type=int, default=1000, help='Number of samples in posterior')
     parser.add_argument(
-        '--mcmc-sample-interval', type=int, default=2, help='N accepted iterations between samples')
+        '--mcmc-sample-interval', type=int, default=10, help='N accepted iterations between samples')
     parser.add_argument(
-        '--mcmc-print-interval', type=int, default=5, help='N accepted iterations between printing progress')
+        '--mcmc-print-interval', type=int, default=10, help='N accepted iterations between printing progress')
     parser.add_argument(
-        '--mcmc-burnin', type=int, default=50, help='N accepted iterations before starting sampling')
+        '--mcmc-burnin', type=int, default=100, help='N accepted iterations before starting sampling')
     parser.add_argument(
-        '--threads', type=int, default=7, help='Max number of threads (0=all detected)')
+        '--threads', type=int, default=4, help='Max number of threads (0=all detected)')
     parser.add_argument(
         '--force', type=bool, default=True, help='Overwrite existing file w/ same name.')
-    parser.add_argument(
-        '--mcmc-jumpsize', type=int, default=30_000, help='MCMC jump size.')
+    # parser.add_argument(
+        # '--mcmc-jumpsize', type=float, default=[10_000, 20_000, 30_000], nargs="*", help='MCMC jump size.')
     parser.add_argument(
         '--log-level', type=str, default="INFO", help='logger level (DEBUG, INFO, WARNING, ERROR)')
+    parser.add_argument(
+        '--data-type', type=str, default="tree", help='tree, topology, or combined')
     return parser.parse_args()
 
 
 if __name__ == "__main__":
 
     # get command line args
-    args = command_line()
+    cli_args = command_line()
 
     # set logger
-    ipcoal.set_log_level(args.log_level)
+    ipcoal.set_log_level(cli_args.log_level)
 
     # limit n threads
-    if args.threads:
-        set_num_threads(args.threads)
+    if cli_args.threads:
+        set_num_threads(cli_args.threads)
 
     # run main
-    main(**vars(args))
+    main(**vars(cli_args))

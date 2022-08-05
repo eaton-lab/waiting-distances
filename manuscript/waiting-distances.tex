@@ -22,6 +22,7 @@
 \usepackage{color}
 \usepackage{soul}
 \usepackage{mathtools}
+\usepackage{pdflscape}
 
 \usepackage{amsmath}
 \usepackage{amsfonts}       % blackboard math symbols
@@ -39,11 +40,15 @@
 
 % restart counting in the supplement
 \newcommand{\beginsupplement}{%
-        \setcounter{table}{0}
-        \renewcommand{\thetable}{S\arabic{table}}%
-        \setcounter{figure}{0}
-        \renewcommand{\thefigure}{S\arabic{figure}}%
-     }
+	\setcounter{table}{0}
+	\setcounter{figure}{0}
+	% \setcounter{section}{0}
+	% \setcounter{subsection}{0}	
+	\renewcommand{\thetable}{S\arabic{table}}%
+	\renewcommand{\thefigure}{S\arabic{figure}}%
+	% \renewcommand{\thesection}{S\arabic{section}}%
+	% \renewcommand{\thesubsection}{S\arabic{section}.\arabic{subsection}}%          
+}
 
 %%% Add PDF metadata to help others organize their library
 %%% Once the PDF is generated, you can check the metadata with
@@ -78,7 +83,7 @@
 \end{center}
 
 % keywords can be removed
-Keywords: Recombination, Phylogeny, SMC, Geneealogy, Species Tree, Concatalescence, ARG
+Keywords: Recombination, Phylogeny, SMC, Gene Tree, Species Tree, Concatalescence, ARG
 
 \RaggedRight
 
@@ -99,8 +104,9 @@ result, in terms of the expected distribution of waiting distances between
 changes in genealogical trees, and topologies, for multiple structured populations
 with branch-specific effective population sizes (i.e., under the multispecies 
 coalescent). Our solutions establish an expectation for genetic linkage  
-in multispecies datasets, and provide a new likelihood framework for 
-fitting species tree models. % to genome alignments.
+in multispecies datasets, and provide a new likelihood framework for linking
+demographic models with local ancestry inference across genomes.
+% ARG inference.fitting species tree models. % to genome alignments.
 
 \section{Introduction}
 
@@ -111,7 +117,7 @@ The multispecies coalescent (MSC) is an extension of the coalescent
 histories among gene copies from a set of sampled individuals. Whereas the 
 coalescent models a single panmictic population, the MSC includes constraints that prevent 
 samples from different lineages from sharing a most recent genealogical ancestor until prior
-to a species divergence event that separates them \citep{maddison1997gene,maddison2006inferring}. 
+to a population divergence event that separates them \citep{maddison1997gene,maddison2006inferring}. 
 Conceptually, the MSC can be viewed as a piecewise model composed of the standard
 coalescent applied to each interval of a "species tree", representing the relationships
 and divergence times among isolated lineages. Genealogies are constrained to be
@@ -126,7 +132,7 @@ distribution of sampled genealogies
 % genealogies must be embedded 
 % Consider referencing a panel of a figure here to show genealogical embedding.
 \citep{rannala2003bayes,degnan2009gene}. In both the coalescent
-and MSC models, effective population size (Ne) is the key parameter determining 
+and MSC models, effective population size (N$_e$) is the key parameter determining 
 the rate of coalescence, and can vary among different lineages. 
 % which can vary over time and/or among different lineages. 
 
@@ -138,17 +144,19 @@ the rate of coalescence, and can vary among different lineages.
 	\centering
 	\includegraphics[width=0.99\textwidth]{figures/Fig1-embedding-and-probs-fill.pdf}
 	\caption{
-		The effect of recombination on a genealogy embedded in a species tree
-		can be modeled using the MS-SMC'. 
+		The MS-SMC' models the probability of different outcomes of recombination
+		given a genealogy embedded in a species tree (MSC model).
+		% The probability of different outcomes of recombination occurring on a 
+		% genealogy embedded in a species tree can be modeled using the MS-SMC'. 
 		% A genealogy embedded in a species tree exhibits different probabilities
 		% of outcomes of recombination, when viewed backwards in time, depending on 
 		% the timing and branch on which recombination occurs.
-		(a) A parameterized MSC model is composed of discrete intervals separated 
-		by population divergence events ($W$), where the rate of coalescence can vary
-		among intervals with different effective population sizes. The expected waiting
-		time between coalescence events (e.g., $t_9$--$t_{10}$) is a product of these
-		rates and the number of samples present, such that a table can be constructed of
-		discrete intervals with constant rates (see Table 1). 
+		(a) A parameterized MSC model is composed of multiple discrete intervals that
+		can each have different effective population sizes ($N_e$) and are separated 
+		by population divergence events ($W$). Given a genealogy embedded in an MSC
+		model, each interval can be further divided by the occurrence of a coalescence
+		event (e.g., $t_9$), to yield intervals of a genealogy embedding table, where 
+		the coalescent rate is constant within each interval (see Table 1).
 		% varies with respect to
 		% changing rates of coalescence, as well the number of samples present at any time.
 		% such that the an 
@@ -160,15 +168,18 @@ the rate of coalescence, and can vary among different lineages.
 		% by the rate of coalescence and the number of samples present.
 		% reduce the number of samples present in an interval, whereas population 
 		% divergence events (e.g., $W_{AB}$) increase the number in the subsequent interval.
-		A recombination event occurring on a branch of a genealogy can cause
-		three possible outcomes (b-d): "no change", "tree change", or "topology 
-		change", and each branch exhibits piecewise variation in these 
-		probabilities across discrete intervals. We derive solutions for 
-		the relative probabilities of these outcomes in the main text by 
-		integrating over the lengths of each branch in a genealogy. 
-		Probabilities were calculated here for three selected branches as a 
-		function of the time at which recombination occurs ($t_r$), given the 
-		parameters in Table~S2 applied to the MSC model in (a).
+		(b-d) A recombination event can occur on any branch of a genealogy to cause one
+		of three possible outcomes: "no-change", "tree-change", or 
+		"topology-change". The probabilities of each event type can be calculated under
+		the MS-SMC' given an MSC model and embedded genealogy. Here, these
+		probabilities are visualized for three branches as a function of the time 
+		($t_r$) and branch on which recombination occurs.
+		% Each branch exhibits piecewise variation in these 
+		% probabilities across discrete intervals. 
+		% % We derive a solution for calculating these probabilities in the text. 
+		% Probabilities were calculated here for three selected branches as a 
+		% function of the time at which recombination occurs ($t_r$), given the 
+		% MSC model in (a) with parameters from Table~S2.% applied to the MSC model in (a).
 	% 	divergence times ($W$) define ancestral populations. The population 
 	% structure constrains which lineages of the genealogy can coalesce. Further, each 
 	% population which can have a different effective population size ($N_b$),
@@ -190,6 +201,7 @@ the rate of coalescence, and can vary among different lineages.
 \end{figure}
 
 
+
 Importantly, both the coalescent and MSC are models of the expected distribution of 
 \emph{unlinked} (uncorrelated) genealogies.
 %(non-autocorrelated) genealogies. % sampled from throughout the genome. 
@@ -197,24 +209,31 @@ By contrast, two linked genealogies that are drawn from nearby regions of a geno
 are expected to be more similar than two random draws under these models. This spatial 
 autocorrelation is a consequence of shared ancestry among samples at nearby regions, 
 which decays over time and distance as recombination events reduce their shared ancestry.
-This process can be approximated by randomly detaching an edge on a genealogy and sampling
-a waiting time (based on the lineage effective population size) until it reconnects
-to the genealogy at a different shared ancestor (Fig.~\ref{fig:figS-recomb-types}). 
-In this way, the coalescent with recombination 
-can be viewed as a process 
-where a set of samples at the present substitutes one ancestor for another on 
-either side of a recombination breakpoint. 
-% \citep{wiuf_recombination_1999}. 
-As a data structure, the spatial pattern of linked genealogies spanning
-intervals between recombination breakpoints can be represented either as an 
-ancestral recombination graph (ARG)
-\citep{griffiths_ancestral_1996} or tree-sequence \citep{kelleher2016efficient}
-(hereafter we will refer to it generically as an ARG; Fig.~\ref{fig:fig2}).
+% This process can be approximated by randomly detaching an edge on a genealogy and sampling
+% a waiting time (based on the lineage effective population size) until it reconnects
+% to the genealogy at a different shared ancestor.
+%  % (Fig.~\ref{fig:figS-recomb-types}). # Fig S1 shows the SMC' whereas here we are 
+%  % referring simply to the coalescent-with-recomb process.
+% In this way, the coalescent with recombination 
+% can be viewed as a spatial process 
+% where a set of samples at the present substitutes one ancestor for another on 
+% either side of a recombination breakpoint \citep{wiuf_recombination_1999}. 
+% ADD THIS: \url{https://www.sciencedirect.com/science/article/pii/S0040580914000033}
+As a data structure, an ordered series of linked genealogies and the lengths of 
+their associated intervals on a chromosome (Fig.~\ref{fig:fig2}) is represented 
+by an ancestral recombination graph (ARG)
+\citep{griffiths_ancestral_1996}, or similarly, a tree-sequence 
+\citep{kelleher2016efficient}
+(hereafter we will refer to it generically as an ARG).
 
-An algorithm to simulate the coalescent with recombination was developed 
-early on 
-% shortly after the coalescent
-\citep{hudson1983properties}
+% As a data structure, the spatial pattern of linked genealogies spanning
+% intervals between recombination breakpoints can be represented either as an 
+% ancestral recombination graph (ARG)
+% \citep{griffiths_ancestral_1996} or tree-sequence \citep{kelleher2016efficient}
+% (hereafter we will refer to it generically as an ARG; Fig.~\ref{fig:fig2}).
+
+An algorithm to stochastically simulate sequences under the coalescent with 
+recombination was developed early on \citep{hudson1983properties}, 
 % , however only with recent advances has it become 
 % tractable to scale such simulations to larger, genome-wide scales 
 % \citep{kelleher2016efficient}. 
@@ -225,7 +244,7 @@ early on
 %This includes 
 % the a inference of 
 %coalescent times on 
-as a method for stochastically generating ARGs.
+% as a method for stochastically generating ARGs.
 % yielding 
 % a distribution of linked genealogies associated with intervals
 % between recombination breakpoints across a genome.
@@ -235,17 +254,29 @@ as a method for stochastically generating ARGs.
 % brakpoints across the genome where recombination occurred.
 % (i.e., "waiting distances").
  % between genealogies).
-Implicit to this process is an assumption that recombination 
-occurs at some predictable rate from which the expected waiting 
-distance between recombination events can be modeled as an exponentially 
-distributed random variable. 
+and later extended as a spatial algorithm for stochastically generating full 
+ARGs \citep{wiuf_recombination_1999}. 
+This process models the difference between sequential genealogies by 
+randomly detaching an edge from a genealogy and sampling
+a waiting time (based on the population coalescent rate) until it reconnects
+to the genealogy at a different shared ancestor.
+Thus, under this spatial model, a set of samples effectively substitutes
+one ancestor for another on either side of each recombination breakpoint.
+% Under this spatial model, the coalescent with recombination can thus 
+% be viewed as a process where a set of samples at the present substitutes one 
+% ancestor for another on either side of a recombination breakpoint 
+% \citep{wiuf_recombination_1999}. 
+Implicit to this algorithm is the assumption that recombination 
+occurs at some predictable rate (or rate map) from which the expected 
+waiting distance between recombination events can be modeled as an 
+exponentially distributed random variable \citep{wiuf_recombination_1999}.
 % (we will refer to ARGs hereafter; Fig. S1).
 % While our ability to simulate the coalescent with recombination has made substantial progress, likelihood-based inference of recombination events and coalescent times (that is, the ancestral recombination graph -- "ARG") is notoriously difficult \citep{griffiths_ancestral_1996}. 
 % Unfortunately, although 
 Although generating ARGs consistent with a demographic model is 
-relatively simple, inferring an ARG from sequence data -- composing  
-recombination breakpoints and local genealogy inferences -- remains highly 
-challenging.
+relatively simple under this process, inferring an ARG from sequence data 
+-- composing a set of recombination breakpoints and local genealogy inferences -- 
+remains highly challenging \citep{y_c_brandt_evaluation_2022}.
 This stems in part from the great complexity of this problem, 
 % and the challenge of distinguishing among many equally probable 
 % results given limited information between recombination events;
@@ -301,13 +332,13 @@ in that interval (as opposed to re-coalescing with any ancestral lineage).
 This greatly reduces the space of possible ARGs without changing the expected
 distribution of sequential genealogies, and in doing so enables modeling
 changes between sequential genealogies
+as a Markov process \citep{mcvean2005approximating}. 
 % This restricts the types of coalescent events that can occur between 
 % sequential genealogies, in a way that enables modeling 
 % changes between
 % models 
 % changes among sequential genealogies 
 % them 
-as a Markov process \citep{mcvean2005approximating}. 
 % Implicit to SMC-based methods is the expectation that recombination occurs at 
 % some rate from which the waiting distance between recombination events can be modeled 
 % as an exponentially distributed random variable. 
@@ -329,8 +360,8 @@ Under these assumptions a tractable likelihood framework can be developed.
 Because neither genealogies or segment lengths can
 be observed directly, most SMC-based inference methods use 
 % employ 
-hidden Markov model (HMM) methods that treat these as hidden states 
-which influence observable changes in sequence data.
+a hidden Markov model (HMM) to treat these as hidden states 
+that influence observable changes in sequence data \citep{spence_inference_2018}.
 % be inferred from sequence data. 
 % he segment lengths and coalescent times are unknown, most methods use hidden Markov 
 % model (HMM) methods in which these are hidden states inferred from sequence 
@@ -416,10 +447,10 @@ conditional sampling method.
 		intervals of a genome separated by recombination breakpoints. Here, 
 		four recombination breakpoints separate the start and end positions 
 		on a small chromosome in the history of a set of 7 samples constrained
-		by a 4-tip species tree model (as in Figure 1).
-		Recombination events are indicated as vertical panels, showing the process by 
+		by a 4-tip species tree model (as in Fig.~1).
+		Recombination events are indicated by vertical panels. Each shows the SMC' process by 
 		which a subtree (below the red circle) is detached and then re-coalesces (red arrow)
-		with the remaining ancestral lineages. %, according to the MS-SMC' process. 
+		with one of the remaining lineages. %, according to the MS-SMC' process. 
 		The former edge (blue dotted) which existed throughout the interval to the left of a 
 		panel is replaced by a new edge (red) through the subsequent interval. Vertical bars 
 		(white) represent barriers to coalescence between samples in different species
@@ -427,16 +458,17 @@ conditional sampling method.
 		% ancestor is pruned (blue dotted) 
 		% and replaced by a new sampled ancestor (red).
 		Four categories of recombination events are shown from left to right, representing
-		different outcomes based on the lineage with which a detached subtree re-coalesces:
-		no-change; tree-change resulting in a shortened coalescence time; 
-		tree-change resulting in a lengthened coalescence time; and tree-change 
-		resulting in a different topology. These can be further consolidated into 
+		different outcomes based on the lineage with which a detached subtree re-coalesces.
+		% : no-change; tree-change resulting in a shortened coalescence time; 
+		% tree-change resulting in a lengthened coalescence time; and tree-change 
+		% resulting in a different topology. 
+		% These can be further consolidated into 
+		These are grouped more generally into 
 		three \emph{event types}: (1) no-change, (2) tree-change, and (3) topology-change.
 		Every recombination event causes either a no-change or tree-change event, whereas
 		a topology-change is a subset of possible tree-change events. The expected waiting
 		distance until a specific recombination event type occurs can be calculated under 
-		the MS-SMC' given a starting genealogy, MSC model, and %per-site per-generation 
-		recombination rate.
+		the MS-SMC' given a starting genealogy, MSC model, and recombination rate.
 	% Examples of the four different categories of outcomes from a 
 	% recombination event (adapted from \citep{deng_distribution_2021}). 
 	% (a) A category 1 event occurs when the dislocated lineage reattaches to the 
@@ -463,13 +495,13 @@ conditional sampling method.
 described an important extension to the SMC, termed the SMC', for additionally
 modeling "invisible" recombination events, where a detached lineage re-attaches
 with its own ancestral lineage prior to the time of its next coalescent event. 
-This leads to no change in the genealogies between two sequential intervals, 
-despite the occurrence of a recombination between them. The inclusion of
+This leads to no change between the genealogies in two sequential intervals
+despite the occurrence of a recombination even between them. The inclusion of
 such events has been shown to 
 % , such that 
 % no change between 
 % neighboring genealogies, which has been shown to 
-significantly improve SMC-based inference methods \citep{wilton2015smc}. 
+significantly improve inference methods \citep{wilton2015smc}. 
 Under the SMC', a detached lineage can thus re-coalesce with an allowable 
 ancestral lineage over a continuous range of time, leading to one of 
 four possible categorical patterns for the relationship between two
@@ -484,8 +516,8 @@ sequential genealogies
 and (4) %a coalescent event that changes the topology (relationships). 
 a change to the genealogical topology (relationships).
 These can be grouped more generally into \hl{three types}: 
-"no-change" (category 1), "tree-change" (categories 2-4), and "topology-change"
-(category 4). Recently, \citet{deng_distribution_2021} derived a set of solutions for
+"no-change" (type 1), "tree-change" (types 2-4), and "topology-change"
+(type 4). Recently, \citet{deng_distribution_2021} derived a set of solutions for
 the expected waiting distances to each of these three types of 
 outcomes for a single population with constant effective population size.
 % Although all three outcomes, and their associated waiting distances, occur 
@@ -497,12 +529,17 @@ outcomes for a single population with constant effective population size.
 % in different categorical types of genealogy changes, and for connecting these
 % to coalescent model parameters, which may prove useful for future ARG inference 
 % tools. 
-This provides an important advance by establishing a neutral expectation 
-not only for the distance until any generic recombination event occurs, 
-but more specifically, for % the different expectations for 
-% for 
-different types 
-of events that leave different detectable signatures in the genome.
+This provided an important advance by establishing a neutral expectation 
+not only for the distance until the next recombination event occurs, 
+but more specifically, for different categorical types of events that leave 
+different detectable signatures in the genome, and extend over greater
+spatial distances.
+% This provides an important advance by establishing a neutral expectation 
+% not only for the distance until any generic recombination event occurs, 
+% but more specifically, for % the different expectations for 
+% % for 
+% different types 
+% of events that leave different detectable signatures in the genome.
 % not
 % only for any generic recombination events to occur, but for different types 
 % of events that leave different detectable signatures in the genome.
@@ -552,12 +589,13 @@ of events that leave different detectable signatures in the genome.
 
 
 Here, we extend the methods of \citet{deng_distribution_2021} to an MSC framework
-to approximate the expected waiting distances between different types of 
+to estimate the expected waiting distances between different types of 
 genealogy changes under a parameterized species tree model. In this respect, 
 the waiting distances between recombination events that cause topology-change 
 may be of greatest interest, as they leave the most detectable signatures 
 in sequence data, and are relevant to expected gene tree distributions that form
-an important component of many MSC-based methods \citep{ADD-SOME-HERE}.
+an important component of many MSC-based methods \citep{
+degnan2006discordance, baum_concordance_2007, knowles_estimating_2011}.
 The waiting distance until a topology-change event can include multiple
 intervening recombination events of the no-change or tree-change type
 (Fig.~\ref{fig:fig2}). 
@@ -653,51 +691,70 @@ of waiting distances to genealogy changes for a single population of constant si
 We modified the single-population model to (1) include barriers to coalescence imposed
 by a species tree topology, and (2) integrate over changing coalescence rates along
 paths through multiple species tree intervals with different effective population 
-sizes. 
-% I don't feel particularly inclined to follow their variables. I think it would be
-% cleaner to translate it to cleaner variables to align better with MSC theory.
-We have intentionally reproduced our equations in a similar structure and using
-many of the same variable names as in \citet{deng_distribution_2021}.
+sizes. We have also implemented a novel likelihood framework for inferring 
+parameters of an MSC model from observed waiting distances between genealogies.
+% We have intentionally reproduced our equations in a similar structure and using
+% many of the same variable names as in \citet{deng_distribution_2021}.
 % to highlight the changes we made to generalize their solution.
 
 
 \subsection{MSC model description}
 % We assume a species tree model with divergence times in units of generations and 
-Given an MSC model composed of a species tree topology ($\mathcal{S}$), with divergence
-times ($W$) in units of generations, and constant \hl{diploid} effective population sizes
-assigned to each branch ($N_b$), a genealogy ($\mathcal{G}$) 
-for any number of sampled gene copies can be generated by randomly sampling 
+Given an MSC model ($\mathcal{S}$) composed of a species tree topology with divergence
+times ($W$) in units of generations, and constant diploid effective population sizes
+assigned to each branch ($N_e$), a genealogy ($\mathcal{G}$) 
+for any number of sampled gene copies ($k$) can be generated by randomly sampling 
 coalescent times %($t$) 
 at which to join two samples into a common ancestor, 
-starting from samples at the present in each interval. The rate of coalescence
-is $\frac{1}{2N_b}$, and the expected waiting time between coalescence events
-that will reduce the number of samples from $k$ to $k$-1 in a population 
-follows the Kingman coalescent:
+starting from samples at the present in each interval. 
+% The rate of coalescence
+% is $\frac{1}{2N_b}$, 
+Following \citet{kingman1982coalescent}, the probability of a 
+coalescent event one generation in the past that will reduce the 
+number of samples from $k$ to $k$-1 in a population
+is given by equation 1. From this, we can model the expected 
+waiting time ($\mathbb{E}[t_k]$) until the next coalescence event as an 
+exponentially distributed random variable with rate parameter $\lambda_k$:
 
 \begin{equation}
-	\mathbb{E}(t_k| N) = \frac{k(k-1)}{2N}
+\begin{aligned}
+	&\lambda_k = \mathbb{P}(\text{coal~event~} | N_e,k) = \frac{k(k-1)}{2N_e}
+	\\
+	&~~and:
+	\\[0.15cm]
+	&\mathbb{E}[t_k] = 1 / \lambda_k
+	\\[0.15cm]	
+\end{aligned}
 \end{equation}
 
 \noindent In a single population model
-with constant $N$ this rate decreases monotonically as the number of remaining 
-samples after each coalescence event decreases. In an MSC model, however, 
-the rate of coalescence typically waxes and wanes through time, as the
-transition from one branch interval to the next can be associated with 
-different N$_b$ and an increase in $k$ as samples from 
-descendant branch intervals are merged.
+with constant $N_e$ the expected waiting time between coalescent events 
+increases monotonically after each coalescent event, since the number of 
+remaining samples always decreases. In an MSC model, 
+however, the expected waiting time between coalescence events can increase or 
+decrease through time, as the transition from one population interval to another 
+can be associated with a different $N_e$ value and an increase in the number 
+of samples.
+% to the next can be 
+% associated with different N$_b$, and because the merging of samples from 
+% number of samples increases
+% in ancestral population intervals when descendant branch intervals are merged.
 
 Based on this generative framework for sampling genealogies, a set of likelihood
 solutions have been developed to fit coalescent model parameters, such as 
-$N$ in single population models \citep{kingman1982coalescent},
-or $N_b$ and $W$ in MSC 
-models \citep{rannala2003bayes}, based on inferred coalescent times. 
+$N_e$ in single population models \citep{kingman1982coalescent},
+or multiple $N_e$ and $W$ parameters in MSC models \citep{rannala2003bayes}, 
+based on inferred coalescent times. 
 In the latter framework, each species tree branch interval is treated independently, 
 such that the likelihood of a genealogy embedding is calculated from the joint
 probability of observing each distribution of coalescent waiting times within
 each species tree branch interval. A key feature of these equations is that 
-when $k$ lineages are present, we can use equation 1 as a rate parameter ($\lambda$)
-to calculate the likelihood of an observed coalescent waiting time ($t_k$) between
-$k$ and $k$-1 lineages from an exponential probability density:
+when $k$ lineages are present, we can use the coalescent rate parameters 
+($\lambda_k$)
+% \hl{the inverse of} equation 1 as a rate parameter ($\lambda$)
+to calculate the likelihood of observed waiting times between coalescent 
+events ($t_k$) in each population interval from an exponential probability 
+density function:
 % for the expected rate
 % of coalescence
 % between when $k$ and $k$ - 1 lineages exist. 
@@ -709,7 +766,7 @@ $k$ and $k$-1 lineages from an exponential probability density:
 	
 \begin{equation}
 	% \mathcal{P}(t_k|\lambda) = \lambda e^{-\lambda t_k} 
-	f(t_k) = \lambda e^{-\lambda t_k} 	
+	f(t_k; \lambda) = \lambda e^{-\lambda t_k}
 \end{equation}
 
 
@@ -743,7 +800,7 @@ $k$ and $k$-1 lineages from an exponential probability density:
 % considered by \citet{deng_distribution_2021}, the 
 Under the SMC' model, sampling of a linked genealogy requires considering not only 
 %a species tree and its parameters, 
-coalescent model parameters, 
+demographic model parameters, 
 as we did above, but also an existing genealogy -- it is a method 
 for sampling the next genealogy conditional on the previously observed one. 
 If we define the previous genealogy as $\mathcal{G}$, and the sum of its edge lengths 
@@ -751,29 +808,32 @@ as $L(\mathcal{G})$, then under the assumption of a constant recombination rate 
 a recombination break point can be uniformly sampled from $L(\mathcal{G})$ to occur with 
 equal probability anywhere on $\mathcal{G}$. 
 % on any branch.
-A recombination event creates 
-a bisection on a branch, separating a subtree below the cut 
-from the rest of the genealogy (Fig.~\ref{fig:fig2}). 
-The subtree must then be reconnected by sampling a new common 
-ancestor between it and the other samples still connected to the genealogy, which 
-must occur above the time of the cut. This re-connection point is sampled 
-probabilistically with an expected waiting time until re-coalescence the 
-same as described above (equations 1 and 2).
+A recombination event creates a bisection on a branch, separating a subtree 
+below the cut from the rest of the genealogy 
+(Fig.~\ref{fig:fig2}, Fig.~\ref{fig:figS-recomb-types}).
+% (Fig.~\ref{fig:fig2}). 
+The subtree must then re-coalesce to connect with one of the remaining edges on 
+the genealogy at a time above the recombination event. The waiting time until 
+this re-coalescence event occurs is sampled stochastically with an expectation 
+determined by the number of samples and the coalescent rate, 
+similar to equation 1.
+% the expected waiting time as until re-coalescence the 
+% same as described above (equations 1 and 2).
 
-In a single population model with constant $N$ the re-coalescent probability
-after a recombination event decreases monotonically, as each subsequent 
-coalescence event decreases $k$.
+In a single population model with constant $N_e$ the expected waiting time until 
+re-coalescence increases monotonically with each coalescence event 
+backwards in time, since each event decreases $k$.
 % (e.g., Fig.~1B). 
-Once again, the MSC model 
-differs from this: coalescent events similarly decrease $k$, but the merging of 
-species tree branches into ancestral intervals increases $k$, and effective population 
-sizes can also vary among species tree intervals. 
-Thus, the probability that a subtree re-connects to the genealogy can vary 
-along its path of possible reconnection points through 
+Once again, the MSC model differs from this: 
+coalescent events similarly decrease $k$, but the merging of 
+species tree branches into ancestral intervals increases $k$, and $N_e$ 
+can also vary among species tree intervals. 
+Thus, the probability that a detached subtree re-coalesces to the genealogy 
+can vary through time along its path of possible reconnection points through 
 different species tree intervals
-(Fig.~\ref{fig:fig1}b-d). 
-A species tree can thus be decomposed into a series of relevant intervals 
-between events that change the rate of coalescence,
+(Fig.~\ref{fig:fig1}b-d).
+To calculate these probabilities, a species tree can be decomposed into a 
+series of relevant intervals between events that change rates of coalescence,
 % , including within species tree intervals, 
 which we refer to as the genealogy embedding table (Table~\ref{tab:table-1}). 
 From this table it is possible to calculate the probabilities of different
@@ -791,21 +851,66 @@ waiting distances until specific recombination event types occur.
 % MSC model. This requires integrating over the coalescence rates which can 
 % vary among intervals of the species tree model.
 
+
+\begin{table}[t]
+\centering
+\caption{
+	A genealogy embedding table for the genealogy and species tree in Figure 1. 
+	The probability of coalescence is constant within each discrete interval, 
+	and scaled by the number of lineages ($k$), effective population size ($n$), 
+	and length ($d$).
+	% present ($k$) and the effective population size ($N_e$). 
+	Under the MS-SMC', the probability that a detached lineage will re-coalesce
+	on a specific branch of the genealogy (e.g., branch 7 from Figure~\ref{fig:fig1})
+	is calculated from the piecewise constant probabilities in each 
+	discrete interval spanning that branch (e.g., rows 1, 6, 7, and 8).
+}
+\begin{tabular}[t]{ |c|c|c|c|c|c|c|c|c| }
+	\toprule
+	 % & start ($t_i^l$)  & end ($t_i^u$) 
+	 & start ($\sigma$)  & end ($\mu$)  & pop & $N_e$ ($n$)  & N edges ($k$) & coal  & length ($d$) & branches ($b$) \\
+	\midrule
+	0 & 0          & $t_7$      & A   & $N_A$     & 3 & $t_7$    & $t_7$ - 0            & 0,1,2 \\
+	1 & $t_7$      & $W_{AB}$   & A   & $N_A$     & 2 & -        & $W_{AB}$ - $t_7$     & 2,7   \\	
+	2 & 0          & $t_8$      & B   & $N_B$     & 2 & $t_8$    & $t_8$ - 0            & 3,4   \\ 
+	3 & $t_8$      & $W_{AB}$   & B   & $N_B$     & 1 & -        & $W_{AB}$ - $t_8$     & 8     \\
+	4 & 0          & $W_{ABC}$  & C   & $N_C$     & 1 & -        & $W_{ABC}$            & 5     \\
+	5 & 0          & $W_{ABCD}$ & D   & $N_D$     & 1 & -        & $W_{ABCD}$           & 6     \\
+	% 
+	6 & $W_{AB}$   & $t_9$      & AB  & $N_{AB}$  & 3 & $t_9$    & $t_9$ - $W_{AB}$     & 2,7,8 \\
+	7 & $t_9$      & $W_{ABC}$  & AB  & $N_{AB}$  & 2 & -        & $W_{ABC}$ - $t_9$    & 7,9   \\
+	% 
+	8 & $W_{ABC}$  & $t_{10}$   & ABC & $N_{ABC}$ & 3 & $t_{10}$ & $t_{10}$ - $W_{ABC}$ & 5,7,9  \\
+	9 & $t_{10}$   & $W_{ABCD}$ & ABC & $N_{ABC}$ & 2 & -        & $W_{ABCD}$ - $t_{10}$ & 5,10 \\
+	%
+	10 & $W_{ABCD}$ & $t_{11}$  & ABCD & $N_{ABCD}$ & 3 & $t_{11}$ & $t_{11}$ - $W_{ABCD}$ & 5,6,10 \\
+	11 & $t_{11}$  & $t_{12}$   & ABCD & $N_{ABCD}$ & 2 & $t_{12}$ & $t_{12}$ - $t_{11}$ & 10,11 \\
+	12 & $t_{12}$  & -          & ABCD & $N_{ABCD}$ & 1 & -        & -                   & 12    \\	
+	\bottomrule
+\end{tabular}
+\label{tab:table-1} 
+\end{table}
+
+
 To better understand the relationship between the MS-SMC' and the genealogy
 embedding table, consider a specific branch ($b$) from Fig.~\ref{fig:fig1}. 
 Branch 7 on the genealogy spans four relevant intervals, 
 labeled as rows 1, 6, 7, and 8 in Table~\ref{tab:table-1}.
-The coalescent rate within each interval can be calculated from its
-\hl{diploid} effective population size ($n_i$) and number of samples 
-present ($a_i$). The time at the start of each interval is $\sigma_i$. 
-We define an additional variable, $\mathcal{I}_b$, to represent the 
-number of intervals spanned by a branch, such that, for example, 
-$\mathcal{I}_7$=4. 
+This ordered set is defined as $\mathcal{I}_b$, such that, for example, 
+$\mathcal{I}_7$ = \{1,6,7,8\}. 
+% The coalescent rate within each interval can be calculated from its
+% \hl{diploid} effective population size ($n_i$) and number of samples 
+% present ($a_i$). 
+The lower and upper bounds of each interval are defined as 
+$\sigma_i$ and $\mu_i$, respectively, and its length as $d_i$. 
+Similarly, the lower and upper bounds of each branch are defined 
+as $t_b^l$ and $t_b^u$, respectively. Each interval has a constant 
+number of genealogy branches $k_i$, and effective population size $n_i$.
 % This is used in the equations below as an
 % index to iterate over the ordered sequence of intervals on a branch. 
-By iterating over all $i$ intervals from 0 to $\mathcal{I}_b - 1$ 
-different rates can be applied to different intervals over the length 
-of a branch.
+% By iterating over all $i$ intervals from 0 to $\mathcal{I}_b - 1$ 
+% different rates can be applied to different intervals over the length 
+% of a branch.
 % (this can be found by searching for the branch label in the \emph{branches} 
 % column of the table). 
 % We record the number 
@@ -846,13 +951,16 @@ of a branch.
 % adapted for use in the equations presented below. 
 % Each branch of $\mathcal{G}$ spans one or more intervals
 % from which a lower and upper (min, max) bound for that branch can also be 
-The upper and lower bounds of a branch are also recorded as 
-$t_b^l$ and $t_b^u$, respectively. 
 % extracted ($t_b^l$ and $t_b^u$, respectively). 
-Later, we describe equations that require information about
-how genealogy branches are related (e.g., parent-child or siblings), 
-which can also be extracted from $\mathcal{G}$ and 
-represented in a separate table (e.g., Table~S1).
+% Later, we describe equations that require information about how genealogy branches are 
+% related (e.g., parent-child or siblings), which can also be extracted from $\mathcal{G}$
+% and represented as a table. 
+Some additional indexing variables are also described below;
+a summary of all variables is available in table~\ref{tab:table-notation}). 
+
+% This and the genealogy embedding table include all
+% relevant parameters for the equations below. 
+ % \hl{(e.g., Table~S1).}
 % . For example, 
 % edge 2 from Fig.~\ref{fig:fig1} and Table~\ref{tab:table-1} overlaps with 
 % three intervals, such that $\mathcal{I}_2$ = 3.
@@ -863,8 +971,8 @@ represented in a separate table (e.g., Table~S1).
 % a specific gene tree branch.}
 % For example, edge 2 from Fig.~\ref{fig:fig1} and Table~\ref{tab:table-1} overlaps with 
 % three intervals, such that $I_2$ = (0, 1, 6). 
-These variables, and the genealogy embedding table, 
-together include all relevant parameters for the derivations below. 
+% These variables, and the genealogy embedding table, 
+% together include all relevant parameters for the derivations below. 
 
 
 
@@ -890,44 +998,6 @@ together include all relevant parameters for the derivations below.
 % E is not able to coalesce with lineages from species C or D until $\sigma_{E1}$,
 % when E coalesces with the ancestor of C and D in the species tree.
 
-
-\begin{table}[h]
-\centering
-\caption{
-	A genealogy embedding table for MS-SMC' calculations for the genealogy and
- 	species tree in Figure 1. The rate of coalescence within each interval can 
- 	be calculated from $a$ and $n$, and its length from $d$.
-	% present ($k$) and the effective population size ($N_e$). 
-	To integrate over the probability of coalescence on a specific genealogy
-	branch (e.g., branch 7 from Figure~\ref{fig:fig1}) involves 
-	integrating over all intervals that include that branch (e.g., rows 
-	1, 6, 7, and 8).
-}
-\begin{tabular}[t]{ |c|c|c|c|c|c|c|c|c| }
-	\toprule
-	 % & start ($t_i^l$)  & end ($t_i^u$) 
-	 & start ($\sigma$)  & end  & pop & $N$ ($n$)  & N edges ($a$) & coal  & length ($d$) & branches \\
-	\midrule
-	0 & 0          & $t_7$      & A   & $N_A$     & 3 & $t_7$    & $t_7$ - 0            & 0,1,2 \\
-	1 & $t_7$      & $W_{AB}$   & A   & $N_A$     & 2 & -        & $W_{AB}$ - $t_7$     & 2,7   \\	
-	2 & 0          & $t_8$      & B   & $N_B$     & 2 & $t_8$    & $t_8$ - 0            & 3,4   \\ 
-	3 & $t_8$      & $W_{AB}$   & B   & $N_B$     & 1 & -        & $W_{AB}$ - $t_8$     & 8     \\
-	4 & 0          & $W_{ABC}$  & C   & $N_C$     & 1 & -        & $W_{ABC}$            & 5     \\
-	5 & 0          & $W_{ABCD}$ & D   & $N_D$     & 1 & -        & $W_{ABCD}$           & 6     \\
-	% 
-	6 & $W_{AB}$   & $t_9$      & AB  & $N_{AB}$  & 3 & $t_9$    & $t_9$ - $W_{AB}$     & 2,7,8 \\
-	7 & $t_9$      & $W_{ABC}$  & AB  & $N_{AB}$  & 2 & -        & $W_{ABC}$ - $t_9$    & 7,9   \\
-	% 
-	8 & $W_{ABC}$  & $t_{10}$   & ABC & $N_{ABC}$ & 3 & $t_{10}$ & $t_{10}$ - $W_{ABC}$ & 5,7,9  \\
-	9 & $t_{10}$   & $W_{ABCD}$ & ABC & $N_{ABC}$ & 2 & -        & $W_{ABCD}$ - $t_{10}$ & 5,10 \\
-	%
-	10 & $W_{ABCD}$ & $t_{11}$  & ABCD & $N_{ABCD}$ & 3 & $t_{11}$ & $t_{11}$ - $W_{ABCD}$ & 5,6,10 \\
-	11 & $t_{11}$  & $t_{12}$   & ABCD & $N_{ABCD}$ & 2 & $t_{12}$ & $t_{12}$ - $t_{11}$ & 10,11 \\
-	12 & $t_{12}$  & -          & ABCD & $N_{ABCD}$ & 1 & -        & -                   & 12    \\	
-	\bottomrule
-\end{tabular}
-\label{tab:table-1} 
-\end{table}
 
 
 
@@ -976,23 +1046,26 @@ tree-change event, such that one or the other must occur.
 % or a change to its topology. 
 Therefore, as a first step towards describing probability statements 
 for each of these event types, we focus first on deriving the 
-probability of a no-change event, which is the simplest outcome.
-Then, from the law of total probability, we also have a result for 
-the probability of a tree-change event. 
+probability of a no-change event 
+(also termed a tree-unchanged event; Fig.~\ref{fig:fig3}a), 
+which is the simplest outcome. Then, from the law of total probability, 
+we also have a result for the probability of a tree-change event. 
 % From this, we can then calculate the probability of a tree-change
 % by the law of total probability. 
 % Therefore, our first step in deriving probability statements for
 % Our first step in deriving probability statements for
 % these different outcomes is to calculate the probability of a no-change event. 
 Finally, to calculate the probability of a topology-change event, 
-we derive a statement for the probability of a specific subset of 
-tree-change events where the detached lineage is restricted in which
-ancestral lineages it can re-coalesce with. 
+we first derive a statement for the probability of a tree-unchanged event
+(Fig.~\ref{fig:fig3}d), which is the union of a no-change event and
+a subset of tree-change events,
+where the detached lineage is restricted in which ancestral lineages 
+it can re-coalesce with. 
+More detailed derivations of the solutions below can be found in the Appendix.
 % we calculate the probability of topology-change as a subset of
 % the probability of a tree-change, in which we restrict which branches the
 % detached lineage can re-coalesce with.
 % events. 
-
 % probabilities 
 % of events that 
 % fall into the other categories.
@@ -1007,7 +1080,8 @@ ancestral lineages it can re-coalesce with.
 % law of total probability then allows us to use the inverse probability to calculate
 % a waiting distance to a change that falls into any of categories 2, 3, or 4. 
 
-\subsubsection{Probability that recombination at $t_r$ on branch $b$ does not change the tree:}
+
+\subsubsection{Probability of a no-change event}
 % \subsubsection{Probability that a recombination event at time $t$ on branch $b$ will not change the tree:}
 % \hl{these sections needs waay more description. What does this all mean? The text here
 % was only restating the section title. You need to build up to the more complex ones by 
@@ -1016,46 +1090,81 @@ ancestral lineages it can re-coalesce with.
 We begin by assuming knowledge of when and where recombination takes place, in terms 
 of a recombination event bisecting branch $b$ at time $t_r$. %The variable $\sigma$ 
 % The index $i$ refers to the genealogy embedding interval in which recombination occurs.
-For no genealogy change to occur the detached branch must re-attach to its original 
-lineage during the same interval in which it detached.
-If it connects to any other existing lineages during this same interval, 
-or coalesces in a later interval, this would lead to a change in either the 
-tree or topology. A derivation of this equation can be found in the Appendix.
-Here, $i$ is the interval index in which recombination occurs (at time $t_r$). 
-The first two terms correspond to the probability of detaching from the interval 
-at $t_r$ and re-coalescing to the same branch within the same interval (i.e., $ii$),
-and not re-coalescing with any other lineages present during this interval. The
-last term describes the probability of re-coalescing with the same branch in a later 
-interval (i.e., $ij$), and not re-coalescing with any other samples present in any
-later intervals on this same branch. 
+For no change to occur to the genealogy the detached subtree must re-coalesce with 
+its original branch, either in the same interval from which it detached, or in a
+later interval on the same branch (Fig.~\ref{fig:fig3}a). %during the same interval in which it detached.
+If it connects to any other lineage this will cause a change to either the tree 
+or topology. 
+The interval in which recombination occurs at time $t_r$ on branch $b$ is 
+labeled $i$. Equation 3 describes the probability of a no-change event 
+given a genealogy embedded in a species tree, and the timing and branch on 
+which recombination occurs. The first two terms describe the probability 
+that the subtree both detaches and re-attaches to the same branch during 
+interval $i$ (i.e., $ii$), while the last term describes the probability 
+that it detaches in $i$ and re-coalesces in a later interval on branch $b$
+(i.e., $ij$). For this latter term, we define an indexing variable 
+$\mathcal{J}_b(i)$ = $\{j \in \mathcal{I}_b ~|~ j > i\}$, for iterating 
+over the ordered intervals above $i$ on branch $b$ (e.g., Fig.~\ref{fig:fig3}b).
+% and does not re-coalesce with any other lineages during this interval. The
+% later term describes a sum over all subsequent intervals on $b$, 
+% the probability that this subtree coalesces with its originating 
+% branch in a later interval (i.e., $ij$), and does not re-coalesce with any other 
+% lineages in a later interval.%on this same branch. 
+
+\begin{figure}[t]
+	\centering
+	\includegraphics[width=0.99\textwidth]{figures/interval-functions}
+	\caption{
+		Rates of coalescence are piece-wise constant within discrete intervals 
+		of the genealogy embedding table. The probabilities of different outcomes
+		are calculated from probability statements for recombination occurring
+		at time $t_r$ in interval $i$ and re-coalescing in interval $j$. The 
+		function $f(i,j)$ takes $i$ and $j$ as arguments for a given branch, 
+		and iterates over the probability of recombination in $i$, and not
+		re-coalescing in the intervals between $i$ and $j$, the set of which is described
+		as $\mathcal{Q}_b(i,j)$. 
+	}
+	\label{fig:fig3}
+\end{figure}
+
 
 % PREVIOUS APPROVED EQUATION 3
 \begin{equation}
 \begin{aligned}
 	&\mathbb{P}(\text{no-change} | \mathcal{S},\mathcal{G},b,t_r) = 
-	\frac{1}{a_i} + f(i,i) \exp \bigg\{\frac{a_i}{2n_i}t_r\bigg\} +
-	\sum_{j=i+1}^{\mathcal{I}_b - 1} f(i,j) \exp\bigg\{\frac{a_i}{2n_i}t_r\bigg\} 
+	\frac{1}{k_i} + 
+	f(i,i) \exp \bigg\{ \frac{k_i}{2n_i} t_r \bigg\} +
+	\sum_{j \in \mathcal{J}_b(i)} f(i,j) \exp \bigg\{ \frac{k_i}{2n_i} t_r\bigg\}
+	% \sum_{j=i+1}^{\mathcal{I}_b - 1} f(i,j) \exp\bigg\{\frac{a_i}{2n_i}t_r\bigg\} 
 \end{aligned}
 \end{equation}
 
 
-\noindent This includes the following function which returns constant values 
-representing the piece-wise constant probabilities of re-coalescence when
-recombination occurs in interval $i$ and re-coalesces in interval $j$. This
-function will reappear in later equations.
+\noindent This includes the following function, $f(i,j)$, which 
+returns the piece-wise constant probabilities of re-coalescence between
+pairs of intervals. When $j=i$, this involves the probability of 
+coalescing over the remaining length of interval $i$; 
+when $j>i$ it involves the probability of coalescing in interval 
+$j$ and not coalescing in interval $i$, or in any other intervals 
+between $i$ and $j$. 
+For this latter term we define an indexing variable 
+$\mathcal{Q}_b(i,j)$ = $\{q \in \mathcal{I}_b ~|~ j > q > i\}$, 
+for iterating over the ordered intervals above $i$ and below $j$ 
+on branch $b$ (e.g., Fig.~\ref{fig:fig3}c).
+The function $f(i,j$) will reappear in later equations.
 
 \begin{equation}
 \begin{aligned}	
 	f(i,j) = 
 	\begin{dcases}
-		- \frac{1}{a_i} \exp \bigg\{-\frac{a_i}{2n_i}\sigma_{i + 1} \bigg\}, 
+		- \frac{1}{k_i} \exp \bigg\{-\frac{k_i}{2n_i}\mu_i \bigg\}, 
 		& \text{if } i=j\\
 		% 
-		\frac{1}{a_j} \left(1 - \exp \bigg\{ -\frac{a_j}{2n_j} d_j \bigg\} 
+		\frac{1}{k_j} \left(1 - \exp \bigg\{ -\frac{k_j}{2n_j} d_j \bigg\} 
 		\right)
 		% \times
-		\exp \bigg\{ -\frac{a_i}{2n_i}\sigma_{i+1} - 
-		\sum_{q=i+1}^{j-1} \frac{a_q}{2n_q} d_q \bigg \}, 
+		\exp \bigg\{ -\frac{k_i}{2n_i}\mu_i - 
+		\sum_{q \in \mathcal{Q}_b(i,j)} \frac{k_q}{2n_q} d_q \bigg \}, 
 		& \text{if } i\ne j\\
 	\end{dcases}
 \end{aligned}
@@ -1090,31 +1199,51 @@ function will reappear in later equations.
 % \end{aligned}
 % \end{equation}
 
-\subsubsection{Probability recombination on branch $b$ will not change the tree:}
-By integrating the previous equation across all times at which recombination could
+% \subsubsection{Probability that recombination on branch $b$ will not change the tree:}
+\noindent By integrating equation 3 across all times at which recombination could
 have occurred on branch $b$ (assuming a uniform recombination rate through time) 
-we obtain the probability that recombination on this branch does not change the tree:
+we obtain the probability that recombination anywhere on this branch does not 
+change the tree:
 
-\begin{equation*}
-	\mathbb{P}(\textrm{no-change} | \mathcal{S},\mathcal{G},b) = 
-	\frac{1}{t^u_b-t^l_b} \int_{t_b^l}^{t_b^u} 
-	\mathbb{P}(\textrm{no-change} | \mathcal{S},\mathcal{G},b,t)dt
-\end{equation*}
+% \begin{equation*}
+% 	\mathbb{P}(\textrm{no-change} | \mathcal{S},\mathcal{G},b) = 
+% 	\frac{1}{t^u_b-t^l_b} \int_{t_b^l}^{t_b^u} 
+% 	\mathbb{P}(\textrm{no-change} | \mathcal{S},\mathcal{G},b,t)dt
+% \end{equation*}
 
 \begin{equation}
-	= \frac{1}{t^u_b - t^l_b}
-	\sum_{i=0}^{\mathcal{I}_b-1} \frac{1}{a_i} d_i + 
-	\frac{2n_i}{a_i} 
+\begin{aligned}
+	&\mathbb{P}(\textrm{no-change} | \mathcal{S},\mathcal{G},b) = 
+	\frac{1}{t^u_b-t^l_b} \int_{t_b^l}^{t_b^u} 
+	\mathbb{P}(\textrm{no-change} | \mathcal{S},\mathcal{G},b,t)dt =
+	\\
+	& \frac{1}{t_b^u - t_b^l}
+	\sum_{i \in \mathcal{I}_b} \frac{1}{k_i} d_i + 
+	\Bigg(
+	\frac{2n_i}{k_i} 
+	\sum_{j \in \mathcal{J}_b(i)}f(i,j)
 	\bigg(
-		\exp\bigg\{\frac{a_i}{2n_i}\sigma_{i+1}\bigg\} - 
-		\exp\bigg\{\frac{a_i}{2n_i}\sigma_i\bigg\}
+		\exp\bigg\{\frac{k_i}{2n_i}\mu_i \bigg\} - 
+		\exp\bigg\{\frac{k_i}{2n_i}\sigma_i \bigg\}
 	\bigg)
-	\bigg(\sum_{j=i}^{\mathcal{I}_b-1}f(i,j)\bigg)
+	\Bigg)
+\end{aligned}
 \end{equation}
+% \begin{equation}
+% 	= \frac{1}{t^u_b - t^l_b}
+% 	\sum_{i=0}^{\mathcal{I}_b-1} \frac{1}{a_i} d_i + 
+% 	\frac{2n_i}{a_i} 
+% 	\bigg(
+% 		\exp\bigg\{\frac{a_i}{2n_i}\sigma_{i+1}\bigg\} - 
+% 		\exp\bigg\{\frac{a_i}{2n_i}\sigma_i\bigg\}
+% 	\bigg)
+% 	\bigg(\sum_{j=i}^{\mathcal{I}_b-1}f(i,j)\bigg)
+% \end{equation}
 
 
-\subsubsection{Probability that a recombination event will not change the tree:}
-Finally, by summing across all branches on the tree 
+% \subsubsection{Probability that a recombination event will not change the tree:}
+\noindent Finally, by summing across all branches on the tree,
+and weighting each by its relative proportion of edge length,
 % while assuming a uniform recombination rate through time and across branches, 
 we get the probability that a recombination event occurring anywhere on 
 $\mathcal{G}$ will result in a no-change event. %category 1 outcome.
@@ -1126,34 +1255,45 @@ $\mathcal{G}$ will result in a no-change event. %category 1 outcome.
 	\mathbb{P}(\textrm{no-change} | \mathcal{S},\mathcal{G},b)
 \end{equation}
 
-\subsubsection{Waiting distance to the next tree change:}
-Under the SMC' the rate at which recombination events occur ($\lambda_r$)
-is a product of the per-site per-generation recombination rate ($r$) and 
-total branch lengths (in units of generations) of the current genealogy.
+
+\subsubsection{Waiting distances to no-change and tree-change events}
+Under the SMC' recombination events can be modeled as a Poisson point 
+process, where the time between events is exponentially distributed 
+with rate parameter $\lambda_r$ (equation 7), the product of the per-site
+per-generation recombination rate and summed branch lengths of
+the current genealogy \citep{wiuf_recombination_1999}. 
+The likelihood of an observed distance ($x$) between recombination
+events spatially along the genome, in units of base pairs, can thus 
+be calculated from the exponential probability density function 
+(equation 8).
+% is distributed as an exponential probability density.
+
+% This can be treated as a 
+% Poisson point process, with rate parameter $\lambda_r$ (equation 7), 
+% to model the waiting distances ($x$) between recombination events 
+% as to an exponential probability distribution (equation 8).
 
 \begin{equation}
 	\lambda_{r} = L(\mathcal{G}) \times r
 \end{equation}
 
-\noindent And thus a waiting distance ($x$) to the next recombination event 
-spatially along the genome, in units of base pairs, can be described by
-an exponential probability density according to a given rate parameter.
-% is distributed as an exponential probability density.
 
 \begin{equation}
-	f(x) = \lambda e^{-\lambda x}
+	f(x; \lambda) = \lambda e^{-\lambda x}
 \end{equation}
 
 \noindent Because a no-change event is a subset of possible recombination 
 events, and we have derived its probability, we can calculate the rate 
-at which no-change events occur as a proportion of the total recombination
-events. 
-% until a no-change event 
-% equation to yield a probability density for waiting distances until a 
-% no-change event. 
+at which no-change events occur as a proportion of the rate of total 
+recombination events. 
 Here, waiting distances continue to be exponentially distributed, 
-however, the new rate parameter ($\lambda_n$) is reduced proportionally by 
-the probability that recombination causes no change to the genealogy.
+however, the new rate parameter, $\lambda_n$, is reduced proportionally by 
+the probability that recombination causes no change to the genealogy
+(equation 9). Similarly, because a tree-change event is the opposite 
+of a no-change event, its probability is one minus the probability
+of no-change (equation 10), which yields rate parameter $\lambda_g$ for 
+the exponential probability distribution of waiting distances between 
+tree-change events.
 
 \begin{equation}
 	\lambda_{n} = 
@@ -1161,10 +1301,6 @@ the probability that recombination causes no change to the genealogy.
 	\mathbb{P}(\text{no-change} | \mathcal{S},\mathcal{G})
 \end{equation}
 
-\noindent Similarly, because a tree-change event is the opposite 
-of a no-change event, its probability is simple to derive, 
-leading to a rate parameter ($\lambda_g$) for the probability 
-density of waiting distances until a tree-change event.
 % We can thus modify this equation to instead yield a probability
 % density for waiting distances to a recombination event that causes a 
 % tree change. 
@@ -1183,33 +1319,39 @@ density of waiting distances until a tree-change event.
 % \end{aligned}
 % \end{equation}
 
-\subsection{Deriving probabilities of changes in the genealogical topology}
 
-We next derive an analogous probability density for the waiting distance 
-to a change in the \emph{topology} of a genealogy. 
+\subsubsection{Probability of topology-change}
+% Deriving probabilities of changes in the genealogical topology}
+
+We next derive an analogous probability distribution for waiting distances 
+between topology-change events.
 % This involves events 
 % representing a subset of possible tree-change events. 
 Similar to our approach for calculating tree-change as the opposite of a 
-no-change event, here we calculate topology-change as the opposite of 
-a \emph{topology-unchanged} event, where topology-unchanged represents the sum 
-probabilities of a no-change and a subset of possible tree-change events 
-that only affect branch lengths, but not the topology.
+no-change (tree-unchanged) event, here we calculate topology-change as the 
+opposite of a topology-unchanged event, where topology-unchanged represents the 
+sum of probabilities of a no-change and a subset of possible tree-change events 
+that only affect branch lengths, but not the topology. 
+Our approach follows closely to that of \citet{deng_distribution_2021}.
 % in which 
 % where the topology
 % This involves excluding 
 % events that affect only coalescence times but not the topology. We refer
 % to this set of events as "topology-unchanged".
 % of categories 2 and 3 to isolate the waiting distance to a category 4 event. 
-In order to isolate re-coalesce events that only affect branch
-lengths from those that affect the topology we must take into account which 
-specific branches the detached subtree from branch $b$ re-coalesces with. 
-The two relevant branches are its sibling ($b'$) and parent ($c$)
-on the current genealogy (Fig.~\ref{fig:fig3}). 
-If $b$ re-coalesces with $b'$ the topology remains the same but with a 
-shortened coalescent time between them. If it re-coalesces with $c$
-then $b$'s coalescence time is simply lengthened. 
-Once again, we start by deriving branch-specific probabilities and then sum 
-these across all branches on a genealogy. 
+In order to isolate re-coalesce events that do not change the topology
+% only affect branch
+% lengths from those that affect the topology 
+we must take into account which specific branches the detached subtree from 
+branch $b$ re-coalesces with. The relevant branches are its source ($b$), 
+its sibling ($b'$), and its parent ($c$) (Fig.~\ref{fig:fig3}d). 
+If the subtree re-coalesces with $b$ no change occurs; if it re-coalesces
+with $b'$ the topology remains the same but a coalescent time is shortened;
+and if it re-coalesces with $c$ the topology remains the same but a coalescent 
+time is lengthened. A re-coalescence with any other branch will change the topology.
+% Once again, we start by deriving branch-specific probabilities and then sum 
+% these across all branches on a genealogy. 
+
 
 % It $b$ re-coalesces
 % with any other branch it would cause a topology change instead of a tree
@@ -1220,19 +1362,7 @@ these across all branches on a genealogy.
 % (branch $c$) and the branch with which it coalesces (branch $b'$). 
 
 
-Retaining the correct order of intervals is important in these calculations, 
-particularly for $f(i,j)$, which involves summing over not only the information
-in the $i$ and $j$ intervals, but also all of the intervals that lie between 
-them. We define $bc$ as the ordered union of the sets of intervals on 
-branches $b$ and $c$ (Fig.~\ref{fig:fig3}c), such that $\mathcal{I}_{bc}$ is 
-the summed number of intervals in this set.
-% that can be used to index ordered intervals in this set.
-Similarly, we define the intersection of the sets of intervals in $b$
-and $b'$ as $bb'$, which includes only intervals in which both of 
-these branches occur (i.e., it excludes intervals where they
-are embedded in separate species tree branches). Finally, we 
-define $m$ as the index of the lowest interval in $bb'$ 
-(occurring at time $t_b^m$) where both $b$ and $b'$ occur. 
+
 % If $b$ and $b'$ are in the same species tree itnervall...
 % such that by indexing from $m$ to $\mathcal{I}_b$ we can visit all 
 % intervals that are shared by the sibling branches. 
@@ -1247,27 +1377,35 @@ define $m$ as the index of the lowest interval in $bb'$
 % stop point for some summations in this section.
 
 
-\subsubsection{Probability recombination at $t_r$ on branch $b$ does not change the topology:}
-Once again we begin by assuming knowledge of the branch on which a recombination event occurs 
-and its timing.
-% of the time at which that event occurs. 
-Unlike the previous approach, %when we were 
-where we 
-simply %trying to calculate 
-calculated the probability of 
-a recombination event leading to no-change, we now 
-calculate this probability in addition to the probability of a change that
-affects only coalescent times and not the topology. 
-This approach is similar to that of \citet{deng_distribution_2021}, 
-\hl{however, we additionally incorporate changing coalescent rates 
-through different species tree intervals, as well as account for the 
-constraint that sister lineages may not initially exist in 
-the same species tree interval.}
+% \subsubsection{Probability recombination at $t_r$ on branch $b$ does not change the topology:}
+% Unlike the previous approach, where we 
+% calculated the probability of a no-change event, we now calculate this probability 
+% in addition to the probability of a change that affects only coalescent times and not the topology. 
+To index over relevant intervals across the three branches on which re-coalescence
+can occur we define several additional variables. The lowest interval in which both 
+$b$ and $b'$ are present and exist within the same species tree interval is labeled 
+$m$, and the lower boundary of this interval as $t_b^m$. For a branch $b$ with 
+intervals $\mathcal{I}_b$, the subset of intervals below $m$ is 
+as $\mathcal{L}_b$, and the subset including $m$ and above is $\mathcal{M}_b$. 
+The union of the sets of intervals on branches $b$ and $c$ is $\mathcal{I}_{bc}$
+(Fig.~\ref{fig:fig3}e).
+% \hl{however, we additionally incorporate changing coalescent rates 
+% through different species tree intervals, as well as account for the 
+% constraint that sister lineages may not initially exist in 
+% the same species tree interval.}
 % To do this, 
-For the latter, we must 
-% immediately 
-break the problem into two different cases: 
+
+Once again, we begin by assuming knowledge of the branch on which a 
+recombination event occurs and its timing. 
+For the latter, we break the problem into two different cases:
 when $t_r$ occurs below $t_b^m$, and when it occurs above $t_b^m$.
+This equation uses the function $f(i,j)$ to return the piecewise constant
+probabilities where recombination occurs in interval $i$ and re-coalesces
+in interval $j$. As before, this involves iterating over intervening intervals
+between $i$ and $j$ if present (Fig.~\ref{fig:fig3}d,f).
+
+
+
 
 % a category 1 event, we %are now trying to 
 % now 
@@ -1278,52 +1416,7 @@ when $t_r$ occurs below $t_b^m$, and when it occurs above $t_b^m$.
 % \paragraph{First case --} Given $t_r$ $<$ $t_b^m$ and 
 % $t_r \in [\sigma_i, \sigma_{i+1}] \subset [t_b^l,t_b^m]$
 
-% isn't the tr < tbm part redundant with the next part?
-\hl{In the first case} (Fig.~\ref{fig:fig3}a), where $t_r$ $<$ $t_b^m$ and 
-$t_r \in [\sigma_i, \sigma_{i+1}] \subset [t_b^l,t_b^m]$
-it is necessary to integrate over coalescence probabilities in three distinct 
-sections: from $t_r$ to $t_b^m$, $t_b^m$ to $t_b^u$, and $t_b^u$ to $t_c^u$. 
-(Note, these sections may be composed of multiple genealogy embedding 
-intervals if they contain additional species divergence events).
-The first section is notable for representing the core
-difference between this first case and the second case below. 
-When a recombination event occurs in the first section on $b$ there is a span 
-from $t_r$ to $t_b^m$ where $b$ can re-coalescence with itself but not yet 
-with $b'$, since at least one species divergence event separates them.
-Thus, although re-coalescence can occur in this span of time, it cannot lead to 
-changes in the genealogy. 
-In the second section, 
-$b$ can re-coalesce with $b$ or $b'$, leading to either no change or a tree 
-change (shortened coalesence time). Finally, in the third section $b$ can 
-only re-coalesce with $c$, leading to a tree change that lengthens $b$'s 
-coalescence time. 
-An integration over the probabilities of each allowable 
-event on branch $b$ over all three distinct sections leads to the first
-probability statement below. 
-In the second case (Fig.~\ref{fig:fig3}b), where $t_r$ $>$ $t_b^m$ and 
-$t_r \in [\sigma_i, \sigma_{i+1}] \subset [t_b^m,t_b^u]$, 
-it is only necessary to integrate over probabilities across a subset of the 
-second section, and across the entire third section described above, leading
-to the second statement below:
 
-
-\begin{figure}[t]
-	\centering
-	\includegraphics[width=0.75\textwidth]{figures/FigS1-sibling-parent-it2.pdf}
-	\caption{
-		To calculate the probability that recombination on a genealogy branch
-		($b$) leads to a topology change involves summing over the probabilities 
-		that a detached lineage does not re-coalesce with either
-		itself ($b$), its sibling ($b'$) or its parent ($c$) branches. At the time 
-		recombination occurs ($t_r$) the branches $b$ and $b'$ can either exist 
-		in different species tree intervals (a) or the same interval (b). This 
-		restricts the probability of tree-change outcomes (e.g., shortened coalescent 
-		time) until the lowest shared interval between $b$ and $b'$ at time 
-		$t_m$. This leads to two ordered sets of intervals (c-d) used in 
-		equations 11 and 12.
-	}
-	\label{fig:fig3}
-\end{figure}
 
 % the subsequent two intervals after $t_b^m$, the detached lineage can re-coalesce
 % % either with it 
@@ -1348,29 +1441,48 @@ to the second statement below:
 % \end{equation}
 
 % \small
-\begingroup\makeatletter\def\f@size{9}\check@mathfonts
-
+% \begingroup\makeatletter\def\f@size{9}\check@mathfonts
 \begin{equation}
-	\mathbb{P}(\textrm{topology-unchanged} | \mathcal{S},\mathcal{G},b,t_r)=
-	\begin{dcases}
-		\frac{1}{a_i} + 
-		\sum_{j=i}^{\mathcal{I}_{bc}-1} f(i,j) \exp\left\{\frac{a_i}{2n_i}t_r\right\} + 
-		\sum_{j=m}^{\mathcal{I}_b-1} f(i,j) \exp\left\{\frac{a_i}{2n_i}t_r\right\}, 
+\begin{aligned}
+	&\mathbb{P}(\textrm{topology-unchanged} | \mathcal{S},\mathcal{G},b,t_r)=
+	\\
+	&\begin{dcases}
+		\frac{1}{k_i} + 
+		\sum_{j \in \mathcal{I}_{bc}} f(i,j) \exp \bigg\{ \frac{k_i}{2n_i}t_r \bigg\} + 
+		\sum_{j \in \mathcal{M}_b} f(i,j) \exp \bigg\{ \frac{k_i}{2n_i}t_r \bigg\}, 
 		& \text{if } t_r < t_b^m \\
 		\\
 		2\bigg(
-			\frac{1}{a_i} + 
-			\sum_{j=i}^{\mathcal{I}_{b}-1} f(i,j)\exp\bigg\{\frac{a_i}{2n_i}t_r\bigg\}
+			\frac{1}{k_i} + 
+			\sum_{j \in \mathcal{I}_b} f(i,j) \exp \bigg\{ \frac{k_i}{2n_i}t_r \bigg\}
 		\bigg) + 
-		\sum_{\mathcal{I}_b}^{\mathcal{I}_{bc}-1} f(i,j) \exp\bigg\{
-			\frac{a_i}{2n_i}t_r
-		\bigg\},
+		\sum_{j \in \mathcal{I}_c} f(i,j) \exp\bigg\{ \frac{k_i}{2n_i}t_r \bigg\},
 		& \text{if } t_r \ge t_b^m \\
 	\end{dcases}
+\end{aligned}
 \end{equation}
 
+% \begin{equation}
+% 	\mathbb{P}(\textrm{topology-unchanged} | \mathcal{S},\mathcal{G},b,t_r)=
+% 	\begin{dcases}
+% 		\frac{1}{a_i} + 
+% 		\sum_{j=i}^{\mathcal{I}_{bc}-1} f(i,j) \exp\left\{\frac{a_i}{2n_i}t_r\right\} + 
+% 		\sum_{j=m}^{\mathcal{I}_b-1} f(i,j) \exp\left\{\frac{a_i}{2n_i}t_r\right\}, 
+% 		& \text{if } t_r < t_b^m \\
+% 		\\
+% 		2\bigg(
+% 			\frac{1}{a_i} + 
+% 			\sum_{j=i}^{\mathcal{I}_{b}-1} f(i,j)\exp\bigg\{\frac{a_i}{2n_i}t_r\bigg\}
+% 		\bigg) + 
+% 		\sum_{\mathcal{I}_b}^{\mathcal{I}_{bc}-1} f(i,j) \exp\bigg\{
+% 			\frac{a_i}{2n_i}t_r
+% 		\bigg\},
+% 		& \text{if } t_r \ge t_b^m \\
+% 	\end{dcases}
+% \end{equation}
+
 % \normalsize
-\endgroup
+% \endgroup
 
 
 % \paragraph{Second case --} Given $t_r$ $>$ $t_b^m$ and 
@@ -1406,16 +1518,18 @@ to the second statement below:
 % 		\bigg\}
 % \end{equation}
 
-\subsubsection{Probability that a recombination event on branch $b$ will not change the topology:}
-The probability of a topology-unchanged event occurring on a branch can 
-be derived by integrating the previous equation over the entire length of a branch.
+% \subsubsection{Probability that a recombination event on branch $b$ will not change the topology:}
+\noindent Next, the probability of a topology-unchanged event given recombination 
+anywhere on a branch can be derived by integrating the previous equation 
+over the entire length of a branch.
 % We next present the probability that a recombination event occurring on a focal 
 % branch $b$ will not change the tree topology -- i.e., it will result in one of the 
 % other two outcomes for which we have derived probabilities: no change or tree change.
 % As in Section 2.4, 
  % across the entire length of a branch. 
-Here, the terms $p_{b,1}$ and $p_{b,2}$ correspond to components
-associated with the two cases described above and in Fig.~\ref{fig:fig3}a-b:
+Here, the terms $p_{b,1}$ and $p_{b,2}$ correspond to the positions of branch 
+$b$ falling into either of the two cases in equation 11.%, below or above $t_b^m$. 
+% associated with the two cases described above and in Fig.~\ref{fig:fig3}a-b:
 % , the lowest interval...the location of $t_b^m$.}
 % through the solution that specifies both a specific branch and time. 
 
@@ -1434,69 +1548,115 @@ associated with the two cases described above and in Fig.~\ref{fig:fig3}a-b:
 \begin{aligned}
 	&\mathbb{P}(\textrm{topology-unchanged} | \mathcal{S},\mathcal{G},b) = 
 	\frac{1}{t_b^u - t_b^l} \Bigg[
-		\sum_{i=0}^{m-1}p_{b,1}^{(i)} + 
-		\sum_{i=m}^{\mathcal{I}_b-1}p_{b,2}^{(i)}
+		\sum_{i \in \mathcal{L}_b} p_{b,1}^{(i)} + 
+		\sum_{i \in \mathcal{M}_b} p_{b,2}^{(i)}
 	\Bigg]
 	\\
-	&where: 
+	&~~where: 
 	\\
 	&p_{b,1}^{(i)} = 
-		\frac{1}{a_i} \Bigg[
-			d_i + 2n_i \bigg(
-				\exp\bigg\{\frac{a_i}{2n_i}\sigma_{i+1}\bigg\} - 
-				\exp\bigg\{\frac{a_i}{2n_i}\sigma_i\bigg\}
-			\bigg)
-		\bigg(
-			\sum_{j=i}^{\mathcal{I}_{bc}-1}f(i,j) + \sum_{j=m}^{\mathcal{I}_b-1}f(i,j)
-		\bigg)
+		\frac{1}{k_i} \Bigg[
+			d_i + 2n_i \Bigg(
+				\exp\bigg\{ \frac{k_i}{2n_i}\mu_i \bigg\} - 
+				\exp\bigg\{ \frac{k_i}{2n_i}\sigma_i\bigg\}
+			\Bigg)
+		\Bigg(
+			\sum_{j \in \mathcal{I}_{bc}}f(i,j) + \sum_{j \in \mathcal{M}_b}f(i,j)
+		\Bigg)
 	\Bigg]
 	\\
-	&and: 
+	&~~and: 
 	\\
 	&p_{b,2}^{(i)} = 
-		\frac{1}{a_i} \Bigg[
-			2d_i + 2n_i \bigg(
-				\exp\bigg\{\frac{a_i}{2n_i}\sigma_{i+1}\bigg\} - 
-				\exp\bigg\{\frac{a_i}{2n_i}\sigma_{i}\bigg\}
-			\bigg)
-		\bigg(
-			2\sum_{j=i}^{\mathcal{I}_b-1}f(i,j) + \sum_{j=\mathcal{I}_b}^{\mathcal{I}_{bc}-1}f(i,j)
-		\bigg)
+		\frac{1}{k_i} \Bigg[
+			2d_i + 2n_i \Bigg(
+				\exp\bigg\{\frac{k_i}{2n_i}\mu_i \bigg\} - 
+				\exp\bigg\{\frac{k_i}{2n_i}\sigma_{i} \bigg\}
+			\Bigg)
+		\Bigg(
+			2\sum_{j \in \mathcal{I}_b} f(i,j) + \sum_{j \in \mathcal{I}_c} f(i,j)
+		\Bigg)
 	\Bigg]
     \end{aligned}
 \end{equation}
 
-\subsubsection{Probability that a recombination event will not change the topology:}
-Finally, by summing the last equation across all branches on a
-genealogy we get the probability that a recombination event falling 
+
+% \begin{equation}
+% \begin{aligned}
+% 	&\mathbb{P}(\textrm{topology-unchanged} | \mathcal{S},\mathcal{G},b) = 
+% 	\frac{1}{t_b^u - t_b^l} \Bigg[
+% 		\sum_{i=0}^{m-1}p_{b,1}^{(i)} + 
+% 		\sum_{i=m}^{\mathcal{I}_b-1}p_{b,2}^{(i)}
+% 	\Bigg]
+% 	\\
+% 	&where: 
+% 	\\
+% 	&p_{b,1}^{(i)} = 
+% 		\frac{1}{a_i} \Bigg[
+% 			d_i + 2n_i \bigg(
+% 				\exp\bigg\{\frac{a_i}{2n_i}\sigma_{i+1}\bigg\} - 
+% 				\exp\bigg\{\frac{a_i}{2n_i}\sigma_i\bigg\}
+% 			\bigg)
+% 		\bigg(
+% 			\sum_{j=i}^{\mathcal{I}_{bc}-1}f(i,j) + \sum_{j=m}^{\mathcal{I}_b-1}f(i,j)
+% 		\bigg)
+% 	\Bigg]
+% 	\\
+% 	&and: 
+% 	\\
+% 	&p_{b,2}^{(i)} = 
+% 		\frac{1}{a_i} \Bigg[
+% 			2d_i + 2n_i \bigg(
+% 				\exp\bigg\{\frac{a_i}{2n_i}\sigma_{i+1}\bigg\} - 
+% 				\exp\bigg\{\frac{a_i}{2n_i}\sigma_{i}\bigg\}
+% 			\bigg)
+% 		\bigg(
+% 			2\sum_{j=i}^{\mathcal{I}_b-1}f(i,j) + \sum_{j=\mathcal{I}_b}^{\mathcal{I}_{bc}-1}f(i,j)
+% 		\bigg)
+% 	\Bigg]
+%     \end{aligned}
+% \end{equation}
+
+
+% \subsubsection{Probability that a recombination event will not change the topology:}
+\noindent Finally, by summing equation 12 across all branches on a 
+genealogy, and weighting each by its proportion of summed branch lengths,
+we get the probability that a recombination event falling 
 uniformly on the genealogy will result in a topology-unchanged event.
 
-\begin{equation*}
-    \mathbb{P}(\textrm{topology-unchanged} | \mathcal{S},\mathcal{G}) = 
-    \sum_{b \in \mathcal{G}}\frac{t_b^u-t_b^l}{L(\mathcal{G})} 
-    \times 
-    \mathbb{P}(\textrm{topology-unchanged} | \mathcal{S},\mathcal{G},b)
-\end{equation*}
-
 \begin{equation}
-    = \frac{1}{L(\mathcal{G})}\sum_{b \in \mathcal{G}}\left[\sum_{i=0}^{m-1}p_{b,1}^{(i)}+\sum_{i=m}^{\mathcal{I}_b-1}p_{b,2}^{(i)}\right]
+\begin{aligned}
+	&\mathbb{P}(\textrm{topology-unchanged} | \mathcal{S},\mathcal{G}) = 
+	% \\
+	&\sum_{b \in \mathcal{G}}\frac{t_b^u - t_b^l}{L(\mathcal{G})} 
+	\times 
+	\mathbb{P}(\textrm{topology-unchanged} | \mathcal{S},\mathcal{G},b) =
+	\\
+	&
+	\frac{1}{L(\mathcal{G})} \sum_{b \in \mathcal{G}}
+	\bigg[ 
+		\sum_{i \in \mathcal{L}_b} p_{b,1}^{(i)} +
+		\sum_{i \in \mathcal{M}_b} p_{b,2}^{(i)}
+	\bigg]
+\end{aligned}
 \end{equation}
 
-\subsubsection{Waiting distance to the next topology change:}
-
+\subsubsection{Waiting distance to topology-change events}
 A recombination event either does or does not change the topology
-of a genealogy, and therefore, we can of course get the probability
-of a topology-change event using our topology-unchanged probability 
-statement.
-As with the previous waiting distance calculations, the expected distance
-until a topology change, given a parameterized MSC model, 
-is distributed as an exponential probability density (equation 8). 
+of a genealogy, and therefore, we can get the probability of a 
+topology-change event using our topology-unchanged probability statement.
+As with the previous waiting distance distributions, the distance between
+topology change events given a parameterized MSC model can be 
+modeled as an exponential probability distribution. 
 Similar to how a rate parameter was derived for the distribution 
 of waiting distances until a recombination event (equation 7), 
 no-change event (equation 9), or tree-change event (equation 10), 
-a rate parameter ($\lambda_t$) can be calculated using equation 13 
-to get the probability density for the waiting distance until 
-a topology-change event: %, given a genealogy and an MSC model:
+a rate parameter, $\lambda_t$ can be calculated from equation 13 for 
+the probability of a topology-change event. 
+% from equation 13 
+% to get the probability of a topology-change event (equation 14). 
+ % density for the waiting distance until 
+% a topology-change event: %, given a genealogy and an MSC model:
 
 \begin{equation}
 	\lambda_{t} = 
@@ -1505,13 +1665,13 @@ a topology-change event: %, given a genealogy and an MSC model:
 \end{equation}
 
 % now present the caveats...
-This final expectation, however, comes with an important caveat. 
+This final expectation comes with an important caveat. 
 % does come with a caveat. 
 Unlike the exact solution for the expected waiting distance to a 
 tree-change, the waiting distance for a topology-change is an
-approximation, since we have ignored the possible effects of 
-intermediate tree-change events that can occur  
-during the waiting distance until a topology-change 
+approximation, since we ignore the possible effects of intermediate 
+tree-change events that could occur during the waiting distance until 
+a topology-change 
 % more complicated, % to derive, 
 % waiting distance distribution to a \emph{topology} change is more 
 % solution for a \emph{topology} change is more complicated, % to derive, 
@@ -1540,9 +1700,10 @@ be homogeneous across some distance of the genome.
 This problem similarly arises in a single population model,
 where \citet{deng_distribution_2021} have previously
 demonstrated that its effect can likely be ignored. We 
-re-examine this potential bias with respect to models with 
-different levels of population structure, and numbers of samples,
-in our validations below.
+re-examine this potential bias, 
+as well as any potential bias due to using the SMC' approximation,
+with respect to the presence
+of population structure in our validations in the Supplementary Information.
 
 % This is because the product of $L(\mathcal{G})$ and 
 % the probability of a topology-changing recombination event
@@ -1618,18 +1779,20 @@ in our validations below.
 \subsection{Implementation}
 We have implemented our solutions for waiting distance calculations
 under the MS-SMC' in the Python package \emph{ipcoal} \citep{mckenzie_ipcoal_2020}.
-This includes functions that accept a parameterized MSC model, initial genealogy, 
-and recombination rate as input, and return the probabilities of different 
+This software includes functions that accept a parameterized MSC model, initial genealogy, 
+and recombination rate as input and that return the probabilities of different 
 recombination event types. The probabilities can be calculated for specific 
 branches and times, for entire branches, or for entire genealogies. 
 Functions are also available to calculate the likelihood of observed 
 waiting distances between different genealogy changes in an ARG 
 using an exponential probability density parameterized by the MS-SMC'.
-Below we use the coalescent simulation framework in \emph{ipcoal}, 
-based on \emph{msprime} \citep{baumdicker_efficient_2022}
-and \emph{toytree} \citep{eaton_toytree_2020}, to 
-validate our 
-results and investigate the impacts of MSC model parameters.
+The latter code is written in \emph{numpy} \citep{harris2020array} using 
+jit-compilation with \emph{numba} \citep{lam2015numba}, and tree operations
+with \emph{toytree} \citep{eaton_toytree_2020}.
+Below we explore the influence of MSC model parameters on waiting distances, 
+we validate our solutions against expectations from coalescent simulations 
+implemented in \emph{ipcoal} and \emph{msprime} \citep{baumdicker_efficient_2022}.
+%and we investigate potential biases.
 % models, visualizing results, and validating our equations.
 Source code is available at \url{https://github.com/eaton-lab/ipcoal}.
 Jupyter notebooks demonstrating the MS-SMC' calculations and with 
@@ -1649,12 +1812,12 @@ at \url{https://github.com/eaton-lab/waiting-distances}.
 \subsection{Demonstration}
 % First, when given a species tree and initial genealogy, we could examine the probability 
 Given a parameterized MSC model and initial genealogy the probabilities of 
-different types of outcomes of recombination can be calculated and visualized as 
+different types of recombination outcomes can be calculated and visualized as 
 a function of when and where recombination occurs. This is demonstrated on an 
-imbalanced 4-tip species tree with \hl{constant} effective population size 
+imbalanced 4-tip species tree with constant effective population size 
 % across branches %(see parameters in Table~S2), 
 and with a genealogy of seven samples embedded, 
-including three from lineage A, two from lineage B, and one from lineages
+including three from lineage A, two from lineage B, and one from each of lineages
 C and D (Fig.~\ref{fig:fig1}a; see Fig.~\ref{fig:figS-edge-probabilities} for 
 detailed parameter settings). 
 % As a demonstration, t
@@ -1663,7 +1826,7 @@ given a recombination event occurring on a branch at a particular time
 (equations 3 and 11, respectively) are shown for three selected branches
 on the example genealogy (Fig.~\ref{fig:fig1}b-d). 
 Note that the probability of no-change and tree-change events 
-are inversely related, and sum to 1, since one or the other must occur as a consequence 
+are inversely related and sum to 1, since one or the other must occur as a consequence 
 of recombination. By contrast, a topology-change event is a subset of the 
 probability of a tree-change; 
 % recall that a topology-change event is 
@@ -1693,7 +1856,7 @@ a branch other than itself, its sibling, or its parent.
 
 In general, the probability of a no-change event decreases, and the probability
 of a tree-change event increases, as recombination occurs closer to the top
-end of a branch (further back in time). This makes sense, since when 
+end of a branch (further back in time). This makes intuitive sense, since when 
 recombination occurs at the top of a branch there is less time for it to re-coalesce 
 with its same branch. Although this is a general trend, these probabilities do not 
 behave monotonically along the length of a branch, as they would in a 
@@ -1716,11 +1879,11 @@ event, since that interval contains only two samples instead of three.
 By contrast, within the second interval, as recombination occurs closer to 
 the top, it is approaching the next species tree divergence event, where the 
 number of samples will increase again, from 2 to 3, 
-thus decreasing the probability of a no-change event. In this way, 
-the probabilities of different recombination event types represent
-an integration over all the positions on a branch where recombination could
-occur, and all positions at or above that point, and on the same or different
-branches, where a detached branch could reconnect. 
+thus decreasing the probability of a no-change event. 
+This visualization demonstrates how the probabilities of different recombination 
+event types represent an integration over all the positions on a branch where 
+recombination could occur, and all positions at or above that point, and on the 
+same or different available branches, where a detached branch could re-coalesce. 
 
 % at any time 
 % point incorporates all of the possibilities of re-coalescence at deeper 
@@ -1739,7 +1902,7 @@ significantly (Fig.~\ref{fig:fig2}c-d).
 % Of particular interest is the large different in probabilities of tree-change versus 
 % topology-change from intervals from 
 The probability of topology-change decreases faster than the probability of 
-tree-change as recombination occurs closer to $t_9$. This is because 
+tree-change as recombination occurs closer to node $t_9$. This is because 
 following $t_9$ there is a large stretch of time during which re-coalescence can
 only occur with the same branch or its sibling, neither of which can cause a topology-change
 event. It is only after $W_{abc}$ that it is once again possible for re-coalescence
@@ -1821,7 +1984,7 @@ recombination event outcomes, and their associated waiting distances,
 we compared predictions of the MS-SMC' with results from stochastic 
 coalescent simulations. 
 We set up three scenarios with increasing amounts of population structure: 
-a single-population model, two-population model, and phylogeny model
+a single-population model, two-population model, and an 8-tip phylogeny model
 (Fig.~\ref{fig:fig-validation}a). 
 All analyses used a constant per-site per-generation recombination rate of 
 2e-9, and simulated tree sequences using the coalescent with recombination 
@@ -1837,7 +2000,7 @@ include multiple populations (Fig.~\ref{fig:fig-validation}a).
 % limited effects.
 
 % results are composed of L, P, and L x P, which are calculated from sims in this way...
-The exponential rate parameter ($\lambda$) for a probability density of waiting distances 
+The exponential rate parameter ($\lambda$) for a probability distribution of waiting distances 
 is a product of the per-site per-generation recombination rate ($r$), the sum 
 of edge lengths on the current genealogy ($L(\mathcal{G})$), and the probability 
 ($\mathbb{P}$) of the specified event type (equations 9, 10, and 14). 
@@ -1846,8 +2009,9 @@ and $\mathbb{P}$ can vary due to population structure, where the effect of
 structure is scaled by N$_e$. 
 Therefore, we examined $L(\mathcal{G})$, $\mathbb{P}$, and the expected waiting 
 distance calculated from their product, for each demographic model across a range 
-of constant N$_e$ values (Fig.~\ref{fig:fig-validation}b-f). 
-For each value of N$_e$, 10K tree sequences were simulated. Given each starting genealogy,
+of N$_e$ values (Fig.~\ref{fig:fig-validation}b-f). 
+For each value of N$_e$, 10K tree sequences were simulated that included at least 
+one topology-change event. Given each starting genealogy,
 the probability of each event type, and the expected waiting distance to that event
 type, were calculated under the MS-SMC'. To compare this with the result of a 
 simulated coalescent with recombination process, we recorded the waiting distance 
@@ -1856,74 +2020,211 @@ also the frequency at which each event type occurred as the first event in a
 tree sequence, as a measurement of its empirical probability.
 
 % L and P have opposing effects on waiting distances given Ne
-Population structure enforces a limit on the minimum length of coalescent 
-times, since genealogies must be capable of being embedded in the species 
-tree topology.
-This has a clear effect on $L(\mathcal{G})$ at both low and high N$_e$
-(Fig.~\ref{fig:fig-validation}b): population structure shifts
-the minimum and mean $L(\mathcal{G})$ higher. Because all 
-recombination events occur at a rate proportional to $L(\mathcal{G})$ 
-(the opportunity over which recombination can occur), larger $L(\mathcal{G})$ 
-is expected to decrease the waiting distances until each recombination event 
-type, all else being equal. However, all else does not remain equal. Population
-structure also has the opposite effect on waiting distances by decreasing 
-the probability of tree or topology changes (Fig.~\ref{fig:fig-validation}c-d), 
-especially at lower N$_e$ values, where lineages are more often restricted from
-re-coalescing with other lineages outside of the same species tree interval.
-Consequently, the waiting distances until each event type 
-(Fig.~\ref{fig:fig-validation}e-f) represent a balance of the positive and 
-negative effects of population structure on $L(\mathcal{G})$ and $\mathbb{P}$, 
-respectively.
+Population structure enforces a lower limit on the length of coalescent 
+times by requiring that genealogies can be embedded in a species tree.
+This has an effect on $L(\mathcal{G})$ at both low and high N$_e$
+(Fig.~\ref{fig:fig-validation}b) of shifting the minimum and mean 
+$L(\mathcal{G})$ higher. Because the frequency of recombination is 
+positively correlated with $L(\mathcal{G})$ (the opportunity over 
+which recombination can occur), larger $L(\mathcal{G})$ decreases 
+waiting distances between recombination events, all else being equal. 
+However, all else does not remain equal. 
+Population structure also has an opposing effect on waiting distances by 
+decreasing the probability of tree or topology changes 
+(Fig.~\ref{fig:fig-validation}c-d), especially at low N$_e$ values, where 
+species tree constraints can make tree or topology changes unlikely
+to occur. This is a stark difference between the MS-SMC' framework and a 
+single population model; the probability of tree or topology change 
+events is strongly associated with $N_e$ in the former, while not affected 
+at all in the latter. Consequently, in MSC models the waiting distances 
+between each event type (Fig.~\ref{fig:fig-validation}e-f) represent a balance 
+of the positive and negative effects of population structure on 
+$L(\mathcal{G})$ and $\mathbb{P}$, respectively.
 
 % Analytical predictions are very accurate, even better given SMC' approximation.
-The exact analytical solutions under the MS-SMC' for the probabilities 
-of different recombination event type outcomes, and for the 
-waiting distance until a tree-change event, appear to converge on the 
-mean expectations from stochastic coalescent simulations 
-(Fig.~\ref{fig:fig-validation}c-f).
+Our analytical predictions under the MS-SMC' converge accurately on 
+the mean results from stochastic coalescent simulations 
+(Fig.~\ref{fig:fig-validation}c-f). 
+% Examining the relationship between MSC model parameters and expected 
+% waiting distances also reveals ...
+Moreover, by examining the variance in these predictions with 
+respect to MSC model parameters we further gain insights into 
+the information contained in spatial genealogical patterns.
+% In a single population, the probability of a tree or topology change event
+% is not only invariant with respect
+For example, in the single population model there is high variance 
+in the probabilities of tree or topology changes, and consequently, 
+also in the expected waiting distances. Although expected waiting 
+distances do correlate with the population $N_e$ in this model, 
+the differences are small. By contrast, multispecies models exhibit much less
+variance in predicted probabilities of tree or topology changes given a set of
+MSC model parameters (Fig.~\ref{fig:fig-validation}c-d). This leads to a 
+much tighter relationship (less variance) between MSC model parameters and 
+expected waiting distances to tree or topology changes (Fig.~\ref{fig:fig-validation}e-f). 
+Overall, this suggests that tree and topology-change distances may provide
+more information for inferring demographic parameters (or vice versa) 
+when population structure is present. 
 
-The degree of matching between our analytical 
-solutions and simulated values is slightly higher when simulations are 
-performed under the assumptions of the SMC' (Fig.~\ref{fig:supplement-smc}), 
-and only slightly ... exact when simulated under the full coalescent with recombination
-(Fig.~\ref{fig:fig-validation}c-e), suggesting that the approximation 
-assumptions inherent to the SMC' do not significantly bias estimated 
-waiting distances in the structured population models examined here.
+% The probabilities of tree or topology change events are highly variable in 
+% the single population model, and constant with respect to $N_e$, whereas these probabilities exhibit 
+% little variation for any given constant $N_e$-valued MSC model
+% (Fig.~\ref{fig:fig-validation}c-d). This makes sense, considering 
+% that genealogies in the latter models are constrained, especially
+% when $N_e$ is low. This similarly leads to less variation in 
+% expected waiting distances between tree or topology changes in 
+% MSC models (Fig.~\ref{fig:fig-validation}e-f).
+% where 
+% genealogies are not constrained by population structure, and 
+% thus exhibit no relationship with $N_e$. 
+% By contrast, multispecies models exhibit much less variation
+% in the probabilities of tree or topology change events given the 
+% MSC model parameters (Fig.~\ref{fig:fig-validation}c-d). This makes
+% sense, since the MSC model will constrain the types of genealogies
+% that can be observed.
+% Waiting distances to tree or topology-change events exhibit much less 
+% variance for a given in MSC models than in the 
+% The variance in waiting distance expectations at any examined $N_e$ value 
+% are narrower in models with greater population structure, such as the 
+% 8-population phylogeny model, than for the less structured models.
+% Similarly, the magnitude of differences are also greater between waiting 
+% distances given different N$_e$ in more highly structured MSC models.
+% This suggests that tree and topology-change information is more informative 
+% about demographic parameters (and vice versa) when population structure 
+% is present. 
+% We examine this further below to explore a likelihood framework 
+% for MSC inference based on waiting distance expectations.
+
+% As expected, 
+% solutions for the probabilities of each event type (Fig.~\ref{fig:fig-validation}c-d), 
+% and for waiting distances to tree-change events (Fig.~\ref{fig:fig-validation}e),
+% appear as exact solutions, whereas the expected waiting distance to a topology-change
+% event shows some bias at the lowest $N_e$ values (Fig.~\ref{fig:fig-validation}f). 
 
 % waiting distances until tree or topology-change events decrease as
 % values of N$_e$ increase, and topology-change waiting distances are always larger
 % than tree-change waiting distances. 
 
+\subsection{MS-SMC' likelihood inference framework}
 
-\subsection{Investigating bias in MS-SMC' predictions}
-% in addition to SMC' approximation, topo-change has additional bias.
-To investigate whether the SMC' approximation inherent to the MS-SMC' introduces
-a significant bias we compared MS-SMC' predictions to tree sequences simulated
-under both the SMC' (Fig.~\ref{...}) and the full coalescent with recombination 
-(Fig.~\ref{xxx}). In both cases the MS-SMC' predictions appear to converge 
-on the simulated expectations except in the extreme case of high population structure
-and ...
+\begin{figure}[t]
+	\centering
+	%\fbox{\rule[-.5cm]{4cm}{4cm} \rule[-.5cm]{4cm}{0cm}}
+	\includegraphics[width=0.99\textwidth]{figures/likelihood-figure3.pdf}
+	\caption{
+		MS-SMC' likelihood framework. (a) ARGs were simulated under a
+		two-population species tree model with a constant $N_e$=200K and 
+		$r$=2e$^{-9}$. (b) A joint log-likelihood surface for $N_e$ and 
+		$r$ inferred from the distances between tree-change events, 
+		(c) topology-change events; or (d) both. The true parameters are
+		marked by an X. (e) If the MSC model is
+		misspecified as a single-population model, but the data derive from 
+		a two-population model, likelihood inference	is highly biased.
+		% ARGs were 
+		% simulated under a two-population species tree model with variable 
+		% $N_e$. (e) A joint posterior distribution of $N_e$ parameters inferred 
+		% by Bayesian MCMC from tree and topology-change waiting distances.
+	}
+	\label{fig:fig-likelihood}
+\end{figure}
 
-The SMC' approximation to the coalescent with recombination deviates more
-significantly from the full model as the number of recombination events 
-that the SMC' does not model (among ancestors that do not leave sampled 
-descendants) increases. Thus, the SMC' is expected to deviate most significantly
-in highly structure populations with low Ne?
+Based on the expectation that waiting distances are informative about 
+MSC model parameters, we developed a maximum likelihood framework for inferring 
+MSC model parameters from observed waiting distances between tree and/or topology 
+change events. Here, we apply this method using the true distances between 
+events in simulated ARGs, however, it could similarly be applied to inferred 
+distances between events in an ARG proposed from sequence data. 
 
-We also investigated the potential bias present in calculations of 
-waiting distances between topology-change events due that may occur
-from ignoring tree-change events that occur during the waiting distance
-until a topology-change event.
-For this, we simulated very long tree-sequences, such that they 
-include many topology-change events in which intermediate tree-change 
-events arose, but also include many topology-change events that did
-not include any intermediate tree-change events. From this, we 
-calculate for each type the error between the observed waiting distance
-from the starting genealogy until the topology-change event, compared
-to the expected waiting distance under the MS-SMC'. We repeated this
-for MSC models with different constant effective population sizes which
-effectively change the ratio of tree to topology-change events. 
+Given one or more ARGs each composing a sequence of genealogies 
+G = ($\mathcal{G}_1, \mathcal{G}_2, ..., \mathcal{G}_n$) and 
+interval lengths X = ($x_1, x_2, ..., x_n$), a subset of genealogies 
+can be extracted representing each tree-change event, e.g., 
+$G_g$ = ($\mathcal{G}_1, \mathcal{G}_i, ...$). The lengths of intervals 
+between these events can be summed as tree-change waiting distances
+X$_g$ = ($\sum_{i=1}^j X_i, \sum_{i=j}^{k} X_i, ..., $). The same could be 
+done for topology-change events. Then, given a parameterized species 
+tree $\mathcal{S}$ and recombination rate $r$ we can obtain a sequence of 
+exponential rate parameters $\Lambda_g = (\lambda_1, \lambda_i, ...)$
+from equations 10 or 14. 
+The likelihood of each waiting distance (X$_g$) between tree or topology change
+events can then be calculated from each exponential probability density
+function (equation 8) parameterized by the sequence of rate parameters 
+($\Lambda_g$). The set of species tree parameters that maximize the 
+summed log-likelihood of all observed distances between events is the 
+maximum likelihood solution.
 
+We first implemented this approach for a simple two-population model with 
+constant $N_e$=200K and a population divergence at 500K generations. 
+We simulated 100 independent ARGs each 100Kb in length using $r$=2e$^{-9}$, 
+and sampled four haplotypes per population. This 
+yielded 51,487 tree-change events with a mean length of 194bp, and 25,446 
+topology-change events with a mean length of 393bp. To examine the likelihood
+surface we calculated the log-likelihood of joint parameters for $N_e$ and $r$, 
+while keeping a fixed divergence time parameter, over a grid search of 41 
+values between $r=1e^{-9}$ to 3e$^{-9}$, and $N_e$=50K to 800K. The likelihood
+surface for tree-change distances exhibited a ridge that contained the true 
+parameter values (Fig.~\ref{fig:fig-likelihood}b), while the topology-change 
+likelihood surface exhibited a distinct peak at the true values
+(Fig.~\ref{fig:fig-likelihood}c). The summed log-likelihoods from both tree 
+and topology change distances provided the most informative likelihood surface
+(Fig.~\ref{fig:fig-likelihood}d).
+We also inferred a likelihood surface for a misspecified model, representing a 
+single population with constant $N_e$. In this case, the $\Lambda_g$ rate 
+parameters are calculated without enforcing a population split.
+This clearly introduces a significant bias in estimation, shifting the 
+likelihood surface towards lower $r$ and higher $N_e$. This demonstrates that even 
+for a simple two population model, ignoring population structure can significantly
+bias spatial genealogical inference methods.
+
+\hl{Add paragraph about variable $N_e$ model.}
+\begin{figure}[t]
+	\centering
+	%\fbox{\rule[-.5cm]{4cm}{4cm} \rule[-.5cm]{4cm}{0cm}}
+	\includegraphics[width=0.55\textwidth]{figures/likelihood-posteriors.pdf}
+	\caption{
+		MS-SMC' likelihood framework. 
+		ARGs were simulated under a two-population species tree model with variable 
+		$N_e$. (e) A joint posterior distribution of $N_e$ parameters inferred 
+		by Bayesian MCMC from tree and topology-change waiting distances.
+	}
+	\label{fig:fig-likelihood-posterior}
+\end{figure}
+
+
+% MSC model parameters can predict waiting distances, we can also perform the 
+% inverse operation, and find the maximum likelihood MSC model to explain a
+% set of observed 
+
+% Given a proposed or observed ARG, can we use MSC model parameters to find 
+% ...
+
+% Finally, we demonstrated that a known sequence of genealogies paired 
+% with the accompanying observed waiting distances to next topological change 
+% for each can be used to estimate the Ne value for species trees with different
+% topologies (Fig.~\ref{fig:fig4}). We used two different species trees: one 
+% imbalanced, 5-tip tree with internode branches of equal length, and one 10-tip tree
+% with an irregular topology and branches of variable lengths. Both species 
+% trees were assigned equal root heights of 1e6 generations and equal Ne values of 150000 on all 
+% branches, and we simulated a 5e6-bp chromosome for each using \emph{ipcoal}. We broke each 
+% chromosome down into its component "initial genealogies" -- those that start each segment 
+% bounded by changes in topology -- and the accompanying segment lengths (i.e. waiting 
+% distances). Using these values and a known recombination rate of 1e-9 recombs/bp/generation, 
+% we calculated the likelihood that each of 41 proposed Ne values produced the set of 
+% genealogies and waiting distances. Using this approach, we recovered a correctly inferred Ne 
+% value of 150000 for both trees.
+
+
+\begin{figure}[t]
+	\centering
+	%\fbox{\rule[-.5cm]{4cm}{4cm} \rule[-.5cm]{4cm}{0cm}}
+	\includegraphics[width=0.55\textwidth]{figures/likelihood-posteriors.pdf}
+	\caption{
+		MS-SMC' likelihood framework. 
+		(a) ARGs were simulated under a two-population species tree model with variable 
+		$N_e$. (b) A joint posterior distribution of $N_e$ parameters inferred 
+		by Bayesian MCMC from tree and topology-change waiting distances.
+	}
+	\label{fig:fig-likelihood-posterior}
+\end{figure}
 
 
 % with larger Ne values. This occurs for two reasons: first, genealogies with longer 
@@ -1951,43 +2252,30 @@ effectively change the ratio of tree to topology-change events.
 % with increasing numbers of tips sampled and with increasing Ne values. 
 
 
-\subsection{Likelihood framework}
-Finally, we demonstrated that a known sequence of genealogies paired with the accompanying
-observed waiting distances to next topological change for each can be used to estimate the 
-Ne value for species trees with different topologies (Fig.~\ref{fig:fig4}). We used two 
-different species trees: one imbalanced, 5-tip tree with internode branches of equal length,
-and one 10-tip tree with an irregular topology and branches of variable lengths. Both species 
-trees were assigned equal root heights of 1e6 generations and equal Ne values of 150000 on all 
-branches, and we simulated a 5e6-bp chromosome for each using \emph{ipcoal}. We broke each 
-chromosome down into its component "initial genealogies" -- those that start each segment 
-bounded by changes in topology -- and the accompanying segment lengths (i.e. waiting 
-distances). Using these values and a known recombination rate of 1e-9 recombs/bp/generation, 
-we calculated the likelihood that each of 41 proposed Ne values produced the set of 
-genealogies and waiting distances. Using this approach, we recovered a correctly inferred Ne 
-value of 150000 for both trees.
 
 
-\begin{figure}
-	\centering
-	%\fbox{\rule[-.5cm]{4cm}{4cm} \rule[-.5cm]{4cm}{0cm}}
-	\includegraphics[width=0.9\textwidth]{figures/Fig6-constant_ne_inf.pdf}
-	\caption{
-		Inference of species tree Ne values from genealogies, observed waiting 
-		distances to topology changes, and recombination rate. We generated two different 
-		species trees: Both have root heights of 1e6 generations, but one has five tips, 
-		an unbalanced topology, and identical internode lengths, while the other has ten 
-		tips, an irregular topology, and irregular branch lengths. Using a recombination 
-		rate of 1e-9 recombs/bp/generation and a constant Ne value of 150000 over all 
-		branches, we generated a 5MB tree sequence from each species tree using 
-		\emph{ipcoal}. Then, we decomposed the alignment into segments bounded by 
-		topology changes in the genealogies, and we recorded the initial genealogy 
-		for each segment. Finally, we calculated the likelihood of the set of 
-		genealogies and waiting distances, along with the recombination rate, at 41 
-		different proposed Ne values. For both sequence alignments, 150000 was 
-		correctly inferred as the Ne value.
-	}
-	\label{fig:fig5}
-\end{figure}
+
+% \begin{figure}[t]
+% 	\centering
+% 	%\fbox{\rule[-.5cm]{4cm}{4cm} \rule[-.5cm]{4cm}{0cm}}
+% 	\includegraphics[width=0.9\textwidth]{figures/Fig6-constant_ne_inf.pdf}
+% 	\caption{
+% 		Inference of species tree Ne values from genealogies, observed waiting 
+% 		distances to topology changes, and recombination rate. We generated two different 
+% 		species trees: Both have root heights of 1e6 generations, but one has five tips, 
+% 		an unbalanced topology, and identical internode lengths, while the other has ten 
+% 		tips, an irregular topology, and irregular branch lengths. Using a recombination 
+% 		rate of 1e-9 recombs/bp/generation and a constant Ne value of 150000 over all 
+% 		branches, we generated a 5MB tree sequence from each species tree using 
+% 		\emph{ipcoal}. Then, we decomposed the alignment into segments bounded by 
+% 		topology changes in the genealogies, and we recorded the initial genealogy 
+% 		for each segment. Finally, we calculated the likelihood of the set of 
+% 		genealogies and waiting distances, along with the recombination rate, at 41 
+% 		different proposed Ne values. For both sequence alignments, 150000 was 
+% 		correctly inferred as the Ne value.
+% 	}
+% 	\label{fig:fig5}
+% \end{figure}
 
 
 
@@ -2009,68 +2297,159 @@ value of 150000 for both trees.
 
 \section{Discussion}
 
+
+
 % Summarize what we did
-We began with a simple question: what is the expected turnover rate in 
-topologies along a genome under a species tree model? We generalized a 
-recent solution that used a single population and constant Ne, instead 
-structuring the equations to accept an arbitrary species tree topology 
-and a different, arbitrary Ne value for each species tree branch. These
-solutions lay a groundwork for exploring how species tree structures 
-affect neutral expectations of genealogical heterogeneity across chromosomes.
+%We began with a simple question: what is the expected turnover rate in 
+%topologies along a genome under a species tree model? We generalized a 
+%recent solution that used a single population and constant Ne \citep{deng_distribution_2021}, instead 
+We solved for the expected turnover rate in genealogical trees and topologies 
+along a genome under an arbitrary species tree topology with arbitrary 
+divergence times, and with arbitrary Ne values for each species tree branch.
+%structuring the equations to accept an arbitrary species tree topology 
+%and a different, arbitrary Ne value for each species tree branch. 
+These solutions, extended from initial work by \citep{deng_distribution_2021}, 
+lay a groundwork for exploring how variation in species tree parameters 
+affects neutral expectations of genealogical heterogeneity across chromosomes.
 
 % what do our results mean overall.
-It is interesting here to also take note of the scale of waiting distances 
-across different MSC model scenarios.
-- Previously the expected linkage in phylogenetic datasets could only be computed
-through exhaustive simulations (e.g., \citep{McKenzie}). 
-- In addition to MSC parameters of divergence times and effective population sizes, 
-other factors can also clearly affect the expected distances until ...
-Tree shape, tree size, the distribution of samples among species tree 
-lineages
+A primary result of our work is solving the mechanistic link between a given species tree 
+and the length of a genomic interval representing a single genealogy 
+(i.e. calculating the expected waiting distance until a genealogy change). 
+With our analytical results it is clear how MSC parameters of divergence times and 
+effective population sizes influence these waiting distances, most obviously 
+by constraining the number and identity of available lineages and by determining 
+the coalescence rate in each branch of the species tree. 
+These parameters also affect the rate of recombination events along the genome, since the 
+number of recombination events per base pair is dependent on the total branch 
+length of each underlying genealogy. By preventing coalescence between select lineages toward the present, 
+species tree divergence events enforce minimum branch lengths for the genealogies, 
+increasing the number of recombination events per base pair. Similarly, by affecting coalescence rates, variation in Ne 
+affects the per-base-pair recombination rate. This is because coalescences farther back in time 
+(which are expected to be more common if Ne is large)
+increase the total branch lengths of the genealogies.
+Topological and sampling parameters, including tree shape, tree size (i.e. number of tips), 
+and the distribution of samples among species tree 
+lineages, similarly affect the expected distances until genealogy 
+changes. These factors all exert their influence via the same general mechanisms as above: they affect the 
+probability of coalescence among certain lineages by constraining the availability of those lineages 
+for coalescence with each other, and they influence the 
+rate of recombination by affecting the total branch length of each genealogy. 
+Taken together, it is clear that the scale at which we observe neutral turnover across 
+genealogies is highly dependent on the species tree model. The potential 
+intricacy of this species tree model alongside expected variation in individual genealogies 
+can lead to patterns of genealogical turnover (and therefore, linkage) that are highly complex. 
+%Because of low levels of incomplete lineage sorting, highly 
+%structured models might have much longer waiting distances than single-population models. 
+Previously, the expected linkage in phylogenetic datasets could only be computed 
+through exhaustive simulations (e.g., \citep{mckenzie_multispecies_2020}. While such methods
+are practical for estimating the \emph{mean} linkage across all genealogies under a 
+specific demographic model, they are less helpful for estimating the 
+persistence of \emph{individual} genealogies in localized regions. To generate an approximate distribution 
+of waiting distances locally on a chromosome using simulation methods, 
+simulations generating a full probability distribution must be 
+run individually for each genealogy in the sequence. 
+Although this is benign across single, short segments, it is not a tractable solution across long 
+sequences of genealogies and/or across many replicates. 
 
 % importance to phylogenetics
-By accounting for the genomic heterogeneity that is expected due to incomplete 
-lineage sorting, the multispecies coalescent model has facilitated the widespread 
-use of multilocus data for phylogenetic inference. As phylogenetic systematics 
-continues to turn toward whole genomes, methods should seek to take advantage 
-of the increased resolution offered by genomic data. The traditional multispecies 
-coalescent model overlooks the process of recombination, assuming that loci 
-represent a single genetic history and that they are completely unlinked. In 
-reality, under a neutral model, species tree parameters and recombination 
-rates will influence the degree of genealogical turnover along a chromosome, 
-potentially resulting in linked loci and/or multiple genealogical topologies 
-per locus. Therefore, not accounting for recombination might mislead analyses. 
-Conversely, incorporating the rates of turnover observed in the data as 
-information could offer further clues for inference of the species tree 
+%By accounting for the genomic heterogeneity that is expected due to incomplete 
+%lineage sorting, t
+While the multispecies coalescent model has facilitated the widespread 
+use of multilocus data for phylogenetic inference by accounting for genomic heterogeneity, 
+it does not consider autocorrelation along the genome due to linkage.
+%, and it assumes 
+%that each locus represents only a single genealogy. In reality, these assumptions might 
+%often be violated \citep{gatesy_concatenation_2013}. 
+%As phylogenetic systematics 
+%continues to turn toward whole genomes, methods should seek to extend the MSC to take advantage 
+%of the increased resolution offered by genomic data. 
+Specifically, the MSC overlooks the process of recombination, assuming that each locus 
+represents a single genetic history and that multiple loci are completely unlinked from one another. 
+From our results, and from previous work, we know that species tree parameters and recombination 
+rates will dictate the rate and magnitude of genealogical turnover along a chromosome, 
+potentially resulting in -- in some cases -- high linkage between loci, and 
+-- in other cases -- multiple genealogical topologies 
+per locus. Therefore, not accounting for recombination might mislead 
+summary statistics methods \citep{liu2010maximum,gatesy_concatenation_2013,zhang2018astral}. 
+Some methods bypass genealogy inference by operating directly on SNP 
+frequencies \citep{bryant2012inferring,chifman2014quartet,vachaspati2018svdquest}, 
+and therefore might largely avoid bias from ignoring recombination. 
+To extend these SNP-based methods and/or to improve gene-tree-based methods to better delimit gene tree breakpoints, 
+we propose that incorporating the rates of turnover observed in the data as 
+information could actually offer useful new information for inferring the species tree 
 model that generated it. 
 
 
 %Inference of genealogies along a chromosome is a common goal in population genetics, and similar efforts have been undertaken in phylogenetics. Often, the goal of such efforts is to detect signals of introgression or selection. However, the phylogenetic approaches usually do not explicitly incorporate a model for recombination \citep[e.g.,][]{li2019recombination}. A notable exception to this is ARGweaver-D, which accepts models with population divergence and migration event parameters. Rather than derive probabilities of sequences of genealogical trees, ARGweaver-D uses an MCMC to sample the sequences. This approach is a powerful extension of the single-population ARGweaver method and has been applied successfully to study evolution of hominins, but it is limited to small numbers of samples. Challenges remain for studying properties of tree sequences for larger sets of samples.
+%Rather than inferring the species tree model, many modern genomic methods aim to 
+%These  methods aim to 
+%infer ARGs analyzing local patterns along the genome.
+The ultimate goal of ARG inference in phylogenomic or population genomic studies
+is often to detect signals of introgression or selection. 
+However, even in the case of a neutral coalescent process 
+with constant effective population sizes and with a constant recombination rate 
+across the genome, highly structured demographic models can exhibit
+high variance in the expected waiting distances until genealogical 
+topology changes (e.g. Fig.~\ref{fig:fig-validation}). As genealogical trees and 
+topologies vary along the genome, the waiting distance probability distribution 
+does too -- the result of this is that certain genealogies are expected to persist longer than others 
+due to their topology and coalescence times relative to the demographic model. 
+Until now, there has been no analytical approach for generating a null hypothesis 
+that describes the expected length of a region spanned by a particular genealogy under absolute neutrality.
+Our results allow us to calculate this null expectations and to probe null hypotheses concerning the probability 
+of observing specific waiting distances under different demographic models. 
+Of course, the MSC already allowed us to calculate the probability of observing a particular 
+genealogy at some location in the genome, but the equations here represent a further step by 
+generating a density function that represents the likelihood of \emph{persistence} 
+of that topology across some region, under neutrality alone. 
+This finding is particularly important for the practice of identifying evidence 
+of selection or introgression based on the spatial distribution of gene tree 
+patterns, which is an increasingly popular goal of phylogenomic studies. 
+For example, sliding-window analyses for detecting introgression have 
+been used to identify putatively introgressed loci in \emph{Heliconius} 
+butterflies \citep{zhang2016genome} and felids \citep{li2019recombination}. 
+Further, since we are able to calculate the likelihood of observing any sequence of waiting 
+distances associated with an ARG, we speculate that incorporating our waiting distance 
+expectations could be incorporated into ARG-inference methods like
+ARGweaver, ARGweaver-D, tsinfer, and relate \citep{rasmussen2014genome, hubisz2020inference, kelleher2019inferring, speidel2019method} 
+as an additional source of information. 
 
-Inference of genealogies along a chromosome is a common goal in population genetics, 
-and similar efforts have been undertaken in phylogenetics. Often, the goal of such 
-efforts is to detect signals of introgression or selection. However, the phylogenetic 
-approaches usually do not explicitly incorporate a model for recombination 
-\citep[e.g.,][]{li2019recombination}. Applications of our solutions might provide 
-valuable null hypotheses of genealogical turnover rates by which introgression or 
-selection might be detected. Beyond its use for detecting patterns resulting from 
-non-neutral processes, incorporating recombination in phylogenetic-scale models 
-could also help improve species tree inference. For example, to the extent that 
-they are observable, the empirical distribution of waiting distances to topology 
-changes might be inferred and compared against the expected waiting distances for 
-a proposed species tree model (e.g., \textbf{Figure 5}). Further approaches could 
-determine the distribution of waiting distances to specific types of topology 
-changes, such as those that split up a focal clade.
+%Our results here highlight the fact that demographic history plays an 
+%important role in establishing a null hypothesis for the expected rate 
+%of turnover of genealogies along the genome.
+
+%Beyond its use for detecting patterns resulting from 
+%non-neutral processes, incorporating recombination in phylogenetic-scale models 
+%could also help improve species tree inference. For example, to the extent that 
+%they are observable, the empirical distribution of waiting distances to topology 
+%changes might be inferred and compared against the expected waiting distances for 
+%a proposed species tree model (e.g., \textbf{Figure 5}). Further approaches could 
+%determine the distribution of waiting distances to specific types of topology 
+%changes, such as those that split up a focal clade.
+
+
+%Topological gravity wells. 
+%Even in the case of a neutral coalescent process 
+%with constant effective populations sizes and constant recombination rate 
+%across the span of a genome, highly structured demographic models can exhibit
+%high spatial variance in the expected waiting distances until topology changes. 
+%This finding is particularly important for the practice of identifying evidence 
+%of selection or introgression based on the spatial distribution of gene tree 
+%patterns. For example, sliding-window analyses for detecting introgression have 
+%been used to identify putatively introgressed loci in \emph{Heliconius} butterflies \citep{zhang2016genome}. 
+%Our results here highlight the fact that the demographic history of this group is 
+%important for establishing a null hypothesis for the expected rate of turnover of genealogies along the genome.
+
+%Examples: Heliconius. 
 
 
 
 
-
-
-\subsubsection{Acknowledgements}
+\subsection{Acknowledgements}
 This work was supported by the National Science Foundation 
 (NSF DEB-2046813 awarded to D.A.R.E. and NSF Graduate Research Fellowship DGE 16-44869 awarded 
-to P.F.M.). \hl{Thanks to Yun Deng for guidance on preliminary ideas and to...}
+to P.F.M.). Thanks to Yun Deng for guidance on preliminary ideas and to the Eaton Lab for valuable feedback.
 
 
 %\subsection{Citations}
@@ -2160,10 +2539,6 @@ to P.F.M.). \hl{Thanks to Yun Deng for guidance on preliminary ideas and to...}
 
 
 
-
-
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -2173,11 +2548,13 @@ to P.F.M.). \hl{Thanks to Yun Deng for guidance on preliminary ideas and to...}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-\section{Supplementary Information}
 
-
+\newpage
 
 \beginsupplement
+\section{Supplementary Information}
+
+\subsection{Supplementary Figures}
 
 \begin{figure}[p]
 	\centering
@@ -2199,11 +2576,13 @@ to P.F.M.). \hl{Thanks to Yun Deng for guidance on preliminary ideas and to...}
      \label{fig:figS-recomb-types}
 \end{figure}
 
-
+% \begin{landscape}
+	% \includegraphics[width=0.99\linewidth,keepaspectratio]{figures/Fig-S2-edge-probabilities.pdf}
+% \end{landscape}
 
 \begin{figure}[p]
 	\centering
-	\includegraphics[width=0.9\textwidth]{figures/Fig-S2-edge-probabilities.pdf}
+	\includegraphics[width=0.99\textwidth]{figures/Fig-S2-edge-probabilities.pdf}	
 	\caption{
 		Probabilities of different recombination event outcomes for a selected 
 		genealogy edge as a function of the time at which recombination occurs 
@@ -2220,11 +2599,108 @@ to P.F.M.). \hl{Thanks to Yun Deng for guidance on preliminary ideas and to...}
      \label{fig:figS-edge-probabilities}
 \end{figure}
 
+\newpage
+
+
+% \section{Appendix: Derivations}
+% \subsection{Derivations of the Multispecies Sequentially Markov Coalescent (MS-SMC')}
+
+
+\subsection{Investigating bias in MS-SMC' predictions}
+% in addition to SMC' approximation, topo-change has additional bias.
+The MS-SMC' harbors two potential sources of bias, the first stemming from 
+assumptions of the SMC' approximation, and the second from the approximate 
+nature of waiting distance estimation for topology-change events. We examined 
+both of these sources of error through comparison to stochastic simulations 
+and found that their effects are generally negligible, and also act in opposing 
+directions, such that their combined effect is further reduced.
+
+The SMC' approximation to the coalescent with recombination is expected 
+to deviate more significantly from the full model that it is approximating 
+as the number of recombination events that the SMC' does not model 
+(among ancestors that do not contribute genetic material to sampled descendants) 
+increases. 
+By not modeling some recombination events the SMC' will tend to 
+over-estimate waiting distances between tree or topology change events. 
+Because our waiting distance predictions are built upon assumptions of 
+the SMC' model, they too will exhibit this bias. 
+% Models with high population structure, such as MSC models with low Ne, 
+% where many recombination events
+% could occur among samples deep in time, but contribute no genetic material
+% to samples at the present. 
+To investigate this source of error we repeated the simulations from our 
+validation scenario using the \emph{msprime} setting ancestry="smc\_prime",
+to simulate tree sequences that exclude recombination events that would 
+not occur in the SMC' model. 
+We have already seen from our validations that the error in our predictions 
+is quite low when data are simulated under the full coalescent with 
+recombination (Fig.~\ref{fig:figS-bias-smc}).
+% When quantified, 
+As expected, we observe even less error 
+between our predictions and coalescent simulations when data are simulated
+under the SMC' model. Whereas the error 
+rate is generally below 5\% when data are simulated under the full coalescent
+with recombination model, and only exceeds this at the lowest
+$N_e$ values examined, mean error rates do not exceed 5\% in any 
+models for data simulated under the SMC' assumptions. 
+This shows that the SMC' assumption does contribute a relatively small error 
+to our waiting distance predictions, especially at low $N_e$ values,
+where it can lead to over-estimated waiting distances.
+
+We also investigated whether inhomogeneity in the probability of topology 
+changes during the waiting distance between topology-change events 
+causes bias. 
+% caused by tree-change events. 
+For this, we employed a similar approach to \citet{deng_distribution_2021}, 
+who examined the fold-difference in parameters affecting waiting distance
+estimations between a starting tree and a subsequent genealogy that 
+experienced a tree-change but not a topology-change. 
+% In the case of MSC models, because this probability is a product 
+% of 
+% is a product of both L($\mathcal{G}$) and 
+% $\mathbb{P}(\text{topology-change} | \mathcal{S}, \mathcal{G})$,
+% We examined the fold difference in the genealogy length, the probability
+% of topology change, and 
+% these parameters separately, and in 
+Because MSC model parameters affect both the length of genealogies and
+the probability of topology-change, we also examined variation in each of these 
+parameters at different constant $N_e$ values of 50K, 100K, or 500K. 
+For each setting we examined one topology-change event from 1K tree sequences. 
+
+In a single population model with constant $N_e$, \citet{deng_distribution_2021}
+previously showed that the bias in topology-change waiting distances is negligible
+because there is an inverse relationships between the length of a genealogy
+and the probability of a topology change. Our analysis confirms this result,
+showing that variance in the product of these two parameters, 
+which equates to the waiting distance rate parameter (equations 7,8, 10), 
+is very low (Fig.~\ref{fig:figS-bias-topo}a), and becomes smaller as more 
+gene copies are sampled (Fig.~\ref{fig:figS-bias-topo}b-c). In the 2-population
+and 8-population MSC-type models we find the same result. Here, constraints 
+imposed by population structure lead to less variance in both the 
+length of genealogies and probabilities of topology-change
+(Fig.~\ref{fig:figS-bias-topo}d-i). When $N_e$ is low, there is very 
+little variation between subsequent genealogies, and thus the waiting 
+distance expectation exhibits little heterogeneity. When $N_e$ is high,
+there is little population structure, and so the waiting distance 
+expectation remains relatively constant for the same reason as in a 
+single population model. Overall, MSC models do not appear to exhibit a greater
+bias than a single population model from this effect.
 
 
 \begin{figure}[p]
 	\centering
-	\includegraphics[width=0.9\textwidth]{figures/FigSX-bias.pdf}
+	\includegraphics[width=0.99\textwidth]{figures/error-smc-approx.pdf}
+	\caption{
+		Error in ...
+	}
+     \label{fig:figS-bias-smc}
+\end{figure}
+
+
+
+\begin{figure}[p]
+	\centering
+	\includegraphics[width=0.99\textwidth]{figures/FigSX-bias.pdf}
 	\caption{
 		Variance in the fold-change in components affecting the expected waiting 
 		distance to a topology change between the starting tree and a subsequent
@@ -2238,319 +2714,856 @@ to P.F.M.). \hl{Thanks to Yun Deng for guidance on preliminary ideas and to...}
 		is expected to be more accurate. Larger effective population sizes and 
 		numbers of samples per lineage yield lower variance in the product.
 	}
-     \label{fig:figS-bias}
+     \label{fig:figS-bias-topo}
 \end{figure}
 
 
-\begin{table}[h]
-\centering
-\caption{\label{tab:table-S1} 
-	A table summarizing the relationships among branches in the genealogical tree embedded in the species tree in Figure 1. 
-}
-\begin{tabular}[t]{ |c|c|c|c|c|c|c| }
-	\toprule
-	Branch & $\mathcal{I}_b$ & $t_b^l$ & $t_b^u$ & Parent & Sibling & $t_b^m$ \\
-	\midrule
-	0  &  1 & 0      & $t_7$  & 7  & 1  & 0          \\
-	1  &  1 & 0      & $t_7$  & 7  & 0  & 0          \\
-	2  &  3 & 0      & $t_9$  & 9  & 8  & $W_{AB}$   \\
-	3  &  1 & 0      & $t_8$  & 8  & 4  & 0          \\
-	4  &  1 & 0      & $t_8$  & 8  & 3  & 0          \\
-	5  &  4 & 0      & $t_{11}$ & 11 & 6  & $W_{ABCD}$ \\
-	6  &  2 & 0      & $t_{11}$ & 11 & 5  & $W_{ABCD}$ \\
-	7  &  4 & $t_7$  & $t_{10}$ & 10 & 9  & $t_9$      \\
-	8  &  2 & $t_8$  & $t_9$  & 9  & 2  & $W_{AB}$   \\
-	9  &  2 & $t_9$  & $t_{10}$ & 10 & 7  & $t_9$      \\
-	10 &  3 & $t_{10}$ & $t_{12}$ & 12 & 11 & $t_{11}$     \\
-	11 &  1 & $t_{11}$ & $t_{12}$ & 12 & 10 & $t_{11}$     \\
-	\bottomrule
-\end{tabular}
-\end{table}
-
-
-
-\newpage
-\section{Appendix: Step-by-Step Solution}
-
-Here we describe the derivation of solutions for the MS-SMC' equations in 
-greater detail.
-
-
-
+\section{Appendix: Derivations}
 
 \subsection{Notation}
 
-\begin{table}[h]
+Information from the genealogy embedding table can be used to calculate the 
+probabilities of no-change, tree-change, and topology-change events under the 
+MS-SMC'. These equations, described below, use the terms defined in 
+Table~\ref{tab:table-S2}. 
+% What is a species tree
+A species tree $\mathcal{S}$ is a parameterized multispecies coalescent model
+(demographic model) in which a set of isolated populations are related by a bifurcating
+tree topology. Divergence times between lineages are in units of generations, 
+and each edge (species tree interval) can be associated with a different constant 
+diploid effective population size ($N_e$). 
+A genealogy $\mathcal{G}$ represents the genealogical relationships -- composing
+a topology and coalescent times in units of generations -- for a set 
+of sampled gene copies at some position in their genomes. A genealogy can be 
+embedded in a species tree if the coalescent times between sampled gene copies
+from different populations are not younger than a population divergence
+event separating them.
+
+
+\begin{table}[!b]
 \centering
-\caption{\label{tab:table-S2} 
+\caption{\label{tab:table-notation} 
 	Summary of variables used in waiting distance equations. 
 }
 \begin{tabular}[t]{ |c|l| }
 	\toprule
 	Variable & Description \\
 	\midrule
-	$i$          & Integer-valued interval index to which $t_r$ belongs      \\
-	$a_x$      & The value of $A(t)$ for all $t_r$ in interval $x$   \\	
-	$n_x$          & The value of $N(t_r)$ for all $t_r$ in interval $x$      \\ 
-	$\sigma_x$  & The lower boundary, in generations, of interval $x$ \\
-	$d_x$      & The length, in generations, of the interval $x$ -- i.e., $\sigma_{x+1} - \sigma_{x}$   \\
-	$t_l^b$ & The lower boundary, in generations, of branch $b$  \\
-	$t_u^b$ & The upper boundary, in generations, of branch $b$ \\
-	$t_m^b$ & The time at which a focal branch $b$ is able to coalesce with its sibling branch \\
-	$m$ & Integer-valued interval index whose lower boundary is $t_m^b$ \\
-	$\mathcal{I}_b$          & The number of intervals on branch $b$  \\
-	$\mathcal{G}$          & The genealogical tree \\
-	$\mathcal{S}$   & The species tree with divergence times and branch-specific effective population sizes  \\
-	$L(\mathcal{G})$ & The total length of branches in genealogy $\mathcal{G}$ \\
+	$\mathcal{S}$    & An MSC model with topology, divergence times and effective population sizes. \\
+	$\mathcal{G}$    & A genealogy that can be embedded in $\mathcal{S}$. \\
+	$L(\mathcal{G})$ & Sum of edge lengths of genealogy $\mathcal{G}$. \\
+	$b$ 			  & A focal branch in $\mathcal{G}$. \\
+	$i$              & Interval in the genealogy embedding table in which recombination occurs.\\
+	$\mathcal{I}_b$  & Ordered set of intervals on branch $b$.\\
+	$\mathcal{I}_{c}$   & Ordered set of intervals on branch $c$, the parent of branch $b$.\\
+	$\mathcal{I}_{bc}$  & Ordered union of sets $\mathcal{I}_{b}$ and $\mathcal{I}_{c}$.\\
+	$\mathcal{J}_b(i)$  & Ordered set of intervals above $i$ on branch $b$.\\	
+	$\mathcal{Q}_b(i,j)$ & Ordered set of intervals above $i$ and below $j$ on branch $b$.\\
+	$\mathcal{K}(b,t)$ & Number of edges of $\mathcal{G}$ in the interval containing branch $b$ at time $t$.\\
+	$k_x$              & Number of edges of $\mathcal{G}$ in interval $x$; piece-wise constant of $A(b,t)$.\\
+	$\mathcal{N}(b,t)$ & Diploid effective population size in the interval containing branch $b$ at time $t$.\\
+	$n_x$              & Diploid effective population size in interval $x$; piece-wise constant of $N(b,t)$. \\
+	$t_r$		& Time of a recombination event, in generations. \\
+	$\sigma_x$     & The lower boundary of interval $x$, in generations. \\
+	$\mu_x$        & The upper boundary of interval $x$, in generations. \\	
+	$d_x$          & The length of interval $x$, in generations. \\
+	$t_b^l$        & The lower boundary of branch $b$, in generations. \\
+	$t_b^u$        & The upper boundary of branch $b$, in generations. \\
+	$t_b^m$        & The time at which a focal branch $b$ is able to coalesce with its sibling branch. \\
+	$m$            & Index of an interval in the genealogy embedding table with lower boundary $t_b^m$. \\
+	$\mathcal{M}_b$  & Ordered set of intervals from $m$ and above on branch $b$.\\
+	$\mathcal{L}_b$  & Ordered set of intervals below $m$ on branch $b$.\\	
+	% $\mathcal{I}_b$  & The number of intervals containing branch $b$. \\
 	\bottomrule
 \end{tabular}
 \end{table}
 
 
-Assume we have sampled from a species tree $\mathcal{S}$ with $\mathcal{N}$ tips, where 
-each tip represents a sampled individual belonging to one of the species. The species tree 
-consists of a topology describing the history of population divergences, where each branch 
-of the topology has a constant effective diploid population size $N_b$ associated with it. 
-Within each branch, coalescence occurs at a constant per-generation rate of $\frac{1}{2N_b}$. 
 
-We begin with a genealogical tree $\mathcal{G}$ sampled from the species tree according 
-to coalescent probabilities. This tree is embedded within the species tree so that the 
-time of coalescence for any two individuals from different species in $\mathcal{G}$ 
-is constrained to occur farther back in time than their species' coalescence times 
-in $\mathcal{S}$.
+% each tip represents a sampled individual belonging to one of the species. The species tree 
+% consists of a topology describing the history of population divergences, where each branch 
+% of the topology has a constant effective diploid population size $N_b$ associated with it. 
+% Within each branch, coalescence occurs at a constant per-generation rate of $\frac{1}{2N_b}$. 
 
-In \citet{deng_distribution_2021}, the genealogical tree was broken into a series of 
-intervals so that the number of remaining (not-coalesced) lineages was constant within
-each interval. In their method, the number of remaining lineages decreases monotonically
-through time from tipward to rootward intervals as lineages coalesce. Our approach is 
-similar, except that the intervals are branch-specific and correspond to intervals of 
-constant numbers of lineages to coalesce with ($A$) and constant effective population 
-size ($N$). Breakpoints may therefore exist where divergences occur in the species 
-tree (potentially changing both $A$ and $N$) and where coalescent events occur in 
-the genealogical tree (reducing $A$). Unlike in \citet{deng_distribution_2021}, $A$ 
-is no longer monotonic, since \emph{species} coalescent events can increase the number
-of lineages available for coalescence, while \emph{genealogical} coalescent events
-always reduce that number. 
+% What is a genealogy, or set of genealogies, and what are samples
+% One or more haploid genomes can be sampled from each lineage of a species tree.
+% Each genome is composed of a mosaic of gene copies inherited from different ancestors,
+% and thus the genealogy of 
+% and at any position along the genome the relationships among the gene 
 
-The intervals within each branch of $\mathcal{T}$ are each assigned an index increasing
-from $0$ to $\mathcal{I}_b-1$, where $\mathcal{I}_b$ is the total number of intervals
-in the branch. The times in generations marking the lower and upper bounds of each 
-branch $b$ are notated $t_l^b$ and $t_u^b$, respectively. Each interval of index $x$
-is bounded by times $\sigma_x$ and $\sigma_{x+1}$.
+% distinguish between gene =copy and genomes.xs
+
+Given a genealogy embedded in a species tree, a series of discrete intervals 
+can be defined that are delimited by events that change the rate of 
+coalescence. This is termed a genealogy embedding table (e.g., Table~\ref{tab:table-1}). 
+In the waiting distance solutions for a single population with constant $N_e$ 
+by \citet{deng_distribution_2021}, this table is delimited only by coalescent 
+events. Because N$_e$ is constant in their framework, only $k$ differs between 
+intervals, and this determines differences in rates of coalescence, 
+which decrease in subsequent intervals from the tips towards the root. 
+Our approach is similar, but adds additional complexity (Fig.~\ref{fig:fig1}). 
+In the multispecies framework, genealogy embedding intervals are specific to each 
+species tree branch, and correspond to time intervals with a constant 
+$k$ and $N_e$. Breakpoints between intervals arise where divergences 
+occur in the species tree (increasing $k$ and potentially changing $N_e$) 
+and where coalescent events occur in the genealogy (reducing $k$).
+
+Each branch on $\mathcal{G}$ will span one or more genealogy embedding 
+intervals. The ordered set of intervals on a specific branch, $b$, is 
+defined as $\mathcal{I}_b$. The lower and upper bound of each interval is 
+$\sigma_x$ and $\mu_x$, respectively, where $x$ is the index of the 
+interval in the genealogy embedding table. The lower and upper bounds of
+each branch are defined as $t_b^l$ and $t_b^u$, respectively. 
+% Unlike in \citet{deng_distribution_2021}, where $N_e$ is constant, and $k$ 
+% only decreases backwards in time, a multispecies scenario can see both 
+% $k$ and $N_e$ increase or decrease through time as different 
+% species tree intervals can have different $N_e$ values, and 
+% \emph{species tree} coalescence events increase $k$, while 
+% \emph{genealogy} coalescence events reduce $k$.
+
+
+% For a selected branch $b$ on $\mathcal{G}$, intervals from the genealogy 
+% embedding table corresponding to this branch can be indexed in order 
+% ...\hl{update again}...
+% from $\mathcal{I}_b-1$, where $\mathcal{I}_b$ is the total number of intervals
+% in the branch. The times in generations marking the lower and upper bounds of each 
+% branch $b$ are notated $t_l^b$ and $t_u^b$, respectively. Each interval of index $x$
+% is bounded by times $\sigma_x$ and $\sigma_{x+1}$.
+
+% We begin with a genealogical tree $\mathcal{G}$ sampled from the species tree according 
+% to coalescent probabilities. This tree is embedded within the species tree so that the 
+% time of coalescence for any two individuals from different species in $\mathcal{G}$ 
+% is constrained to occur farther back in time than their species' coalescence times 
+% in $\mathcal{S}$.
+
+
+% Let $\mathcal{I}_b$ = (i$_1$, ..., i$_n$) be an ordered set of indices in the
+% genealogy embedding table corresponding to intervals on branch $b$. These are
+% indexed 
+
+
+\subsubsection{Extending SMC' waiting distance solutions:}
+
+% In \citet{deng_distribution_2021}, the genealogical tree was broken into a series of 
+% intervals so that the number of remaining (not-coalesced) lineages was constant within
+% each interval. In their method, the number of remaining lineages decreases monotonically
+% through time from tipward to rootward intervals as lineages coalesce. Our approach is 
+% similar, except that the intervals are branch-specific and correspond to intervals of 
+% constant numbers of lineages to coalesce with ($A$) and constant effective population 
+% size ($N$). Breakpoints may therefore exist where divergences occur in the species 
+% tree (potentially changing both $A$ and $N$) and where coalescent events occur in 
+% the genealogical tree (reducing $A$). Unlike in \citet{deng_distribution_2021}, $A$ 
+% is no longer monotonic, since \emph{species} coalescent events can increase the number
+% of lineages available for coalescence, while \emph{genealogical} coalescent events
+% always reduce that number. 
+
 
 % \subsection{The distribution of distances to any change in a genealogical tree}
 % Our goal is to derive a distribution of waiting distances to the next tree change
 % given a species tree and current genealogy.
-We begin with a genealogical tree $\mathcal{G}$ sampled from the species tree according to coalescent probabilities. This tree is embedded within the species tree so that the time of coalescence for any two individuals from different species in $\mathcal{G}$ is constrained to occur farther back in time than their species' coalescence times in $\mathcal{S}$.
+% We begin with a genealogical tree $\mathcal{G}$ sampled from the species tree according 
+% to coalescent probabilities. This tree is embedded within the species tree so that the 
+% time of coalescence for any two individuals from different species in $\mathcal{G}$ is 
+% constrained to occur farther back in time than their species' coalescence times in $\mathcal{S}$.
 
-\subsubsection{Given a branch and a time}
-We begin by assuming a specific branch and time of a recombination event. We then 
-integrate across possible times on that branch, and we sum across all branches on
-the tree to solve for the probability of the genealogy being unchanged given any 
-recombination event. Finally, we incorporate this probability into the exponential
-distribution presented in Equation 4.
+% We begin by assuming a specific branch and time of a recombination event. We then 
+% integrate across possible times on that branch, and we sum across all branches on
+% the tree to solve for the probability of the genealogy being unchanged given any 
+% recombination event. Finally, we incorporate this probability into the exponential
+% distribution presented in Equation 4.
+
+
+% are each assigned an index increasing 
+% from $0$ to $\mathcal{I}_b-1$, where $\mathcal{I}_b$ is 
+% the total number of intervals in the branch. The times in generations marking the lower 
+% and upper bounds of each branch $b$ are notated $t_l^b$ and $t_u^b$, 
+% respectively. Each interval of index $x$ is bounded by times $\sigma_x$ and $\sigma_{x+1}$.
+
+The probabilities of different recombination event types under the 
+MS-SMC' are calculated from the probability that recombination occurs on 
+a specific branch and the probabilities that the resulting detached 
+subtree re-coalesces with any other available branch above that time. 
+The opportunity for recombination to occur on a branch is scaled by 
+its length in generations ($t_b^u$ - $t_b^l$). Similarly, the 
+probability of re-coalescence on a branch is scaled by its length
+and the coalescence rate. The latter can vary over the length of a branch
+as it spans different intervals, and is a function of the effective 
+population size in the species tree interval that includes branch $b$ at
+a specified time, $\tau$, defined as $\mathcal{N}(b,\tau)$, and the number of 
+other genealogy branches in the interval that includes branch $b$ at time $\tau$,
+defined as $\mathcal{K}(b,\tau)$.
+Finally, the probability that coalescence occurs over an interval of length ($t$) 
+can be calculated from an exponential probability density $f(t; \lambda)$, 
+where the rate parameter is $\lambda$ = $\frac{\mathcal{K}(b,\tau)}{2\mathcal{N}(b,\tau)}$, 
+similar to equations 1-2. 
+% or coalescence to occur on any branch
+% coalescence events are calculated from the lengths of 
+% intervals in units of generations, and the rate of coalescence within each
+% interval, which is determined by the number of lineages that a given branch
+% $b$ can coalesce with at any specified time $\mathcal{A}(b,\tau)$.
+
+% \subsubsection{Probability of no-change or tree-change events}
+\subsubsection{Probability of no-change given a branch and time of recombination}
+
+The probability that a tree is unchanged by a recombination event -- meaning that 
+no coalescent times are changed -- is the probability that the detached subtree 
+re-coalesces with the same branch it detached from. Thus, we can integrate over the
+length from the time of recombination ($t_r$) to the top of the branch ($t_b^u$), the 
+probability of sampling the same branch times the exponential probability density
+of re-coalescing at any time on that branch above the time of recombination 
+($\tau - t_r$). We take this integral with respect to $\tau$, where 
+$\mathcal{K}(b,\tau)$ and $\mathcal{N}(b,\tau)$
+can vary across the length of the branch if it spans different intervals.
+
+% Where $A(\tau)$ is the number of lineages able to be coalesced with at any time $\tau$, 
+% and $p(\tau|t_r)$ is the exponential probability density of coalescing any time 
+% after the recombination event. 
+% Thus, we are integrating over the probability
+% of coalescence along the path of species tree intervals traversed
+% by branch $b$, starting at the time of recombination and ending at the 
+% end of the branch. If the branch spans only a single genealogy embedding 
+% interval then $A(\tau)$ and $N(\tau)$... $\lambda$ = $\frac{A(b,\tau)}{2N(b,\tau)}$
+
+% Through this series of one or more genealogy embedding intervals the 
+% up to that time through the species tree intervals that are traversed
+% by branch $b$, which can involve changing numbers of samples over time (A(t)), 
+% and changing effective population sizes (N(t)).
+% Here we define the coalescence rate at time $\tau$ as $\frac{A(\tau)}{N(\tau)}$. 
+% Note that this differs from \citet{deng_distribution_2021}, 
+% since our branch lengths are in units of generations rather than in
+% coalescent units. 
+
 
 % \begin{equation}
-% 	\mathbb{P}(\textrm{tree unchanged} | b,t,\mathcal{T},\mathcal{S}) = 
-% 	\int_{t}^{t^u_b}\frac{1}{A(\tau)}p(\tau|t)d\tau
-% \end{equation}
-The intervals within each branch of $\mathcal{G}$ are each assigned an index increasing from $0$ to $\mathcal{I}_b-1$, where $\mathcal{I}_b$ is 
-the total number of intervals in the branch. The times in generations marking the lower and upper bounds of each branch $b$ are notated $t_l^b$ and $t_u^b$, 
-respectively. Each interval of index $x$ is bounded by times $\sigma_x$ and $\sigma_{x+1}$.
+	% \mathbb{P}(\textrm{tree unchanged} | \mathcal{S}, \mathcal{G}, b, t_r) = 
+	% \int_{t_r}^{t^u_b}\frac{1}{A(\tau)}p(\tau|t)d\tau
+% \end{equation}	
 
-Where $A(\tau)$ is the number of lineages able to be coalesced with at any time $\tau$, 
-and $p(\tau|t_r)$ is the exponential probability density of coalescing any time 
-after the recombination event. Thus, we are integrating over the probability
-of coalescence along the path of species tree intervals traversed
-by branch $b$, starting at the time of recombination and ending at the 
-end of the branch. If the branch spans only a single genealogy embedding 
-interval then $A(\tau)$ and $N(\tau)$
+% full equation
+\begin{equation}
+	\mathbb{P}(\textrm{tree-unchanged} | \mathcal{S}, \mathcal{G}, b, t_r) = 
+	\int_{t_r}^{t_b^u} \frac{1}{\mathcal{K}(b,\tau)} f(\tau - t_r; \lambda) d\tau
+\end{equation}
 
-\hl{Fixing this section is required...}
+\noindent The exponential probability density function can be expanded, as in 
+equation 2, where $\lambda$ is $\mathcal{K}(b,\tau)$ over 
+2$\mathcal{N}(b,\tau)$:
+% , where the probability of re-coalescence is the coalescent rate
+% $\frac{1}{2N_e}$ times the number of samples $k$ that the detached subtree can
+% reconnect with.
+% number of samples
+% the detached lineage can coalesce with over 2 times the diploid effective population
+% size.
+% . Here the rate parameter $\lambda$ is the probability that the
+% detached lineage will re-coalesce with any of the other samples in the 
+% interval at time $\tau$, which is $\frac{A(b,\tau)}{2N(b,\tau)}$. We can 
+% substitute this into the exponential probability density function, and
+% integrate over all time points above the recombination event:
 
-Through this series of one or more genealogy embedding intervals the 
+% expand exponential probability function
+\begin{equation}
+	= \int_{t_r}^{t_b^u} 
+	\frac{1}{\mathcal{K}(b,\tau)} 
+	\frac{\mathcal{K}(b,\tau)}{2\mathcal{N}(b,\tau)}
+	\exp \bigg\{
+		-\int_{t_r}^{\tau} \frac{\mathcal{K}(b,s)}{2\mathcal{N}(b,s)}ds
+		\bigg\} d\tau
+\end{equation}
 
-up to that time through the species tree intervals that are traversed
-by branch $b$, which can involve changing numbers of samples over time (A(t)), 
-and changing effective population sizes (N(t)).
-Here we define the coalescence rate at time $\tau$ as $\frac{A(\tau)}{N(\tau)}$. 
-Note that this differs from \citet{deng_distribution_2021}, 
-since our branch lengths are in units of generations rather than in
-coalescent units. 
+\noindent This simplifies to the following equation, which describes the probability that
+the subtree re-coalesces at any time ($d\tau$) on $b$ above $t_r$, and 
+that it does not re-coalesce at any intervening time ($ds$) between 
+$t_r$ and $\tau$.
 
-% who defined the 
-% coalescent rate over an interval using the more common compound 
-% metric of coalescent time units (time in generations /2N). 
-% For the purposes of our equations it is simpler to  better to define define time in generations from the
-% coalescent probability at any unit of time. per unit
-% time, 
+% cancel \mathcal{A}(t) 
+\begin{equation}
+	= \int_{t_r}^{t_b^u}
+	\frac{1}{2\mathcal{N}(b,\tau)}
+	\exp \bigg\{
+		-\int_{t_r}^{\tau} \frac{\mathcal{K}(b,s)}{2\mathcal{N}(b,s)}ds
+		\bigg\} d\tau
+\end{equation}
+
+\noindent Because the rate of re-coalescence is constant within each interval, 
+we next split this equation into statements over each discrete interval that the
+detached subtree could possibly re-coalesce with on branch $b$. (Recall, because
+we are currently computing the probability of a no-change event we only need
+to concern ourselves with re-coalescence on branch $b$.)
+Here, the interval in which recombination occurred on branch $b$ is labeled
+as $i$. 
+
+In the equation below, the first integral describes the probability statement
+over only part of interval $i$, from $t_r$ to $u_i$, rather than over its entire 
+length, since re-coalescence can only occur above the time at which recombination 
+occurred. By contrast, the latter parts of this equation are performed over the
+entire lengths of each remaining interval above $i$, from the 
+bottom ($\sigma_j$) to the top ($\mu_j$) of the interval.
+The ordered set of all intervals above $i$ in $\mathcal{I}_b$ 
+is defined as $\mathcal{J}_b(i) = \{j \in \mathcal{I}_b ~|~ j > i \}$. 
 
 \begin{equation}
-	\mathbb{P}(\textrm{tree unchanged} | b,t,\mathcal{G},\mathcal{S}) = \int_{t}^{t^u_b}\frac{1}{A(\tau)}p(\tau|t)d\tau
+\begin{aligned}
+	&= \int_{t_r}^{\mu_i}
+		\frac{1}{2\mathcal{N}(b,\tau)} \exp 
+			\bigg\{
+				-\int_{t_r}^{\tau} \frac{\mathcal{K}(b,s)}{2\mathcal{N}(b,s)}ds
+			\bigg\} d\tau + 
+			% 
+			\sum_{j \in \mathcal{J}_b(i)}
+			\int_{\sigma_j}^{\mu_j}
+			\frac{1}{2\mathcal{N}(\tau)} \exp 
+			\bigg\{
+				-\int_{t_r}^{\tau}
+				\frac{\mathcal{K}(s)}{2\mathcal{N}(s)}ds
+			\bigg\} d\tau\\
+	% &~~where\\
+	% &\mathcal{J}_b = \{j \in \mathcal{I}_b ~|~ j > i \}\\
+\end{aligned}			
 \end{equation}
+
 
 % coalescence rate.
 
+% \begin{equation}
+% 	= \int_{t}^{t^u_b}\frac{1}{A(\tau)} \frac{A(\tau)}{N(\tau)}
+% 	e^{-\int_t^\tau{}\frac{A(s)}{N(s)}ds} d\tau
+% \end{equation}
+
+
+% \begin{equation}
+% 	= \int_{t}^{t^u_b}\frac{1}{N(\tau)}e^{-\int_t^\tau{}\frac{A(s)}{N(s)}ds} d\tau
+% \end{equation}
+
+% \subsubsection{Piece-wise constant probability of no-change}
+
+% \begin{equation}
+% 	= \int_{t_r}^{\sigma_{i+1}} 
+% 		\frac{1}{2N(b,\tau)} \exp 
+% 			\bigg\{
+% 				-\int_{t_r}^{\tau} \frac{A(b,s)}{2N(b,s)}ds
+% 			\bigg\} d\tau + 
+% 			% 
+% 			\sum_{j=i+1}^{\mathcal{I}_b-1}
+% 			\int_{\sigma_{j}}^{\sigma_{j+1}}
+% 			\frac{1}{2N(\tau)} \exp 
+% 			\bigg\{
+% 				-\int_{t_r}^{\tau}
+% 				\frac{A(s)}{2N(s)}ds
+% 			\bigg\} d\tau
+% \end{equation}
+
+% Once again, taking advantage of the piece-wise constant rate within each interval, 
+\noindent We can now solve this equation and substitute constant values for 
+$\mathcal{K}(b,\tau)$ and $\mathcal{N}(b,\tau)$ in each interval. 
+Because the first term is computed over only part of the first interval we 
+first solve this term separately, and then show the result for the later terms.
+% \paragraph{First term --}
+% \begin{equation}
+	% = \frac{1}{a_i} - \frac{1}{a_i}e^{-\frac{a_i}{n_i}\sigma_{i+1}}e^{\frac{a_i}{n_i}t}
+% \end{equation}
+% \begin{equation}
+% 	= \frac{1}{a_i} - 
+% 	  {\color{red}\
+% 		  \frac{1}{a_i}
+% 		  \exp \bigg\{-\frac{a_i}{2n_i}\sigma_{i+1} \bigg\}
+% 	  }
+% 	  \exp \bigg\{\frac{a_i}{2n_i}t_r \bigg\}
+% \end{equation}
+The first term concerns the probability of re-coalescing in the same interval 
+$i$ in which recombination occurred. The center part of this equation will 
+appear again later, and so we define it as the function $f(i,i)$.
+
 \begin{equation}
-	= \int_{t}^{t^u_b}\frac{1}{A(\tau)} \frac{A(\tau)}{N(\tau)}
-	e^{-\int_t^\tau{}\frac{A(s)}{N(s)}ds} d\tau
+	= \frac{1}{k_i} - 
+	  \frac{1}{k_i}
+	  \exp \bigg\{-\frac{k_i}{2n_i} \mu_i \bigg\}
+	  \exp \bigg\{\frac{k_i}{2n_i} t_r \bigg\}
+\end{equation}
+
+% \begin{equation}
+	% = \frac{1}{a_i} +P_{ii}e^{\frac{a_i}{n_i}t}
+% \end{equation}
+\begin{equation}
+	= \frac{1}{k_i} + f(i,i) \exp \bigg\{\frac{k_i}{2n_i} t_r \bigg\}
 \end{equation}
 
 
-\begin{equation}
-	= \int_{t}^{t^u_b}\frac{1}{N(\tau)}e^{-\int_t^\tau{}\frac{A(s)}{N(s)}ds} d\tau
-\end{equation}
+% \paragraph{Later terms --}
+\noindent We similarly define the function $f(i,j)$ for the later terms in 
+this equation, which refer to the  
+probability of re-coalescing in a later interval, $j$, than the one 
+in which recombination occurred, $i$. This function requires also summing over 
+any intervening intervals, $q$. For this, we define the function 
+$\mathcal{Q}_b(i,j) = \{q \in \mathcal{I}_b ~|~ j > q > i\}$
+to return the ordered set of intervals on branch $b$ between $i$ and $j$: 
+
+% Once again, we can separate the part of this equation that is constant
+% over intervals, and does not depend on the time of recombination $t_r$.
+% Here this component, which we call $f(i,j)$, represents the probability 
+% of re-coalescing in an interval above the one in which recombination 
+% occurred.
+% \begin{equation}
+	% = \sum_{k=i+1}^{\mathcal{I}_b-1} e^{\frac{a_i}{n_i}t} \exp\left(-\frac{a_i}{n_i}\sigma_{i+1}-\sum_{q=i+1}^{k-1} \frac{a_q}{n_q}T_q\right)\left(\frac{1}{a_{k}}(1-e^{-\frac{a_{k}}{n_{k}}T_{k}})\right)
+% \end{equation}
+
+% \begin{equation}
+% 	= \sum_{j=i+1}^{\mathcal{I}_b-1} 
+% 	{\color{red}
+% 	  \frac{1}{a_{j}}
+% 	  \bigg(1 - \exp 
+% 		  \bigg\{
+% 			  -\frac{a_j}{2n_j} d_j 
+% 		  \bigg\}
+% 	  \bigg)
+% 	  \exp \bigg\{
+% 		  -\frac{a_i}{2n_i} \sigma_{i+1} - 
+% 		  \sum_{q=i+1}^{j-1} 
+% 		  \frac{a_q}{2n_q} d_q
+% 		  \bigg\}
+% 	}
+% 	  \exp \bigg\{
+% 		  \frac{a_i}{2n_i} t_r
+% 		  \bigg\} 	  
+% \end{equation}
 
 
-
-We can now take advantage of the fact that the rate of coalescence is piecewise-constant. We split the equation into one interval $i$ whose length depends on $t$ (it ranges from $t$ until the upper limit of its interval, $\sigma_{i+1}$) and we add to it integrals across intervals that are above it on the same branch, which are predefined by their upper and lower $\sigma$ values:
-
-\begin{equation}
-	= \int_{t}^{\sigma_{i+1}} \frac{1}{N(\tau)}\exp\left(-\int_{t}^{\tau}\frac{A(s)}{N(s)}ds\right)d\tau + \sum_{k=i+1}^{\mathcal{I}_b-1}\int_{\sigma_{k}}^{\sigma{k+1}}\frac{1}{N(\tau)}\exp\left(-\int_{t}^{\tau}\frac{A(s)}{N(s)}ds\right)d\tau
-\end{equation}
-
-We solve first term and later terms separately:
-
-\paragraph{First term --}
-
-\begin{equation}
-	= \frac{1}{a_i} - \frac{1}{a_i}e^{-\frac{a_i}{n_i}\sigma_{i+1}}e^{\frac{a_i}{n_i}t}
-\end{equation}
-
-\begin{equation}
-	= \frac{1}{a_i} +P_{ii}e^{\frac{a_i}{n_i}t}
-\end{equation}
-
-\paragraph{Later terms --}
-
-\begin{equation}
-	= \sum_{k=i+1}^{\mathcal{I}_b-1} e^{\frac{a_i}{n_i}t} \exp\left(-\frac{a_i}{n_i}\sigma_{i+1}-\sum_{q=i+1}^{k-1} \frac{a_q}{n_q}T_q\right)\left(\frac{1}{a_{k}}(1-e^{-\frac{a_{k}}{n_{k}}T_{k}})\right)
-\end{equation}
-
-\begin{equation}
-	= \sum_{k=i+1}^{\mathcal{I}_b-1} e^{\frac{a_i}{n_i}t} P_{ik}
-\end{equation}
-
-Adding these together, we are left with the solution:
-
-\begin{equation}
-	\mathbb{P}(\textrm{tree unchanged} | b,t,\mathcal{G},\mathcal{S}) = \frac{1}{a_i}+\sum_{k=i}^{\mathcal{I}_b-1}{P_{ik}e^{\frac{a_i}{n_i}t}}
-\end{equation}
-
-\subsubsection{Across a full branch}
-
-Having solved for the probability of the genealogical tree being unchanged given the time $t$ of the recombination event, our next step is to integrate this equation across the branch with respect to $t$:
-
-\begin{equation}
-	\mathbb{P}(\textrm{tree unchanged} | b,\mathcal{G},\mathcal{S}) = \frac{1}{t^u_b-t^l_b} \int_{t_b^l}^{t_b^u} \mathbb{P}(\textrm{tree unchanged} | b,t,\mathcal{G},\mathcal{S})dt
-\end{equation}
-
-Plugging in Equation 17 above, we find:
-
-\begin{equation}
-	= \frac{1}{t^u_b-t^l_b}\sum_{i=0}^{\mathcal{I}_b-1}\frac{1}{a_i}d_i + \left(e^{\frac{a_i}{n_i}\sigma_{i+1}}-e^{\frac{a_i}{n_i}\sigma_i}\right)\left[-\frac{n_i}{a_i^2}e^{-\frac{a_i}{n_i}\sigma_{i+1}} + \frac{n_i}{a_i}\left(\sum_{k=i+1}^{\mathcal{I}_b-1}\exp\left(-\frac{a_i}{n_i}\sigma_{i+1}-\sum_{q = i+1}^{k-1}\frac{a_q}{n_q}T_q\right)\frac{1-\exp(-\frac{a_{k}}{n_{k}}T_{k})}{a_{k}}\right)\right]
-\end{equation}
-
-\subsubsection{Across the whole tree}
-
-At last, we can calculate the probability that, given a recombination event, the genealogical tree is unchanged. We do this by weighting each branch by its proportion of the total tree length and summing across the unchanging probabilities for all branches:
-
-\begin{equation}
-	\mathbb{P}(\textrm{tree unchanged} | \mathcal{G},\mathcal{S}) = \sum_{b=1}^{2N-2}\left[\frac{t^u_b-t^l_b}{L(\mathcal{G})}\right]\mathbb{P}(\textrm{tree unchanged} | b,\mathcal{G},\mathcal{S})
-\end{equation}
-
-To derive the waiting distance to the next tree change, we incorporate the value of $1-\mathbb{P}(\textrm{tree unchanged} | \mathcal{G},\mathcal{S})$ into the exponential distribution describing the waiting distance to the next recombination event (introduced in Equation 4):
 \begin{equation}
 \begin{aligned}
-	&p_r(d|\mathcal{G},\mathcal{S}) = r\alpha_\mathcal{S}(\mathcal{G})L(\mathcal{G})\exp\left[-r\alpha_\mathcal{S}(\mathcal{G})L(\mathcal{G})d\right]\textrm{,} \\
-	&where \\
-	&\alpha_\mathcal{S}(\mathcal{G})=1-\mathbb{P}(\textrm{tree unchanged} | \mathcal{G},\mathcal{S}).
+	&= \sum_{j \in \mathcal{J}_b(i)} 
+	  \frac{1}{k_j}
+	  \bigg(1 - \exp 
+		  \bigg\{
+			  -\frac{k_j}{2n_j} d_j 
+		  \bigg\}
+	  \bigg)
+	  \exp \bigg\{
+		  -\frac{k_i}{2n_i} \mu_i - 
+		  \sum_{q \in \mathcal{Q}_b(i,j)}
+		  \frac{k_q}{2n_q} d_q
+		  \bigg\}
+	  \exp \bigg\{
+		  \frac{k_i}{2n_i} t_r
+		  \bigg\}\\
+     % &~~where\\
+	% &\mathcal{Q}_b = \{q \in \mathcal{I}_b ~|~ j > q > i\}\\
 \end{aligned}
 \end{equation}
 
+
+
+\begin{equation}
+	= \sum_{j \in \mathcal{J}_b} 
+	f(i,j)
+	\exp \bigg\{ \frac{k_i}{2n_i} t_r \bigg\}
+\end{equation}
+
+% \begin{equation}
+	% = \sum_{k=i+1}^{\mathcal{I}_b-1} e^{\frac{a_i}{n_i}t} P_{ik}
+% \end{equation}
+
+\noindent The $f(i,i)$ and $f(i,j)$ function above is represented in the main
+text as equation 4. Adding the two terms that include these functions 
+together we get equation 3 from the main text for the probability of a
+no-change event given the timing and branch on which recombination occurs:
+
+% $\mathbb{P}(\text{tree-unchanged} | \mathcal{S}, \mathcal{G}, b, t_r)$.
+
+% PREVIOUS APPROVED EQUATION 3
+\begin{equation}\tag{3}
+\begin{aligned}
+	&\mathbb{P}(\text{no-change} | \mathcal{S},\mathcal{G},b,t_r) = 
+	\frac{1}{k_i} + f(i,i) \exp \bigg\{\frac{k_i}{2n_i} t_r\bigg\} +
+	\sum_{j \in \mathcal{J}_b(i)} f(i,j) \exp\bigg\{\frac{k_i}{2n_i}t_r\bigg\} 
+\end{aligned}
+\end{equation}
+
+
+% \begin{equation}
+	% \mathbb{P}(\textrm{tree unchanged} | b,t,\mathcal{G},\mathcal{S}) = \frac{1}{a_i}+\sum_{k=i}^{\mathcal{I}_b-1}{P_{ik}e^{\frac{a_i}{n_i}t}}
+% \end{equation}
+
+\subsubsection{Across a full branch}
+Having solved for the probability of the genealogy being unchanged given the 
+time $t_r$ of the recombination event, our next step is to integrate this equation
+across the entire branch with respect to $t_r$:
+
+\begin{equation}
+	\mathbb{P}(\text{tree-unchanged} | \mathcal{S}, \mathcal{G}, b) = 
+		\frac{1}{t_b^u - t_b^l} 
+		\int_{t_b^l}^{t_b^u} 
+		\mathbb{P}(\text{tree-unchanged} | \mathcal{S}, \mathcal{G}, b, t_r) dt_r
+\end{equation}
+
+\noindent Plugging in the piece-wise constant solutions from equation 3
+we get the following solution.
+
+\begin{equation}
+\begin{aligned}
+	&= \frac{1}{t^u_b-t^l_b}
+	\sum_{i \in \mathcal{I}_b}
+	\frac{1}{k_i}d_i + 
+	% 
+	\bigg(
+		\exp \bigg\{ \frac{k_i}{2n_i} \mu_{i} \bigg\}
+		-\exp \bigg\{ \frac{k_i}{2n_i} \sigma_i	\bigg\}
+	\bigg)\\
+	% 
+	&~~~~\Bigg[
+		-\frac{2n_i}{k_i^2}
+		\exp \bigg\{ -\frac{k_i}{2n_i} \mu_{i} \bigg\} + 
+		% 
+		\\
+		&~~~~\frac{2n_i}{k_i}
+		\Bigg(
+			\sum_{j \in \mathcal{J}_b(i)}
+			\exp \bigg\{
+				-\frac{k_i}{2n_i} \mu_{i} -
+				\sum_{q \in \mathcal{Q}_b(i,j)}
+				\frac{k_q}{2n_q} d_q
+				\bigg\}
+			% \bigg)
+			\frac{-1}{k_j} \exp \bigg\{-\frac{k_j}{2n_j} d_j \bigg\}
+		\Bigg)
+	\Bigg]
+\end{aligned}
+\end{equation}
+
+\noindent Finally, this can be simplified to the following solution by expressing
+the piecewise constant re-coalescence rates using the function $f(i,j$), as shown
+in equation 5 from the main text.
+
+\begin{equation*}
+	\mathbb{P}(\textrm{tree-unchanged} | \mathcal{S},\mathcal{G},b) = 
+	\frac{1}{t^u_b-t^l_b} \int_{t_b^l}^{t_b^u} 
+	\mathbb{P}(\textrm{tree-unchanged} | \mathcal{S},\mathcal{G},b,t)dt
+\end{equation*}
+
+\begin{equation}\tag{5}
+	= \frac{1}{t_b^u - t_b^l}
+	\sum_{i \in \mathcal{I}_b} 
+	\frac{1}{k_i} d_i + 
+	\Bigg(
+		\frac{2n_i}{k_i} 
+		\sum_{j \in \mathcal{J}_b(i)} f(i,j)
+		\bigg(
+			\exp\bigg\{ \frac{k_i}{2n_i} \mu_i \bigg\} - 
+			\exp\bigg\{ \frac{k_i}{2n_i} \sigma_i \bigg\}
+		\bigg)
+	\Bigg)
+\end{equation}
+
+
+\subsubsection{Across the whole tree}
+
+At last, we can calculate the probability that, given a recombination event, 
+the genealogy is unchanged. We do this by weighting each branch by its proportion 
+of the total tree length and summing across the unchanging probabilities for 
+all branches. This is equation 6 from the main text:
+
+\begin{equation}\tag{6}
+	\mathbb{P}(\textrm{tree-unchanged} | \mathcal{S}, \mathcal{G}) = 
+	\sum_{b \in G}
+	\bigg[
+		\frac{t_b^u - t_b^l}{L(\mathcal{G})}
+	\bigg]
+	\mathbb{P}(\text{tree-unchanged} | \mathcal{S}, \mathcal{G}, b)
+\end{equation}
+
+\noindent We can then also derive the probability of a tree-change event
+as $1-\mathbb{P}(\textrm{tree-unchanged} | \mathcal{S}, \mathcal{G})$.
+% To derive the expected waiting distance to the next tree change, 
+Finally, following the approach described in equations 7-10, we can calculate 
+an exponential probability distribution for waiting distances between 
+no-change or tree-change events using rate parameters that are 
+scaled by the probabilities of either event type.
+% expected waiting distance by treating this as an exponentially distributed
+% random variable and calculating a rate parameter. 
+% the value of  
+% into the exponential distribution describing the waiting distance to the next 
+% recombination event (introduced in Equation 4):
+% \begin{equation}
+% \begin{aligned}
+% 	&p_r(d|\mathcal{G},\mathcal{S}) = 
+% 	r\alpha_\mathcal{S}(\mathcal{G})L(\mathcal{G})\exp\left[-r\alpha_\mathcal{S}(\mathcal{G})L(\mathcal{G})d\right]\textrm{,} \\
+% 	&~~where \\
+% 	&\alpha_\mathcal{S}(\mathcal{G})=1-\mathbb{P}(\textrm{tree unchanged} | \mathcal{G},\mathcal{S}).
+% \end{aligned}
+% \end{equation}
+
 \subsection{The distribution of distances to a change in genealogical topology}
 
-Next, we attempt to further exclude recombination events. We filter out recombination events of categories 2 and 3, which just change branch lengths, to isolate the probability that a recombination event changes the \emph{topology} of the tree.
+% Next, we attempt to further exclude recombination events. We filter out recombination 
+% events of categories 2 and 3, which just change branch lengths, to isolate the probability
+% that a recombination event changes the \emph{topology} of the tree.
+As in the first section, we treat branches individually and then sum across them. However,
+we have to designate new variables. We now consider two lineages in addition to the 
+focal lineage $b$: the lineage $b'$ that $b$ coalesces with, and the lineage $c$ that 
+is ancestral to $b$ and $b'$. We also designate the timepoint $t_b^m$, which we use to 
+break the problem into two cases. While the single-population example in 
+\citet{deng_distribution_2021} uses $t_{b'}^l$ as this breakpoint, the species tree 
+introduces more complexity, and we instead use the maximum of three values: 
+$t_{b'}^l$, $t_{b}^l$, and $t_{(b,b')}^w$, which we define as the merging time 
+for the species tree branches separating $b$ and $b'$ (Figure-supplement).
 
-As in the first section, we treat branches individually and then sum across them. However, we have to designate new variables. We now consider two lineages in addition to the focal lineage $b$: the lineage $b'$ that $b$ coalesces with, and the lineage $c$ that is ancestral to $b$ and $b'$. We also designate the timepoint $t_b^m$, which we use to break the problem into two cases. While the single-population example in \citet{deng_distribution_2021} uses $t_{b'}^l$ as this breakpoint, the species tree introduces more complexity, and we instead use the maximum of three values: $t_{b'}^l$, $t_{b}^l$, and $t_{(b,b')}^w$, which we define as the merging time for the species tree branches separating $b$ and $b'$ (Figure 6).
+% isn't the tr < tbm part redundant with the next part?
+\hl{In the first case} (Fig.~\ref{fig:fig3}a), where $t_r$ $<$ $t_b^m$ and 
+$t_r \in [\sigma_i, \sigma_{i+1}] \subset [t_b^l,t_b^m]$
+it is necessary to integrate over coalescence probabilities in three distinct 
+sections: from $t_r$ to $t_b^m$, $t_b^m$ to $t_b^u$, and $t_b^u$ to $t_c^u$. 
+(Note, these sections may be composed of multiple genealogy embedding 
+intervals if they contain additional species divergence events).
+The first section is notable for representing the core
+difference between this first case and the second case below. 
+When a recombination event occurs in the first section on $b$ there is a span 
+from $t_r$ to $t_b^m$ where $b$ can re-coalescence with itself but not yet 
+with $b'$, since at least one species divergence event separates them.
+Thus, although re-coalescence can occur in this span of time, it cannot lead to 
+changes in the genealogy. 
+In the second section, 
+$b$ can re-coalesce with $b$ or $b'$, leading to either no change or a tree 
+change (shortened coalesence time). Finally, in the third section $b$ can 
+only re-coalesce with $c$, leading to a tree change that lengthens $b$'s 
+coalescence time. 
+An integration over the probabilities of each allowable 
+event on branch $b$ over all three distinct sections leads to the first
+probability statement below. 
+In the second case (Fig.~\ref{fig:fig3}b), where $t_r$ $>$ $t_b^m$ and 
+$t_r \in [\sigma_i, \sigma_{i+1}] \subset [t_b^m,t_b^u]$, 
+it is only necessary to integrate over probabilities across a subset of the 
+second section, and across the entire third section described above, leading
+to the second statement below:
 
-\begin{figure}
-	\centering
-	%\fbox{\rule[-.5cm]{4cm}{4cm} \rule[-.5cm]{4cm}{0cm}}
-	\includegraphics[width=0.9\textwidth]{figures/FigS1-topology_illustration.pdf}
-	\caption{Illustrating the parameters for calculating the distribution of distances to a change in the topology of a genealogy. Panels (a) and (b) show slightly different genealogies embedded in the same species tree. In both (a) and (b), the focal branch $b$ is the one leading from the left-most species. Branches $c$ and $b'$ -- the parent and sibling branches, respectively -- are also both labeled. Note that in (a), $t_b^m$ corresponds to $\sigma_3$, while in (b) it corresponds to $\sigma_1$.}
-	% \label{fig:fig5}
-\end{figure}
+Retaining the correct order of intervals is important in these calculations, 
+particularly for $f(i,j)$, which involves summing over not only the information
+in the $i$ and $j$ intervals, but also all of the intervals that lie between 
+them. We define $bc$ as the ordered union of the sets of intervals on 
+branches $b$ and $c$ (Fig.~\ref{fig:fig3}c), such that $\mathcal{I}_{bc}$ is 
+the summed number of intervals in this set.
+% that can be used to index ordered intervals in this set.
+Similarly, we define the intersection of the sets of intervals in $b$
+and $b'$ as $bb'$, which includes only intervals in which both of 
+these branches occur (i.e., it excludes intervals where they
+are embedded in separate species tree branches). Finally, we 
+define $m$ as the index of the lowest interval in $bb'$ 
+(occurring at time $t_b^m$) where both $b$ and $b'$ occur. 
+
+
+%%%%%%%%%%%%%%%%%%%%%% I'm not sure we need this figure anymore, can use maintext fig3.
+% \begin{figure}[t]
+% 	\centering
+% 	\includegraphics[width=0.75\textwidth]{figures/FigS1-sibling-parent-it2.pdf}
+% 	\caption{
+% 		To calculate the probability that recombination on a genealogy branch
+% 		($b$) leads to a topology change involves summing over the probabilities 
+% 		that a detached lineage does not re-coalesce with either
+% 		itself ($b$), its sibling ($b'$) or its parent ($c$) branches. At the time 
+% 		recombination occurs ($t_r$) the branches $b$ and $b'$ can either exist 
+% 		in different species tree intervals (a) or the same interval (b). This 
+% 		restricts the probability of tree-change outcomes (e.g., shortened coalescent 
+% 		time) until the lowest shared interval between $b$ and $b'$ at time 
+% 		$t_m$. This leads to two ordered sets of intervals (c-d) used in 
+% 		equations 11 and 12.
+% 	}
+% 	\label{fig:figSSS}
+% \end{figure}
+
+
+
 
 \begin{equation}
-	\mathbb{P}(\textrm{topology unchanged} | b,\mathcal{G},\mathcal{S}) = \frac{1}{t_b^u-t_b^l}\int_{t_b^l}^{t_b^u}\mathbb{P}(\textrm{topology unchanged} | b,t,\mathcal{G},\mathcal{S})dt
+	\mathbb{P}(\textrm{topology unchanged} | \mathcal{S}, \mathcal{G}, b) = 
+	\frac{1}{t_b^u - t_b^l} \int_{t_b^l}^{t_b^u}
+	\mathbb{P}(\text{topology-unchanged} | \mathcal{S}, \mathcal{G},b, t_r) dt_r
 \end{equation}
 
 \begin{equation}
-	= \frac{1}{t_b^u-t_b^l}\left[\left(\int_{t_b^l}^{t_b^m}+\int_{t_b^m}^{t_b^u}\right)\mathbb{P}(\textrm{topology unchanged} | b,t,\mathcal{G},\mathcal{S})dt\right]
+	= \frac{1}{t_b^u - t_b^l}
+	\bigg[
+		\bigg(
+			\int_{t_b^l}^{t_b^m} + 
+			\int_{t_b^m}^{t_b^u}
+		\bigg)
+		\mathbb{P}(\text{topology-unchanged} | \mathcal{S}, \mathcal{G},b, t_r) dt_r
+	\bigg]
 \end{equation}
 
-Where $t^m_b=\max\{t^w_{(b,b')},t_{b'}^l,t_b^l\}$.
+\noindent Where $t^m_b=\max\{t^w_{(b,b')},t_{b'}^l,t_b^l\}$.
 
 \subsubsection{Given a branch and a time}
 
-As in \citet{deng_distribution_2021}, we break the problem into two cases: a first case in which $t$ belongs to the interval from the base of the focal branch to $t^m_b$, and a second case in which $t$ belongs to the interval from $t^m_b$ to $t^u_b$. 
+As in \citet{deng_distribution_2021}, we break the problem into two cases: a first case in 
+which $t$ belongs to the interval from the base of the focal branch to $t^m_b$, and a second 
+case in which $t$ belongs to the interval from $t^m_b$ to $t^u_b$. 
 
 \paragraph{First case --} Given $t \in [\sigma_i, \sigma_{i+1}] \subset [t_b^l,t_{b}^m]$:
-
-\begin{equation*}
-	\mathbb{P}(\textrm{topology unchanged} | b,t,\mathcal{G},\mathcal{S}) = \int_{t}^{t_b^m}\frac{1}{A(\tau)}\rho(\tau|t)d\tau + \int_{t_b^m}^{t_b^u}\frac{2}{A(\tau)}\rho(\tau|t)d\tau + \int_{t_b^u}^{t_c^u}\frac{1}{A(\tau)}\rho(\tau|t)d\tau
-\end{equation*}
-
-\begin{equation}
-	= \frac{1}{a_i} + \sum_{k=i}^{\mathcal{I}_{b+c}-1}P_{ik}e^{\frac{a_i}{n_i}t} + \sum_{k=m}^{\mathcal{I}_b-1}P_{ik}e^{\frac{a_i}{n_i}t}
-\end{equation}
-
-The second case is solved in a similar manner, although we eliminate the first integral:
-
-\paragraph{Second case --} Given $t \in [\sigma_i, \sigma_{i+1}] \subset [t_b^m,t_b^u]$:
-
-\begin{equation*}
-	\mathbb{P}(\textrm{topology unchanged} | b,t,\mathcal{G},\mathcal{S}) = \int_{t}^{t_b^u}\frac{2}{A(\tau)}\rho(\tau|t)d\tau + \int_{t_b^u}^{t_c^u}\frac{1}{A(\tau)}\rho(\tau|t)d\tau
-\end{equation*}
+The final solution here is shown as equation XX of the main text. It is an integral 
+over part 1, two times the integral in part 2, since this length exists on both branches
+b and b', and then the integral over part 3. 
 
 \begin{equation}
-	= 2\left(\frac{1}{a_i} + \sum_{k=i}^{\mathcal{I}_{b}-1}P_{ik}e^{\frac{a_i}{n_i}t}\right) + \sum_{\mathcal{I}_b}^{\mathcal{I}_{b+c}-1}P_{ik}e^{\frac{a_i}{n_i}t}
+\begin{aligned}
+	&\mathbb{P}(\textrm{topology-unchanged} | \mathcal{S}, \mathcal{G}, b, t_r) = \\
+	&\int_{t_r}^{t_b^m}
+	\frac{1}{\mathcal{K}(b,\tau)} f(\tau - t_r; \lambda) d\tau + 
+	\int_{t_b^m}^{t_b^u}
+	\frac{2}{\mathcal{K}(b,\tau)} f(\tau - t_r; \lambda) d\tau + 
+	\int_{t_b^u}^{t_c^u} \frac{1}{\mathcal{K}(b,\tau)} f(\tau - t_r; \lambda) d\tau = \\
+	&\frac{1}{k_i} + 
+	\sum_{j \in \mathcal{I}_{bc}}	f(i,j) \exp \bigg\{	\frac{k_i}{n_i} t_r \bigg\} + 
+	\sum_{j \in \mathcal{M}_b}    f(i,j) \exp \bigg\{ \frac{k_i}{n_i} t_r \bigg\}
+\end{aligned}
 \end{equation}
+
+\paragraph{Second case --} Given $t \in [\sigma_i, \sigma_{i+1}] \subset [t_b^m,t_b^u]$.
+This is similar to the first, but we can eliminate the first integral. The final result
+is shown as equation XX in the main text.
+
+\begin{equation*}
+\begin{aligned}
+	&\mathbb{P}(\text{topology-unchanged} | \mathcal{S}, \mathcal{G}, b, t_r) = \\
+	&\int_{t_r}^{t_b^u} \frac{2}{\mathcal{K}(b,\tau)} f(\tau - t_r; \lambda) d\tau + 
+	 \int_{t_b^u}^{t_c^u} \frac{1}{\mathcal{K}(b, \tau)} f(\tau - t_r; \lambda) d\tau = \\
+	& 2 \bigg(
+		\frac{1}{k_i} + 
+		\sum_{k \in \mathcal{I}_b} f(i,j) \exp \bigg\{ \frac{k_i}{n_i} t_r \bigg\}
+	\bigg) + 
+	\sum_{j \in \mathcal{I}_c} f(i,j) \exp \bigg\{ \frac{k_i}{n_i} t_r \bigg\}
+\end{aligned}
+\end{equation*}
 
 \subsubsection{Across a full branch}
 
-Now we derive the overall probability that a recombination event falling on a specific branch will change the topology. We integrate across values of $t$ and sum the two cases defined above, while assuming a uniform probability of the recombination event occurring at any time along the branch:
+Now we derive the overall probability that a recombination event falling on a specific branch will 
+change the topology. We integrate across values of $t$ and sum the two cases defined above, while 
+assuming a uniform probability of the recombination event occurring at any time along the branch:
 
 \paragraph{First case --}
 
 \begin{equation}
-	\int_{t_b^l}^{t_b^m}{\mathbb{P}(\textrm{topology unchanged} | b,t,\mathcal{G},\mathcal{S})}=\sum_{i=0}^{m-1}\frac{1}{a_i}\left[d_i+n_i\left(\exp\left(\frac{a_i}{n_i}\sigma_{i+1}\right)-\exp\left(\frac{a_i}{n_i}\sigma_i\right)\right)\left(\sum_{k=i}^{\mathcal{I}_{b+c}-1}P_{ik}+\sum_{k=m}^{\mathcal{I}_b-1}P_{ik}\right)\right]
+\begin{aligned}
+	\int_{t_b^l}^{t_b^m} {\mathbb{P}(\text{topology-unchanged} | \mathcal{S}, \mathcal{G}, b, t_r)} = \\
+	\sum_{i \in \mathcal{M}_b} \frac{1}{k_i} \Bigg[ 
+		d_i + n_i \bigg( 
+			\exp \bigg\{\frac{k_i}{n_i} \mu_i \bigg\} - 
+			\exp \bigg\{\frac{k_i}{n_i} \sigma_i\bigg\} 
+		\bigg)
+		\bigg(
+			\sum_{j \in \mathcal{I}_{bc}} f(i,j) + \sum_{j \in \mathcal{M}_b} f(i,j) 
+		\bigg) 
+	\Bigg]
+\end{aligned}
 \end{equation}
 
 \paragraph{Second case --}
 
 \begin{equation}
-	\int_{t_b^m}^{t_b^u}{\mathbb{P}(\textrm{topology unchanged} | b,t,\mathcal{G},\mathcal{S})}=\sum_{i=m}^{\mathcal{I}_b-1}\frac{1}{a_i}\left[2d_i + n_i\left(\exp\left(\frac{a_i}{n_i}\sigma_{i+1}\right)-\exp\left(\frac{a_i}{n_i}\sigma_i\right)\right)\left(2\sum_{k=i}^{\mathcal{I}_b-1}P_{ik}+\sum_{k=\mathcal{I}_b}^{\mathcal{I}_{b+c}-1}P_{ik}\right)\right]
+\begin{aligned}
+	&\int_{t_b^m}^{t_b^u} \mathbb{P} (\textrm{topology-unchanged} | \mathcal{S}, \mathcal{G}, b, t_r) = \\
+	&\sum_{i \in \mathcal{M}_b} \frac{1}{k_i} \Bigg[ 
+		2d_i + n_i \bigg( 
+			\exp \bigg\{ \frac{k_i}{n_i} \mu_i \bigg\} - 
+			\exp \bigg\{ \frac{k_i}{n_i} \sigma_i \bigg\}
+		\bigg) 
+		\bigg(2 \sum_{j \in \mathcal{I}_b} f(i,j) + \sum_{j \in \mathcal{I}_c} f(i,j) \bigg)
+	\Bigg]
+\end{aligned}
 \end{equation}
 
 \paragraph{Result --}
 \begin{equation}
-    \mathbb{P}(\textrm{topology unchanged}|b, \mathcal{G},\mathcal{S}) = \frac{1}{t_b^u-t_b^l}\left[\sum_{i=0}^{m-1}p_{b,1}^{(i)}+\sum_{i=m}^{\mathcal{I}_b-1}p_{b,2}^{(i)}\right]
+     \mathbb{P}(\text{topology-unchanged} | \mathcal{S}, \mathcal{G}, b) = 
+     \frac{1}{t_b^u - t_b^l} 
+     \bigg[ 
+	    \sum_{i \in \mathcal{L}_b} p_{b,1}^{(i)} + 
+	    \sum_{i \in \mathcal{M}_b} p_{b,2}^{(i)}
+	\bigg]
 \end{equation}
+
 
 \subsubsection{Across the whole tree}
 
-Finally, we sum across all branches to find the probability of a recombination event changing the topology of the tree:
-
-\begin{equation*}
-    \mathbb{P}(\textrm{topology unchanged}| \mathcal{G},\mathcal{S}) = \sum_{b \in \mathcal{G}}\frac{t_b^u-t_b^l}{L(\mathcal{G})} \times \mathbb{P}(\textrm{topology unchanged}|b, \mathcal{G},\mathcal{S})
-\end{equation*}
+Finally, we sum across all branches to find the probability of a recombination event changing the 
+topology of the tree:
 
 \begin{equation}
-    = \frac{1}{L(\mathcal{G})}\sum_{b \in \mathcal{G}}\left[\sum_{i=0}^{m-1}p_{b,1}^{(i)}+\sum_{i=m}^{\mathcal{I}_b-1}p_{b,2}^{(i)}\right]
+\begin{aligned}
+    &\mathbb{P}(\text{topology-unchanged}| \mathcal{S}, \mathcal{G}) = 
+    \sum_{b \in \mathcal{G}}
+    \frac{t_b^u - t_b^l}
+    {L(\mathcal{G})} \times \mathbb{P}(\text{topology-unchanged}| \mathcal{S}, \mathcal{G}, b) = \\
+    % 
+    & \frac{1}{L(\mathcal{G})} \sum_{b \in \mathcal{G}}
+     \bigg[ 
+	    \sum_{i \in \mathcal{L}_b} p_{b,1}^{(i)} + 
+	    \sum_{i \in \mathcal{M}_b} p_{b,2}^{(i)}
+	\bigg]
+\end{aligned}
 \end{equation}
 
+
+
+
+% \begin{figure}[t]
+% 	\centering
+% 	%\fbox{\rule[-.5cm]{4cm}{4cm} \rule[-.5cm]{4cm}{0cm}}
+% 	\includegraphics[width=0.9\textwidth]{figures/FigS1-topology_illustration.pdf}
+% 	\caption{Illustrating the parameters for calculating the distribution of distances 
+% 	to a change in the topology of a genealogy. Panels (a) and (b) show slightly 
+% 	different genealogies embedded in the same species tree. In both (a) and (b), 
+% 	the focal branch $b$ is the one leading from the left-most species. 
+% 	Branches $c$ and $b'$ -- the parent and sibling branches, respectively -- are 
+% 	also both labeled. Note that in (a), $t_b^m$ corresponds to $\sigma_3$, while
+% 	in (b) it corresponds to $\sigma_1$.}
+% 	% \label{fig:fig5}
+% \end{figure}
+
+
+\begin{figure}[p]
+	\centering
+	\includegraphics[width=0.95\textwidth]{figures/verbose-equations}
+	\caption{A step-by-step calculation of the probability of a tree-unchanged 
+	event under the MS-SMC' given a species tree and genealogy.
+	}
+	\label{fig:figS-tree-equations}
+\end{figure}
+
+
+\begin{figure}[p]
+	\centering
+	\includegraphics[width=0.95\textwidth]{figures/verbose-equations-topology}
+	\caption{A step-by-step calculation of the probability of a topology-unchanged 
+	event under the MS-SMC' given a species tree and genealogy.
+	}
+	\label{fig:figS-topo-equations}
+\end{figure}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%% This table doesn't seem necessary.
+% \begin{table}[h]
+% \centering
+% \caption{\label{tab:table-S1} 
+% 	A table summarizing the relationships among branches in the genealogical tree embedded in the species tree in Figure 1. 
+% }
+% \begin{tabular}[t]{ |c|c|c|c|c|c|c| }
+% 	\toprule
+% 	Branch & $\mathcal{I}_b$ & $t_b^l$ & $t_b^u$ & Parent & Sibling & $t_b^m$ \\
+% 	\midrule
+% 	0  &  1 & 0      & $t_7$  & 7  & 1  & 0          \\
+% 	1  &  1 & 0      & $t_7$  & 7  & 0  & 0          \\
+% 	2  &  3 & 0      & $t_9$  & 9  & 8  & $W_{AB}$   \\
+% 	3  &  1 & 0      & $t_8$  & 8  & 4  & 0          \\
+% 	4  &  1 & 0      & $t_8$  & 8  & 3  & 0          \\
+% 	5  &  4 & 0      & $t_{11}$ & 11 & 6  & $W_{ABCD}$ \\
+% 	6  &  2 & 0      & $t_{11}$ & 11 & 5  & $W_{ABCD}$ \\
+% 	7  &  4 & $t_7$  & $t_{10}$ & 10 & 9  & $t_9$      \\
+% 	8  &  2 & $t_8$  & $t_9$  & 9  & 2  & $W_{AB}$   \\
+% 	9  &  2 & $t_9$  & $t_{10}$ & 10 & 7  & $t_9$      \\
+% 	10 &  3 & $t_{10}$ & $t_{12}$ & 12 & 11 & $t_{11}$     \\
+% 	11 &  1 & $t_{11}$ & $t_{12}$ & 12 & 10 & $t_{11}$     \\
+% 	\bottomrule
+% \end{tabular}
+% \end{table}
 
 
 
