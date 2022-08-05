@@ -3507,9 +3507,9 @@ The final form of this equation is also shown in equation 11 of the main text:
 \subsubsection{Across a full branch}
 
 Now we derive the overall probability that a recombination event falling on a specific branch will 
-change the topology by integrating across all values for $t_r$.
+change the topology by integrating across the range of possible values for $t_r$.
 Following the approach above, we split this problem into two parts, above and below
-$t_b^m$, and sum the two cases.
+$t_b^m$, and we sum the two cases.
 
 \begin{equation}
 	\mathbb{P}(\text{topology-unchanged} | \mathcal{S}, \mathcal{G}, b) = 
@@ -3530,7 +3530,7 @@ $t_b^m$, and sum the two cases.
 
 
 \paragraph{First case --}
-We can now sum over each entire interval below $t_b^m$ where $t_r$ could occur, and 
+We can simply sum over each entire interval below $t_b^m$ where $t_r$ could occur, and 
 substitute piece-wise constant solutions for the probabilities that a detached
 subtree will re-coalesce over the subset of targeted intervals above this that
 do not cause a topology-change.
@@ -3551,7 +3551,7 @@ do not cause a topology-change.
 \end{equation}
 
 \paragraph{Second case --}
-Similarly, we can sum over each entire interval above $t_b^m$ and substitute piece-wise
+Similarly, we can sum over each entire interval above $t_b^m$ (up to $t_b^u$) and substitute piece-wise
 constant solutions for the same selected subset of intervals:
 
 \begin{equation}
