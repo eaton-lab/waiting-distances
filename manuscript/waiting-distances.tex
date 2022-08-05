@@ -1213,20 +1213,22 @@ change the tree:
 
 \begin{equation}
 \begin{aligned}
-	&\mathbb{P}(\textrm{no-change} | \mathcal{S},\mathcal{G},b) = 
-	\frac{1}{t^u_b-t^l_b} \int_{t_b^l}^{t_b^u} 
-	\mathbb{P}(\textrm{no-change} | \mathcal{S},\mathcal{G},b,t)dt =
-	\\
-	& \frac{1}{t_b^u - t_b^l}
+	% &
+	\mathbb{P}(\textrm{no-change} | \mathcal{S},\mathcal{G},b) = 
+	% \frac{1}{t^u_b-t^l_b} \int_{t_b^l}^{t_b^u} 
+	% \mathbb{P}(\textrm{no-change} | \mathcal{S},\mathcal{G},b,t)dt =
+	% \\
+	% & 
+	\frac{1}{t_b^u - t_b^l}
 	\sum_{i \in \mathcal{I}_b} \frac{1}{k_i} d_i + 
-	\Bigg(
+	% \Bigg(
 	\frac{2n_i}{k_i} 
 	\sum_{j \in \mathcal{J}_b(i)}f(i,j)
 	\bigg(
 		\exp\bigg\{\frac{k_i}{2n_i}\mu_i \bigg\} - 
 		\exp\bigg\{\frac{k_i}{2n_i}\sigma_i \bigg\}
 	\bigg)
-	\Bigg)
+	% \Bigg)
 \end{aligned}
 \end{equation}
 % \begin{equation}
@@ -2213,20 +2215,6 @@ bias spatial genealogical inference methods.
 % value of 150000 for both trees.
 
 
-\begin{figure}[t]
-	\centering
-	%\fbox{\rule[-.5cm]{4cm}{4cm} \rule[-.5cm]{4cm}{0cm}}
-	\includegraphics[width=0.55\textwidth]{figures/likelihood-posteriors.pdf}
-	\caption{
-		MS-SMC' likelihood framework. 
-		(a) ARGs were simulated under a two-population species tree model with variable 
-		$N_e$. (b) A joint posterior distribution of $N_e$ parameters inferred 
-		by Bayesian MCMC from tree and topology-change waiting distances.
-	}
-	\label{fig:fig-likelihood-posterior}
-\end{figure}
-
-
 % with larger Ne values. This occurs for two reasons: first, genealogies with longer 
 % branches have a higher probability of any recombination event occurring, since the
 % rate is proportional to the sum of edge lengths; second, when Ne is large it is 
@@ -2679,14 +2667,14 @@ bias than a single population model from this effect.
 Information from the genealogy embedding table can be used to calculate the 
 probabilities of no-change, tree-change, and topology-change events under the 
 MS-SMC'. These equations, described below, use the terms defined in 
-Table~\ref{tab:table-S2}. 
+Table~\ref{tab:table-notation}. 
 % What is a species tree
-A species tree $\mathcal{S}$ is a parameterized multispecies coalescent model
-(demographic model) in which a set of isolated populations are related by a bifurcating
+A parameterized species tree, $\mathcal{S}$, is a multispecies coalescent 
+model in which a set of isolated populations are related by a bifurcating
 tree topology. Divergence times between lineages are in units of generations, 
 and each edge (species tree interval) can be associated with a different constant 
 diploid effective population size ($N_e$). 
-A genealogy $\mathcal{G}$ represents the genealogical relationships -- composing
+A genealogy, $\mathcal{G}$, represents the genealogical relationships -- composing
 a topology and coalescent times in units of generations -- for a set 
 of sampled gene copies at some position in their genomes. A genealogy can be 
 embedded in a species tree if the coalescent times between sampled gene copies
@@ -2747,20 +2735,25 @@ event separating them.
 
 % distinguish between gene =copy and genomes.xs
 
-Given a genealogy embedded in a species tree, a series of discrete intervals 
-can be defined that are delimited by events that change the rate of 
-coalescence. This is termed a genealogy embedding table (e.g., Table~\ref{tab:table-1}). 
+Given a genealogy embedded in a species tree, a series of discrete
+time intervals can be defined that are delimited 
+by events that change the rate of coalescence. 
+We refer to this as a genealogy embedding table (e.g., Table~\ref{tab:table-1}). 
 In the waiting distance solutions for a single population with constant $N_e$ 
 by \citet{deng_distribution_2021}, this table is delimited only by coalescent 
-events. Because N$_e$ is constant in their framework, only $k$ differs between 
+events, and the intervals are non-overlapping. 
+Because N$_e$ is constant in their framework, only $k$ differs between 
 intervals, and this determines differences in rates of coalescence, 
 which decrease in subsequent intervals from the tips towards the root. 
 Our approach is similar, but adds additional complexity (Fig.~\ref{fig:fig1}). 
 In the multispecies framework, genealogy embedding intervals are specific to each 
 species tree branch, and correspond to time intervals with a constant 
-$k$ and $N_e$. Breakpoints between intervals arise where divergences 
+$k$ and $N_e$ in any species tree interval. 
+Breakpoints between intervals arise where divergences 
 occur in the species tree (increasing $k$ and potentially changing $N_e$) 
-and where coalescent events occur in the genealogy (reducing $k$).
+and where coalescent events occur in the genealogy (reducing $k$). 
+Genealogy embedding intervals corresponding to different species tree 
+branches can overlap in time.
 
 Each branch on $\mathcal{G}$ will span one or more genealogy embedding 
 intervals. The ordered set of intervals on a specific branch, $b$, is 
@@ -2796,7 +2789,7 @@ each branch are defined as $t_b^l$ and $t_b^u$, respectively.
 % indexed 
 
 
-\subsubsection{Extending SMC' waiting distance solutions:}
+\subsection{Extending SMC' waiting distance solutions:}
 
 % In \citet{deng_distribution_2021}, the genealogical tree was broken into a series of 
 % intervals so that the number of remaining (not-coalesced) lineages was constant within
@@ -2857,7 +2850,8 @@ similar to equations 1-2.
 % $b$ can coalesce with at any specified time $\mathcal{A}(b,\tau)$.
 
 % \subsubsection{Probability of no-change or tree-change events}
-\subsubsection{Probability of no-change given a branch and time of recombination}
+\subsection{Probability of no-change}
+\subsubsection{Given a branch and time of recombination}
 
 The probability that a tree is unchanged by a recombination event -- meaning that 
 no coalescent times are changed -- is the probability that the detached subtree 
@@ -3226,10 +3220,10 @@ all branches. This is equation 6 from the main text:
 \noindent We can then also derive the probability of a tree-change event
 as $1-\mathbb{P}(\textrm{tree-unchanged} | \mathcal{S}, \mathcal{G})$.
 % To derive the expected waiting distance to the next tree change, 
-Finally, following the approach described in equations 7-10, we can calculate 
+Following the approach described in equations 7-10, we can then calculate 
 an exponential probability distribution for waiting distances between 
-no-change or tree-change events using rate parameters that are 
-scaled by the probabilities of either event type.
+no-change or tree-change events using an exponential rate parameter that is
+scaled by the probabilities of either recombination event type.
 % expected waiting distance by treating this as an exponentially distributed
 % random variable and calculating a rate parameter. 
 % the value of  
@@ -3244,20 +3238,75 @@ scaled by the probabilities of either event type.
 % \end{aligned}
 % \end{equation}
 
-\subsection{The distribution of distances to a change in genealogical topology}
+\subsection{Probability of topology change}
+Next, we derive the probability of a topology-unchanged event, from which
+we can get the probability of a topology-change event. 
+As in the first section, we will first derive a solution for an individual 
+branch and time of recombination, then for an entire branch, and
+finally sum across branches to get a probability for an entire genealogy. 
+To isolate events that do not cause a topology change requires finding
+the union of events that cause a no-change event in addition to two 
+possible tree-change events which affect only branch lengths but not the 
+topology. These two events correspond to a re-coalescence with the 
+sister to branch $b$, referred to as $b'$, or with its parent, referred to 
+as $c$. Because the branch $c$ is always ancestral to $b$, a recombination
+event on $b$ can potentially re-coalesce anywhere on $c$; however, 
+this is not the case for $b'$, which may only exist or be available for 
+re-coalescence over part of the length of $b$. It is therefore important 
+to define the lowest time point at which re-coalescence with $b'$ is 
+possible, which we term $t_b^m$. 
 
-% Next, we attempt to further exclude recombination events. We filter out recombination 
-% events of categories 2 and 3, which just change branch lengths, to isolate the probability
+In the single population model of \citet{deng_distribution_2021} 
+$t_b^m$ occurs at the maximum value of $t_b^l$ and $t_{b'}^l$, 
+representing the lower bounds of $b$ and $b'$. 
+In an MSC model we must incorporate additional possible constraints 
+imposed by population barriers, and so $t_b^m$ occurs the maximum
+of $t_b^l$, $t_{b'}^l$, 
+
+this time point as the maximum value of three potential time points, 
+to 
+points are the lower bound of $b'$ (Fig.~\ref{fig:figS-tbm}b), 
+the 
+is more complex since population barriers can impose additional 
+constraints. Instead, we use the maximum value of $t_b^l$, $t_{b,b'}^w$, 
+and $t_{b'}^l$ 
+
+... Define $\mathcal{M}$ and $\mathcal{L}$. 
+
+
+\begin{figure}[t]
+	\centering
+	\includegraphics[width=0.95\textwidth]{figures/FigS-tbm.pdf}
+	\caption{
+		To calculate the probability that recombination on a genealogy branch
+		($b$) leads to a topology change involves summing over the probabilities 
+		that a detached lineage does not re-coalesce with either
+		itself ($b$), its sibling ($b'$) or its parent ($c$) branches. At the time 
+		recombination occurs ($t_r$) the branches $b$ and $b'$ can either exist 
+		in different species tree intervals (a) or the same interval (b). This 
+		restricts the probability of tree-change outcomes (e.g., shortened coalescent 
+		time) until the lowest shared interval between $b$ and $b'$ at time 
+		$t_m$. This leads to two ordered sets of intervals (c-d) used in 
+		equations 11 and 12.
+	}
+	\label{fig:figS-tbm}
+\end{figure}
+
+% of categories 2 and 3, which just change branch lengths, to isolate the probability
 % that a recombination event changes the \emph{topology} of the tree.
-As in the first section, we treat branches individually and then sum across them. However,
-we have to designate new variables. We now consider two lineages in addition to the 
-focal lineage $b$: the lineage $b'$ that $b$ coalesces with, and the lineage $c$ that 
-is ancestral to $b$ and $b'$. We also designate the timepoint $t_b^m$, which we use to 
-break the problem into two cases. While the single-population example in 
-\citet{deng_distribution_2021} uses $t_{b'}^l$ as this breakpoint, the species tree 
-introduces more complexity, and we instead use the maximum of three values: 
-$t_{b'}^l$, $t_{b}^l$, and $t_{(b,b')}^w$, which we define as the merging time 
-for the species tree branches separating $b$ and $b'$ (Figure-supplement).
+% We also designate the timepoint $t_b^m$, which we use to 
+% break the problem into two cases. While the single-population example in 
+% \citet{deng_distribution_2021} uses $t_{b'}^l$ as this breakpoint, the species tree 
+% introduces more complexity, and we instead use the maximum of three values: 
+% $t_{b'}^l$, $t_{b}^l$, and $t_{(b,b')}^w$, which we define as the merging time 
+% for the species tree branches separating $b$ and $b'$ (Figure-supplement).
+
+Using the definition for $t_b^m$ from above, we can describe the probability
+of a topology-unchanged event given the branch and time of recombination
+as a two-part solution. ALSO DO EQUAL TO. 
+If $t_r$ > $t_b^m$, then re-coalescence can occur
+in three distinct regions, .... Alternatively, if $t_r$ < $t_b^m$, then 
+re-coalescence can only occur in x or y. 
 
 % isn't the tr < tbm part redundant with the next part?
 \hl{In the first case} (Fig.~\ref{fig:fig3}a), where $t_r$ $<$ $t_b^m$ and 
@@ -3325,7 +3374,7 @@ define $m$ as the index of the lowest interval in $bb'$
 
 
 \begin{equation}
-	\mathbb{P}(\textrm{topology unchanged} | \mathcal{S}, \mathcal{G}, b) = 
+	\mathbb{P}(\textrm{topology-unchanged} | \mathcal{S}, \mathcal{G}, b) = 
 	\frac{1}{t_b^u - t_b^l} \int_{t_b^l}^{t_b^u}
 	\mathbb{P}(\text{topology-unchanged} | \mathcal{S}, \mathcal{G},b, t_r) dt_r
 \end{equation}
@@ -3343,7 +3392,9 @@ define $m$ as the index of the lowest interval in $bb'$
 
 \noindent Where $t^m_b=\max\{t^w_{(b,b')},t_{b'}^l,t_b^l\}$.
 
-\subsubsection{Given a branch and a time}
+
+
+\subsubsection{Given a branch and time of recombination}
 
 As in \citet{deng_distribution_2021}, we break the problem into two cases: a first case in 
 which $t$ belongs to the interval from the base of the focal branch to $t^m_b$, and a second 
