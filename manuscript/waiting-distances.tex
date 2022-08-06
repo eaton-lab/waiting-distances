@@ -233,7 +233,7 @@ by an ancestral recombination graph (ARG)
 % (hereafter we will refer to it generically as an ARG; Fig.~\ref{fig:fig2}).
 
 An algorithm to stochastically simulate sequences under the coalescent with 
-recombination was developed early on \citep{hudson1983properties}, 
+recombination was developed early on \citep{hudson1983properties} 
 % , however only with recent advances has it become 
 % tractable to scale such simulations to larger, genome-wide scales 
 % \citep{kelleher2016efficient}. 
@@ -254,7 +254,7 @@ recombination was developed early on \citep{hudson1983properties},
 % brakpoints across the genome where recombination occurred.
 % (i.e., "waiting distances").
  % between genealogies).
-and later extended as a spatial algorithm for stochastically generating full 
+and was later extended as a spatial algorithm for stochastically generating full 
 ARGs \citep{wiuf_recombination_1999}. 
 This process models the difference between sequential genealogies by 
 randomly detaching an edge from a genealogy and sampling
@@ -330,7 +330,7 @@ in that interval (as opposed to re-coalescing with any ancestral lineage).
 % the types of coalescent events that can occur between sequential
 % space of possible ARGs that 
 This greatly reduces the space of possible ARGs without changing the expected
-distribution of sequential genealogies, and in doing so enables modeling
+distribution of sequential genealogies, and in doing so it enables modeling
 changes between sequential genealogies
 as a Markov process \citep{mcvean2005approximating}. 
 % This restricts the types of coalescent events that can occur between 
@@ -357,7 +357,7 @@ Under these assumptions a tractable likelihood framework can be developed.
 % 
 % NEXT< start with Because, or something, not however,... 'this is how it is implemented in hmms'
 % However, 
-Because neither genealogies or segment lengths can
+Because neither genealogies nor segment lengths can
 be observed directly, most SMC-based inference methods use 
 % employ 
 a hidden Markov model (HMM) to treat these as hidden states 
@@ -493,10 +493,10 @@ conditional sampling method.
 % as an exponentially distributed random variable. 
 \cite{marjoram2006fast}
 described an important extension to the SMC, termed the SMC', for additionally
-modeling "invisible" recombination events, where a detached lineage re-attaches
-with its own ancestral lineage prior to the time of its next coalescent event. 
+modeling "invisible" recombination events, in which a detached lineage re-attaches
+with its own ancestral lineage prior to the time of that lineage's next coalescent event. 
 This leads to no change between the genealogies in two sequential intervals
-despite the occurrence of a recombination even between them. The inclusion of
+despite the occurrence of a recombination event between them. The inclusion of
 such events has been shown to 
 % , such that 
 % no change between 
@@ -529,11 +529,17 @@ outcomes for a single population with constant effective population size.
 % in different categorical types of genealogy changes, and for connecting these
 % to coalescent model parameters, which may prove useful for future ARG inference 
 % tools. 
+%This provided an important advance by establishing a neutral expectation 
+%not only for the distance until the next recombination event occurs, 
+%but more specifically, for different categorical types of events that leave 
+%different detectable signatures in the genome, and extend over greater
+%spatial distances.
 This provided an important advance by establishing a neutral expectation 
-not only for the distance until the next recombination event occurs, 
-but more specifically, for different categorical types of events that leave 
-different detectable signatures in the genome, and extend over greater
-spatial distances.
+not just for the distance until the next recombination event occurs, 
+but more specifically for the distance until the next tree-change and topology-change
+events. These events leave 
+detectable signatures in the genome, and they often extend across a larger 
+spatial distance than that to the next generic recombination event. 
 % This provides an important advance by establishing a neutral expectation 
 % not only for the distance until any generic recombination event occurs, 
 % but more specifically, for % the different expectations for 
@@ -590,13 +596,14 @@ spatial distances.
 
 Here, we extend the methods of \citet{deng_distribution_2021} to an MSC framework
 to estimate the expected waiting distances between different types of 
-genealogy changes under a parameterized species tree model. In this respect, 
-the waiting distances between recombination events that cause topology-change 
+genealogy changes under a parameterized species tree model. 
+The waiting distances between recombination events that cause topology-change 
 may be of greatest interest, as they leave the most detectable signatures 
-in sequence data, and are relevant to expected gene tree distributions that form
+in sequence data and are relevant to expected gene tree distributions that form
 an important component of many MSC-based methods \citep{
 degnan2006discordance, baum_concordance_2007, knowles_estimating_2011}.
-The waiting distance until a topology-change event can include multiple
+Just like for single-population models, 
+the waiting distance until a topology-change event in this framework can include multiple
 intervening recombination events of the no-change or tree-change type
 (Fig.~\ref{fig:fig2}). 
 The relative occurrence of events that do not result in topology 
