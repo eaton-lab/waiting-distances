@@ -1403,13 +1403,15 @@ The union of the sets of intervals on branches $b$ and $c$ is $\mathcal{I}_{bc}$
 % To do this, 
 
 Once again, we begin by assuming knowledge of the branch on which a 
-recombination event occurs and its timing. 
-For the latter, we break the problem into two different cases:
-when $t_r$ occurs below $t_b^m$, and when it occurs above $t_b^m$.
-This equation uses the function $f(i,j)$ to return the piecewise constant
-probabilities where recombination occurs in interval $i$ and re-coalesces
-in interval $j$. As before, this involves iterating over intervening intervals
-between $i$ and $j$ if present (Fig.~\ref{fig:fig3}d,f).
+recombination event occurs and its timing. This problem can be broken 
+into two distinct cases: when $t_r$ occurs below $t_b^m$, and when it 
+occurs above $t_b^m$. The former requires integrating over additional 
+intervals on $b$ that are not shared with $b'$. Over all intervals
+on the three relevant branches, these equations use the function 
+$f(i,j)$ to return the piecewise constant probabilities where recombination 
+occurs in interval $i$ and re-coalesces in interval $j$ (Fig.~\ref{fig:fig3}f).
+% As before, this involves iterating over intervening intervals
+% between $i$ and $j$ if present (Fig.~\ref{fig:fig3}f).
 
 
 
@@ -2716,7 +2718,19 @@ bias than a single population model from this effect.
 	\centering
 	\includegraphics[width=0.99\textwidth]{figures/error-smc-approx.pdf}
 	\caption{
-		Error in ...
+		Error in MS-SMC' waiting distance expectations caused by the 
+		SMC' approximation. Error was measured as the mean percent 
+		difference between expected waiting distances calculated
+		under the MS-SMC' and observed waiting distances in stochastic 
+		coalescent simulations. Simulations were performed under either 
+		the SMC' approximation (black) or the full coalescent 
+		with recombination (green). The MS-SMC' tends to under-estimate 
+		waiting distances compared to the full coalescent with recombination, 
+		but shows only a slight bias at very low $N_e$ values compared to 
+		simulations under the SMC'. 
+		% The single-population model shows a more significant 
+		% bias than either structured population model. This may be a consequence
+		% of the greater variance in waiting distances in single	population models.
 	}
      \label{fig:figS-bias-smc}
 \end{figure}
