@@ -1975,26 +1975,34 @@ N$_e$ is high, or accentuating differences among intervals when N$_e$ is low.
 	%\fbox{\rule[-.5cm]{4cm}{4cm} \rule[-.5cm]{4cm}{0cm}}
 	\includegraphics[width=0.99\textwidth]{figures/Fig4-final-validation4.pdf}
 	\caption{
-		MS-SMC' estimates of waiting distances between recombination
-		event types validated against coalescent simulations. Results are 
-		shown for three models (a) containing either 1, 2, or 8 populations,
-		among which genealogies for 8 samples are embedded. For each model
-		10K tree sequences were simulated. 
-		(b) The sum of edge lengths across all starting genealogies for each 
-		model for the lowest and highest N$_e$ values examined 
-		(50K and 500K, respectively).
-		(c-d) The mean and 95\% CI (green circle and fill) of analytical
-		solutions for the probabilities of recombination event types calculated
-		from the first genealogy in each tree sequence. Results overlap 
-		with the mean frequencies of each event type in simulated tree 
-		sequences (black squares).
-		The probabilities of tree-change or topology-change are 
-		constant with respect to N$_e$ in a single population model, 
-		but vary in models with population structure (also shown with respect to 
-		species tree interval lengths in coalescent units, across the top axis). 
-		(e-f) Waiting distances until tree or topology-change events exhibit 
-		less variance in models with population structure. The MS-SMC' calculated 
-		waiting distance expectations match very closely to simulated values.
+		MS-SMC' predictions validated against coalescent simulations. 
+		(a) Results are shown for three models containing 1, 2, or 8 
+		populations among which genealogies for 8 samples were embedded. 
+		For each model 10K tree sequences were simulated for 10 different
+		constant $N_e$ values between 50K and 500K. 
+		(b) The distributions of summed edge lengths of the first genealogy in 
+		each tree sequence. 
+		(c-d) The mean frequency (black square) at which the first observed 
+		recombination event was a tree-change (c) or topology-change (d) in a 
+		simulated tree sequence, and the mean (colored circle) and 95\% CI 
+		(grey fill) of the predicted probability of tree or topology-change 
+		calculated from the first embedded genealogy in each tree sequence. 
+		Probabilities are constant with respect to $N_e$ in the single population
+		model, but vary in models with population structure
+		(also shown with respect to species tree interval lengths in 
+		coalescent units, across the top axis).
+		% The probabilities of tree-change or topology-change are 
+		% constant with respect to N$_e$ in a single population model, 
+		% but vary in models with population structure (also shown with respect to 
+		% species tree interval lengths in coalescent units, across the top axis). 
+		(e-f) The mean waiting distance (black square) until the first observed 
+		tree-change (e) or topology-change (f) in a simulated tree sequence, and the mean 
+		(colored circle) and 95\% CI (grey fill) of predicted waiting distances calculated
+		from the first embedded genealogy in each tree sequence.
+		 % under the MS-SMC'. 
+		% Predicted Predicted waiting distances Waiting distances between tree or topology-change events exhibit 
+		% less variance for a given $N_e$ value in models with population structure. 
+		% The MS-SMC' calculated waiting distance expectations match very closely to simulated values.
 		% , however,
 		% whereas the tree-change waiting distance is exact, the the topology-change waiting distance exhibits slight bias at very low 
 		% N$_e$ values.
