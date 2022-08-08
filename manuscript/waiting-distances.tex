@@ -96,15 +96,15 @@ regions. Expectations for the amount of genealogical variation among unlinked
 population (coalescent) or multiple structured populations (multispecies coalescent).
 However, the expected similarity among genealogies at linked regions of a 
 genome is less well characterized. 
-Recently, an analytical solution was developed for the expected 
+Recently, an analytical solution was derived for the expected 
 distribution of waiting distances between changes in genealogical trees 
 spatially across a genome for a single population with constant effective 
-population size. Here, we describe a generalization of this 
+population size. Here we describe a generalization of this 
 result, in terms of the expected distribution of waiting distances between 
-changes in genealogical trees, and topologies, for multiple structured populations
+changes in genealogical trees and topologies, for multiple structured populations
 with branch-specific effective population sizes (i.e., under the multispecies 
 coalescent). Our solutions establish an expectation for genetic linkage  
-in multispecies datasets, and provide a new likelihood framework for linking
+in multispecies datasets, and they provide a new likelihood framework for linking
 demographic models with local ancestry inference across genomes.
 % ARG inference.fitting species tree models. % to genome alignments.
 
@@ -116,13 +116,13 @@ The multispecies coalescent (MSC) is an extension of the coalescent
 \citep{kingman1982coalescent}, a model that describes the distribution of genealogical 
 histories among gene copies from a set of sampled individuals. Whereas the 
 coalescent models a single panmictic population, the MSC includes constraints that prevent 
-samples from different lineages from sharing a most recent genealogical ancestor until prior
+samples that belong to different lineages from sharing a most recent genealogical ancestor until prior
 to a population divergence event that separates them \citep{maddison1997gene,maddison2006inferring}. 
 Conceptually, the MSC can be viewed as a piecewise model composed of the standard
-coalescent applied to each interval of a "species tree", representing the relationships
+coalescent applied to each interval of a "species tree" which represents the relationships
 and divergence times among isolated lineages. Genealogies are constrained to be
 embedded within species trees (Fig.~\ref{fig:fig1}a), and the joint likelihood of 
-MSC model parameters can be estimated from the coalescent times among a 
+MSC model parameters can be estimated from the coalescent times of a 
 distribution of sampled genealogies
 % Analytically, the MSC can be viewed as a piecewise likelihood function composed of the 
 % standard coalescent applied to each edge of a “species tree”, representing 
@@ -133,7 +133,7 @@ distribution of sampled genealogies
 % Consider referencing a panel of a figure here to show genealogical embedding.
 \citep{rannala2003bayes,degnan2009gene}. In both the coalescent
 and MSC models, effective population size (N$_e$) is the key parameter determining 
-the rate of coalescence, and can vary among different lineages. 
+the rate of coalescence, and it can vary across different lineages. 
 % which can vary over time and/or among different lineages. 
 
  % Conceptually, the MSC can be viewed as a piecewise model ... for joint likelihood of a 
@@ -151,7 +151,7 @@ the rate of coalescence, and can vary among different lineages.
 		% A genealogy embedded in a species tree exhibits different probabilities
 		% of outcomes of recombination, when viewed backwards in time, depending on 
 		% the timing and branch on which recombination occurs.
-		(a) A parameterized MSC model is composed of multiple discrete populations
+		(a) A parameterized MSC model is composed of multiple discrete population
 		intervals with associated effective population sizes ($N_e$) and divergence 
 		times ($W$). Given an embedded genealogy, each interval can be further divided 
 		at coalescence events (e.g., $t_9$) into a series of smaller intervals
@@ -170,15 +170,15 @@ the rate of coalescence, and can vary among different lineages.
 		% divergence events (e.g., $W_{AB}$) increase the number in the subsequent interval.
 		(b-d) A recombination event leads to one of three possible outcomes 
 		between the genealogies in two sequential intervals of a genome: 
-		"no-change", "tree-change", or "topology-change". 
+		"no-change," "tree-change," or "topology-change". 
 		% Under the sequentially Markov coalescent (SMC') model a recombination 
 		% event will cause one of three possible outcomes between two genealogies 
 		% in sequential spatial intervals of a genome: 
 		% two sequential intervals
 		% can occur on any branch of a genealogy to cause one
 		% of three possible outcomes: 
-		The probabilities of each outcome, as calculated under the MS-SMC', 
-		are shown for three branches as a function of the time ($t_r$) and branch 
+		The probabilities of each outcome as calculated under the MS-SMC' 
+		are shown for three branches. These probabilities are a function of the time ($t_r$) and branch 
 		on which recombination occurs.
 		% Each branch exhibits piecewise variation in these 
 		% probabilities across discrete intervals. 
