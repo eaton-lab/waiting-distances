@@ -1724,46 +1724,8 @@ the probability of a topology-change event.
 	(1 - \mathbb{P}(\text{topology-unchanged} | \mathcal{S},\mathcal{G}))
 \end{equation}
 
-% now present the caveats...
-This final expectation comes with an important caveat. 
-% does come with a caveat. 
-Unlike the exact solution for the expected waiting distance to a 
-tree-change, the waiting distance for a topology-change is an
-approximation, since we ignore the possible effects of intermediate 
-tree-change events that could occur during the waiting distance until 
-a topology-change 
-% more complicated, % to derive, 
-% waiting distance distribution to a \emph{topology} change is more 
-% solution for a \emph{topology} change is more complicated, % to derive, 
-% due to the possibility of intermediate recombination events 
-% because of the possibility of intermediate recombination events 
-% that change branch lengths but not the topology 
-(e.g., the second and third recombination events in Fig.~\ref{fig:fig2}).
-% In other words, during the waiting distance until a topology-change occurs,
-% given a specific starting genealogy, the genealogy branch lengths could 
-% change, thus affecting the probabilities of subsequent outcomes.
-% subsequent recombination events, 
-% including the relative probabilities of different categorical types.
-% for the next event.
-% As these events
-% As the branch lengths of intermediate genealogies change this affects the
-% rate of subsequent recombination events, and thus 
-% These events impact the rate of recombination events and 
-% the probability
-% that each further recombination event changes
-% that such events could change
-% the topology of the %newly generated 
-% next
-% genealogy. 
-In other words, the probability of topology-change is not guaranteed to
-be homogeneous across some distance of the genome.
-This problem similarly arises in a single population model,
-where \citet{deng_distribution_2021} have previously
-demonstrated that its effect can likely be ignored. We 
-re-examine this potential bias, 
-as well as any potential bias due to using the SMC' approximation,
-with respect to the presence
-of population structure in our validations in the Supplementary Information.
+
+
 
 % This is because the product of $L(\mathcal{G})$ and 
 % the probability of a topology-changing recombination event
@@ -1846,12 +1808,14 @@ branches and times, for entire branches, or for entire genealogies.
 Functions are also available to calculate the likelihood of observed 
 waiting distances between different genealogy changes in an ARG 
 using an exponential probability density parameterized by the MS-SMC'.
-The latter code is written in \emph{numpy} \citep{harris2020array} using 
-jit-compilation with \emph{numba} \citep{lam2015numba}, and tree operations
-with \emph{toytree} \citep{eaton_toytree_2020}.
-Below we explore the influence of MSC model parameters on waiting distances, 
-we validate our solutions against expectations from coalescent simulations 
-implemented in \emph{ipcoal} and \emph{msprime} \citep{baumdicker_efficient_2022}.
+The latter code uses \emph{scipy} \citep{2020SciPy-NMeth}, 
+\emph{numpy} \citep{harris2020array}, and jit-compilation with \emph{numba} 
+\citep{lam2015numba}. Tree-based operations are performed with \emph{toytree} 
+\citep{eaton_toytree_2020}.
+Below we use our implementation in \emph{ipcoal} to demonstrate the influence of 
+MSC model parameters on waiting distances and to validate our solutions against 
+expectations from coalescent simulations implemented in 
+\emph{msprime} \citep{baumdicker_efficient_2022}.
 %and we investigate potential biases.
 % models, visualizing results, and validating our equations.
 Source code is available at \url{https://github.com/eaton-lab/ipcoal}.
@@ -1967,7 +1931,7 @@ following $t_9$ there is a large stretch of time during which re-coalescence can
 only occur with the same branch or its sibling, neither of which can cause a topology-change
 event. It is only after $W_{abc}$ that it is once again possible for re-coalescence
 to occur with a more distant branch that would result in topology-change. 
-If the effective population size of this species tree interval (AB) were greater
+If the effective population size of this species tree interval (AB) was greater,
 then the probability of re-coalescence in a deeper interval would be more likely, 
 and the probability of topology-change would decrease less severely near $t_9$. 
 This is true more generally as well, as can be seen by comparing edge probabilities
@@ -2009,7 +1973,7 @@ N$_e$ is high, or accentuating differences among intervals when N$_e$ is low.
 \begin{figure}[t]
 	\centering
 	%\fbox{\rule[-.5cm]{4cm}{4cm} \rule[-.5cm]{4cm}{0cm}}
-	\includegraphics[width=0.99\textwidth]{figures/Fig4-final-validation2.pdf}
+	\includegraphics[width=0.99\textwidth]{figures/Fig4-final-validation4.pdf}
 	\caption{
 		MS-SMC' estimates of waiting distances between recombination
 		event types validated against coalescent simulations. Results are 
@@ -2163,6 +2127,61 @@ when population structure is present.
 % waiting distances until tree or topology-change events decrease as
 % values of N$_e$ increase, and topology-change waiting distances are always larger
 % than tree-change waiting distances. 
+
+\subsection{Bias in waiting distance estimation}
+% now present the caveats...
+This final expectation comes with an important caveat. 
+% does come with a caveat. 
+Unlike the exact solution for the expected waiting distance to a 
+tree-change, the waiting distance for a topology-change is an
+approximation, since we ignore the possible effects of intermediate 
+tree-change events that could occur during the waiting distance until 
+a topology-change 
+% more complicated, % to derive, 
+% waiting distance distribution to a \emph{topology} change is more 
+% solution for a \emph{topology} change is more complicated, % to derive, 
+% due to the possibility of intermediate recombination events 
+% because of the possibility of intermediate recombination events 
+% that change branch lengths but not the topology 
+(e.g., the second and third recombination events in Fig.~\ref{fig:fig2}).
+% In other words, during the waiting distance until a topology-change occurs,
+% given a specific starting genealogy, the genealogy branch lengths could 
+% change, thus affecting the probabilities of subsequent outcomes.
+% subsequent recombination events, 
+% including the relative probabilities of different categorical types.
+% for the next event.
+% As these events
+% As the branch lengths of intermediate genealogies change this affects the
+% rate of subsequent recombination events, and thus 
+% These events impact the rate of recombination events and 
+% the probability
+% that each further recombination event changes
+% that such events could change
+% the topology of the %newly generated 
+% next
+% genealogy. 
+In other words, the probability of a topology-change is not guaranteed to
+be homogeneous across some distance of the genome between topology-change
+events. 
+% This problem was first described by \citet{deng_distribution_2021},
+% who previously demonstrated that its effect can likely be ignored. 
+Another potential source of error is the SMC' approximation itself, 
+which excludes recombination events 
+restricting re-coalescence to only occur with 
+
+We examined this potential bias, as well as the potential for the
+SMC' approximation to introduce error into waiting distance expectations
+
+
+We re-examined this potential bias in the context of MSC models 
+(Supplementary Materials 5.2) and found a similar result, 
+with MSC models in fact exhibiting less spatial variation in 
+topology-change probabilities than single population models, and 
+thus less error. We also examined potential bias in waiting distance 
+expectations that may arise from the SMC' approximation 
+(Supplementary Information 5.2), where MSC models also exhibit less 
+error than single population models, owing to their lower variance 
+in tree and topology-change probabilities.
 
 \subsection{MS-SMC' likelihood inference framework}
 
