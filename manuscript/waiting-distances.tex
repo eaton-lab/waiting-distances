@@ -912,8 +912,8 @@ waiting distances until specific recombination event types occur.
 \end{table}
 
 Each interval of the genealogy embedding table contains a constant number
-of genealogy branches ($k_i$), and constant effective population size 
-($n_i$), such that the rate of coalescence is also constant.
+of genealogy branches ($k_i$) and a constant effective population size 
+($n_i$) such that the rate of coalescence is also constant.
 We define a number of additional variables related to this table. 
 The length of each interval is $d_i$, and its lower and upper bounds 
 are $\sigma_i$ and $\mu_i$, respectively. Similarly, the lower and upper 
@@ -924,15 +924,15 @@ respectively.
 An indexing variable, $\mathcal{I}_b$, is defined as the
 ordered set of intervals that are spanned by a specific branch
 of an embedded genealogy. As an example, consider branch 7 from 
-Fig.~\ref{fig:fig1}, which spans four intervals, 
+Fig.~\ref{fig:fig1}. This branch spans four intervals, 
 labeled as rows 1, 6, 7, and 8 in Table~\ref{tab:table-1}, 
-such that $\mathcal{I}_7$ = \{1,6,7,8\}. As we will
+and so $\mathcal{I}_7$ = \{1,6,7,8\}. As we will
 demonstrate below, this and related indexing variables will be
 used to calculate the probabilities of re-coalescence in different
 intervals, and on different branches, based on their rates of 
 coalescence.
 A summary of all variables in our notation is available in 
-table~\ref{tab:table-notation}). 
+table~\ref{tab:table-notation}. 
 
 % To better understand the relationship between the MS-SMC' and the genealogy
 % embedding table, consider a specific branch ($b$) from Fig.~\ref{fig:fig1}. 
@@ -1094,7 +1094,8 @@ for each of these event types, we focus first on deriving the
 probability of a no-change event 
 (also termed a tree-unchanged event; Fig.~\ref{fig:fig3}a), 
 which is the simplest outcome. Then, from the law of total probability, 
-we also have a result for the probability of a tree-change event. 
+we also have a result for the probability of recombination resulting in 
+a tree-change event. 
 % From this, we can then calculate the probability of a tree-change
 % by the law of total probability. 
 % Therefore, our first step in deriving probability statements for
@@ -1104,7 +1105,7 @@ Finally, to calculate the probability of a topology-change event,
 we first derive a statement for the probability of a topology-unchanged event
 (Fig.~\ref{fig:fig3}d), which is the union of a no-change event and
 a subset of tree-change events,
-where the detached lineage is restricted in which ancestral lineages 
+where the detached lineage is restricted according to which ancestral lineages 
 it can re-coalesce with. 
 Full detailed derivations of all solutions below are available in the 
 Appendix of the Supplementary Materials.
@@ -1136,8 +1137,8 @@ Appendix of the Supplementary Materials.
 We begin by assuming knowledge of when and where recombination takes place, in terms 
 of a recombination event bisecting branch $b$ at time $t_r$. %The variable $\sigma$ 
 % The index $i$ refers to the genealogy embedding interval in which recombination occurs.
-For no change to occur to the genealogy the detached subtree must re-coalesce with 
-its original branch, either in the same interval from which it detached, or in a
+For no change to occur to the genealogy, the detached subtree must re-coalesce with 
+its original branch -- either in the same interval from which it detached, or in a
 later interval on the same branch (Fig.~\ref{fig:fig3}a). %during the same interval in which it detached.
 If it connects to any other lineage this will cause a change to either the tree 
 or topology. 
@@ -1170,7 +1171,8 @@ for iterating over the ordered intervals above $i$ on branch $b$ (e.g., Fig.~\re
 		% at time $t_r$ in interval $i$ and re-coalescing in interval $j$. 
 		(a) The probability of a no-change event involves re-coalescing on the same 
 		branch on which recombination occurred, for which intervals are indexed using
-		the variables $\mathcal{I}_b$, or $\mathcal{J}_b(i)$. 
+		the variable $\mathcal{I}_b$.
+		%, or $\mathcal{J}_b(i)$. 
 		(c,f) The function $f(i,j)$ returns the probability that a subtree detached 
 		in interval $i$ will re-coalesce in interval $j$. This involves excluding
 		the probability of re-coalescence in intervals between $i$ and $j$, which is 
