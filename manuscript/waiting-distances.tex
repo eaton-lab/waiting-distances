@@ -1303,8 +1303,8 @@ change the tree:
 
 
 % \subsubsection{Probability that a recombination event will not change the tree:}
-\noindent Finally, by summing across all branches on the tree,
-and weighting each by its relative proportion of edge length,
+\noindent Finally, by summing across all branches on the tree 
+while weighting each one by its relative proportion of edge length,
 % while assuming a uniform recombination rate through time and across branches, 
 we get the probability that a recombination event occurring anywhere on 
 $\mathcal{G}$ will result in a no-change event. %category 1 outcome.
@@ -1318,9 +1318,9 @@ $\mathcal{G}$ will result in a no-change event. %category 1 outcome.
 
 
 \subsubsection{Waiting distances to no-change and tree-change events}
-Under the SMC' recombination is modeled as a Poisson point process, 
+Under the SMC', recombination is modeled as a Poisson point process 
 such that the time between recombination events is exponentially distributed 
-with rate parameter $\lambda_r$; the product of the per-site
+with rate parameter $\lambda_r$: the product of the per-site
 per-generation recombination rate and summed branch lengths of
 the current genealogy \citep{wiuf_recombination_1999} (equation 7).
 The likelihood of an observed distance ($x$) between recombination
@@ -1343,16 +1343,18 @@ be calculated from the exponential probability density function
 	f(x; \lambda) = \lambda e^{-\lambda x}
 \end{equation}
 
-\noindent Because a no-change type event is a subset of all possible types of
-recombination events, and we have derived its probability, we can now calculate 
+%\noindent Because a no-change type event is a subset of all possible types of
+%recombination events, and we have derived its probability, we can now calculate 
+\noindent Having derived the probability that an individual recombination event 
+is of the no-change type, we can now calculate 
 the rate of no-change type events as a proportion of the rate of all types of 
 recombination events. 
 Here, waiting distances continue to be exponentially distributed, 
-however, the new rate parameter, $\lambda_n$, is reduced proportionally by 
+however the new rate parameter $\lambda_n$ is reduced proportionally by 
 the probability that recombination causes no change to the genealogy
 (equation 9). Similarly, because a tree-change event is the opposite 
 of a no-change event, its probability is one minus the probability
-of no-change (equation 10), which yields rate parameter $\lambda_g$ for 
+of no-change (equation 10). This yields rate parameter $\lambda_g$ for 
 the exponential probability distribution of waiting distances between 
 tree-change events.
 
