@@ -104,7 +104,7 @@ result, in terms of the expected distribution of waiting distances between
 changes in genealogical trees and topologies, for multiple structured populations
 with branch-specific effective population sizes (i.e., under the multispecies 
 coalescent). Our solutions establish an expectation for genetic linkage  
-in multispecies datasets, and provide a new likelihood framework for linking
+in multispecies datasets and provide a new likelihood framework for linking
 demographic models with local ancestry inference across genomes.
 % ARG inference.fitting species tree models. % to genome alignments.
 
@@ -136,7 +136,7 @@ distribution of sampled genealogies
 % Consider referencing a panel of a figure here to show genealogical embedding.
 \citep{rannala2003bayes,degnan2009gene}. In both the coalescent
 and MSC models, effective population size (N$_e$) is the key parameter determining 
-the rate of coalescence, and can vary across different lineages. 
+the rate of coalescence and can vary across different lineages. 
 % which can vary over time and/or among different lineages. 
 
  % Conceptually, the MSC can be viewed as a piecewise model ... for joint likelihood of a 
@@ -1438,7 +1438,7 @@ Our approach follows closely to that of \citet{deng_distribution_2021}.
 % events that affect only coalescence times but not the topology. We refer
 % to this set of events as "topology-unchanged".
 % of categories 2 and 3 to isolate the waiting distance to a category 4 event. 
-In order to isolate re-coalesce events that do not change the topology
+In order to isolate re-coalescence events that do not change the topology
 % only affect branch
 % lengths from those that affect the topology 
 we must take into account which specific branches the detached subtree from 
@@ -1720,7 +1720,7 @@ on branch $b$ during a time that falls into either of the two cases in equation 
 
 % \subsubsection{Probability that a recombination event will not change the topology:}
 \noindent Finally, by summing equation 12 across all branches on a 
-genealogy, and weighting each by its proportion of summed branch lengths,
+genealogy while weighting each by its proportion of summed branch lengths,
 we get the probability that a recombination event falling 
 uniformly on the genealogy will result in a topology-unchanged event.
 
@@ -1743,7 +1743,7 @@ uniformly on the genealogy will result in a topology-unchanged event.
 
 \subsubsection{Waiting distance to topology-change events}
 A recombination event either does or does not change the topology
-of a genealogy, and therefore, we can get the probability of a 
+of a genealogy, and we can therefore get the probability of a 
 topology-change event using our topology-unchanged probability statement.
 As with the previous waiting distance distributions, the distance between
 topology change events given a parameterized MSC model can be 
@@ -1771,8 +1771,8 @@ approximation. This is because topology-change probabilities are not
 guaranteed to be homogeneous across some distance of the genome between 
 topology-change events, since intermediate tree-change events could occur
 (e.g., the second and third recombination events in Fig.~\ref{fig:fig2}).
-We examine this and other potential sources of bias in our validations,
-below, and in the Supplementary Materials.
+We examine this and other potential sources of bias in our validations
+below and in the Supplementary Materials.
 
 % This is because the product of $L(\mathcal{G})$ and 
 % the probability of a topology-changing recombination event
@@ -1852,8 +1852,8 @@ This software includes functions that accept a parameterized MSC model and
 initial genealogy as input and return the probabilities of different 
 recombination event types. These probabilities can be calculated for specific 
 branches and times, for entire branches, or for entire genealogies. 
-Functions are also available to calculate expected waiting distances, 
-and the likelihood of observed waiting distances in an ARG 
+Functions are also available to calculate expected waiting distances 
+and the likelihoods of observed waiting distances in an ARG 
 using an exponential probability density parameterized by the MS-SMC'.
 %Tree-based operations are performed with 
 Our implementation is built upon \emph{toytree} \citep{eaton_toytree_2020}, 
@@ -1883,7 +1883,7 @@ at \url{https://github.com/eaton-lab/waiting-distances}.
 
 \subsection{Demonstration}
 % First, when given a species tree and initial genealogy, we could examine the probability 
-Given a parameterized MSC model and initial genealogy the probabilities of 
+Given a parameterized MSC model and initial genealogy, the probabilities of 
 different types of recombination outcomes can be calculated and visualized as 
 a function of when and where recombination occurs. This is demonstrated on an 
 imbalanced 4-tip species tree with constant effective population size 
@@ -1897,8 +1897,8 @@ given a recombination event occurring on a branch at a particular time
 (equations 3 and 11, respectively) are shown for three selected branches
 on the example genealogy (Fig.~\ref{fig:fig1}b-d). 
 Note that the probability of no-change and tree-change events 
-are inversely related and sum to 1, since one or the other must occur as a consequence 
-of recombination. By contrast, a topology-change event is a subset of the 
+are inversely related and sum to 1, since one or the other must accompany any%occur as a consequence 
+recombination event. By contrast, a topology-change event is a subset of the 
 probability of a tree-change; 
 % recall that a topology-change event is 
 it is a tree-change event where the detached branch re-coalesces with 
@@ -1930,16 +1930,16 @@ of a tree-change event increases, as recombination occurs closer to the top
 end of a branch (further back in time). This makes intuitive sense, since when 
 recombination occurs at the top of a branch there is less time for it to re-coalesce 
 with its same branch. Although this is a general trend, these probabilities do not 
-behave monotonically along the length of a branch, as they would in a 
+behave monotonically along the length of a branch as they would in a 
 single-population model with constant N$_e$ \citep{deng_distribution_2021}.
 Instead, probabilities increase or decrease through the length of each
 interval as a function of the rates of coalescence in subsequent 
 intervals and the probability that a detached lineage will 
-re-coalescence in one of those intervals.
+re-coalesce in one of those intervals.
 
-For example, consider branch 2, which initially exhibits an increase in the
+For example, consider branch 2, which exhibits an increase in the
 probability of no-change through its first branch interval from time 0 to
-$t_7$, but then a decrease through the next interval from $t_7$ to $W_{AB}$
+$t_7$ but then a decrease through the next interval from $t_7$ to $W_{AB}$
 (Fig.~\ref{fig:fig1}b).
 The observed increase through the first interval is influenced by the fact that
 a re-coalescence in the subsequent interval is more likely to cause a no-change
@@ -1947,14 +1947,24 @@ event, since that interval contains only two samples instead of three.
 % up recombination occurs in this interval the more likely it is to re-coalesce
 % in the next interval, where only two instead of three samples are present, such
 % that a no-change event is more likely. 
-By contrast, within the second interval, as recombination occurs closer to 
-the top, it is approaching the next species tree divergence event, where the 
-number of samples will increase again, from 2 to 3, 
+%By contrast, within the second interval, as recombination occurs closer to 
+%the top, it is approaching the next species tree divergence event, where the 
+%number of samples will increase again, from 2 to 3, 
+%thus decreasing the probability of a no-change event. 
+By contrast, within the second interval, recombination events near 
+the top are approaching the next species tree divergence event. After that event, the 
+number of samples will increase back from 2 to 3, 
 thus decreasing the probability of a no-change event. 
-This visualization demonstrates how the probabilities of different recombination 
-event types represent an integration over all the positions on a branch where 
-recombination could occur, and all positions at or above that point, and on the 
-same or different available branches, where a detached branch could re-coalesce. 
+%This visualization demonstrates how the probabilities of different recombination 
+%event types represent an integration over all the positions on a branch where 
+%recombination could occur, and all positions at or above that point, and on the 
+%same or different available branches, where a detached branch could re-coalesce. 
+This visualization demonstrates how calculating the probabilities of different recombination 
+event types requires integrating over all the positions on a branch where 
+recombination could occur, while simultaneously integrating over all points at which the detached
+branch could re-coalesce.
+%% ^am breaking up / simplifying some of these long sentences just to help the reader. Less smooth but 
+%% lots of commas are hard to process.
 
 % at any time 
 % point incorporates all of the possibilities of re-coalescence at deeper 
