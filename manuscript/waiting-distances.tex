@@ -135,7 +135,7 @@ distribution of sampled genealogies
 % genealogies must be embedded 
 % Consider referencing a panel of a figure here to show genealogical embedding.
 \citep{rannala2003bayes,degnan2009gene}. In both the coalescent
-and MSC models, effective population size (N$_e$) is the key parameter determining 
+and MSC models, effective population size ($N_e$) is the key parameter determining 
 the rate of coalescence and can vary across different lineages. 
 % which can vary over time and/or among different lineages. 
 
@@ -1931,7 +1931,7 @@ end of a branch (further back in time). This makes intuitive sense, since when
 recombination occurs at the top of a branch there is less time for it to re-coalesce 
 with its same branch. Although this is a general trend, these probabilities do not 
 behave monotonically along the length of a branch as they would in a 
-single-population model with constant N$_e$ \citep{deng_distribution_2021}.
+single-population model with constant $N_e$ \citep{deng_distribution_2021}.
 Instead, probabilities increase or decrease through the length of each
 interval as a function of the rates of coalescence in subsequent 
 intervals and the probability that a detached lineage will 
@@ -1973,7 +1973,8 @@ branch could re-coalesce.
 % different species tree intervals.
 
 Branch 7 provides a clear example for examining the probabilities of 
-tree and topology-change events. Of particular interest is the 
+tree- and topology-change events. Of particular interest is the 
+% (added suspended hyphen above after "tree")
 interval from $W_{AB}$ to $W_{ABC}$ where these probabilities diverge 
 significantly (Fig.~\ref{fig:fig2}c-d). 
 % Another example is clear from examining probabilities across branch 7,
@@ -1988,14 +1989,17 @@ following $t_9$ there is a large stretch of time during which re-coalescence can
 only occur with the same branch or its sibling, neither of which can cause a topology-change
 event. It is only after $W_{abc}$ that it is once again possible for re-coalescence
 to occur with a more distant branch that would result in topology-change. 
-If the effective population size of this species tree interval (AB) was greater,
+If the effective population size of this species tree interval (AB) were greater,
 then the probability of re-coalescence in a deeper interval would be more likely, 
 and the probability of topology-change would decrease less severely near $t_9$. 
-This is true more generally as well, as can be seen by comparing edge probabilities
+This is true more generally, as can be seen by comparing edge probabilities
 across MSC models with different effective population sizes (Fig.~\ref{fig:figS-edge-probabilities}).
-Effective population size affects the rate of re-coalescence, and thus 
-has the effect of either smoothing probabilities across intervals when 
-N$_e$ is high, or accentuating differences among intervals when N$_e$ is low.
+Effective population size affects the rate of re-coalescence and thus 
+%has the effect of either smoothing probabilities across intervals when 
+%N$_e$ is high, or accentuating differences among intervals when N$_e$ is low.
+either smooths probabilities across intervals when 
+%% "smooths" is a weird word: https://english.stackexchange.com/questions/103422/smooths-versus-smoothes
+$N_e$ is high or accentuates differences among intervals when $N_e$ is low.
 
 % Fig.~\ref{fig:fig1} panels b, c, and d show the probability that a recombination event 
 % falling at each time $t_r$ on the 3 selected genealogy branches results in no change 
@@ -2096,11 +2100,11 @@ of edge lengths on the current genealogy ($L(\mathcal{G})$), and the probability
 ($\mathbb{P}$) of the specified event type (equations 9, 10, and 14). 
 Across the three models examined, $r$ remains constant, but both $L(\mathcal{G})$ 
 and $\mathbb{P}$ can vary due to population structure, where the effect of 
-structure is scaled by N$_e$. 
+structure is scaled by $N_e$. 
 Therefore, we examined $L(\mathcal{G})$, $\mathbb{P}$, and the expected waiting 
 distance calculated from their product, for each demographic model across a range 
-of N$_e$ values (Fig.~\ref{fig:fig-validation}b-f). 
-For each value of N$_e$, 10K tree sequences were simulated that included at least 
+of $N_e$ values (Fig.~\ref{fig:fig-validation}b-f). 
+For each value of $N_e$, 10K tree sequences were simulated that included at least 
 one topology-change event. The empirical probabilities of tree-change and 
 topology-change events were then simply measured %from simulated tree sequences 
 as the mean observed frequency at which the first recombination event in each 
@@ -2134,7 +2138,7 @@ recombination events, all else being equal.
 However, all else does not remain equal. 
 Population structure also has an opposing effect on waiting distances by 
 decreasing the probability of tree or topology changes 
-(Fig.~\ref{fig:fig-validation}c-d), especially at low N$_e$ values, where 
+(Fig.~\ref{fig:fig-validation}c-d), especially at low $N_e$ values, where 
 species tree constraints can make tree or topology changes unlikely
 to occur. This is a stark difference between the MS-SMC' framework and a 
 single population model; the probability of tree or topology change 
@@ -2729,9 +2733,9 @@ to P.F.M.). Thanks to Yun Deng for guidance on preliminary ideas and to the Eato
 		(a) An MSC model with edge lengths in units of generations and an example
 		genealogy embedded. (b) An example genealogy embedding table for the MSC
 		model and genealogy. (c) Probabilities of different recombination event
-		outcomes across genealogy edge 7. When N$_e$ is low probabilities are 
+		outcomes across genealogy edge 7. When $N_e$ is low probabilities are 
 		nearly constant within each interval, since re-coalescent in later intervals
-		is unlikely. When N$_e$ is high probabilities change nearly monotonically 
+		is unlikely. When $N_e$ is high probabilities change nearly monotonically 
 		across the length of an edge, since population structure has little effect
 		in constraining the time of re-coalescence.
 	}
@@ -2947,7 +2951,7 @@ bias than a single population model from this effect.
 		tree that has experienced a tree-change event that changed coalescent times
 		but not the topology. The sum of genealogical edge lengths (L(G)), the 
 		P(topology-change | S,G), and the product of these two terms are shown for
-		three different demographic models and with different constant N$_e$ values, 
+		three different demographic models and with different constant $N_e$ values, 
 		and/or numbers of samples per lineage.
 		When the fold-change in the product exhibits low variance around 1 the 
 		MS-SMC' approximation for the expected waiting distance until a topology-change 
@@ -3044,7 +3048,7 @@ as a genealogy embedding table (e.g., Table~\ref{tab:table-1}).
 In the waiting distance solutions for a single population with constant $N_e$ 
 by \citet{deng_distribution_2021}, this table is delimited only by coalescent 
 events, and the intervals are non-overlapping. 
-Because N$_e$ is constant in their framework, only $k$ differs between 
+Because $N_e$ is constant in their framework, only $k$ differs between 
 intervals. Therefore, changes in $k$ alone determine differences in rates of coalescence, 
 with $k$ decreasing monotonically in subsequent intervals from the tips towards the root. 
 Our approach is similar, but adds additional complexity (Fig.~\ref{fig:fig1}). 
