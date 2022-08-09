@@ -2715,16 +2715,16 @@ to P.F.M.). Thanks to Yun Deng for guidance on preliminary ideas and to the Eato
 	\includegraphics[width=0.9\textwidth]{figures/Fig2-new-recomb-types.pdf}
 	\caption{
 		Four categories of outcomes of a recombination event occurring on a
-		genealogy at time t$_1$, where the detached subtree re-coalesces with
+		genealogy at time t$_1$ and the detached subtree re-coalescing with
 		the remaining lineages under the SMC' process at time t$_2$. (a) The
 		detached subtree re-coalesces with the original lineage from which it
 		was detached leading to no change between the starting genealogy and 
 		subsequent genealogy. (b) The detached subtree re-coalesces with its
-		sister lineage prior to their previous coalescence, leading to a shortening
+		sibling lineage prior to their previous coalescence, leading to a shortening
 		of their coalescence time. (c) The detached subtree re-coalesces with
 		its parent lineage, leading to a lengthening of the coalescent time 
-		between the detached subtree lineage and its sister lineage. (d) The
-		detached subtree re-coalesces with a lineage other than itself, its sister,
+		between the detached subtree lineage and its sibling lineage. (d) The
+		detached subtree re-coalesces with a lineage other than itself, its sibling,
 		or its parent lineage, leading to a topology-change. 
 	}
      \label{fig:figS-recomb-types}
@@ -2740,15 +2740,15 @@ to P.F.M.). Thanks to Yun Deng for guidance on preliminary ideas and to the Eato
 	\caption{
 		Probabilities of different recombination event outcomes for a selected 
 		genealogy edge as a function of the time at which recombination occurs 
-		and a constant effective population size.
+		and of the constant effective population size.
 		(a) An MSC model with edge lengths in units of generations and an example
 		genealogy embedded. (b) An example genealogy embedding table for the MSC
 		model and genealogy. (c) Probabilities of different recombination event
-		outcomes across genealogy edge 7. When $N_e$ is low probabilities are 
-		nearly constant within each interval, since re-coalescent in later intervals
-		is unlikely. When $N_e$ is high probabilities change nearly monotonically 
-		across the length of an edge, since population structure has little effect
-		in constraining the time of re-coalescence.
+		outcomes across genealogy edge 7. When $N_e$ is low, probabilities are 
+		nearly constant within each interval since re-coalescence in later intervals
+		is unlikely. When $N_e$ is high, probabilities change nearly monotonically 
+		across the length of an edge since population structure does little
+		to constrain the time of re-coalescence.
 	}
      \label{fig:figS-edge-probabilities}
 \end{figure}
@@ -2852,19 +2852,20 @@ to P.F.M.). Thanks to Yun Deng for guidance on preliminary ideas and to the Eato
 \subsection{Investigating bias in MS-SMC' predictions}
 % in addition to SMC' approximation, topo-change has additional bias.
 The MS-SMC' harbors two potential sources of bias, the first stemming from 
-assumptions of the SMC' approximation, and the second from the approximate 
+assumptions of the SMC' approximation and the second from the approximate 
 nature of waiting distance estimation for topology-change events. We examined 
 both of these sources of error through comparison to stochastic simulations 
-and found that their effects are generally negligible, and also act in opposing 
-directions, such that their combined effect is further reduced.
+and found that their effects are generally negligible and act in opposing 
+directions such that their combined effect is further reduced.
 
-The SMC' approximation to the coalescent with recombination is expected 
-to deviate more significantly from the full model that it is approximating 
+The SMC' approximation to the full coalescent with recombination is expected 
+to deviate increasingly far from the full model % from the full model that it is approximating 
 as the number of recombination events that the SMC' does not model 
-(among ancestors that do not contribute genetic material to sampled descendants) 
+(i.e., those that are among ancestors who do not contribute genetic material to sampled descendants) 
 increases. 
-By not modeling some recombination events the SMC' will tend to 
-over-estimate waiting distances between tree or topology change events. 
+By not modeling this subset of recombination events, the SMC' will tend to 
+exhibit greater waiting distances between tree or topology change events than the full model. 
+%% "exhibit" here because SMC' per se isn't estimating anything
 Because our waiting distance predictions are built upon assumptions of 
 the SMC' model, they too will exhibit this bias. 
 % Models with high population structure, such as MSC models with low Ne, 
@@ -2883,7 +2884,7 @@ As expected, we observe even less error
 between our predictions and coalescent simulations when data are simulated
 under the SMC' model. Whereas the error 
 rate is generally below 5\% when data are simulated under the full coalescent
-with recombination model, and only exceeds this at the lowest
+with recombination model, only exceeding this at the lowest
 $N_e$ values examined, mean error rates do not exceed 5\% in any 
 models for data simulated under the SMC' assumptions. 
 This shows that the SMC' assumption does contribute a relatively small error 
@@ -3566,7 +3567,7 @@ To isolate events that do not cause a topology change, we must find
 the union of events that cause a no-change event in addition to two types of 
 possible tree-change events which affect only branch lengths but not the 
 topology. These two types of events correspond to a re-coalescence with the 
-sister to branch $b$, termed $b'$, or with its parent, $c$ (Fig.~\ref{fig:fig3}d).
+sibling to branch $b$, termed $b'$, or with its parent, $c$ (Fig.~\ref{fig:fig3}d).
 Because branch $c$ is always ancestral to $b$, a recombination
 event on $b$ can potentially re-coalesce anywhere on $c$; however, 
 this is not the case for $b'$, which may only exist or be available for 
