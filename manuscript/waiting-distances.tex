@@ -1998,7 +1998,7 @@ Effective population size affects the rate of re-coalescence and thus
 %has the effect of either smoothing probabilities across intervals when 
 %N$_e$ is high, or accentuating differences among intervals when N$_e$ is low.
 either smooths probabilities across intervals when 
-%% "smooths" is a weird word: https://english.stackexchange.com/questions/103422/smooths-versus-smoothes
+%% "smooths" is a weird word but is fun: https://english.stackexchange.com/questions/103422/smooths-versus-smoothes
 $N_e$ is high or accentuates differences among intervals when $N_e$ is low.
 
 % Fig.~\ref{fig:fig1} panels b, c, and d show the probability that a recombination event 
@@ -2049,7 +2049,11 @@ $N_e$ is high or accentuates differences among intervals when $N_e$ is low.
 		(grey fill) of the predicted probability of tree or topology-change 
 		calculated from the first embedded genealogy in each tree sequence. 
 		Probabilities are constant with respect to $N_e$ in the single population
-		model, but vary in models with population structure
+		%model, but vary in models with population structure
+		model but vary in models with population structure
+		%% ^removing all commas like this whenever I notice complex sentences beginning
+		%% with an independent clause. (Or occassionally keeping the comma and just 
+		%% adding a subject to the second clause.)
 		(also shown with respect to species tree interval lengths in 
 		coalescent units, across the top axis).
 		% The probabilities of tree-change or topology-change are 
@@ -2073,18 +2077,18 @@ $N_e$ is high or accentuates differences among intervals when $N_e$ is low.
 
 % we simulated data under 3 models to validate our results
 To validate our analytical solutions for the probabilities of different 
-recombination event outcomes, and their associated waiting distances, 
+recombination event outcomes and their associated waiting distances, 
 we compared predictions of the MS-SMC' with results from stochastic 
 coalescent simulations. 
 We set up three scenarios with increasing amounts of population structure: 
-a single-population model, two-population model, and an 8-tip phylogeny model
+a single-population model, a two-population model, and an 8-tip phylogeny model
 (Fig.~\ref{fig:fig-validation}a). 
 All analyses used a constant per-site per-generation recombination rate of 
-2e-9, and simulated tree sequences using the coalescent with recombination 
+2e-9 and simulated tree sequences using the coalescent with recombination 
 (i.e., the "hudson" ancestry model in msprime as opposed to the "smc\_prime" model, 
 which is an approximation), %unless specified, 
-and used the argument 
-"record\_full\_arg=True", to retain records of invisible recombination events. 
+and the argument 
+"record\_full\_arg=True" (to retain records of invisible recombination events). 
 For each model we simulated genealogies for the same total number of samples
 (8, unless specified), divided evenly among lineages when models 
 include multiple populations (Fig.~\ref{fig:fig-validation}a). 
@@ -2112,8 +2116,8 @@ tree sequence was a tree or topology change. Similarly, empirical waiting
 distances were measured as the mean distance until the first observation of 
 each event type. These simulated expectations were then compared with analytical
 expectations computed under the MS-SMC', where probabilities and waiting distances 
-were predicted based only on the embedding of the first genealogy in each tree sequence 
-into an MSC model parameterized to a specific constant $N_e$ value. 
+were based only on the embedding of the first genealogy from each tree sequence 
+into an MSC model parameterized to the specific constant $N_e$ value. 
 
 % Given each starting genealogy,
 % the probability of each event type, and the expected waiting distance to that event
@@ -2136,14 +2140,17 @@ determine the frequency of recombination, larger $L(\mathcal{G})$ induced
 by population structure will tend to decrease waiting distances between 
 recombination events, all else being equal. 
 However, all else does not remain equal. 
-Population structure also has an opposing effect on waiting distances by 
+Population structure has a simultaneous opposing effect on waiting distances by 
 decreasing the probability of tree or topology changes 
-(Fig.~\ref{fig:fig-validation}c-d), especially at low $N_e$ values, where 
+($\mathbb{P}$; Fig.~\ref{fig:fig-validation}c-d), especially at low $N_e$ values where 
 species tree constraints can make tree or topology changes unlikely
 to occur. This is a stark difference between the MS-SMC' framework and a 
-single population model; the probability of tree or topology change 
-events is strongly associated with $N_e$ in the former, while not affected 
-at all in the latter. Consequently, in MSC models the waiting distances 
+single population model: The probability of a tree or topology change 
+accompanying a recombination event is strongly associated with $N_e$ in the former but is not affected 
+at all in the latter. 
+%% Capitalization after a colon? APA says yes, Chicago says no.
+%% (but I do think a colon is more appropriate than a semicolon here)
+Consequently, in MSC models the waiting distances 
 between each event type (Fig.~\ref{fig:fig-validation}e-f) represent a balance 
 of the positive and negative effects of population structure on 
 $L(\mathcal{G})$ and $\mathbb{P}$, respectively.
@@ -2160,17 +2167,17 @@ the information contained in spatial genealogical patterns.
 % In a single population, the probability of a tree or topology change event
 % is not only invariant with respect
 For example, in the single population model there is high variance 
-in both the probabilities of tree or topology changes, as well as in genealogy
-lengths, at any given $N_e$ value, and consequently, waiting distances also 
+in both the probabilities of tree and topology changes, as well as in genealogy
+lengths, at any given $N_e$ value. Consequently, waiting distances also 
 exhibit high variance. Although waiting distances correlate with population $N_e$ 
-in this model, the differences in waiting distances are small relative to the variance. 
+in this model, the differences in mean waiting distances are small relative to the variance. 
 By contrast, multispecies models exhibit much less variance in predicted probabilities 
 of tree or topology changes given a set of MSC model parameters 
-(Fig.~\ref{fig:fig-validation}c-d), and also exhibit less variation in genealogy
+(Fig.~\ref{fig:fig-validation}c-d) and also exhibit less variation in genealogy
 lengths. This leads to a stronger relationship between MSC model parameters and 
 expected waiting distances (Fig.~\ref{fig:fig-validation}e-f), such that models
 with different parameters have less overlap in waiting distance expectations.
-Overall, this suggests that tree and topology-change distances may contain more 
+Overall, this suggests that tree- and topology-change distances may contain more 
 information in MSC models than in single population models.
 % ; information that
 % can be used for inferring demographic model parameters from waiting distances 
@@ -2256,20 +2263,20 @@ Based on the expectation that waiting distances are informative about
 MSC model parameters, we developed a maximum likelihood framework for inferring 
 MSC model parameters from observed waiting distances between tree and/or topology 
 change events. Here, we apply this method using the true distances between 
-events in simulated ARGs, however, it could similarly be applied to inferred 
+events in simulated ARGs. However, it could similarly be applied to inferred 
 distances between events in an ARG proposed from sequence data. 
 
-Given one or more ARGs each composing a sequence of genealogies 
+Given one or more ARGs, each composing a sequence of genealogies 
 G = ($\mathcal{G}_1, \mathcal{G}_2, ..., \mathcal{G}_n$) and 
 their interval lengths in the genome X = ($x_1, x_2, ..., x_n$), a subset 
 of genealogies can be extracted representing unique genealogies between 
 tree-change events, $G_g$ = ($\mathcal{G}_1, \mathcal{G}_i, ...$). The lengths 
 between these events can be summed to get tree-change waiting distances
-X$_g$ = ($\sum_{i=1}^j x_i, \sum_{i=j}^{k} x_i, ..., $). The same could be 
+X$_g$ = ($\sum_{i=1}^j x_i, \sum_{i=j}^{k} x_i, ..., $). The same can be 
 done for topology-change events. Then, given a parameterized species 
-tree $\mathcal{S}$ and recombination rate $r$ we can obtain a sequence of 
+tree $\mathcal{S}$ and recombination rate $r$ we can infer a sequence of 
 exponential rate parameters $\Lambda_g = (\lambda_1, \lambda_i, ...)$ for
-each genealogy from equations 10 or 14. 
+each genealogy by using equations 10 or 14. 
 The likelihood of each observed waiting distance (X$_g$) between tree or
 topology change events can then be calculated from a series of exponential 
 probability density functions (equation 8) parameterized by their 
@@ -2280,14 +2287,14 @@ between recombination events represents the maximum likelihood solution.
 
 We first implemented this approach for a simple two-population model with 
 constant $N_e$=200K and a population divergence at 500K generations. 
-We simulated 100 independent ARGs each 100Kb in length using $r$=2e$^{-9}$, 
-and sampled four haplotypes per population. This 
-yielded 51,487 tree-change events with a mean length of 194bp, and 25,446 
-topology-change events with a mean length of 393bp. To examine the likelihood
+We simulated 100 independent ARGs, each 100Kb in length, using $r$=2e$^{-9}$, 
+and we sampled four haplotypes per population. This 
+yielded 51,487 tree-change events, with mean length 194bp, and 25,446 
+topology-change events, with mean length 393bp. To examine the likelihood
 surface we calculated the log-likelihood of joint parameters for $N_e$ and $r$, 
-while keeping a fixed divergence time parameter, over a grid search of 41 
-values between $r=1e^{-9}$ to 3e$^{-9}$, and $N_e$=50K to 800K. The likelihood
-surface for tree-change distances exhibited a ridge that contained the true 
+while keeping a fixed divergence time parameter, using a grid search across 41 evenly-spaced
+values from $r=1e^{-9}$ to 3e$^{-9}$ and from $N_e$=50K to 800K. The likelihood
+surface for tree-change distances exhibited a ridge containing the true 
 parameter values (Fig.~\ref{fig:fig-likelihood}b), while the topology-change 
 likelihood surface exhibited a distinct peak at the true values
 (Fig.~\ref{fig:fig-likelihood}c). The summed log-likelihoods from both tree 
@@ -2296,7 +2303,7 @@ and topology change distances provided the most informative likelihood surface
 We also inferred a likelihood surface for a misspecified model, in which 
 the genealogies were generated under a 2-population model, but 
 the $\Lambda_g$ rate parameters were calculated for a single population 
-model with constant $N_e$. Model misspecification introduces a significant 
+model with constant $N_e$. This model misspecification introduced a significant 
 bias in parameter estimation, shifting the likelihood surface towards lower $r$ 
 and higher $N_e$ (Fig.~\ref{fig:fig-likelihood}e). This demonstrates that even 
 for a simple two population model, ignoring population structure can significantly
@@ -2310,7 +2317,7 @@ bias spatial genealogical inference methods.
 		Joint inference of MSC model parameters using waiting distances 
 		calculated under the MS-SMC'. (a) ARGs were simulated under a two-population 
 		MSC model with variable $N_e$. (b) Posterior distributions of the three 
-		$N_e$ parameters jointly inferred from tree and topology-change waiting 
+		$N_e$ parameters jointly inferred from tree- and topology-change waiting 
 		distances.
 	}
 	\label{fig:fig-likelihood-posterior}
@@ -2322,26 +2329,30 @@ models, we implemented a Metropolis-Hastings Markov chain Monte Carlo
 parameters under a 2-population model with variable $N_e$ 
 (Fig.~\ref{fig:fig-likelihood-posterior}a).
 The input ARGs were simulated using the same settings as above, 
-but under this more complex MSC model, and in this case, 
-we sampled 8 haplotypes per population. We set a uniform prior on 
-$N_e$ between 1e$^2$-1e$^7$, and ran the MCMC chain to sample 
-10K values, sampling every 5th iteration following a 1K iteration 
+%but under this more complex MSC model, and in this case, 
+%we sampled 8 haplotypes per population. We set a uniform prior on 
+except that we used this more complex MSC model and
+sampled 8 haplotypes per population. We set a uniform prior on 
+$N_e$ between 1e$^2$-1e$^7$ and ran the MCMC chain to sample 
+10K values, sampling every 5th iteration after a 1K iteration 
 burnin. For simplicity, we fixed the population divergence time to 
-the correct value of 500K to focus solely on $N_e$ estimation. 
+the correct value of 500K and focused solely on $N_e$ estimation. 
 
 The resulting maximum \emph{a posteriori} probability estimates of 
 model parameters are highly accurate, all falling within 0.5 
 standard deviations of the true values 
 (Fig.~\ref{fig:fig-likelihood-posterior}b). 
-This result is encouraging, considering that it may be possible, under
-some MSC models, for many different parameter combinations to yield 
-similar waiting distance expectations, which could cause identifiability
-issues. However, by combining information from both tree and topology 
-waiting distances this problem may be reduced. Our results suggest 
-that MSC model parameters can be identifiable from genealogical 
+This result is encouraging, considering that it may be possible under
+some MSC models for many different parameter combinations to yield 
+similar waiting distance expectations, potentially causing identifiability
+%issues. However, by combining information from both tree and topology 
+%waiting distances this problem may be reduced. Our results suggest 
+issues. However, combining information from both tree and topology 
+waiting distances may help address this problem. Our results suggest 
+that MSC model parameters will sometimes be identifiable from genealogical 
 waiting distances, at least for relatively simple models like the ones
-examined here, but further theoretical and empirical work will be needed
-to explore this issue in greater detail.
+examined here. Further theoretical and empirical work will be needed
+to explore this question in greater detail.
 % Anecdotally, we found that using multiple independent ARGs improves 
 % the accuracy of this joint inference method compared to a single 
 % larger ARG. This suggests that ...
