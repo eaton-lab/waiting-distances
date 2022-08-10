@@ -2584,9 +2584,10 @@ heterogeneity across chromosomes.
 Our MS-SMC' approach provides a predictive model for the relationship between 
 a parameterized species tree and the length of a genomic interval over which 
 a genealogy is expected to be observed. We demonstrated the accuracy of our 
-implementation relative to stochastic simulations performed under either the 
-full coalescent with recombination or the SMC' approximation 
-\citep{hudson1983properties,wiuf_recombination_1999,mcvean2005approximating}. Within the MS-SCM'
+implementation relative to stochastic simulations performed under both the 
+full coalescent with recombination and the SMC' approximation 
+\citep{hudson1983properties,wiuf_recombination_1999,mcvean2005approximating}. 
+Within the MS-SMC'
 framework, MSC model parameters determine rates of coalescence within 
 species tree intervals and dictate where coalescence may occur, 
 preventing coalescences among lineages separated into different
@@ -2609,30 +2610,34 @@ dependent on species tree model parameters.
 % Previously, lengths could only be simulated .But analytical methods are better.
 A complex relationship exists between a parameterized MSC model, 
 the distribution of genealogies that can arise under that model, and the 
-spatial distances over which those genealogies are expected to span given 
-the MSC model.
+spatial distances over which those genealogies are expected to span.
 Previously, such patterns could only be examined through stochastic simulations. 
 For example, McKenzie and Eaton (2020) used exhaustive simulations to examine 
 the effect of species tree parameters on genetic linkage by varying species tree
 length, size, and shape. 
 While this approach is practical for estimating the \emph{mean} linkage across
-a large set of sampled genealogies under a specific demographic model, it cannot
-provide an estimate for the persistence of any \emph{individual} genealogy. 
+a large set of sampled genealogies under a specific demographic model, it is less 
+practical for estimating for the persistence of \emph{individual} genealogies. Such 
+an approach is particularly intractable for studying sequences of many genealogies, 
+for which individual distributions are required for each tree in the sequence. 
 % Similarly, it did not... more here please.
 The analytical solutions that we derived in this study 
-allow us not only to predict waiting distances for any embedded genealogy, 
-but furthermore, to develop a likelihood framework for modeling observed 
-waiting distances. 
+allow us to quickly predict waiting distances for any embedded genealogy. 
+Furthermore, they allow us to develop a likelihood framework for modeling
+sequences of observed waiting distances, helping infer MSC models from ARGs or
+ARGs from MSC models (see below).
 
 % This framework can be extended...
-\hl{... Many extensions of the MS-SMC' are possible. One approach could be to 
-estimate the expected distance over which a pattern of monophyly is expected
-to be observed... Another extension would be to implement an approach
-for the multispecies network coalescent. ... Waiting distances between
-topology changes in genomic regions derived from one network history 
+Many extensions of the MS-SMC' are possible. One approach could be to isolate a clade
+from a given genealogy and to estimate estimate the expected distance over which 
+monophyly is expected to persist for this clade under neutrality. 
+%%^this is for.... locus sizes for clade-level inference, introgression, etc
+Another extension would be to accommodate the multispecies network coalescent, which 
+adds further complexity to the MSC by modeling ancestral reticulation events.
+Waiting distances between topology changes in genomic regions derived from one network history 
 versus another may be highly informative about inferring local ancestry, 
-or for inferring phylogenetic networks...}
-
+or for inferring phylogenetic networks.
+%%^specifically as a null hypothesis! 
 
 \subsection{Whole genome phylogenomics and concatalescence}
 % MSC model requires gene tree frequencies, but what is a gene tree?
