@@ -2525,19 +2525,30 @@ inferred from waiting distance information alone.
 
 % Restate the problem
 Genealogical relationships vary spatially across chromosomes, reflecting 
-a history of recombination events between genome segments inherited from 
-different ancestors. The sequentially Markov coalescent describes a generative 
+historical recombination events between genome segments inherited from 
+different ancestors. The SMC' describes a generative 
 process for which statistical methods can be developed to model the variation 
-between sequential genealogies. Although this has led to many significant 
-advances for the study of linked genome data, such methods remain highly limited 
-in the scale over which they extract information from genomes -- essentially
-extending forward just one recombination event at a time. 
-For many datasets, this limits the information that is available for SMC-based 
-inference methods, since most observations are uninformative. 
-The recent development by \citep{Deng} of solutions for the probabilities 
+between sequential genealogies. This has led to many significant 
+advances for the study of linked genome data. 
+However, SMC'-based methods remain limited with regard to the scale 
+over which they extract information from genomes, typically either acting across 
+very few samples and only considering pairs of coalescent events instead of entire 
+genealogies \citep{terhorst_etal2016,li_durbin2011, schiffels_durbin2014}. 
+%However, SMC'-based methods remain highly limited 
+%with regard to the scale over which they extract information from genomes --
+%extending forward just one recombination event at a time, 
+%regardless of the outcome for the genealogy \citep{terhorst_etal}. 
+%However, 
+%for many datasets, 
+%this limits the information that is available for SMC-based inference methods, 
+%recombination events between pairs of individuals will often be uninformative 
+%and the signal in the sequence data resulting from changes in the underlying genealogies
+%will be spread across larger distances and will simultaneously impact relationships among all samples. 
+In contrast, the recent solutions by \citep{deng_distribution_2021} for the probabilities 
 of different categorical types of recombination events (tree-changes and 
-topology-changes) addresses this problem by modeling sequential events 
-that extend over greater spatial genomic distances. 
+topology-changes) focus on "thinning" recombination events to model the sequential events
+that extend over great spatial genomic distances and are detectable in the sequence 
+data, while including all coalescences simultaneously. 
 Here we extended their framework, deriving new solutions for the probabilities 
 of tree-change and topology-change events, where genealogies can be embedded 
 in any arbitrary structured coalescent model. 
@@ -2567,10 +2578,13 @@ Our MS-SMC' approach provides a predictive model for the relationship between
 a parameterized species tree and the length of a genomic interval over which 
 a genealogy is expected to be observed. We demonstrated the accuracy of our 
 implementation relative to stochastic simulations performed under either the 
-full coalescent with recombination or the SMC' approximation (...). Within this
+full coalescent with recombination or the SMC' approximation 
+\citep{hudson1983properties,wiuf_recombination_1999,mcvean2005approximating}. Within the MS-SCM'
 framework, MSC model parameters determine rates of coalescence within 
-species tree intervals, and prevent coalescence among lineages in separate
-species tree intervals. For any MSC model, these effects can be statistically 
+species tree intervals and dictate where coalescence may occur, 
+preventing coalescences among lineages separated into different
+species tree intervals. For any MSC model, the effects of MSC parameters
+with regard to genealogy turnover can be statistically 
 modeled and visualized (Fig1 and Supplement). We show that the neutral rate
 of turnover in genealogies and topologies across a genome is highly 
 dependent on species tree model parameters.
