@@ -2628,6 +2628,10 @@ sequences of observed waiting distances, helping infer MSC models from ARGs or
 ARGs from MSC models (see below).
 
 % This framework can be extended...
+%% still need more here -- maybe stressing the specific value of the *distance*
+%% approach as a computational solution for likelihoods that we never thought we
+%% would have the power to do (eg marginalizing across sequence data probs given 
+%% all possible args is not possible)
 Many extensions of this approach for estimating waiting distances MS-SMC' 
 are possible. One next step could be to isolate a clade
 from a given genealogy and to estimate the expected distance over which 
@@ -2644,15 +2648,15 @@ due to ILS alone, or for inferring phylogenetic networks.
 \subsection{Whole genome phylogenomics and concatalescence}
 % MSC model requires gene tree frequencies, but what is a gene tree?
 The multispecies coalescent is a model to describe the expected distribution 
-of unlinked genealogies given a parameterized MSC model, and is the basis
-for modern phylogenetic inference aimed at inferring a species tree as a 
+of unlinked genealogies given a parameterized MSC model and is the basis
+for modern phylogenetic approaches that infer a species tree as a 
 hierarchical model of relationships among populations or species. 
 However, because genetic linkage among genealogies sampled from different regions
 of a genome can cause their distribution to deviate from the expectations of the
 MSC, multi-locus datasets used for species tree inference are often highly filtered to 
 avoid this type of model violation. For example, even as whole genome sequence data 
 has become increasingly available, a common practice for has been to 
-subsample a small number of discrete unlinked loci from whole genome 
+subsample a small number of discrete unlinked loci from whole-genome 
 alignments for species tree inference (e.g., Jarvis paper and that recent Moth paper), 
 effectively discarding the vast majority of sequenced data. 
 % Although in many cases this may be sufficient for species tree inference, ...
@@ -2660,7 +2664,7 @@ effectively discarding the vast majority of sequenced data.
 Even after subsampling unlinked loci, species tree inference can still
 face potential problems from genetic linkage if the genealogical data within 
 individual loci is variable. 
-In theory, a locus should correspond to sequences evolved on only a single 
+In theory, a locus is meant to correspond to sequences evolved on only a single 
 genealogical tree or topology across its entire length, depending on whether 
 the inference method uses branch length information \citep[e.g.,][]{liu2010maximum}
 or not \citep[e.g.,][]{zhang2018astral}. 
@@ -2670,19 +2674,19 @@ of gene trees, and even summary statistics like quartet frequencies,
 to deviate from the expectations of the MSC -- a process termed concatalescence 
 \citep{gatesy_concatenation_2013}. One practical 
 application of the MS-SMC' is in serving as a guide for selecting 
-appropriate locus lengths, where the average waiting distance between
+appropriate locus lengths, so that the a reasonable waiting distance between
 genealogical trees or topologies can be estimated given a proposed 
 species tree model, recombination rate, and number of samples per species.
 
-One could envision a future spatially-explicit phylogenetic inference
+One could envision a future, spatially explicit phylogenetic inference
 framework in which linked genome data can be used directly for species
 tree inference. This would mark a major transition in phylogenetics, where
 recombination would shift from being viewed as a source of error to becoming
 a source of information. We see the MS-SMC' as a small step in this 
 direction. As an example, we showed that species tree parameters can be 
 estimated from the information in genealogical waiting distances alone. 
-However, many challenges would need to be overcome before this approach 
-could become practical, not least of which is the fact that genealogies
+However, we must overcome many challenges before this approach 
+could become practical, the most serious of which being the fact that genealogies
 cannot be observed directly, and so any approach would likely require either 
 inferring ARGs or integrating over distributions of possible ARGs. 
 Another possible direction may involve bypassing local gene tree inference 
@@ -2690,9 +2694,11 @@ altogether, as in the approach taken by SNAPP \citep{bryant2012inferring},
 which can compute the likelihood of a species tree from unlinked SNP 
 patterns by effectively integrating over all possible gene trees that 
 could produce each SNP. A spatially explicit version might instead
-aim to calculate the likelihood that any two SNP patterns, and thus
-their underlying topologies, would exist given the spatial distance
-that separates them. 
+aim to calculate the likelihood that any two SNP patterns
+%, and thus their underlying topologies, 
+%% (would probably start with topos, and then calculate snps from topos...)
+would exist given the spatial distance
+separating them. 
 % To extend these SNP-based methods and/or to improve gene-tree-based methods to better delimit gene tree breakpoints, 
 % we propose that incorporating the rates of turnover observed in the data as 
 % information could actually offer useful new information for inferring the species tree 
