@@ -2528,7 +2528,7 @@ Genealogical relationships vary spatially across chromosomes, reflecting
 a history of recombination between genome segments inherited from 
 different ancestors. Such variation can be modeled by the sequentially 
 Markov coalescent, which provides a generative process upon which 
-many statistical methods have been developed \citep{terhorst_etal2016}.
+many statistical methods have been developed \citep{mcvean2005approximating, spence_inference_2018}.
 % ledto many advances for the study of linked genome data.
 % The SMC' describes a generative 
 % process for which statistical methods can be developed to model the variation 
@@ -2550,7 +2550,11 @@ just one recombination event at a time.
 By contrast, the recent development of solutions for predicting 
 tree and topology-change waiting distances under the SMC' \citep{deng_distribution_2021} 
 effectively adds two additional longer-range sources of information for 
-any position in a genome. 
+any position in a genome. In this original formulation, these distances are a 
+result of the probabilities of different phenomenological outcomes of the 
+SMC’ process given a genealogy embedded in a single population coalescent
+model with constant $N_e$.
+% within the constraints of a demographic model.
 %regardless of the outcome for the genealogy \citep{terhorst_etal}. 
 %However, 
 %for many datasets, 
@@ -2565,9 +2569,9 @@ any position in a genome.
 % that extend over great spatial genomic distances and affect the relationships among samples. 
 % Further, these solutions are for the full genealogy of all samples simultaneously rather 
 % than isolating a subset of samples and coalescences. 
-Here we extended their framework, deriving new solutions for the probabilities 
-of tree-change and topology-change events, where genealogies can be embedded 
-in any arbitrary structured coalescent model. 
+Here we extended this framework, deriving new solutions for the probabilities 
+of tree-change and topology-change events for a genealogy embedded 
+in any arbitrarily parameterized structured coalescent model. 
 These solutions lay a groundwork for exploring how variation in
 species tree parameters affects neutral expectations of genealogical 
 heterogeneity across chromosomes.
@@ -2596,13 +2600,13 @@ a genealogy is expected to be observed. We demonstrated the accuracy of our
 implementation relative to stochastic simulations performed under both the 
 full coalescent with recombination and the SMC' approximation 
 \citep{hudson1983properties,wiuf_recombination_1999,mcvean2005approximating}. 
-Within the MS-SMC'
-framework, MSC model parameters determine rates of coalescence within 
+Within the MS-SMC' framework, MSC model parameters determine rates of coalescence within 
 species tree intervals and dictate where coalescence may occur, 
 preventing coalescences among lineages separated into different
 species tree intervals. For any MSC model, the effects of MSC parameters
 with regard to genealogy turnover can be statistically 
-modeled and visualized (Fig1 and Supplement). We show that the neutral rate
+modeled and visualized (Fig.~\ref{fig:fig1}; Fig.~\ref{fig:figS-edge-probabilities}). 
+We show that the neutral rate
 of turnover in genealogies and topologies across a genome is highly 
 dependent on species tree model parameters.
 
@@ -2621,47 +2625,110 @@ A complex relationship exists between a parameterized MSC model,
 the distribution of genealogies that can arise under that model, and the 
 spatial distances over which those genealogies are expected to span.
 Previously, such patterns could only be examined through stochastic simulations. 
-For example, McKenzie and Eaton (2020) used exhaustive simulations to examine 
+For example, \cite{mckenzie_multispecies_2020} used exhaustive simulations to examine 
 the effect of species tree parameters on genetic linkage by varying species tree
 length, size, and shape. 
 While this approach is practical for estimating the \emph{mean} linkage across
-a large set of sampled genealogies under a specific demographic model, it is less 
-practical for estimating for the persistence of \emph{individual} genealogies. Such 
-an approach is particularly intractable for studying sequences of many genealogies, 
-for which individual distributions are required for each tree in the sequence. 
+a large set of sampled genealogies under a specific demographic model, it is
+impractical for estimating the persistence of \emph{individual} genealogies. 
+% Indeed, a large distribution of simulated waiting distances would need to be 
+% generated for every genealogy to obtain expectations.
+% Simulation approaches are particularly intractable for studying sequences of 
+% many genealogies, for which individual distributions would need to be
+% generated for every tree in a sequence. 
 % Similarly, it did not... more here please.
-The analytical solutions that we derived in this study 
-allow us to quickly predict waiting distances for any embedded genealogy. 
-Furthermore, they allow us to develop a likelihood framework for modeling
-sequences of observed waiting distances, helping infer MSC models from ARGs or
-ARGs from MSC models (see below).
+In addition to providing fast calculations of waiting distances, 
+analytical solutions also offer the opportunity to develop likelihood-based
+methods for inferring MSC models from ARGs, or ARGs from MSC models 
+(discussed below).
+% framework sequences of observed waiting distances, helping infer MSC models from ARGs or
+% ARGs from MSC models (see below).
+
+% The analytical solutions that we derived in this study 
+% allow us to quickly predict waiting distances for any embedded genealogy. 
+% Furthermore, they allow us to develop a likelihood framework for modeling
+% sequences of observed waiting distances, helping infer MSC models from ARGs or
+% ARGs from MSC models (see below).
 
 % This framework can be extended...
-Many extensions of the MS-SMC' are possible. One approach could be to isolate a clade
-from a given genealogy and to estimate estimate the expected distance over which 
-monophyly is expected to persist for this clade under neutrality. 
-%%^this is for.... locus sizes for clade-level inference, introgression, etc
-Another extension would be to accommodate the multispecies network coalescent, which 
-adds further complexity to the MSC by modeling ancestral reticulation events.
-Waiting distances between topology changes in genomic regions derived from one network history 
-versus another may be highly informative about inferring local ancestry, 
-or for inferring phylogenetic networks.
+Many extensions of the MS-SMC' are possible, including applications to more
+complex demographic models, and the development of specific hypothesis testing
+frameworks. 
+% allowing for the development
+% of hypothesis testing frameworks, or applications to more complex demographic models.
+For example, instead of embedding genealogies in a species tree, they could instead
+be embedded in a species network following the multispecies network coalescent model 
+\citep{wen_bayesian_2016}. This would involve modeling genealogy embeddings as a 
+probabilistic process that could follow one of several possible paths through a network.
+Differences between the expected waiting distances in genomic regions derived from 
+one embedding path history versus another may be highly informative about the 
+network model in which genealogies are embedded. The incorporation of linked 
+genealogical information may prove valuable towards resolving intractable problems
+in phylogenetic network inference, by moving beyond the limited information available
+from the frequencies of unlinked gene trees.
+% into phylogenetic net
+% Such information may be useful towards inferring local hybrid ancestry, or 
+% for estimating or comparing phylogenetic network models.
+% adds further complexity to the MSC by modeling ancestral reticulation events.
+% Evaluating waiting distances between topology changes in genomic regions derived 
+% from one network history versus another may be highly informative for inferring 
+% local hybrid ancestry while avoiding falsely implicating regions of shared ancestry 
+% due to ILS alone, or for inferring phylogenetic networks.
+% the expected distance 
+% from a given genealogy and to estimate the expected distance over which 
+% monophyly is expected to persist for this clade under neutrality. Doing so would be useful
+% for investigating turnover in specific relationships between taxa. 
+
+
+% this approach for estimating waiting distances MS-SMC' 
+% are possible. One next step could be to isolate a clade
+% from a given genealogy and to estimate the expected distance over which 
+% monophyly is expected to persist for this clade under neutrality. Doing so would be useful
+% for investigating turnover in specific relationships between taxa. 
+% Another extension would be to accommodate the multispecies network coalescent, which 
+% adds further complexity to the MSC by modeling ancestral reticulation events.
+% Evaluating waiting distances between topology changes in genomic regions derived 
+% from one network history versus another may be highly informative for inferring 
+% local hybrid ancestry while avoiding falsely implicating regions of shared ancestry 
+% due to ILS alone, or for inferring phylogenetic networks.
 %%^specifically as a null hypothesis! 
 
 \subsection{Whole genome phylogenomics and concatalescence}
 % MSC model requires gene tree frequencies, but what is a gene tree?
-The multispecies coalescent is a model to describe the expected distribution 
-of unlinked genealogies given a parameterized MSC model, and is the basis
-for modern phylogenetic inference aimed at inferring a species tree as a 
-hierarchical model of relationships among populations or species. 
-However, because genetic linkage among genealogies sampled from different regions
-of a genome can cause their distribution to deviate from the expectations of the
-MSC, multi-locus datasets used for species tree inference are often highly filtered to 
-avoid this type of model violation. For example, even as whole genome sequence data 
-has become increasingly available, a common practice for has been to 
-subsample a small number of discrete unlinked loci from whole genome 
-alignments for species tree inference (e.g., Jarvis paper and that recent Moth paper), 
-effectively discarding the vast majority of sequenced data. 
+The multispecies coalescent is a model to describe an expected distribution 
+of unlinked genealogies as well as the basis for phylogenetic methods aimed 
+at inferring a species tree as a hierarchical model of relationships among 
+populations or species.
+Despite the enormous size of modern genomic datasets, many phylogenetic 
+problems remain challenging to resolve, either because their history deviates 
+significantly from an MSC model, or due to many possible sources of model 
+misspecification.
+tree-like, or because 
+
+Not all species trees can be resolved... 
+However, because genetic linkage can cause the distributions of genealogies
+to deviate from their expectations under the MSC, multi-locus datasets are 
+often highly filtered to avoid this bias. %sampling linked loci.
+% among genealogies sampled from different regions
+% of a genome can cause their distribution to deviate from the expectations of the
+% MSC, multi-locus datasets used for species tree inference are often highly filtered to 
+% avoid this type of model violation. 
+For example, even as whole genome sequence data has become increasingly available, 
+it remains common practice to subsample a small number of discrete unlinked loci
+from whole genomes for species tree inference \citep[e.g.,][]{jarvis_whole-genome_2014},
+effectively discarding the vast majority of sequenced data. The development of 
+new phylogenetic methods that aim not only to account for recombination as a 
+source of error, but
+
+spatially-informed 
+
+Thus, This would mark a major transition in phylo-
+genetics, where recombination would shift from being viewed as a source of error to becoming a source
+of information.
+% a common practice for has been to 
+% subsample a small number of discrete unlinked loci from whole genome 
+% alignments for species tree inference \citep[e.g.,][]{jarvis_whole-genome_2014}
+% effectively discarding the vast majority of sequenced data. 
 % Although in many cases this may be sufficient for species tree inference, ...
 
 Even after subsampling unlinked loci, species tree inference can still
