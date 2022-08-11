@@ -2530,8 +2530,8 @@ different ancestors. The SMC' describes a generative
 process for which statistical methods can be developed to model the variation 
 between sequential genealogies. This has led to many significant 
 advances for the study of linked genome data. 
-However, SMC'-based methods remain limited with regard to the scale 
-at which they are applied, typically either acting across 
+However, SMC'-based methods remain limited with regard to scale, 
+typically either acting across 
 very few samples and only considering pairs of coalescent events instead of entire 
 genealogies \citep{terhorst_etal2016,li_durbin2011, schiffels_durbin2014}. 
 %%The forward-backward algorithm of PSMC/MSMC/SMC++ does consider the whole sequence
@@ -2628,15 +2628,17 @@ sequences of observed waiting distances, helping infer MSC models from ARGs or
 ARGs from MSC models (see below).
 
 % This framework can be extended...
-Many extensions of the MS-SMC' are possible. One approach could be to isolate a clade
-from a given genealogy and to estimate estimate the expected distance over which 
-monophyly is expected to persist for this clade under neutrality. 
-%%^this is for.... locus sizes for clade-level inference, introgression, etc
+Many extensions of this approach for estimating waiting distances MS-SMC' 
+are possible. One next step could be to isolate a clade
+from a given genealogy and to estimate the expected distance over which 
+monophyly is expected to persist for this clade under neutrality. Doing so would be useful
+for investigating turnover in specific relationships between taxa. 
 Another extension would be to accommodate the multispecies network coalescent, which 
 adds further complexity to the MSC by modeling ancestral reticulation events.
-Waiting distances between topology changes in genomic regions derived from one network history 
-versus another may be highly informative about inferring local ancestry, 
-or for inferring phylogenetic networks.
+Evaluating waiting distances between topology changes in genomic regions derived 
+from one network history versus another may be highly informative for inferring 
+local hybrid ancestry while avoiding falsely implicating regions of shared ancestry 
+due to ILS alone, or for inferring phylogenetic networks.
 %%^specifically as a null hypothesis! 
 
 \subsection{Whole genome phylogenomics and concatalescence}
