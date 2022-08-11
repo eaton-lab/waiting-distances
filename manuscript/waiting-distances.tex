@@ -2525,23 +2525,32 @@ inferred from waiting distance information alone.
 
 % Restate the problem
 Genealogical relationships vary spatially across chromosomes, reflecting 
-historical recombination events between genome segments inherited from 
-different ancestors. The SMC' describes a generative 
-process for which statistical methods can be developed to model the variation 
-between sequential genealogies. This has led to many significant 
-advances for the study of linked genome data. 
-However, SMC'-based methods remain limited with regard to the scale 
-at which they are applied, typically either acting across 
-very few samples and only considering pairs of coalescent events instead of entire 
-genealogies \citep{terhorst_etal2016,li_durbin2011, schiffels_durbin2014}. 
+a history of recombination between genome segments inherited from 
+different ancestors. Such variation can be modeled by the sequentially 
+Markov coalescent, which provides a generative process upon which 
+many statistical methods have been developed \citep{terhorst_etal2016}.
+% ledto many advances for the study of linked genome data.
+% The SMC' describes a generative 
+% process for which statistical methods can be developed to model the variation 
+% between sequential genealogies. 
+% This has led to many significant 
+% advances for the study of linked genome data. 
+% However, SMC'-based methods remain limited with regard to the scale 
+% at which they are applied, typically either acting across 
+% very few samples and only considering pairs of coalescent events instead of entire 
+% genealogies \citep{terhorst_etal2016,li_durbin2011, schiffels_durbin2014}. 
 %%The forward-backward algorithm of PSMC/MSMC/SMC++ does consider the whole sequence
 %%of trees, and being grounded in SMC' they do consider invisible recombination events
 %%In my mind the main limitation is with regard to sampling and constraining the model
 %%To an analytical solution for just two samples, studying the timing of a coalescence 
 %%between pairs rather than the relationships among all samples
-%However, SMC'-based methods remain highly limited 
-%with regard to the scale over which they extract information from genomes --
-%extending forward just one recombination event at a time, 
+However, most applications of the SMC' remain highly limited with regard to 
+the scale over which they extract information from genomes -- extending forward 
+just one recombination event at a time. 
+By contrast, the recent development of solutions for predicting 
+tree and topology-change waiting distances under the SMC' \citep{deng_distribution_2021} 
+effectively adds two additional longer-range sources of information for 
+any position in a genome. 
 %regardless of the outcome for the genealogy \citep{terhorst_etal}. 
 %However, 
 %for many datasets, 
@@ -2549,13 +2558,13 @@ genealogies \citep{terhorst_etal2016,li_durbin2011, schiffels_durbin2014}.
 %recombination events between pairs of individuals will often be uninformative 
 %and the signal in the sequence data resulting from changes in the underlying genealogies
 %will be spread across larger distances and will simultaneously impact relationships among all samples. 
-In contrast, the recent solutions by \citep{deng_distribution_2021} for the probabilities 
-of different categorical types of recombination events (tree-changes and 
-topology-changes) focus on "thinning" out invisible recombination events -- 
-instead modeling impactful recombination events 
-that extend over great spatial genomic distances and affect the relationships among samples. 
-Further, these solutions are for the full genealogy of all samples simultaneously rather 
-than isolating a subset of samples and coalescences. 
+% In contrast, the recent solutions by \citep{deng_distribution_2021} for the probabilities 
+% of different categorical types of recombination events (tree-changes and 
+% topology-changes) focus on "thinning" out invisible recombination events -- 
+% instead modeling impactful recombination events 
+% that extend over great spatial genomic distances and affect the relationships among samples. 
+% Further, these solutions are for the full genealogy of all samples simultaneously rather 
+% than isolating a subset of samples and coalescences. 
 Here we extended their framework, deriving new solutions for the probabilities 
 of tree-change and topology-change events, where genealogies can be embedded 
 in any arbitrary structured coalescent model. 
