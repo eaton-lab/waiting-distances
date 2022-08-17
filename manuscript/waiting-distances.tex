@@ -147,8 +147,8 @@ the rate of coalescence and can vary across different lineages.
 	\centering
 	\includegraphics[width=0.99\textwidth]{figures/Fig1-embedding-and-probs-fill.pdf}
 	\caption{
-		The MS-SMC' models the probability of different outcomes of recombination
-		given a genealogy embedded in an multispecies coalescent (MSC) model.
+		The MS-SMC' models the probability of different recombination outcomes 
+		given a genealogy embedded in a multispecies coalescent (MSC) model.
 		% The probability of different outcomes of recombination occurring on a 
 		% genealogy embedded in a species tree can be modeled using the MS-SMC'. 
 		% A genealogy embedded in a species tree exhibits different probabilities
@@ -182,7 +182,7 @@ the rate of coalescence and can vary across different lineages.
 		% can occur on any branch of a genealogy to cause one
 		% of three possible outcomes: 
 		The probabilities of each outcome as calculated under the MS-SMC' 
-		are shown for three branches. These probabilities are a function of the time ($t_r$) and branch 
+		are shown for three arbitrary branches. These probabilities are a function of the time ($t_r$) and branch 
 		on which recombination occurs.
 		% Each branch exhibits piecewise variation in these 
 		% probabilities across discrete intervals. 
@@ -455,8 +455,8 @@ conditional sampling method.
 		An ancestral recombination graph (ARG)
 		is composed of a series of genealogies each spanning non-overlapping 
 		intervals of a genome separated by recombination breakpoints. Here, 
-		four recombination breakpoints separate the start and end positions 
-		on a small chromosome in the history of a set of 7 samples constrained
+		four recombination breakpoints separate the intervals' start and end positions 
+		along a small chromosome alignment. The individual genealogies represent the history of a set of 7 samples constrained
 		by a 4-tip species tree model (as in Fig.~1).
 		Recombination events are indicated by vertical panels. Each shows the SMC' process by 
 		which a subtree (below the red circle) is detached and then re-coalesces (red arrow)
@@ -476,7 +476,7 @@ conditional sampling method.
 		These are grouped more generally into 
 		three \emph{event types}: (1) no-change, (2) tree-change, and (3) topology-change.
 		Every recombination event causes either a no-change or tree-change event, whereas
-		a topology-change is a subset of possible tree-change events. The expected waiting
+		topology-change events are a subset of possible tree-change events. The expected waiting
 		distance until a specific recombination event type occurs can be calculated under 
 		the MS-SMC' given a starting genealogy, MSC model, and recombination rate.
 	% Examples of the four different categories of outcomes from a 
@@ -918,7 +918,7 @@ waiting distances until specific recombination event types occur.
 	% present ($k$) and the effective population size ($N_e$). 
 	Under the MS-SMC', the probability that a detached lineage will re-coalesce
 	on a specific branch of the genealogy (e.g., branch 7 from Figure~\ref{fig:fig1})
-	is calculated from the piecewise constant probabilities in each 
+	is calculated using the piecewise constant probabilities from each 
 	discrete interval spanning that branch (e.g., rows 1, 6, 7, and 8).
 }
 \begin{tabular}[t]{ |c|c|c|c|c|c|c|c|c| }
@@ -1201,24 +1201,28 @@ for iterating over the ordered intervals above $i$ on branch $b$ (e.g., Fig.~\re
 	\caption{
 		% Rates of coalescence are piece-wise constant within discrete intervals 
 		% of the genealogy embedding table. 
-		The probabilities of different recombination event types are calculated from 
+		The probabilities of different recombination event types are calculated using 
 		piece-wise constant probabilities of recombination within discrete intervals.
 		% probability statements for recombination occurring
 		% at time $t_r$ in interval $i$ and re-coalescing in interval $j$. 
-		(a) The probability of a no-change event involves re-coalescing on the same 
+		(a) The probability of a no-change event involves re-coalescing with the same 
 		branch on which recombination occurred, for which intervals are indexed using
 		the variable $\mathcal{I}_b$.
 		%, or $\mathcal{J}_b(i)$. 
-		(c,f) The function $f(i,j)$ returns the probability that a subtree detached 
+		(c,f) The function $f(i,j)$ returns the probability that a subtree that detached 
 		in interval $i$ will re-coalesce in interval $j$. This involves excluding
-		the probability of re-coalescence in intervals between $i$ and $j$, which is 
+		the probability of re-coalescence in intervals between $i$ and $j$, which are 
 		indexed as $\mathcal{Q}_b(i,j)$. 
-		(d) The probability of a topology-unchanged event involves re-coalescing on the 
-		same branch on which recombination occurred, or its parent or sibling branches. 
+		(d) The probability of a topology-unchanged event involves re-coalescing with the 
+		same branch on which recombination occurred, or with its parent or sibling branches. 
+		%(e) Additional indexing variables return intervals on the parent branch 
+		%($\mathcal{I}_c$), or the sibling branch above ($\mathcal{M}_b$) or below 
+		%($\mathcal{L}_b$) the time at which it overlaps in the same species tree interval
+		%as branch $b$, termed $t_b^m$.
 		(e) Additional indexing variables return intervals on the parent branch 
-		($\mathcal{I}_c$), or the sibling branch above ($\mathcal{M}_b$) or below 
-		($\mathcal{L}_b$) the time at which it overlaps in the same species tree interval
-		as branch $b$, termed $t_b^m$.
+		($\mathcal{I}_c$), or branch $b$ above ($\mathcal{M}_b$) or below 
+		($\mathcal{L}_b$) the time ($t_b^m$) at which it overlaps in the same species tree interval 
+		as its sibling branch.
 	}
 	\label{fig:fig3}
 \end{figure}
@@ -2043,7 +2047,7 @@ $N_e$ is high or accentuates differences among intervals when $N_e$ is low.
 		constant $N_e$ values between 50K and 500K. 
 		(b) The distributions of summed edge lengths of the first genealogy in 
 		each tree sequence. 
-		(c-d) The mean frequency (black square) at which the first observed 
+		(c-d) The mean frequency (black square) with which the first observed 
 		recombination event was a tree-change (c) or topology-change (d) in a 
 		simulated tree sequence, and the mean (colored circle) and 95\% CI 
 		(grey fill) of the predicted probability of tree or topology-change 
@@ -2063,7 +2067,7 @@ $N_e$ is high or accentuates differences among intervals when $N_e$ is low.
 		(e-f) The mean waiting distance (black square) until the first observed 
 		tree-change (e) or topology-change (f) in a simulated tree sequence, and the mean 
 		(colored circle) and 95\% CI (grey fill) of predicted waiting distances calculated
-		from the first embedded genealogy in each tree sequence.
+		using the first embedded genealogy in each tree sequence.
 		 % under the MS-SMC'. 
 		% Predicted Predicted waiting distances Waiting distances between tree or topology-change events exhibit 
 		% less variance for a given $N_e$ value in models with population structure. 
