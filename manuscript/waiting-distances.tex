@@ -2249,11 +2249,11 @@ with low $N_e$. Future work could seek to find a correction for this bias.
 	\caption{
 		MS-SMC' likelihood framework. (a) ARGs were simulated under a
 		two-population species tree model with a constant $N_e$=200K and 
-		$r$=2e$^{-9}$. (b) A joint log-likelihood surface for $N_e$ and 
-		$r$ inferred from the distances between tree-change events, 
+		$r$=2e-9$. (b) A joint log-likelihood surface for $N_e$ and 
+		$r$ inferred from the distances between tree-change events; 
 		(c) topology-change events; or (d) both. The true parameters are
 		marked by an X. (e) If the MSC model is
-		misspecified as a single-population model, but the data derive from 
+		misspecified as a single-population model but the data derive from 
 		a two-population model, likelihood inference	is highly biased.
 		% ARGs were 
 		% simulated under a two-population species tree model with variable 
@@ -2552,7 +2552,7 @@ However, most applications of the SMC' remain highly limited with regard to
 the scale over which they extract information from genomes -- extending forward 
 just one recombination event at a time. 
 By contrast, the recent development of solutions for predicting 
-tree and topology-change waiting distances under the SMC' \citep{deng_distribution_2021} 
+tree- and topology-change waiting distances under the SMC' \citep{deng_distribution_2021} 
 effectively adds two additional longer-range sources of information for 
 any position in a genome. In this original formulation, these distances are a 
 result of the probabilities of different phenomenological outcomes of the 
@@ -3076,11 +3076,12 @@ feedback.
 	\centering
 	\includegraphics[width=0.9\textwidth]{figures/Fig2-new-recomb-types.pdf}
 	\caption{
-		Four categories of outcomes of a recombination event occurring on a
-		genealogy at time t$_1$ and the detached subtree re-coalescing with
-		the remaining lineages under the SMC' process at time t$_2$. (a) The
+		Four categories of outcomes from a recombination event occurring on a
+		%genealogy at time t$_1$ and the detached subtree re-coalescing with
+		genealogy at time t$_1$, dictated by random subtree re-coalescence with
+		a remaining lineage under the SMC' process at time t$_2$. (a) The
 		detached subtree re-coalesces with the original lineage from which it
-		was detached leading to no change between the starting genealogy and 
+		was detached, leading to no change between the starting genealogy and 
 		subsequent genealogy. (b) The detached subtree re-coalesces with its
 		sibling lineage prior to their previous coalescence, leading to a shortening
 		of their coalescence time. (c) The detached subtree re-coalesces with
@@ -3104,10 +3105,10 @@ feedback.
 		genealogy edge as a function of the time at which recombination occurs 
 		and of the constant effective population size.
 		(a) An MSC model with edge lengths in units of generations and an example
-		genealogy embedded. (b) An example genealogy embedding table for the MSC
+		genealogy embedded. (b) An genealogy embedding table for the example MSC
 		model and genealogy. (c) Probabilities of different recombination event
 		outcomes across genealogy edge 7. When $N_e$ is low, probabilities are 
-		nearly constant within each interval since re-coalescence in later intervals
+		nearly constant with respect to time within each interval since re-coalescence in later intervals
 		is unlikely. When $N_e$ is high, probabilities change nearly monotonically 
 		across the length of an edge since population structure does little
 		to constrain the time of re-coalescence.
@@ -3304,7 +3305,7 @@ bias than a single population model from this effect.
 		coalescent simulations. Simulations were performed under either 
 		the SMC' approximation (black) or the full coalescent 
 		with recombination (green). The MS-SMC' tends to under-estimate 
-		waiting distances compared to the full coalescent with recombination, 
+		waiting distances compared to the full coalescent with recombination 
 		but shows only a slight bias at very low $N_e$ values compared to 
 		simulations under the SMC'. 
 		% The single-population model shows a more significant 
@@ -3320,9 +3321,9 @@ bias than a single population model from this effect.
 	\centering
 	\includegraphics[width=0.99\textwidth]{figures/FigSX-bias.pdf}
 	\caption{
-		Variance in the fold-change in components affecting the expected waiting 
-		distance to a topology change between the starting tree and a subsequent
-		tree that has experienced a tree-change event that changed coalescent times
+		Variance in the fold-change for components affecting the expected waiting 
+		distance to a topology-change event between the starting tree and a subsequent
+		tree which has experienced a tree-change event, changing the coalescent times
 		but not the topology. The sum of genealogical edge lengths (L(G)), the 
 		P(topology-change | S,G), and the product of these two terms are shown for
 		three different demographic models and with different constant $N_e$ values, 
@@ -3950,17 +3951,25 @@ events that separate $b$ and $b'$ (Fig.~\ref{fig:figS-tbm}a-c).
 	\centering
 	\includegraphics[width=0.95\textwidth]{figures/FigS-tbm.pdf}
 	\caption{
-		To calculate the probability that recombination on genealogy branch 
+		Calculating the probability that recombination on genealogy branch 
 		$b$ leads to a topology change involves summing over the probabilities 
 		that the detached lineage does not re-coalesce with either
 		itself, its sibling, or its parent ($b$, $b'$ or $c$, respectively). 
-		When the timing of recombination ($t_r$) \hl{occ...}
-		$b$ and $b'$ can either exist 
-		in different species tree intervals (a) or the same interval (b). This 
-		restricts the probability of tree-change outcomes (e.g., shortened coalescent 
-		time) until the lowest shared interval between $b$ and $b'$ at time 
-		$t_m$. This leads to two ordered sets of intervals (c-d) used in 
+		The possibility of a tree-change outcome (e.g., shortened coalescent 
+		time) is restricted until the lowest shared interval between $b$ and 
+		$b'$, designated at time $t_m$. Opportunities for such events could be
+		constrained by species divergences -- as in (a) and (d) -- or by the timing of 
+		prior coalescence events generating each branch -- as in (b), (c), and (e). 
+		The possibility that recombination ($t_r$) occurs prior
+		to $t_m$ leads to the two ordered sets of intervals used in 
 		equations 11 and 12.
+		%When the timing of recombination ($t_r$) \hl{occ...}
+		%$b$ and $b'$ can either exist 
+		%in different species tree intervals (a) or the same interval (b). This 
+		%restricts the probability of tree-change outcomes (e.g., shortened coalescent 
+		%time) until the lowest shared interval between $b$ and $b'$ at time 
+		%$t_m$, leading to the two ordered sets of intervals (c-d) used in 
+		%equations 11 and 12.
 	}
 	\label{fig:figS-tbm}
 \end{figure}
