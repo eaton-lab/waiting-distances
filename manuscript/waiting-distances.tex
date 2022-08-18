@@ -2811,7 +2811,8 @@ it could improve both accuracy and convergence.
 % of functional traits \citep{moore_targeted_2018}. 
 
 % SNP-based methods, discarding data, and a new paradigm.
-In contrast to current phylogenomic inference approaches, which tend to 
+% MAYBE REMOVE (Save for a grant proposal)
+In contrast to current phylogenomic inference approaches which tend to 
 either ignore genetic linkage, or to discard the vast majority of 
 sequenced data in effort to avoid it, one could envision an 
 alternative, spatially-aware phylogenetic inference framework, 
@@ -2837,8 +2838,30 @@ Finally, a common goal of many local ancestry inference methods is to test
 evolutionary hypotheses involving selection or introgression \citep{martin_exploring_2017}.
 For example, sliding window analyses have been used to identify putatively 
 introgressed loci in \emph{Heliconius} butterflies \citep{zhang2016genome} 
-and felids \citep{li2019recombination}. Our results suggest that such conclusions
-should be examined critically...
+and felids \citep{li2019recombination}. Such conclusions are often based on 
+the genomic interval lengths over which certain topological gene tree patterns 
+are observed. We suggest that such conclusions should be examined 
+critically when made without reference to a null model-based expectation.
+Our results show that waiting distances between topology changes can 
+exhibit high variance even in neutral scenarios depending on demographic 
+model parameters. 
+MS-SMC' based waiting distance expectations can provide a 
+null model for a more robust evolutionary hypothesis testing framework
+that takes into account the demographic history of populations.
+
+
+% Our simulations show
+% that the mean and variance of waiting distance expectations 
+
+% observed distances
+% could 
+
+%  The expected waiting distances between 
+% topology-change events can exhibit large variation, and depending on demographic
+% parameters, the waiting distances between changes in support for different
+% clades will similarly exhibit high variation. 
+
+
 
 
 
