@@ -637,7 +637,7 @@ The waiting distances between recombination events that cause topology-change
 may be of greatest interest, as they leave the most detectable signatures 
 in sequence data and are relevant to expected gene tree distributions that form
 an important component of many MSC-based methods \citep{
-degnan2006discordance, baum_concordance_2007, knowles_estimating_2011}.
+degnan2009gene, baum_concordance_2007, knowles_estimating_2011}.
 % Just like for single-population models, 
 % the waiting distance until a topology-change event in this framework can include multiple
 % intervening recombination events of the no-change or tree-change type
@@ -2610,7 +2610,7 @@ implementation relative to stochastic simulations performed under both the
 full coalescent with recombination and the SMC' approximation 
 \citep{hudson1983properties,wiuf_recombination_1999,mcvean2005approximating}. 
 \hl{Within our framework, MSC model parameters determine rates of coalescence 
-within species tree intervals and prevent coalescence between lineages separated
+in species tree intervals and prevent coalescence between lineages separated
 into different species tree intervals.
 %and dictate where coalescence may occur, 
 % preventing coalescences among lineages separated into different
@@ -2805,9 +2805,9 @@ we expect that many useful applications of the MS-SMC' will likely come
 from the inverse application: inferring ARGs given a parameterized species
 tree model. Or, from joint inference of both MSC models and ARGs. 
 We speculate that by incorporating waiting distance expectations 
-between tree and topology-change events into existing frameworks, such 
-as ARGWeaver-D, this additional spatial information could improve both
-accuracy and convergence.
+between tree and topology-change events into likelihood calculations within
+existing frameworks, such as ARGWeaver-D \citep{hubisz2020inference}, 
+it could improve both accuracy and convergence.
 
 % The challenge of reconstructing accurate genealogies for such regions 
 % presents a major source of error in evolutionary studies. These 
@@ -2816,7 +2816,8 @@ accuracy and convergence.
 % of functional traits \citep{moore_targeted_2018}. 
 
 % SNP-based methods, discarding data, and a new paradigm.
-In contrast to current phylogenomic inference approaches, which tend to 
+% MAYBE REMOVE (Save for a grant proposal)
+In contrast to current phylogenomic inference approaches which tend to 
 either ignore genetic linkage, or to discard the vast majority of 
 sequenced data in effort to avoid it, one could envision an 
 alternative, spatially-aware phylogenetic inference framework, 
@@ -2842,8 +2843,30 @@ Finally, a common goal of many local ancestry inference methods is to test
 evolutionary hypotheses involving selection or introgression \citep{martin_exploring_2017}.
 For example, sliding window analyses have been used to identify putatively 
 introgressed loci in \emph{Heliconius} butterflies \citep{zhang2016genome} 
-and felids \citep{li2019recombination}. Our results suggest that such conclusions
-should be examined critically...
+and felids \citep{li2019recombination}. Such conclusions are often based on 
+the genomic interval lengths over which certain topological gene tree patterns 
+are observed. We suggest that such conclusions should be examined 
+critically when made without reference to a null model-based expectation.
+Our results show that neutral expectations for waiting distances between 
+genealogy changes can exhibit high variance, and that this variance will
+be spatially auto-correlated, such that a topology or clade may exist over
+long stretches of the genome simply by chance.
+The MS-SMC' can provide a null model for waiting distance expectations
+given an inferred demographic model, from which a more robust evolutionary 
+hypothesis testing framework can be implemented.
+
+% Our simulations show
+% that the mean and variance of waiting distance expectations 
+
+% observed distances
+% could 
+
+%  The expected waiting distances between 
+% topology-change events can exhibit large variation, and depending on demographic
+% parameters, the waiting distances between changes in support for different
+% clades will similarly exhibit high variation. 
+
+
 
 
 
