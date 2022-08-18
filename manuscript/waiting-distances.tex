@@ -2764,18 +2764,19 @@ from the frequencies of unlinked gene trees.
 \subsection{Phylogenetic and local ancestry inference}
 
 % intralocus recombination, concatalescence, sliding windows, and null models.
-By linking species tree parameters to observable patterns in ARGs the MS-SMC' 
+By linking species tree parameters to observable patterns in ARGs, the MS-SMC' 
 can be used to improve both gene tree and species tree inference methods. 
 One practical application of waiting distance expectations 
 calculated under the MS-SMC' is to guide the selection of appropriate 
-locus lengths for MSC analyses, in effort to avoid intra-locus recombination. 
-This process results in data within a locus that derive from multiple variable genealogies, 
-such that inferred gene trees represent concatenation artifacts.
-For many multispecies datasets, topology-change waiting distances are much shorter
-than sampled locus lengths \citep{mckenzie_multispecies_2020}, and this is 
+locus lengths for MSC analyses so as to avoid intra-locus recombination. 
+This process yields data within a locus that derive from multiple variable genealogies, 
+and so inferred gene trees represent concatenation artifacts.
+%For many multispecies datasets, topology-change waiting distances are much shorter
+Topology-change waiting distances are often much shorter
+than sampled locus lengths for multispecies datasets \citep{mckenzie_multispecies_2020}, and this is 
 especially likely when gene trees are inferred from large genomic sliding windows 
 \citep[e.g.,][]{li2019recombination}. 
-When repeated across many loci, such concatenation artifacts can cause 
+When repeated across many loci, concatenation artifacts can cause 
 the distribution of gene trees, or of their summary statistics, to deviate 
 from expectations under the MSC -- a process termed concatalescence 
 \citep{gatesy_concatenation_2013}. 
@@ -2786,7 +2787,7 @@ from expectations under the MSC -- a process termed concatalescence
 % considered at the scale of individual contigs, as opposed to whole 
 % chromosomes... 
 One way to improve gene tree inference for individual loci is to 
-re-conceive the problem as one in which loci \emph{can} have multiple
+re-conceive the problem as one in which loci can have multiple
 gene tree histories and are thus better represented as ARGs.
 Applications of ARG inference have historically been applied at the
 scale of entire chromosomes, and usually to samples that are modeled
@@ -2794,20 +2795,22 @@ scale of entire chromosomes, and usually to samples that are modeled
 as being in a single population 
 \citep{rasmussen2014genome, kelleher2019inferring, speidel2019method}.
 However, ARGs can exist for any stretch of the genome, 
-including short aligned contigs, or genes, and more recent methods can 
+including short aligned contigs, \hl{or genes,} and \hl{more recent methods can 
 even infer ARGs conditional on a structured demographic model that 
 includes splits between more distantly related genomes 
-\citep{hubisz2020inference}. 
+\citep{hubisz2020inference}.}
+% ^is the "or genes" important here?
+% ^the nod to argweaver-D feels out of sync with the first part of the sentence
 Although our example likelihood-based implementation of the MS-SMC' 
 showed that MSC model parameters can be estimated from an observed ARG 
 (Fig.~\ref{fig:fig-likelihood}, Fig.~\ref{fig:fig-likelihood-posterior}), 
 we expect that many useful applications of the MS-SMC' will likely come 
 from the inverse application: inferring ARGs given a parameterized species
 tree model. Or, from joint inference of both MSC models and ARGs. 
-We speculate that by incorporating waiting distance expectations 
+We speculate that incorporating waiting distance expectations 
 between tree and topology-change events into likelihood calculations within
-existing frameworks, such as ARGWeaver-D \citep{hubisz2020inference}, 
-it could improve both accuracy and convergence.
+existing frameworks like ARGWeaver-D \citep{hubisz2020inference} 
+could improve both accuracy and convergence.
 
 % The challenge of reconstructing accurate genealogies for such regions 
 % presents a major source of error in evolutionary studies. These 
@@ -2818,20 +2821,24 @@ it could improve both accuracy and convergence.
 % SNP-based methods, discarding data, and a new paradigm.
 % MAYBE REMOVE (Save for a grant proposal)
 In contrast to current phylogenomic inference approaches which tend to 
-either ignore genetic linkage, or to discard the vast majority of 
+either ignore genetic linkage or to discard the vast majority of 
 sequenced data in effort to avoid it, one could envision an 
-alternative, spatially-aware phylogenetic inference framework, 
-that could more effectively utilize linked genomic data. 
+alternative, spatially-aware phylogenetic inference framework 
+that more effectively utilizes linked genomic data. 
 This would mark a major transition in phylogenetics, where
-recombination could be viewed as a source of information as opposed to 
+recombination could be viewed as a source of information rather than 
+%as opposed to 
 a source of error. We see the MS-SMC' as an important step in this 
-direction. One approach may be to build upon the framework of the species
-tree inference method SNAPP \citep{bryant2012inferring}, 
-which subsamples a single unlinked SNP from each locus with the goal
-of bypassing the problem of gene tree inference by integrating over a 
-distribution of genealogies that could produce each observed SNP pattern. 
-A theoretical ARG-based implementation of this approach might similarly 
-analyze many linked SNPs to bypass ARG inference by integrating over a 
+direction. One further approach may be to build upon the framework of the species
+tree inference method SNAPP \citep{bryant2012inferring}. 
+SNAPP subsamples a single unlinked SNP from each locus and integrates over a 
+distribution of genealogies that could have produced it, with the goal
+of bypassing the problem of gene tree inference. 
+%SNAPP subsamples a single unlinked SNP from each locus with the goal
+%of bypassing the problem of gene tree inference by integrating over a 
+%distribution of genealogies that could produce each observed SNP pattern. 
+A theoretical ARG-based extension of this approach might similarly 
+analyze many linked SNPs and bypass ARG inference by integrating over a 
 distribution of ARGs that could produce each linked pattern. 
 By reducing the complexity of ARG inference to a problem of windows between 
 topology-change events, as opposed to any two recombination events, 
@@ -2846,14 +2853,16 @@ introgressed loci in \emph{Heliconius} butterflies \citep{zhang2016genome}
 and felids \citep{li2019recombination}. Such conclusions are often based on 
 the genomic interval lengths over which certain topological gene tree patterns 
 are observed. We suggest that such conclusions should be examined 
-critically when made without reference to a null model-based expectation.
+critically when made without reference to a null-model-based expectation.
 Our results show that neutral expectations for waiting distances between 
 genealogy changes can exhibit high variance, and that this variance will
 be spatially auto-correlated, such that a topology or clade may exist over
 long stretches of the genome simply by chance.
-The MS-SMC' can provide a null model for waiting distance expectations
+\hl{The MS-SMC' can provide a null model for waiting distance expectations
 given an inferred demographic model, from which a more robust evolutionary 
-hypothesis testing framework can be implemented.
+hypothesis testing framework can be implemented.}
+%^I think this last sentence isn't necessary -- and the one before it makes 
+% a slightly better final sentence!
 
 % Our simulations show
 % that the mean and variance of waiting distance expectations 
