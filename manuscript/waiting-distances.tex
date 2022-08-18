@@ -524,9 +524,9 @@ sequential genealogies
 (2) shortening of a coalescent time; (3) lengthening of a coalescent time; 
 and (4) %a coalescent event that changes the topology (relationships). 
 a change to the genealogical topology (relationships).
-These can be grouped more generally into three types: 
-"no-change" (type 1), "tree-change" (types 2-4), and "topology-change"
-(type 4). Recently, \citet{deng_distribution_2021} derived a set of solutions for
+\hl{These can be grouped more generally into three types: 
+"no-change" (category 1), "tree-change" (categories 2-4), and "topology-change"
+(category 4).} Recently, \citet{deng_distribution_2021} derived a set of solutions for
 the expected waiting distances to each of these three types of 
 outcomes for a single population with constant effective population size.
 % Although all three outcomes, and their associated waiting distances, occur 
@@ -2354,7 +2354,8 @@ bias spatial genealogical inference methods.
 		calculated under the MS-SMC'. (a) ARGs were simulated under a two-population 
 		MSC model with variable $N_e$. (b) Posterior distributions of the three 
 		$N_e$ parameters jointly inferred from tree- and topology-change waiting 
-		distances.
+		distances. The true model $N_e$ values fall within the estimated 
+		95\% HPDI intervals. 
 	}
 	\label{fig:fig-likelihood-posterior}
 \end{figure}
@@ -2380,7 +2381,7 @@ $N_e$ estimation.
 % credible interval.
 % 
 All parameters converged with ESS values exceeding 2000, 
-and the 50\% highest posterior density intervals (HPDI) for
+and the 95\% highest posterior density intervals (HPDI) for
 each posterior probability distribution included the true 
 parameter
 (Fig.~\ref{fig:fig-likelihood-posterior}b).
@@ -2558,7 +2559,10 @@ just one recombination event at a time.
 By contrast, the recent development of solutions for predicting 
 tree- and topology-change waiting distances under the SMC' \citep{deng_distribution_2021} 
 effectively adds two additional longer-range sources of information for 
-any position in a genome. \hl{In this original formulation,} these distances are a 
+any position in a genome. 
+% \hl{In this original formulation,} 
+\hl{In their model,}
+these distances are a 
 result of the probabilities of different phenomenological outcomes of the 
 SMC’ process given a genealogy embedded in a single population coalescent
 model with constant $N_e$.
@@ -2609,7 +2613,8 @@ a genealogy is expected to be observed. We demonstrated the accuracy of our
 implementation relative to stochastic simulations performed under both the 
 full coalescent with recombination and the SMC' approximation 
 \citep{hudson1983properties,wiuf_recombination_1999,mcvean2005approximating}. 
-\hl{Within our framework, MSC model parameters determine rates of coalescence}
+% \hl{Within our framework, MSC model parameters determine rates of coalescence}
+\hl{Within our framework, MSC model parameters determine probabilities of coalescence}
 in species tree intervals and prevent coalescence between lineages separated
 into different species tree intervals.
 %and dictate where coalescence may occur, 
@@ -2655,6 +2660,8 @@ impractical for estimating the persistence of \emph{individual} genealogies.
 analytical solutions also offer the opportunity to develop likelihood-based
 methods for fitting models that link MSC model parameters to ARGs.}
 %%feels out of place -- eg we haven't used the word "analytical" yet
+% I'm OK with it, I think.
+
 % inferring MSC models from ARGs, or ARGs from MSC models 
 % (discussed below).
 % framework sequences of observed waiting distances, helping infer MSC models from ARGs or
