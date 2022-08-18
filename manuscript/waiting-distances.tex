@@ -2608,7 +2608,7 @@ a genealogy is expected to be observed. We demonstrated the accuracy of our
 implementation relative to stochastic simulations performed under both the 
 full coalescent with recombination and the SMC' approximation 
 \citep{hudson1983properties,wiuf_recombination_1999,mcvean2005approximating}. 
-Within the our framework, MSC model parameters determine rates of coalescence 
+Within our framework, MSC model parameters determine rates of coalescence 
 within species tree intervals and prevent coalescence between lineages separated
 into different species tree intervals.
 %and dictate where coalescence may occur, 
@@ -2800,9 +2800,9 @@ we expect that many useful applications of the MS-SMC' will likely come
 from the inverse application: inferring ARGs given a parameterized species
 tree model. Or, from joint inference of both MSC models and ARGs. 
 We speculate that by incorporating waiting distance expectations 
-between tree and topology-change events into existing frameworks, such 
-as ARGWeaver-D, this additional spatial information could improve both
-accuracy and convergence.
+between tree and topology-change events into likelihood calculations within
+existing frameworks, such as ARGWeaver-D \citep{hubisz2020inference}, 
+it could improve both accuracy and convergence.
 
 % The challenge of reconstructing accurate genealogies for such regions 
 % presents a major source of error in evolutionary studies. These 
