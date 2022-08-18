@@ -524,9 +524,9 @@ sequential genealogies
 (2) shortening of a coalescent time; (3) lengthening of a coalescent time; 
 and (4) %a coalescent event that changes the topology (relationships). 
 a change to the genealogical topology (relationships).
-These can be grouped more generally into three types: 
-"no-change" (type 1), "tree-change" (types 2-4), and "topology-change"
-(type 4). Recently, \citet{deng_distribution_2021} derived a set of solutions for
+\hl{These can be grouped more generally into three types: 
+"no-change" (category 1), "tree-change" (categories 2-4), and "topology-change"
+(category 4).} Recently, \citet{deng_distribution_2021} derived a set of solutions for
 the expected waiting distances to each of these three types of 
 outcomes for a single population with constant effective population size.
 % Although all three outcomes, and their associated waiting distances, occur 
@@ -2354,7 +2354,8 @@ bias spatial genealogical inference methods.
 		calculated under the MS-SMC'. (a) ARGs were simulated under a two-population 
 		MSC model with variable $N_e$. (b) Posterior distributions of the three 
 		$N_e$ parameters jointly inferred from tree- and topology-change waiting 
-		distances.
+		distances. The true model $N_e$ values fall within the estimated 
+		95\% HPDI intervals. 
 	}
 	\label{fig:fig-likelihood-posterior}
 \end{figure}
@@ -2380,7 +2381,7 @@ $N_e$ estimation.
 % credible interval.
 % 
 All parameters converged with ESS values exceeding 2000, 
-and the 50\% highest posterior density intervals (HPDI) for
+and the 95\% highest posterior density intervals (HPDI) for
 each posterior probability distribution included the true 
 parameter
 (Fig.~\ref{fig:fig-likelihood-posterior}b).
