@@ -119,7 +119,7 @@ coalescent models a single panmictic population, the MSC includes constraints th
 samples in different lineages from sharing a most recent genealogical ancestor until prior
 to a population divergence event that separates them \citep{maddison1997gene,maddison2006inferring}. 
 Conceptually, the MSC can be viewed as a piecewise model composed of the standard
-coalescent applied to each interval of a "species tree", representing the relationships
+coalescent applied to each interval of a "species tree" representing the relationships
 and divergence times among isolated lineages. Genealogies are constrained to be
 embedded within species trees (Fig.~\ref{fig:fig1}a), and the joint likelihood of 
 MSC model parameters can be estimated from the coalescent times among a 
@@ -1754,7 +1754,7 @@ modeled as an exponential probability distribution.
 Similar to how a rate parameter was derived for the distribution 
 of waiting distances until a recombination event (equation 7), 
 no-change event (equation 9), or tree-change event (equation 10), 
-a rate parameter, $\lambda_t$, can be calculated from equation 13 for 
+a rate parameter $\lambda_t$ can be calculated from equation 13 for 
 the probability of a topology-change event. 
 % from equation 13 
 % to get the probability of a topology-change event (equation 14). 
@@ -2152,7 +2152,7 @@ decreasing the probability of tree or topology changes
 ($\mathbb{P}$; Fig.~\ref{fig:fig-validation}c-d), especially at low $N_e$ values,
 where species tree constraints can make tree or topology changes unlikely
 to occur. This is a stark difference between the MS-SMC' framework and a 
-single population model: the probability of a tree or topology change 
+single population model: the probability of a tree- or topology-change 
 % accompanying a recombination 
 event is strongly associated with $N_e$ in the former but not affected 
 at all in the latter. 
@@ -2558,10 +2558,11 @@ just one recombination event at a time.
 By contrast, the recent development of solutions for predicting 
 tree- and topology-change waiting distances under the SMC' \citep{deng_distribution_2021} 
 effectively adds two additional longer-range sources of information for 
-any position in a genome. In this original formulation, these distances are a 
+any position in a genome. \hl{In this original formulation, these distances are a 
 result of the probabilities of different phenomenological outcomes of the 
 SMC’ process given a genealogy embedded in a single population coalescent
-model with constant $N_e$.
+model with constant $N_e$.}
+% ^prob worth cleaning up this sentence
 % within the constraints of a demographic model.
 %regardless of the outcome for the genealogy \citep{terhorst_etal}. 
 %However, 
@@ -2608,7 +2609,7 @@ a genealogy is expected to be observed. We demonstrated the accuracy of our
 implementation relative to stochastic simulations performed under both the 
 full coalescent with recombination and the SMC' approximation 
 \citep{hudson1983properties,wiuf_recombination_1999,mcvean2005approximating}. 
-Within the our framework, MSC model parameters determine rates of coalescence 
+\hl{Within our framework, MSC model parameters determine rates of coalescence 
 within species tree intervals and prevent coalescence between lineages separated
 into different species tree intervals.
 %and dictate where coalescence may occur, 
@@ -2620,7 +2621,8 @@ The effects of MSC model parameters on spatial genealogical variation can be sta
 modeled and visualized (Fig.~\ref{fig:fig1}; Fig.~\ref{fig:figS-edge-probabilities}). 
 We show that the neutral rate
 of turnover in genealogies and topologies across a genome is highly 
-dependent on species tree model parameters.
+dependent on species tree model parameters.}
+% feels like disconnected sentences
 
 
 % Recap of what a waiting distance is... maybe get rid of this.
@@ -2649,9 +2651,10 @@ impractical for estimating the persistence of \emph{individual} genealogies.
 % many genealogies, for which individual distributions would need to be
 % generated for every tree in a sequence. 
 % Similarly, it did not... more here please.
-In addition to providing fast calculations of waiting distances, 
+\hl{In addition to providing fast calculations of waiting distances, 
 analytical solutions also offer the opportunity to develop likelihood-based
-methods for fitting models that link MSC model parameters to ARGs.
+methods for fitting models that link MSC model parameters to ARGs.}
+%%feels out of place -- eg we haven't used the word "analytical" yet
 % inferring MSC models from ARGs, or ARGs from MSC models 
 % (discussed below).
 % framework sequences of observed waiting distances, helping infer MSC models from ARGs or
@@ -2669,16 +2672,17 @@ complex demographic models, and the development of specific hypothesis testing
 frameworks. 
 % allowing for the development
 % of hypothesis testing frameworks, or applications to more complex demographic models.
-For example, instead of embedding genealogies in a species tree, they could instead
+%For example, instead of embedding genealogies in a species tree, they could instead
+For example, genealogies could instead
 be embedded in a species network following the multispecies network coalescent model 
-\citep{wen_bayesian_2016}. This would involve modeling genealogy embeddings as a 
-probabilistic process that could follow one of several possible paths through a network.
+\citep{wen_bayesian_2016}. This would involve modeling the coalescent histories as a 
+probabilistic process that could follow one of multiple possible paths through a network.
 Differences between the expected waiting distances in genomic regions derived from 
 one embedding path history versus another may be highly informative about the 
 network model in which genealogies are embedded. 
-The incorporation of linked genealogical information may prove valuable 
-towards resolving intractable problems in species tree or species network
-inference, by moving beyond the limited information available 
+Therefore, incorporating linked genealogical information may prove valuable 
+towards resolving intractable problems in species tree or network
+inference by moving beyond the limited information available 
 from the frequencies of unlinked gene trees.
 
 
@@ -2762,10 +2766,10 @@ from the frequencies of unlinked gene trees.
 % intralocus recombination, concatalescence, sliding windows, and null models.
 By linking species tree parameters to observable patterns in ARGs the MS-SMC' 
 can be used to improve both gene tree and species tree inference methods. 
-One very practical application of waiting distance expectations 
-calculated under the MS-SMC' is to serve as a guide for selecting appropriate 
+One practical application of waiting distance expectations 
+calculated under the MS-SMC' is to guide the selection of appropriate 
 locus lengths for MSC analyses, in effort to avoid intra-locus recombination. 
-This process causes data within a locus to derive from multiple variable genealogies, 
+This process results in data within a locus that derive from multiple variable genealogies, 
 such that inferred gene trees represent concatenation artifacts.
 For many multispecies datasets, topology-change waiting distances are much shorter
 than sampled locus lengths \citep{mckenzie_multispecies_2020}, and this is 
@@ -2782,11 +2786,12 @@ from expectations under the MSC -- a process termed concatalescence
 % considered at the scale of individual contigs, as opposed to whole 
 % chromosomes... 
 One way to improve gene tree inference for individual loci is to 
-re-conceive the problem as one in which loci can have multiple
-gene tree histories, and are thus better represented as ARGs.
+re-conceive the problem as one in which loci \emph{can} have multiple
+gene tree histories and are thus better represented as ARGs.
 Applications of ARG inference have historically been applied at the
 scale of entire chromosomes, and usually to samples that are modeled
-as existing within a single population 
+%as existing within a single population 
+as being in a single population 
 \citep{rasmussen2014genome, kelleher2019inferring, speidel2019method}.
 However, ARGs can exist for any stretch of the genome, 
 including short aligned contigs, or genes, and more recent methods can 
