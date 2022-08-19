@@ -96,15 +96,15 @@ regions. Expectations for the amount of genealogical variation among unlinked
 population (coalescent) or multiple structured populations (multispecies coalescent).
 However, the expected similarity among genealogies at linked regions of a 
 genome is less well characterized. 
-Recently, an analytical solution was developed for the expected 
+Recently, an analytical solution was derived for the expected 
 distribution of waiting distances between changes in genealogical trees 
 spatially across a genome for a single population with constant effective 
-population size. Here, we describe a generalization of this 
+population size. Here we describe a generalization of this 
 result, in terms of the expected distribution of waiting distances between 
-changes in genealogical trees, and topologies, for multiple structured populations
+changes in genealogical trees and topologies, for multiple structured populations
 with branch-specific effective population sizes (i.e., under the multispecies 
 coalescent). Our solutions establish an expectation for genetic linkage  
-in multispecies datasets, and provide a new likelihood framework for linking
+in multispecies datasets and provide a new likelihood framework for linking
 demographic models with local ancestry inference across genomes.
 % ARG inference.fitting species tree models. % to genome alignments.
 
@@ -116,14 +116,17 @@ The multispecies coalescent (MSC) is an extension of the coalescent
 \citep{kingman1982coalescent}, a model that describes the distribution of genealogical 
 histories among gene copies from a set of sampled individuals. Whereas the 
 coalescent models a single panmictic population, the MSC includes constraints that prevent 
-samples from different lineages from sharing a most recent genealogical ancestor until prior
+samples in different lineages from sharing a most recent genealogical ancestor until prior
 to a population divergence event that separates them \citep{maddison1997gene,maddison2006inferring}. 
 Conceptually, the MSC can be viewed as a piecewise model composed of the standard
-coalescent applied to each interval of a "species tree", representing the relationships
+coalescent applied to each interval of a "species tree" representing the relationships
 and divergence times among isolated lineages. Genealogies are constrained to be
 embedded within species trees (Fig.~\ref{fig:fig1}a), and the joint likelihood of 
 MSC model parameters can be estimated from the coalescent times among a 
 distribution of sampled genealogies
+% I feel that 'among' is better than 'of' as it sounds to me more like it is analyzing
+% groups of coalescent times, for each genealogy, rather than lumping them all together.
+% 
 % Analytically, the MSC can be viewed as a piecewise likelihood function composed of the 
 % standard coalescent applied to each edge of a “species tree”, representing 
 %a hierarchical model of 
@@ -132,8 +135,8 @@ distribution of sampled genealogies
 % genealogies must be embedded 
 % Consider referencing a panel of a figure here to show genealogical embedding.
 \citep{rannala2003bayes,degnan2009gene}. In both the coalescent
-and MSC models, effective population size (N$_e$) is the key parameter determining 
-the rate of coalescence, and can vary among different lineages. 
+and MSC models, effective population size ($N_e$) is the key parameter determining 
+the rate of coalescence and can vary across different lineages. 
 % which can vary over time and/or among different lineages. 
 
  % Conceptually, the MSC can be viewed as a piecewise model ... for joint likelihood of a 
@@ -144,14 +147,14 @@ the rate of coalescence, and can vary among different lineages.
 	\centering
 	\includegraphics[width=0.99\textwidth]{figures/Fig1-embedding-and-probs-fill.pdf}
 	\caption{
-		The MS-SMC' models the probability of different outcomes of recombination
-		given a genealogy embedded in an multispecies coalescent (MSC) model.
+		The MS-SMC models the probability of different recombination outcomes 
+		given a genealogy embedded in a multispecies coalescent (MSC) model.
 		% The probability of different outcomes of recombination occurring on a 
-		% genealogy embedded in a species tree can be modeled using the MS-SMC'. 
+		% genealogy embedded in a species tree can be modeled using the MS-SMC. 
 		% A genealogy embedded in a species tree exhibits different probabilities
 		% of outcomes of recombination, when viewed backwards in time, depending on 
 		% the timing and branch on which recombination occurs.
-		(a) A parameterized MSC model is composed of multiple discrete populations
+		(a) A parameterized MSC model is composed of multiple discrete population
 		intervals with associated effective population sizes ($N_e$) and divergence 
 		times ($W$). Given an embedded genealogy, each interval can be further divided 
 		at coalescence events (e.g., $t_9$) into a series of smaller intervals
@@ -170,15 +173,16 @@ the rate of coalescence, and can vary among different lineages.
 		% divergence events (e.g., $W_{AB}$) increase the number in the subsequent interval.
 		(b-d) A recombination event leads to one of three possible outcomes 
 		between the genealogies in two sequential intervals of a genome: 
-		"no-change", "tree-change", or "topology-change". 
+		\emph{no-change}, \emph{tree-change}, or \emph{topology-change}. 		
+		% "no-change," "tree-change," or "topology-change". 
 		% Under the sequentially Markov coalescent (SMC') model a recombination 
 		% event will cause one of three possible outcomes between two genealogies 
 		% in sequential spatial intervals of a genome: 
 		% two sequential intervals
 		% can occur on any branch of a genealogy to cause one
 		% of three possible outcomes: 
-		The probabilities of each outcome, as calculated under the MS-SMC', 
-		are shown for three branches as a function of the time ($t_r$) and branch 
+		The probabilities of each outcome as calculated under the MS-SMC 
+		are shown for three arbitrary branches. These probabilities are a function of the time ($t_r$) and branch 
 		on which recombination occurs.
 		% Each branch exhibits piecewise variation in these 
 		% probabilities across discrete intervals. 
@@ -205,7 +209,6 @@ the rate of coalescence, and can vary among different lineages.
 	}
 	\label{fig:fig1}
 \end{figure}
-
 
 
 Importantly, both the coalescent and MSC are models of the expected distribution of 
@@ -283,7 +286,7 @@ Although generating ARGs consistent with a demographic model is
 relatively simple under this process, inferring an ARG from sequence data 
 -- composing a set of recombination breakpoints and local genealogy inferences -- 
 remains highly challenging \citep{y_c_brandt_evaluation_2022}.
-This stems in part from the great complexity of this problem, 
+This stems in part from the great complexity of this problem 
 % and the challenge of distinguishing among many equally probable 
 % results given limited information between recombination events;
 but also reflects limitations of our current models for 
@@ -326,8 +329,8 @@ extracting historical information from linked genome data.
 % In other words, there
 % are usually very few mutations to provide information about each genealogy, 
 % and ...
-A major advance was achieved through development of the Sequentially Markov 
-Coalescent (SMC), a simpler approximation of the coalescent with recombination
+A major advance was achieved through development of the sequentially Markov 
+coalescent (SMC), a simpler approximation of the coalescent with recombination
 that restricts the types of recombination events that can occur 
 \citep{mcvean2005approximating}. Specifically,
 an edge that is detached from a genealogy by recombination is allowed only to
@@ -447,16 +450,16 @@ conditional sampling method.
 	\caption{
 		% An ancestral recombination graph (ARG) with a demonstration of the coalescent
 		% with recombination.
-		% The MS-SMC' process demonstrated in an ancestral recombination graph (ARG).
+		% The MS-SMC process demonstrated in an ancestral recombination graph (ARG).
 		An ancestral recombination graph (ARG)
 		is composed of a series of genealogies each spanning non-overlapping 
 		intervals of a genome separated by recombination breakpoints. Here, 
-		four recombination breakpoints separate the start and end positions 
-		on a small chromosome in the history of a set of 7 samples constrained
+		four recombination breakpoints separate the intervals' start and end positions 
+		along a small chromosome alignment. The individual genealogies represent the history of a set of 7 samples constrained
 		by a 4-tip species tree model (as in Fig.~1).
 		Recombination events are indicated by vertical panels. Each shows the SMC' process by 
 		which a subtree (below the red circle) is detached and then re-coalesces (red arrow)
-		with one of the remaining lineages. %, according to the MS-SMC' process. 
+		with one of the remaining lineages. %, according to the MS-SMC process. 
 		The former edge (blue dotted) which existed throughout the interval to the left of a 
 		panel is replaced by a new edge (red) through the subsequent interval. Vertical bars 
 		(white) represent barriers to coalescence between samples in different species
@@ -472,9 +475,9 @@ conditional sampling method.
 		These are grouped more generally into 
 		three \emph{event types}: (1) no-change, (2) tree-change, and (3) topology-change.
 		Every recombination event causes either a no-change or tree-change event, whereas
-		a topology-change is a subset of possible tree-change events. The expected waiting
+		topology-change events are a subset of possible tree-change events. The expected waiting
 		distance until a specific recombination event type occurs can be calculated under 
-		the MS-SMC' given a starting genealogy, MSC model, and recombination rate.
+		the MS-SMC given a starting genealogy, MSC model, and recombination rate.
 	% Examples of the four different categories of outcomes from a 
 	% recombination event (adapted from \citep{deng_distribution_2021}). 
 	% (a) A category 1 event occurs when the dislocated lineage reattaches to the 
@@ -501,7 +504,7 @@ conditional sampling method.
 described an important extension to the SMC, termed the SMC', for additionally
 modeling "invisible" recombination events, in which a detached lineage re-attaches
 with its own ancestral lineage prior to the time of that lineage's next coalescent event. 
-This leads to no change between the genealogies in two sequential intervals
+This leads to no change between the genealogies in two sequential genomic intervals
 despite the occurrence of a recombination event between them. The inclusion of
 such events has been shown to 
 % , such that 
@@ -522,8 +525,8 @@ sequential genealogies
 and (4) %a coalescent event that changes the topology (relationships). 
 a change to the genealogical topology (relationships).
 These can be grouped more generally into three types: 
-"no-change" (type 1), "tree-change" (types 2-4), and "topology-change"
-(type 4). Recently, \citet{deng_distribution_2021} derived a set of solutions for
+"no-change" (category 1), "tree-change" (categories 2-4), and "topology-change"
+(category 4). Recently, \citet{deng_distribution_2021} derived a set of solutions for
 the expected waiting distances to each of these three types of 
 outcomes for a single population with constant effective population size.
 % Although all three outcomes, and their associated waiting distances, occur 
@@ -535,18 +538,44 @@ outcomes for a single population with constant effective population size.
 % in different categorical types of genealogy changes, and for connecting these
 % to coalescent model parameters, which may prove useful for future ARG inference 
 % tools. 
-%This provided an important advance by establishing a neutral expectation 
-%not only for the distance until the next recombination event occurs, 
-%but more specifically, for different categorical types of events that leave 
-%different detectable signatures in the genome, and extend over greater
-%spatial distances.
+% 
+% 
 This provided an important advance by establishing a neutral expectation 
-not just for the distance until the next recombination event occurs, 
-but more specifically, for the distance until the next tree-change or 
-topology-change event. These events leave 
-detectable signatures in the genome, and extend across larger 
-spatial distances of the genome, thus extending the information content
-that can be extracted from spatial genealogical patterns.% than that to the next generic recombination event. 
+not only for the distance until the next recombination event occurs, 
+% 
+% but more specifically, for the distance until the next tree-change or 
+% topology-change event. Such events leave different detectable signatures 
+% in sequence data and extend across larger spatial distances of the genome, 
+% thus extending the information content that can be extracted from 
+% spatial genealogical patterns.
+% 
+but more specifically, for the distance until different categorical types
+of recombination events occur. Such events leave different detectable 
+signatures in sequence data and extend across different spatial distances 
+of the genome, thus extending the scale over which information from 
+spatial genealogical patterns can be extracted from genomes.
+% 
+% This provided an important advance by establishing a neutral expectation 
+% not only for the distance until the next recombination event occurs, 
+% but more specifically, for the distance between different categorical types
+% of recombination events that leave different detectable signatures in 
+% sequence data. Because such patterns extend over greater spatial distances
+% of the genome, they extend the distance over which we can make 
+% statistical predictions about spatial genealogical patterns.
+% 
+% Because they extend over greater spatial distances, information
+% from tree-change and topology-change events 
+% methods based
+% on the detection of
+% such patterns can extend the information content of spatial genealogical data.
+% until the next tree-change or 
+% topology-change event. 
+% % Such events leave 
+% These different types of recombination events leave different
+% detectable signatures in sequence data, and extend across larger 
+% spatial distances of the genome, thus extending the information content
+% that can be extracted from spatial genealogical patterns.
+% than that to the next generic recombination event. 
 % This provides an important advance by establishing a neutral expectation 
 % not only for the distance until any generic recombination event occurs, 
 % but more specifically, for % the different expectations for 
@@ -608,7 +637,7 @@ The waiting distances between recombination events that cause topology-change
 may be of greatest interest, as they leave the most detectable signatures 
 in sequence data and are relevant to expected gene tree distributions that form
 an important component of many MSC-based methods \citep{
-degnan2006discordance, baum_concordance_2007, knowles_estimating_2011}.
+degnan2009gene, baum_concordance_2007, knowles_estimating_2011}.
 % Just like for single-population models, 
 % the waiting distance until a topology-change event in this framework can include multiple
 % intervening recombination events of the no-change or tree-change type
@@ -617,20 +646,20 @@ intervening recombination events of the no-change or tree-change type
 (Fig.~\ref{fig:fig2}). 
 The relative occurrence of events that do not result in topology 
 changes can be especially high in small sample sizes \citep{wilton2015smc}, 
-which are common in MSC-type datasets, where samples are partitioned 
+which are common in MSC-type datasets in which samples are partitioned 
 among species tree intervals. 
 % The partitioning of 
 % recombination events that of categories 1-3 occur 
 % disproportionately often in small sample sizes \citep{wilton2015smc}, 
 % which are especially common in MSC-type datasets since
 % samples are partitioned among species tree intervals. 
-The partitioning of 
-coalescent events among species tree intervals is thus expected to constrain 
-the types of recombination events that will be observed. Consequently, the
+Since the partitioning of 
+coalescent events among species tree intervals is expected to constrain 
+the types of recombination events that will be observed, the
 distributions of waiting distances between different types of 
 genealogy changes should be highly dependent on, and thus informative about, 
-the species tree model. We refer to this general framework of embedding the 
-SMC' in an MSC model as the MS-SMC'.
+the species tree model. We refer to the general framework of embedding the 
+SMC' in an MSC model as the MS-SMC.
 
 
 % The relative frequency
@@ -717,17 +746,21 @@ parameters of an MSC model from observed waiting distances between genealogies.
 \subsection{MSC model description}
 % We assume a species tree model with divergence times in units of generations and 
 Given an MSC model ($\mathcal{S}$) composed of a species tree topology with divergence
-times ($W$) in units of generations, and constant diploid effective population sizes
-assigned to each branch ($N_e$), a genealogy ($\mathcal{G}$) 
-for any number of sampled gene copies ($k$) can be generated by randomly sampling 
-coalescent times %($t$) 
-at which to join two samples into a common ancestor, 
-starting from samples at the present in each interval. 
-% The rate of coalescence
-% is $\frac{1}{2N_b}$, 
+times ($W$) in units of generations and constant diploid effective population 
+sizes ($N_e$) assigned to each branch, an embedded genealogy ($\mathcal{G}$) for 
+any number of sampled gene copies ($k$) can be generated
+by randomly sampling coalescent times at which to join two samples into a 
+common ancestor, starting from samples at the present in each interval.
+% 
+% . This is accomplished by randomly sampling coalescent times 
+% at which to join two samples into a common ancestor, 
+% starting from samples at the present in each interval. 
+% 
+% 'in each interval' is to be clear that we move piecewise through the MSC model.
+% 
 Following \citet{kingman1982coalescent}, the probability of a 
-coalescent event one generation in the past that will reduce the 
-number of samples from $k$ to $k$-1 in a population
+coalescent event one generation in the past (reducing the 
+number of samples from $k$ to $k$-1) %in a single population
 is given by equation 1. From this, we can model the expected 
 waiting time ($\mathbb{E}[t_k]$) until the next coalescence event as an 
 exponentially distributed random variable with rate parameter $\lambda_k$:
@@ -745,7 +778,9 @@ exponentially distributed random variable with rate parameter $\lambda_k$:
 
 \noindent In a single population model
 with constant $N_e$ the expected waiting time between coalescent events 
-increases monotonically after each coalescent event, since the number of 
+increases monotonically after each coalescent event, since the number of
+% with constant $N_e$, the expected waiting time between coalescent events 
+% increases monotonically after each coalescent event. This is because the number of 
 remaining samples always decreases. In an MSC model, 
 however, the expected waiting time between coalescence events can increase or 
 decrease through time, as the transition from one population interval to another 
@@ -756,11 +791,11 @@ of samples.
 % number of samples increases
 % in ancestral population intervals when descendant branch intervals are merged.
 
-Based on this generative framework for sampling genealogies, a set of likelihood
+Based on this generative framework for sampling genealogies, likelihood
 solutions have been developed to fit coalescent model parameters, such as 
 $N_e$ in single population models \citep{kingman1982coalescent},
 or multiple $N_e$ and $W$ parameters in MSC models \citep{rannala2003bayes}, 
-based on inferred coalescent times. 
+based on inferred coalescence times. 
 In the latter framework, each species tree branch interval is treated independently, 
 such that the likelihood of a genealogy embedding is calculated from the joint
 probability of observing each distribution of coalescent waiting times within
@@ -810,7 +845,7 @@ density function:
 
 % Generating unlinked genealogical trees under the MSC is straightforward: Coalescent events between samples can only happen after (moving backward in time) coalescence of the species that contain them, and the coalescent rate in each part of the tree is dependent on both the number of genealogical lineages that can coalesce in that section and on the effective population size in that section.
 
-\subsection{MS-SMC' model description and notation}
+\subsection{MS-SMC model description and notation}
 
 % Under the single-population SMC' 
 % considered by \citet{deng_distribution_2021}, the 
@@ -840,7 +875,7 @@ similar to equation 1.
 % the expected waiting time as until re-coalescence the 
 % same as described above (equations 1 and 2).
 
-In a single population model with constant $N_e$ the expected waiting time until 
+In a single population model with constant $N_e$, the expected waiting time until 
 re-coalescence increases monotonically with each coalescence event 
 backwards in time, since each event decreases $k$.
 % (e.g., Fig.~1B). 
@@ -852,12 +887,12 @@ Thus, the probability that a detached subtree re-coalesces to the genealogy
 can vary through time along its path of possible reconnection points through 
 different species tree intervals
 (Fig.~\ref{fig:fig1}b-d).
-To calculate these probabilities, a species tree can be decomposed into a 
+To calculate these probabilities, a species tree and genealogy can be decomposed into a 
 series of relevant intervals between events that change rates of coalescence,
 % , including within species tree intervals, 
 which we refer to as the genealogy embedding table (Table~\ref{tab:table-1}). 
 From this table it is possible to calculate the probabilities of different
-recombination event type outcomes, and consequently, to model the expected 
+recombination event type outcomes and, consequently, to model the expected 
 waiting distances until specific recombination event types occur. 
 
 % Using this information on the rate of coalescence within each genealogy
@@ -876,13 +911,13 @@ waiting distances until specific recombination event types occur.
 \centering
 \caption{
 	A genealogy embedding table for the genealogy and species tree in Figure 1. 
-	The probability of coalescence is constant within each discrete interval, 
-	and scaled by the number of lineages ($k$), effective population size ($n$), 
-	and length ($d$).
+	The probability of coalescence is constant within each discrete interval 
+	and is scaled by the number of lineages ($k$), the effective population size ($n$), 
+	and the interval length ($d$).
 	% present ($k$) and the effective population size ($N_e$). 
-	Under the MS-SMC', the probability that a detached lineage will re-coalesce
+	Under the MS-SMC, the probability that a detached lineage will re-coalesce
 	on a specific branch of the genealogy (e.g., branch 7 from Figure~\ref{fig:fig1})
-	is calculated from the piecewise constant probabilities in each 
+	is calculated using the piecewise constant probabilities from each 
 	discrete interval spanning that branch (e.g., rows 1, 6, 7, and 8).
 }
 \begin{tabular}[t]{ |c|c|c|c|c|c|c|c|c| }
@@ -912,8 +947,8 @@ waiting distances until specific recombination event types occur.
 \end{table}
 
 Each interval of the genealogy embedding table contains a constant number
-of genealogy branches ($k_i$), and constant effective population size 
-($n_i$), such that the rate of coalescence is also constant.
+of genealogy branches ($k_i$) and a constant effective population size 
+($n_i$) such that the rate of coalescence is also constant.
 We define a number of additional variables related to this table. 
 The length of each interval is $d_i$, and its lower and upper bounds 
 are $\sigma_i$ and $\mu_i$, respectively. Similarly, the lower and upper 
@@ -924,17 +959,17 @@ respectively.
 An indexing variable, $\mathcal{I}_b$, is defined as the
 ordered set of intervals that are spanned by a specific branch
 of an embedded genealogy. As an example, consider branch 7 from 
-Fig.~\ref{fig:fig1}, which spans four intervals, 
+Fig.~\ref{fig:fig1}. This branch spans four intervals, 
 labeled as rows 1, 6, 7, and 8 in Table~\ref{tab:table-1}, 
-such that $\mathcal{I}_7$ = \{1,6,7,8\}. As we will
+and so $\mathcal{I}_7$ = \{1,6,7,8\}. As we will
 demonstrate below, this and related indexing variables will be
 used to calculate the probabilities of re-coalescence in different
 intervals, and on different branches, based on their rates of 
 coalescence.
 A summary of all variables in our notation is available in 
-table~\ref{tab:table-notation}). 
+table~\ref{tab:table-notation}. 
 
-% To better understand the relationship between the MS-SMC' and the genealogy
+% To better understand the relationship between the MS-SMC and the genealogy
 % embedding table, consider a specific branch ($b$) from Fig.~\ref{fig:fig1}. 
 % Branch 7 on the genealogy spans four relevant intervals, 
 % labeled as rows 1, 6, 7, and 8 in Table~\ref{tab:table-1}.
@@ -1046,7 +1081,7 @@ table~\ref{tab:table-notation}).
 
 
 
-% In the MS-SMC', we specify a model with piecewise-constant coalescence rates. 
+% In the MS-SMC, we specify a model with piecewise-constant coalescence rates. 
 % However, intervals under the MSC adaptation are bounded not just by coalescence
 % events in the \emph{genealogy} tree (decreasing the number of available lineages for 
 % coalescence), but also by relevant coalescences in the \emph{species} tree. Species 
@@ -1080,7 +1115,7 @@ table~\ref{tab:table-notation}).
 % \end{itemize}
 
 
-\subsection{Deriving probabilities of genealogy changes in the MS-SMC'}
+\subsection{Deriving probabilities of genealogy changes in the MS-SMC}
 A recombination event occurring on $\mathcal{G}$ can result 
 in three types of outcomes (Fig.~\ref{fig:fig2}).
 Of these, there is a zero-sum relationship between a no-change and 
@@ -1094,7 +1129,8 @@ for each of these event types, we focus first on deriving the
 probability of a no-change event 
 (also termed a tree-unchanged event; Fig.~\ref{fig:fig3}a), 
 which is the simplest outcome. Then, from the law of total probability, 
-we also have a result for the probability of a tree-change event. 
+we also have a result for the probability of recombination resulting in 
+a tree-change event. 
 % From this, we can then calculate the probability of a tree-change
 % by the law of total probability. 
 % Therefore, our first step in deriving probability statements for
@@ -1104,7 +1140,7 @@ Finally, to calculate the probability of a topology-change event,
 we first derive a statement for the probability of a topology-unchanged event
 (Fig.~\ref{fig:fig3}d), which is the union of a no-change event and
 a subset of tree-change events,
-where the detached lineage is restricted in which ancestral lineages 
+where the detached lineage is restricted according to which ancestral lineages 
 it can re-coalesce with. 
 Full detailed derivations of all solutions below are available in the 
 Appendix of the Supplementary Materials.
@@ -1136,13 +1172,13 @@ Appendix of the Supplementary Materials.
 We begin by assuming knowledge of when and where recombination takes place, in terms 
 of a recombination event bisecting branch $b$ at time $t_r$. %The variable $\sigma$ 
 % The index $i$ refers to the genealogy embedding interval in which recombination occurs.
-For no change to occur to the genealogy the detached subtree must re-coalesce with 
-its original branch, either in the same interval from which it detached, or in a
+For no change to occur to the genealogy, the detached subtree must re-coalesce with 
+its original branch -- either in the same interval from which it detached, or in a
 later interval on the same branch (Fig.~\ref{fig:fig3}a). %during the same interval in which it detached.
-If it connects to any other lineage this will cause a change to either the tree 
+If it connects to any other lineage, this will cause a change to either the tree 
 or topology. 
 Equation 3 describes the probability of a no-change event 
-given a genealogy embedded in a species tree, and the timing and branch on 
+given a genealogy embedded in a species tree and given the timing and branch on 
 which recombination occurs. The interval in which recombination occurs 
 % at time $t_r$ on branch $b$ 
 is labeled $i$. 
@@ -1164,23 +1200,32 @@ for iterating over the ordered intervals above $i$ on branch $b$ (e.g., Fig.~\re
 	\caption{
 		% Rates of coalescence are piece-wise constant within discrete intervals 
 		% of the genealogy embedding table. 
-		The probabilities of different recombination event types are calculated from 
+		The probabilities of different recombination event types are calculated using 
 		piece-wise constant probabilities of recombination within discrete intervals.
 		% probability statements for recombination occurring
 		% at time $t_r$ in interval $i$ and re-coalescing in interval $j$. 
-		(a) The probability of a no-change event involves re-coalescing on the same 
+		(a) The probability of a no-change event involves re-coalescing with the same 
 		branch on which recombination occurred, for which intervals are indexed using
-		the variables $\mathcal{I}_b$, or $\mathcal{J}_b(i)$. 
-		(c,f) The function $f(i,j)$ returns the probability that a subtree detached 
+		the variable $\mathcal{I}_b$.
+		%, or $\mathcal{J}_b(i)$. 
+		(b) Indexing variables for calculating tree-change probabilities. The indexing 
+		variable $\mathcal{I}_b$ records all intervals on branch $b$, and the 
+		recombination event for this example occurs in interval $i=0$. $\mathcal{J}_b(i)$ 
+		returns all intervals in $\mathcal{I}_b$ above interval $i$.
+		(c,f) The function $f(i,j)$ returns the probability that a subtree that detached 
 		in interval $i$ will re-coalesce in interval $j$. This involves excluding
-		the probability of re-coalescence in intervals between $i$ and $j$, which is 
+		the probability of re-coalescence in intervals between $i$ and $j$, which are 
 		indexed as $\mathcal{Q}_b(i,j)$. 
-		(d) The probability of a topology-unchanged event involves re-coalescing on the 
-		same branch on which recombination occurred, or its parent or sibling branches. 
+		(d) The probability of a topology-unchanged event involves re-coalescing with the 
+		same branch on which recombination occurred, or with its parent or sibling branches. 
+		%(e) Additional indexing variables return intervals on the parent branch 
+		%($\mathcal{I}_c$), or the sibling branch above ($\mathcal{M}_b$) or below 
+		%($\mathcal{L}_b$) the time at which it overlaps in the same species tree interval
+		%as branch $b$, termed $t_b^m$.
 		(e) Additional indexing variables return intervals on the parent branch 
-		($\mathcal{I}_c$), or the sibling branch above ($\mathcal{M}_b$) or below 
-		($\mathcal{L}_b$) the time at which it overlaps in the same species tree interval
-		as branch $b$, termed $t_b^m$.
+		($\mathcal{I}_c$), or branch $b$ above ($\mathcal{M}_b$) or below 
+		($\mathcal{L}_b$) the time ($t_b^m$) at which it overlaps in the same species tree interval 
+		as its sibling branch.
 	}
 	\label{fig:fig3}
 \end{figure}
@@ -1204,11 +1249,11 @@ pairs of intervals. When $j=i$, this expression involves the probability of
 coalescing over the remaining length of interval $i$ above $t_r$; 
 when $j>i$ it involves the probability of coalescing in interval 
 $j$ and not coalescing in interval $i$ or any other intervals 
-between $i$ and $j$. For this latter process, we define yet another 
+between $i$ and $j$. For this latter process, we define another
 indexing variable, $\mathcal{Q}_b(i,j)$ = $\{q \in \mathcal{I}_b ~|~ j > q > i\}$, 
 for iterating over the ordered intervals above $i$ and below $j$ 
 on branch $b$ (e.g., Fig.~\ref{fig:fig3}c).
-The function $f(i,j)$ forms the core of the MS-SMC' algorithm, and 
+The function $f(i,j)$ forms the core of the MS-SMC algorithm and 
 will reappear in several later equations.
 
 \begin{equation}
@@ -1222,7 +1267,10 @@ will reappear in several later equations.
 		\right)
 		\exp \bigg\{ -\frac{k_i}{2n_i}\mu_i - 
 		\sum_{q \in \mathcal{Q}_b(i,j)} \frac{k_q}{2n_q} d_q \bigg \}, 
-		& \text{if } i\ne j\\
+		& \text{if } i<j\\
+		% 
+		0, 
+		& \text{if } i>j\\
 	\end{dcases}
 \end{aligned}
 \end{equation}
@@ -1277,17 +1325,17 @@ change the tree:
 	% \\
 	% & 
 	\frac{1}{t_b^u - t_b^l}
-	\sum_{i \in \mathcal{I}_b} \frac{1}{k_i} d_i + 
+	\sum_{i \in \mathcal{I}_b} \left[\frac{1}{k_i} d_i + 
 	% \Bigg(
 	\frac{2n_i}{k_i} 
-	\sum_{j \in \mathcal{J}_b(i)}f(i,j)
+	\sum_{j \in \mathcal{I}_b}f(i,j)
 	\bigg(
 		\exp\bigg\{\frac{k_i}{2n_i}\mu_i \bigg\} - 
 		\exp\bigg\{\frac{k_i}{2n_i}\sigma_i \bigg\}
-	\bigg)
+	\bigg)\right]
 	% \Bigg)
 \end{aligned}
-\end{equation}
+\end{equation}g
 % \begin{equation}
 % 	= \frac{1}{t^u_b - t^l_b}
 % 	\sum_{i=0}^{\mathcal{I}_b-1} \frac{1}{a_i} d_i + 
@@ -1301,8 +1349,8 @@ change the tree:
 
 
 % \subsubsection{Probability that a recombination event will not change the tree:}
-\noindent Finally, by summing across all branches on the tree,
-and weighting each by its relative proportion of edge length,
+\noindent Finally, by summing across all branches on the tree 
+while weighting each one by its relative proportion of edge length,
 % while assuming a uniform recombination rate through time and across branches, 
 we get the probability that a recombination event occurring anywhere on 
 $\mathcal{G}$ will result in a no-change event. %category 1 outcome.
@@ -1316,9 +1364,9 @@ $\mathcal{G}$ will result in a no-change event. %category 1 outcome.
 
 
 \subsubsection{Waiting distances to no-change and tree-change events}
-Under the SMC' recombination is modeled as a Poisson point process, 
+Under the SMC', recombination is modeled as a Poisson point process 
 such that the time between recombination events is exponentially distributed 
-with rate parameter $\lambda_r$; the product of the per-site
+with rate parameter $\lambda_r$: the product of the per-site
 per-generation recombination rate and summed branch lengths of
 the current genealogy \citep{wiuf_recombination_1999} (equation 7).
 The likelihood of an observed distance ($x$) between recombination
@@ -1341,16 +1389,18 @@ be calculated from the exponential probability density function
 	f(x; \lambda) = \lambda e^{-\lambda x}
 \end{equation}
 
-\noindent Because a no-change type event is a subset of all possible types of
-recombination events, and we have derived its probability, we can now calculate 
+%\noindent Because a no-change type event is a subset of all possible types of
+%recombination events, and we have derived its probability, we can now calculate 
+\noindent Having derived the probability that an individual recombination event 
+is of the no-change type, we can now calculate 
 the rate of no-change type events as a proportion of the rate of all types of 
 recombination events. 
-Here, waiting distances continue to be exponentially distributed, 
-however, the new rate parameter, $\lambda_n$, is reduced proportionally by 
+Here, waiting distances continue to be exponentially distributed. 
+However, the new rate parameter $\lambda_n$ is reduced proportionally by 
 the probability that recombination causes no change to the genealogy
 (equation 9). Similarly, because a tree-change event is the opposite 
 of a no-change event, its probability is one minus the probability
-of no-change (equation 10), which yields rate parameter $\lambda_g$ for 
+of no-change (equation 10). This yields rate parameter $\lambda_g$ for 
 the exponential probability distribution of waiting distances between 
 tree-change events.
 
@@ -1386,27 +1436,27 @@ We next derive an analogous probability distribution for waiting distances
 between topology-change events.
 % This involves events 
 % representing a subset of possible tree-change events. 
-Similar to our approach for calculating tree-change as the opposite of a 
-no-change (tree-unchanged) event, here we calculate topology-change as the 
-opposite of a topology-unchanged event, where topology-unchanged represents the 
-sum of probabilities of a no-change and a subset of possible tree-change events 
-that only affect branch lengths, but not the topology. 
-Our approach follows closely to that of \citet{deng_distribution_2021}.
+Similar to our approach for calculating tree-change probabilities as the opposite of those for a 
+no-change (tree-unchanged) event, here we calculate topology-change probabilities as the 
+opposite of those for a topology-unchanged event. Topology-unchanged events represent the union of 
+all no-change events and the subset of possible tree-change events 
+that only affect branch lengths but not the topology. 
+Our approach for calculating these probabilities follows closely to that of \citet{deng_distribution_2021}.
 % in which 
 % where the topology
 % This involves excluding 
 % events that affect only coalescence times but not the topology. We refer
 % to this set of events as "topology-unchanged".
 % of categories 2 and 3 to isolate the waiting distance to a category 4 event. 
-In order to isolate re-coalesce events that do not change the topology
+In order to isolate re-coalescence events that do not change the topology,
 % only affect branch
 % lengths from those that affect the topology 
 we must take into account which specific branches the detached subtree from 
 branch $b$ re-coalesces with. The relevant branches are its source ($b$), 
 its sibling ($b'$), and its parent ($c$) (Fig.~\ref{fig:fig3}d). 
-If the subtree re-coalesces with $b$ no change occurs; if it re-coalesces
-with $b'$ the topology remains the same but a coalescent time is shortened;
-and if it re-coalesces with $c$ the topology remains the same but a coalescent 
+If the subtree re-coalesces with $b$, no change occurs; if it re-coalesces
+with $b'$, the topology remains the same but a coalescent time is shortened;
+and if it re-coalesces with $c$, the topology remains the same but a coalescent 
 time is lengthened. A re-coalescence with any other branch will change the topology.
 % Once again, we start by deriving branch-specific probabilities and then sum 
 % these across all branches on a genealogy. 
@@ -1441,7 +1491,7 @@ time is lengthened. A re-coalescence with any other branch will change the topol
 % calculated the probability of a no-change event, we now calculate this probability 
 % in addition to the probability of a change that affects only coalescent times and not the topology. 
 To index over relevant intervals across the three branches on which re-coalescence
-can occur we define several additional variables. The lowest time point in which both 
+can occur, we define several additional variables. The lowest time point in which both 
 $b$ and $b'$ are present and exist within the same species tree interval is labeled 
 $t_b^m$. For a branch $b$ with intervals $\mathcal{I}_b$, the subset of intervals 
 below $t_b^m$ is $\mathcal{L}_b$, and the subset above is $\mathcal{M}_b$. 
@@ -1454,7 +1504,7 @@ The union of the sets of intervals on branches $b$ and $c$ is $\mathcal{I}_{bc}$
 % To do this, 
 
 Once again, we begin by assuming knowledge of the branch on which a 
-recombination event occurs and its timing. This problem can be broken 
+recombination event occurs and of that event's timing. This problem can be broken 
 into two distinct cases: when $t_r$ occurs below $t_b^m$, and when it 
 occurs above $t_b^m$. The former requires integrating over additional 
 intervals on $b$ that are not shared with $b'$. Over all intervals
@@ -1587,8 +1637,8 @@ over the entire length of a branch.
 % other two outcomes for which we have derived probabilities: no change or tree change.
 % As in Section 2.4, 
  % across the entire length of a branch. 
-Here, the terms $p_{b,1}$ and $p_{b,2}$ correspond to the positions of branch 
-$b$ falling into either of the two cases in equation 11.%, below or above $t_b^m$. 
+Here, the terms $p_{b,1}$ and $p_{b,2}$ correspond to recombination occurring
+on branch $b$ during a time that falls into either of the two cases in equation 11.%, below or above $t_b^m$. 
 % associated with the two cases described above and in Fig.~\ref{fig:fig3}a-b:
 % , the lowest interval...the location of $t_b^m$.}
 % through the solution that specifies both a specific branch and time. 
@@ -1680,7 +1730,7 @@ $b$ falling into either of the two cases in equation 11.%, below or above $t_b^m
 
 % \subsubsection{Probability that a recombination event will not change the topology:}
 \noindent Finally, by summing equation 12 across all branches on a 
-genealogy, and weighting each by its proportion of summed branch lengths,
+genealogy while weighting each by its proportion of summed branch lengths,
 we get the probability that a recombination event falling 
 uniformly on the genealogy will result in a topology-unchanged event.
 
@@ -1703,15 +1753,15 @@ uniformly on the genealogy will result in a topology-unchanged event.
 
 \subsubsection{Waiting distance to topology-change events}
 A recombination event either does or does not change the topology
-of a genealogy, and therefore, we can get the probability of a 
+of a genealogy, and we can therefore get the probability of a 
 topology-change event using our topology-unchanged probability statement.
 As with the previous waiting distance distributions, the distance between
-topology change events given a parameterized MSC model can be 
+topology-change events given a parameterized MSC model can be 
 modeled as an exponential probability distribution. 
 Similar to how a rate parameter was derived for the distribution 
 of waiting distances until a recombination event (equation 7), 
 no-change event (equation 9), or tree-change event (equation 10), 
-a rate parameter, $\lambda_t$ can be calculated from equation 13 for 
+a rate parameter $\lambda_t$ can be calculated from equation 13 for 
 the probability of a topology-change event. 
 % from equation 13 
 % to get the probability of a topology-change event (equation 14). 
@@ -1724,46 +1774,15 @@ the probability of a topology-change event.
 	(1 - \mathbb{P}(\text{topology-unchanged} | \mathcal{S},\mathcal{G}))
 \end{equation}
 
-% now present the caveats...
-This final expectation comes with an important caveat. 
-% does come with a caveat. 
-Unlike the exact solution for the expected waiting distance to a 
+
+Unlike the exact solution for the expected waiting distance to a  
 tree-change, the waiting distance for a topology-change is an
-approximation, since we ignore the possible effects of intermediate 
-tree-change events that could occur during the waiting distance until 
-a topology-change 
-% more complicated, % to derive, 
-% waiting distance distribution to a \emph{topology} change is more 
-% solution for a \emph{topology} change is more complicated, % to derive, 
-% due to the possibility of intermediate recombination events 
-% because of the possibility of intermediate recombination events 
-% that change branch lengths but not the topology 
+approximation. This is because topology-change probabilities are not 
+guaranteed to be homogeneous across some distance of the genome between 
+topology-change events, since intermediate tree-change events could occur
 (e.g., the second and third recombination events in Fig.~\ref{fig:fig2}).
-% In other words, during the waiting distance until a topology-change occurs,
-% given a specific starting genealogy, the genealogy branch lengths could 
-% change, thus affecting the probabilities of subsequent outcomes.
-% subsequent recombination events, 
-% including the relative probabilities of different categorical types.
-% for the next event.
-% As these events
-% As the branch lengths of intermediate genealogies change this affects the
-% rate of subsequent recombination events, and thus 
-% These events impact the rate of recombination events and 
-% the probability
-% that each further recombination event changes
-% that such events could change
-% the topology of the %newly generated 
-% next
-% genealogy. 
-In other words, the probability of topology-change is not guaranteed to
-be homogeneous across some distance of the genome.
-This problem similarly arises in a single population model,
-where \citet{deng_distribution_2021} have previously
-demonstrated that its effect can likely be ignored. We 
-re-examine this potential bias, 
-as well as any potential bias due to using the SMC' approximation,
-with respect to the presence
-of population structure in our validations in the Supplementary Information.
+We examine this and other potential sources of bias in our validations
+below and in the Supplementary Materials.
 
 % This is because the product of $L(\mathcal{G})$ and 
 % the probability of a topology-changing recombination event
@@ -1838,24 +1857,27 @@ of population structure in our validations in the Supplementary Information.
 
 \subsection{Implementation}
 We have implemented our solutions for waiting distance calculations
-under the MS-SMC' in the Python package \emph{ipcoal} \citep{mckenzie_ipcoal_2020}.
-This software includes functions that accept a parameterized MSC model, initial genealogy, 
-and recombination rate as input and that return the probabilities of different 
-recombination event types. The probabilities can be calculated for specific 
+under the MS-SMC in the Python package \emph{ipcoal} \citep{mckenzie_ipcoal_2020}.
+This software includes functions that accept a parameterized MSC model and 
+initial genealogy as input and return the probabilities of different 
+recombination event types. These probabilities can be calculated for specific 
 branches and times, for entire branches, or for entire genealogies. 
-Functions are also available to calculate the likelihood of observed 
-waiting distances between different genealogy changes in an ARG 
-using an exponential probability density parameterized by the MS-SMC'.
-The latter code is written in \emph{numpy} \citep{harris2020array} using 
-jit-compilation with \emph{numba} \citep{lam2015numba}, and tree operations
-with \emph{toytree} \citep{eaton_toytree_2020}.
-Below we explore the influence of MSC model parameters on waiting distances, 
-we validate our solutions against expectations from coalescent simulations 
-implemented in \emph{ipcoal} and \emph{msprime} \citep{baumdicker_efficient_2022}.
+Functions are also available to calculate expected waiting distances 
+and the likelihoods of observed waiting distances in an ARG 
+using an exponential probability density parameterized by the MS-SMC.
+%Tree-based operations are performed with 
+Our implementation is built upon \emph{toytree} \citep{eaton_toytree_2020}, 
+\emph{scipy} \citep{2020SciPy-NMeth}, and 
+\emph{numpy} \citep{harris2020array}, and it uses jit-compilation with \emph{numba} 
+\citep{lam2015numba}. 
+Below we use \emph{ipcoal} (v.0.4.0) to demonstrate the impact of 
+MSC model parameters on waiting distances and to validate our solutions against 
+expectations from coalescent simulations implemented in 
+\emph{msprime} (v.1.1.1) \citep{baumdicker_efficient_2022}.
 %and we investigate potential biases.
 % models, visualizing results, and validating our equations.
 Source code is available at \url{https://github.com/eaton-lab/ipcoal}.
-Jupyter notebooks demonstrating the MS-SMC' calculations and with 
+Jupyter notebooks demonstrating the MS-SMC calculations and with 
 reproducible code used for validations in this study are available
 at \url{https://github.com/eaton-lab/waiting-distances}.
 
@@ -1871,23 +1893,24 @@ at \url{https://github.com/eaton-lab/waiting-distances}.
 
 \subsection{Demonstration}
 % First, when given a species tree and initial genealogy, we could examine the probability 
-Given a parameterized MSC model and initial genealogy the probabilities of 
+Given a parameterized MSC model and initial genealogy, the probabilities of 
 different types of recombination outcomes can be calculated and visualized as 
 a function of when and where recombination occurs. This is demonstrated on an 
 imbalanced 4-tip species tree with constant effective population size 
 % across branches %(see parameters in Table~S2), 
 and with a genealogy of seven samples embedded, 
 including three from lineage A, two from lineage B, and one from each of lineages
-C and D (Fig.~\ref{fig:fig1}a; see Fig.~\ref{fig:figS-edge-probabilities} for 
-detailed parameter settings). 
+C and D (Fig.~\ref{fig:fig1}a; Fig.~\ref{fig:figS-edge-probabilities}). 
 % As a demonstration, t
 The probabilities of no-change, tree-change, or topology-change events, 
 given a recombination event occurring on a branch at a particular time 
 (equations 3 and 11, respectively) are shown for three selected branches
 on the example genealogy (Fig.~\ref{fig:fig1}b-d). 
 Note that the probability of no-change and tree-change events 
-are inversely related and sum to 1, since one or the other must occur as a consequence 
-of recombination. By contrast, a topology-change event is a subset of the 
+are inversely related and sum to 1, since one or the other must occur at any 
+%accompany any 
+%occur as a consequence 
+recombination event. By contrast, a topology-change event is a subset of the 
 probability of a tree-change; 
 % recall that a topology-change event is 
 it is a tree-change event where the detached branch re-coalesces with 
@@ -1919,16 +1942,16 @@ of a tree-change event increases, as recombination occurs closer to the top
 end of a branch (further back in time). This makes intuitive sense, since when 
 recombination occurs at the top of a branch there is less time for it to re-coalesce 
 with its same branch. Although this is a general trend, these probabilities do not 
-behave monotonically along the length of a branch, as they would in a 
-single-population model with constant N$_e$ \citep{deng_distribution_2021}.
+behave monotonically along the length of a branch as they would in a 
+single-population model with constant $N_e$ \citep{deng_distribution_2021}.
 Instead, probabilities increase or decrease through the length of each
 interval as a function of the rates of coalescence in subsequent 
 intervals and the probability that a detached lineage will 
-re-coalescence in one of those intervals.
+re-coalesce in one of those intervals.
 
-For example, consider branch 2, which initially exhibits an increase in the
+For example, consider branch 2, which exhibits an increase in the
 probability of no-change through its first branch interval from time 0 to
-$t_7$, but then a decrease through the next interval from $t_7$ to $W_{AB}$
+$t_7$ but then a decrease through the next interval from $t_7$ to $W_{AB}$
 (Fig.~\ref{fig:fig1}b).
 The observed increase through the first interval is influenced by the fact that
 a re-coalescence in the subsequent interval is more likely to cause a no-change
@@ -1936,14 +1959,26 @@ event, since that interval contains only two samples instead of three.
 % up recombination occurs in this interval the more likely it is to re-coalesce
 % in the next interval, where only two instead of three samples are present, such
 % that a no-change event is more likely. 
-By contrast, within the second interval, as recombination occurs closer to 
-the top, it is approaching the next species tree divergence event, where the 
-number of samples will increase again, from 2 to 3, 
+%By contrast, within the second interval, as recombination occurs closer to 
+%the top, it is approaching the next species tree divergence event, where the 
+%number of samples will increase again, from 2 to 3, 
+%thus decreasing the probability of a no-change event. 
+By contrast, within the second interval, recombination events near 
+the top are approaching the next species tree divergence event. After that event, the 
+number of samples will increase back from 2 to 3, 
 thus decreasing the probability of a no-change event. 
 This visualization demonstrates how the probabilities of different recombination 
 event types represent an integration over all the positions on a branch where 
-recombination could occur, and all positions at or above that point, and on the 
-same or different available branches, where a detached branch could re-coalesce. 
+recombination could occur, and all positions at or above each of these points (whether on the 
+same or different available branches) where a detached subtree could re-coalesce. 
+% This visualization demonstrates how calculating the probabilities of different recombination 
+% event types requires integrating over all the positions on a branch where 
+% recombination could occur, while simultaneously integrating over all points at which the detached
+% branch could re-coalesce.
+%% ^am breaking up / simplifying some of these long sentences just to help the reader. Less smooth but 
+%% lots of commas are hard to process.
+% Sounds good. I only changed the last sentence back, since I like it to describe
+% that the probabilities ARE an integration, rather than that they REQUIRE an integration.
 
 % at any time 
 % point incorporates all of the possibilities of re-coalescence at deeper 
@@ -1952,9 +1987,10 @@ same or different available branches, where a detached branch could re-coalesce.
 % different species tree intervals.
 
 Branch 7 provides a clear example for examining the probabilities of 
-tree and topology-change events. Of particular interest is the 
+tree- and topology-change events. Of particular interest is the 
+% (added suspended hyphen above after "tree")
 interval from $W_{AB}$ to $W_{ABC}$ where these probabilities diverge 
-significantly (Fig.~\ref{fig:fig2}c-d). 
+significantly (Fig.~\ref{fig:fig1}c-d). 
 % Another example is clear from examining probabilities across branch 7,
 % which spans three species tree intervals. 
 % To better understand probabilities of tree and topology-change events let 
@@ -1967,14 +2003,17 @@ following $t_9$ there is a large stretch of time during which re-coalescence can
 only occur with the same branch or its sibling, neither of which can cause a topology-change
 event. It is only after $W_{abc}$ that it is once again possible for re-coalescence
 to occur with a more distant branch that would result in topology-change. 
-If the effective population size of this species tree interval (AB) were greater
+If the effective population size of this species tree interval (AB) were greater,
 then the probability of re-coalescence in a deeper interval would be more likely, 
 and the probability of topology-change would decrease less severely near $t_9$. 
-This is true more generally as well, as can be seen by comparing edge probabilities
+This is true more generally, as can be seen by comparing edge probabilities
 across MSC models with different effective population sizes (Fig.~\ref{fig:figS-edge-probabilities}).
-Effective population size affects the rate of re-coalescence, and thus 
-has the effect of either smoothing probabilities across intervals when 
-N$_e$ is high, or accentuating differences among intervals when N$_e$ is low.
+Effective population size affects the rate of re-coalescence and thus 
+%has the effect of either smoothing probabilities across intervals when 
+%N$_e$ is high, or accentuating differences among intervals when N$_e$ is low.
+either smooths probabilities across intervals when 
+%% "smooths" is a weird word but is fun: https://english.stackexchange.com/questions/103422/smooths-versus-smoothes
+$N_e$ is high or accentuates differences among intervals when $N_e$ is low.
 
 % Fig.~\ref{fig:fig1} panels b, c, and d show the probability that a recombination event 
 % falling at each time $t_r$ on the 3 selected genealogy branches results in no change 
@@ -2009,28 +2048,40 @@ N$_e$ is high, or accentuating differences among intervals when N$_e$ is low.
 \begin{figure}[t]
 	\centering
 	%\fbox{\rule[-.5cm]{4cm}{4cm} \rule[-.5cm]{4cm}{0cm}}
-	\includegraphics[width=0.99\textwidth]{figures/Fig4-final-validation2.pdf}
+	\includegraphics[width=0.99\textwidth]{figures/Fig4-final-validation4.pdf}
 	\caption{
-		MS-SMC' estimates of waiting distances between recombination
-		event types validated against coalescent simulations. Results are 
-		shown for three models (a) containing either 1, 2, or 8 populations,
-		among which genealogies for 8 samples are embedded. For each model
-		10K tree sequences were simulated. 
-		(b) The sum of edge lengths across all starting genealogies for each 
-		model for the lowest and highest N$_e$ values examined 
-		(50K and 500K, respectively).
-		(c-d) The mean and 95\% CI (green circle and fill) of analytical
-		solutions for the probabilities of recombination event types calculated
-		from the first genealogy in each tree sequence. Results overlap 
-		with the mean frequencies of each event type in simulated tree 
-		sequences (black squares).
-		The probabilities of tree-change or topology-change are 
-		constant with respect to N$_e$ in a single population model, 
-		but vary in models with population structure (also shown with respect to 
-		species tree interval lengths in coalescent units, across the top axis). 
-		(e-f) Waiting distances until tree or topology-change events exhibit 
-		less variance in models with population structure. The MS-SMC' calculated 
-		waiting distance expectations match very closely to simulated values.
+		MS-SMC predictions validated against coalescent simulations.
+		(a) Results are shown for three models containing 1, 2, or 8 
+		populations. % among which genealogies for 8 samples were embedded. 
+		For each model, 10K tree sequences were simulated for 10 different
+		constant $N_e$ values between 50K and 500K. 
+		(b) The distributions of summed edge lengths of the first genealogy in 
+		each tree sequence. 
+		(c-d) The mean frequency (black square) with which the first observed 
+		recombination event was a tree-change (c) or topology-change (d) in a 
+		simulated tree sequence, and the mean (colored circle) and 95\% CI 
+		(grey fill) of the predicted probability of tree or topology-change 
+		calculated from the first embedded genealogy in each tree sequence. 
+		Probabilities are constant with respect to $N_e$ in the single population
+		%model, but vary in models with population structure
+		model but vary in models with population structure
+		%% ^removing all commas like this whenever I notice complex sentences beginning
+		%% with an independent clause. (Or occassionally keeping the comma and just 
+		%% adding a subject to the second clause.)
+		(also shown with respect to species tree interval lengths in 
+		coalescent units, across the top axis).
+		% The probabilities of tree-change or topology-change are 
+		% constant with respect to N$_e$ in a single population model, 
+		% but vary in models with population structure (also shown with respect to 
+		% species tree interval lengths in coalescent units, across the top axis). 
+		(e-f) The mean waiting distance (black square) until the first observed 
+		tree-change (e) or topology-change (f) in a simulated tree sequence, and the mean 
+		(colored circle) and 95\% CI (grey fill) of predicted waiting distances calculated
+		using the first embedded genealogy in each tree sequence.
+		 % under the MS-SMC. 
+		% Predicted Predicted waiting distances Waiting distances between tree or topology-change events exhibit 
+		% less variance for a given $N_e$ value in models with population structure. 
+		% The MS-SMC calculated waiting distance expectations match very closely to simulated values.
 		% , however,
 		% whereas the tree-change waiting distance is exact, the the topology-change waiting distance exhibits slight bias at very low 
 		% N$_e$ values.
@@ -2040,17 +2091,18 @@ N$_e$ is high, or accentuating differences among intervals when N$_e$ is low.
 
 % we simulated data under 3 models to validate our results
 To validate our analytical solutions for the probabilities of different 
-recombination event outcomes, and their associated waiting distances, 
-we compared predictions of the MS-SMC' with results from stochastic 
+recombination event outcomes and their associated waiting distances, 
+we compared predictions of the MS-SMC with results from stochastic 
 coalescent simulations. 
 We set up three scenarios with increasing amounts of population structure: 
-a single-population model, two-population model, and an 8-tip phylogeny model
+a single-population model, a two-population model, and an 8-tip phylogeny model
 (Fig.~\ref{fig:fig-validation}a). 
 All analyses used a constant per-site per-generation recombination rate of 
-2e-9, and simulated tree sequences using the coalescent with recombination 
+2e-9 and simulated tree sequences using the coalescent with recombination 
 (i.e., the "hudson" ancestry model in msprime as opposed to the "smc\_prime" model, 
-which is an approximation), unless specified, and used the argument 
-"record\_full\_arg=True", to retain records of invisible recombination events. 
+which is an approximation), %unless specified, 
+and the argument 
+"record\_full\_arg=True" (to retain records of invisible recombination events). 
 For each model we simulated genealogies for the same total number of samples
 (8, unless specified), divided evenly among lineages when models 
 include multiple populations (Fig.~\ref{fig:fig-validation}a). 
@@ -2066,43 +2118,60 @@ of edge lengths on the current genealogy ($L(\mathcal{G})$), and the probability
 ($\mathbb{P}$) of the specified event type (equations 9, 10, and 14). 
 Across the three models examined, $r$ remains constant, but both $L(\mathcal{G})$ 
 and $\mathbb{P}$ can vary due to population structure, where the effect of 
-structure is scaled by N$_e$. 
+structure is scaled by $N_e$. 
 Therefore, we examined $L(\mathcal{G})$, $\mathbb{P}$, and the expected waiting 
 distance calculated from their product, for each demographic model across a range 
-of N$_e$ values (Fig.~\ref{fig:fig-validation}b-f). 
-For each value of N$_e$, 10K tree sequences were simulated that included at least 
-one topology-change event. Given each starting genealogy,
-the probability of each event type, and the expected waiting distance to that event
-type, were calculated under the MS-SMC'. To compare this with the result of a 
-simulated coalescent with recombination process, we recorded the waiting distance 
-until each recombination event type first occurred in each tree sequence, and 
-also the frequency at which each event type occurred as the first event in a 
-tree sequence, as a measurement of its empirical probability.
+of $N_e$ values (Fig.~\ref{fig:fig-validation}b-f). 
+For each value of $N_e$, 10K tree sequences were simulated that included at least 
+one topology-change event. The empirical probabilities of tree-change and 
+topology-change events were then simply measured %from simulated tree sequences 
+as the mean observed frequency at which the first recombination event in each 
+tree sequence was a tree or topology change. Similarly, empirical waiting 
+distances were measured as the mean distance until the first observation of 
+each event type. These simulated expectations were then compared with analytical
+expectations computed under the MS-SMC, where probabilities and waiting distances 
+were based only on the embedding of the first genealogy from each tree sequence 
+into an MSC model parameterized to the specific constant $N_e$ value. 
+
+% Given each starting genealogy,
+% the probability of each event type, and the expected waiting distance to that event
+% type, were calculated under the MS-SMC. To compare this with the result of a 
+% simulated coalescent with recombination process, we recorded the waiting distance 
+% until each recombination event type first occurred in each tree sequence, and 
+% also the frequency at which each event type occurred as the first event in a 
+% tree sequence, as a measurement of its empirical probability.
 
 % L and P have opposing effects on waiting distances given Ne
 Population structure enforces a lower limit on the length of coalescent 
 times by requiring that genealogies can be embedded in a species tree.
-This has an effect on $L(\mathcal{G})$ at both low and high N$_e$
-(Fig.~\ref{fig:fig-validation}b) of shifting the minimum and mean 
-$L(\mathcal{G})$ higher. Because the frequency of recombination is 
-positively correlated with $L(\mathcal{G})$ (the opportunity over 
-which recombination can occur), larger $L(\mathcal{G})$ decreases 
-waiting distances between recombination events, all else being equal. 
+% This has an effect on $L(\mathcal{G})$ %at both low and high N$_e$
+% of shifting both its minimum and mean 
+This has the effect of shifting both the minimum and mean of 
+$L(\mathcal{G})$ higher (Fig.~\ref{fig:fig-validation}b). 
+Because the per-generation recombination rate interacts with
+$L(\mathcal{G})$ (the opportunity over which recombination can occur) to
+determine the frequency of recombination, larger $L(\mathcal{G})$ induced
+by population structure will tend to decrease waiting distances between 
+recombination events, all else being equal. 
 However, all else does not remain equal. 
-Population structure also has an opposing effect on waiting distances by 
+Population structure has a simultaneous opposing effect on waiting distances by 
 decreasing the probability of tree or topology changes 
-(Fig.~\ref{fig:fig-validation}c-d), especially at low N$_e$ values, where 
-species tree constraints can make tree or topology changes unlikely
-to occur. This is a stark difference between the MS-SMC' framework and a 
-single population model; the probability of tree or topology change 
-events is strongly associated with $N_e$ in the former, while not affected 
-at all in the latter. Consequently, in MSC models the waiting distances 
-between each event type (Fig.~\ref{fig:fig-validation}e-f) represent a balance 
+($\mathbb{P}$; Fig.~\ref{fig:fig-validation}c-d), especially at low $N_e$ values,
+where species tree constraints can make tree or topology changes unlikely
+to occur. This is a stark difference between the MS-SMC framework and a 
+single population model: the probability of a tree- or topology-change 
+% accompanying a recombination 
+event is strongly associated with $N_e$ in the former but not affected 
+at all in the latter. 
+%% Capitalization after a colon? APA says yes, Chicago says no. IMO No.
+%% (but I do think a colon is more appropriate than a semicolon here)
+Consequently, the waiting distances between each event type in MSC models 
+(Fig.~\ref{fig:fig-validation}e-f) represent a balance 
 of the positive and negative effects of population structure on 
 $L(\mathcal{G})$ and $\mathbb{P}$, respectively.
 
 % Analytical predictions are very accurate, even better given SMC' approximation.
-Our analytical predictions under the MS-SMC' converge accurately on 
+Our analytical predictions under the MS-SMC converge accurately on 
 the mean results from stochastic coalescent simulations 
 (Fig.~\ref{fig:fig-validation}c-f). 
 % Examining the relationship between MSC model parameters and expected 
@@ -2113,17 +2182,21 @@ the information contained in spatial genealogical patterns.
 % In a single population, the probability of a tree or topology change event
 % is not only invariant with respect
 For example, in the single population model there is high variance 
-in the probabilities of tree or topology changes, and consequently, 
-also in the expected waiting distances. Although expected waiting 
-distances do correlate with the population $N_e$ in this model, 
-the differences are small. By contrast, multispecies models exhibit much less
-variance in predicted probabilities of tree or topology changes given a set of
-MSC model parameters (Fig.~\ref{fig:fig-validation}c-d). This leads to a 
-much tighter relationship (less variance) between MSC model parameters and 
-expected waiting distances to tree or topology changes (Fig.~\ref{fig:fig-validation}e-f). 
-Overall, this suggests that tree and topology-change distances may provide
-more information for inferring demographic parameters (or vice versa) 
-when population structure is present. 
+in both the probabilities of tree and topology changes, as well as in genealogy
+lengths, at any given $N_e$ value. Consequently, waiting distances also 
+exhibit high variance. Although waiting distances correlate with population $N_e$ 
+in this model, the differences in mean waiting distances are small relative to the variance. 
+By contrast, multispecies models exhibit much less variance in predicted probabilities 
+of tree or topology changes given a set of MSC model parameters 
+(Fig.~\ref{fig:fig-validation}c-d) and also exhibit less variation in genealogy
+lengths. This leads to a stronger relationship between MSC model parameters and 
+expected waiting distances (Fig.~\ref{fig:fig-validation}e-f), such that models
+with different parameters have less overlap in waiting distance expectations.
+Overall, this suggests that tree- and topology-change distances may contain more 
+information in MSC models than in single population models.
+% ; information that
+% can be used for inferring demographic model parameters from waiting distances 
+% in ARGs, or for inferring ARGs in the context of demography.
 
 % The probabilities of tree or topology change events are highly variable in 
 % the single population model, and constant with respect to $N_e$, whereas these probabilities exhibit 
@@ -2164,20 +2237,34 @@ when population structure is present.
 % values of N$_e$ increase, and topology-change waiting distances are always larger
 % than tree-change waiting distances. 
 
-\subsection{MS-SMC' likelihood inference framework}
+\subsection{Bias in waiting distance estimation}
+Estimated waiting distances under the MS-SMC harbor two potential sources of bias, 
+the first stemming from assumptions of the SMC' approximation, and the second from 
+the approximate nature of waiting distance estimation for topology-change events. 
+We examined both of these sources of error through comparison to stochastic simulations
+and found that their effects are generally small, and that multispecies models exhibit 
+a similar magnitude of error as single population coalescent models 
+(Supplementary Materials; Fig.~\ref{fig:figS-bias-smc}, Fig.~\ref{fig:figS-bias-topo}).
+The SMC' approximation contributes the greatest error in all models, leading to 
+a slight under-estimation of waiting distances. This is most observable when variance
+in waiting distances is high, as with topology-change waiting distances in models 
+with low $N_e$. Future work could seek to find a correction for this bias.
+
+
+\subsection{MS-SMC likelihood inference framework}
 
 \begin{figure}[t]
 	\centering
 	%\fbox{\rule[-.5cm]{4cm}{4cm} \rule[-.5cm]{4cm}{0cm}}
 	\includegraphics[width=0.99\textwidth]{figures/likelihood-figure3.pdf}
 	\caption{
-		MS-SMC' likelihood framework. (a) ARGs were simulated under a
+		MS-SMC likelihood framework. (a) ARGs were simulated under a
 		two-population species tree model with a constant $N_e$=200K and 
-		$r$=2e$^{-9}$. (b) A joint log-likelihood surface for $N_e$ and 
-		$r$ inferred from the distances between tree-change events, 
+		$r$=2e-9. (b) A joint log-likelihood surface for $N_e$ and 
+		$r$ inferred from the distances between tree-change events; 
 		(c) topology-change events; or (d) both. The true parameters are
 		marked by an X. (e) If the MSC model is
-		misspecified as a single-population model, but the data derive from 
+		misspecified as a single-population model but the data derive from 
 		a two-population model, likelihood inference	is highly biased.
 		% ARGs were 
 		% simulated under a two-population species tree model with variable 
@@ -2187,42 +2274,70 @@ when population structure is present.
 	\label{fig:fig-likelihood}
 \end{figure}
 
-Based on the expectation that waiting distances are informative about 
-MSC model parameters, we developed a maximum likelihood framework for inferring 
-MSC model parameters from observed waiting distances between tree and/or topology 
-change events. Here, we apply this method using the true distances between 
-events in simulated ARGs, however, it could similarly be applied to inferred 
-distances between events in an ARG proposed from sequence data. 
+The MS-SMC provides a statistical framework for predicting waiting distances 
+until genealogy changes in an ARG given a parameterized MSC model. 
+Because waiting distances between recombination events are exponentially 
+distributed, we can use the exponential probability density (equation 8) 
+as a likelihood function to describe the joint probability of observed
+waiting distances as a function of MSC model parameters. 
+Applications of this approach could potentially provide improvements to ARG 
+or species tree inference methods. 
+% inference by fitting waiting distances to expectations from a parameterized 
+% MSC model; or alternatively, it could improve species tree inference 
+% from genome data containing genetic linkage. 
+Here, to explore the potential of this approach, we developed a maximum 
+likelihood framework for the latter: we apply the MS-SMC to fit MSC 
+model parameters to observed distances between tree-change and/or
+topology-change events in simulated ARGs. 
+% It could similarly be applied to ARGs inferred 
+% from sequence data. 
 
-Given one or more ARGs each composing a sequence of genealogies 
+% , by incorporating information from the 
+% likelihood of observed tree and topology-change waiting distances 
+% given a parameterized MSC model; and (2) to 
+% in which MSC model parameters can be fit from waiting distances in ARGs, 
+
+% 
+% Based on the expectation that waiting distances are informative about 
+% MSC model parameters, we developed a maximum likelihood framework for inferring 
+% MSC model parameters from observed waiting distances between tree and/or topology 
+% change events. Here, we apply this method using the true distances between 
+% events in simulated ARGs, however, it could similarly be applied to inferred 
+% distances between events in an ARG proposed from sequence data. 
+% 
+
+Given one or more ARGs, each composing a sequence of genealogies 
 G = ($\mathcal{G}_1, \mathcal{G}_2, ..., \mathcal{G}_n$) and 
-their interval lengths in the genome X = ($x_1, x_2, ..., x_n$), a subset 
-of genealogies can be extracted representing unique genealogies between 
-tree-change events, $G_g$ = ($\mathcal{G}_1, \mathcal{G}_i, ...$). The lengths 
-between these events can be summed to get tree-change waiting distances
-X$_g$ = ($\sum_{i=1}^j x_i, \sum_{i=j}^{k} x_i, ..., $). The same could be 
-done for topology-change events. Then, given a parameterized species 
-tree $\mathcal{S}$ and recombination rate $r$ we can obtain a sequence of 
-exponential rate parameters $\Lambda_g = (\lambda_1, \lambda_i, ...)$ for
-each genealogy from equations 10 or 14. 
-The likelihood of each observed waiting distance (X$_g$) between tree or
-topology change events can then be calculated from a series of exponential 
-probability density functions (equation 8) parameterized by their 
-corresponding rate parameters ($\Lambda_g$). 
-The set of MSC model parameters -- which affect $\Lambda_g$ -- 
-that maximize the summed log-likelihood of all observed distances 
-between recombination events represents the maximum likelihood solution.
+their interval lengths in the genome X = ($x_1, x_2, ..., x_n$),
+a subset of genealogies can be extracted that represent the unique 
+trees between tree-change events, 
+G$_g$ = ($\mathcal{G}_1, \mathcal{G}_i, ...$), and 
+waiting distances can be measured as the summed interval lengths between 
+these trees, 
+X$_g$ = ($\sum_{i=1}^j x_i, \sum_{i=j}^{k} x_i, ..., $).
+The same could be done for topology-change events. 
+Given a parameterized species tree $\mathcal{S}$ and recombination 
+rate $r$ we can then obtain a sequence of exponential rate parameters
+$\Lambda_g = (\lambda_1, \lambda_i, ...)$ corresponding to each genealogy
+in G$_g$ (equations 10 or 14). 
+The likelihood of each observed waiting distance in X$_g$
+can then be calculated from the exponential probability density 
+function (equation 8) with rate parameters from $\Lambda_g$. 
+The maximum likelihood solution can be found by searching for the
+set of MSC model parameters -- which affect $\Lambda_g$ -- 
+that maximize the summed log-likelihood of the observed waiting distances.
 
 We first implemented this approach for a simple two-population model with 
 constant $N_e$=200K and a population divergence at 500K generations. 
-We simulated 100 independent ARGs each 100Kb in length using $r$=2e$^{-9}$, 
-and sampled four haplotypes per population. This 
-yielded 51,487 tree-change events with a mean length of 194bp, and 25,446 
-topology-change events with a mean length of 393bp. To examine the likelihood
-surface we calculated the log-likelihood of joint parameters for $N_e$ and $r$, 
-while keeping a fixed divergence time parameter, over a grid search of 41 
-values between $r=1e^{-9}$ to 3e$^{-9}$, and $N_e$=50K to 800K. The likelihood
-surface for tree-change distances exhibited a ridge that contained the true 
+We simulated 100 independent ARGs, each 100Kb in length, using $r$=2e-9, 
+and we sampled four haplotypes per population. This 
+yielded 51,487 tree-change events, with mean length 194bp, and 25,446 
+topology-change events, with mean length 393bp. To examine the likelihood
+surface, we calculated the log-likelihood of joint parameters for $N_e$ and $r$, 
+while keeping a fixed divergence time parameter, over a grid search of 41
+evenly spaced values from $r$=1e-9 to 3e-9 and 
+$N_e$=50K to 800K. The likelihood
+surface for tree-change distances exhibited a ridge containing the true 
 parameter values (Fig.~\ref{fig:fig-likelihood}b), while the topology-change 
 likelihood surface exhibited a distinct peak at the true values
 (Fig.~\ref{fig:fig-likelihood}c). The summed log-likelihoods from both tree 
@@ -2231,7 +2346,7 @@ and topology change distances provided the most informative likelihood surface
 We also inferred a likelihood surface for a misspecified model, in which 
 the genealogies were generated under a 2-population model, but 
 the $\Lambda_g$ rate parameters were calculated for a single population 
-model with constant $N_e$. Model misspecification introduces a significant 
+model with constant $N_e$. This model misspecification introduced a significant 
 bias in parameter estimation, shifting the likelihood surface towards lower $r$ 
 and higher $N_e$ (Fig.~\ref{fig:fig-likelihood}e). This demonstrates that even 
 for a simple two population model, ignoring population structure can significantly
@@ -2243,40 +2358,89 @@ bias spatial genealogical inference methods.
 	\includegraphics[width=0.55\textwidth]{figures/likelihood-posteriors.pdf}
 	\caption{
 		Joint inference of MSC model parameters using waiting distances 
-		calculated under the MS-SMC'. (a) ARGs were simulated under a two-population 
+		calculated under the MS-SMC. (a) ARGs were simulated under a two-population 
 		MSC model with variable $N_e$. (b) Posterior distributions of the three 
-		$N_e$ parameters jointly inferred from tree and topology-change waiting 
-		distances.
+		$N_e$ parameters jointly inferred from tree- and topology-change waiting 
+		distances. The true model $N_e$ values fall within the estimated 
+		95\% HPDI intervals. 
 	}
 	\label{fig:fig-likelihood-posterior}
 \end{figure}
 
-To examine the accuracy of MSC parameter inference on more complex 
-models, we implemented a Metropolis-Hastings Markov chain Monte Carlo 
-(MCMC) algorithm to infer Bayesian posterior distributions of MSC model 
-parameters under a 2-population model with variable $N_e$ 
+To examine parameter inference under more complex MSC models we 
+implemented a Bayesian approach using a Metropolis-Hastings Markov 
+chain Monte Carlo (MCMC) algorithm to compute the joint posterior 
+probability distribution of multiple $N_e$ parameters for a 
+2-population model with variable $N_e$ of 200K, 300K, or 400K
 (Fig.~\ref{fig:fig-likelihood-posterior}a).
-The input ARGs were simulated using the same settings as above, 
-but under this more complex MSC model, and in this case, 
-we sampled 8 haplotypes per population. We set a uniform prior on 
-$N_e$ between 1e$^2$-1e$^7$, and ran the MCMC chain to sample 
-10K values, sampling every 5th iteration following a 1K iteration 
-burnin. For simplicity, we fixed the population divergence time to 
-the correct value of 500K to focus solely on $N_e$ estimation. 
+The input ARGs were simulated under this more complex MSC model but otherwise
+used the same settings as in the example above.
+% , and in this case, we sampled 8 haplotypes per population. 
+We set a uniform prior on all three $N_e$ parameters between 
+1e$^2$ and 1e$^7$, and ran a single MCMC chain to sample 10K 
+values, sampling every 5th iteration following a 1K iteration burnin. 
+For simplicity, we fixed the population divergence time and
+recombination rate to their correct values to focus solely on 
+$N_e$ estimation. 
+% 
+% 
+% It would be better to describe this as falling within a X% 
+% credible interval.
+% 
+All parameters converged with ESS values exceeding 2000, 
+and the 95\% highest posterior density intervals (HPDI) for
+each posterior probability distribution included the true 
+parameter
+(Fig.~\ref{fig:fig-likelihood-posterior}b).
+% 
+% 
+This suggests that multiple MSC model parameters can be accurately 
+inferred from waiting distance information alone. 
+% This paves
+% the way for a new mode of phylogenetic inference, where 
+% a road for future 
+% paving the way for new phylogenetic inference methods 
+% that can analyze linked genome data for species tree inference.
+% Further theoretical and empirical work will be needed to
+% explore this in greater detail.
 
-The resulting maximum \emph{a posteriori} probability estimates of 
-model parameters are highly accurate, all falling within 0.5 
-standard deviations of the true values 
-(Fig.~\ref{fig:fig-likelihood-posterior}b). 
-This result is encouraging, considering that it may be possible, under
-some MSC models, for many different parameter combinations to yield 
-similar waiting distance expectations, which could cause identifiability
-issues. However, by combining information from both tree and topology 
-waiting distances this problem may be reduced. Our results suggest 
-that MSC model parameters can be identifiable from genealogical 
-waiting distances, at least for relatively simple models like the ones
-examined here, but further theoretical and empirical work will be needed
-to explore this issue in greater detail.
+%  in that it confirms that 
+% considering that it may be possible, under
+% some MSC models, for many different parameter combinations to yield 
+% similar waiting distance expectations, which could cause identifiability
+% issues. However, by combining information from both tree and topology 
+% waiting distances this problem may be reduced. Our results suggest 
+% that MSC model parameters can be identifiable from genealogical 
+% waiting distances, at least for relatively simple models like the ones
+% examined here, 
+
+% =======
+% The input ARGs were simulated using the same settings as above, 
+% %but under this more complex MSC model, and in this case, 
+% %we sampled 8 haplotypes per population. We set a uniform prior on 
+% except that we used this more complex MSC model and
+% sampled 8 haplotypes per population. We set a uniform prior on 
+% $N_e$ between 1e$^2$-1e$^7$ and ran the MCMC chain to sample 
+% 10K values, sampling every 5th iteration after a 1K iteration 
+% burnin. For simplicity, we fixed the population divergence time to 
+% the correct value of 500K and focused solely on $N_e$ estimation. 
+
+% The resulting maximum \emph{a posteriori} probability estimates of 
+% model parameters are highly accurate, all falling within 0.5 
+% standard deviations of the true values 
+% (Fig.~\ref{fig:fig-likelihood-posterior}b). 
+% This result is encouraging, considering that it may be possible under
+% some MSC models for many different parameter combinations to yield 
+% similar waiting distance expectations, potentially causing identifiability
+% %issues. However, by combining information from both tree and topology 
+% %waiting distances this problem may be reduced. Our results suggest 
+% issues. However, combining information from both tree and topology 
+% waiting distances may help address this problem. Our results suggest 
+% that MSC model parameters will sometimes be identifiable from genealogical 
+% waiting distances, at least for relatively simple models like the ones
+% examined here. Further theoretical and empirical work will be needed
+% to explore this question in greater detail.
+% >>>>>>> 8a0665285dacae9af3b3045ce3fbb7b870619d5a
 % Anecdotally, we found that using multiple independent ARGs improves 
 % the accuracy of this joint inference method compared to a single 
 % larger ARG. This suggests that ...
@@ -2375,123 +2539,731 @@ to explore this issue in greater detail.
 
 \section{Discussion}
 
+% Restate the problem
+Genealogical relationships vary spatially across chromosomes, reflecting 
+a history of recombination between genome segments inherited from 
+different ancestors. Such variation can be modeled by the sequentially 
+Markov coalescent, which provides a generative process upon which 
+many statistical methods have been developed \citep{mcvean2005approximating, spence_inference_2018}.
+% ledto many advances for the study of linked genome data.
+% The SMC' describes a generative 
+% process for which statistical methods can be developed to model the variation 
+% between sequential genealogies. 
+% This has led to many significant 
+% advances for the study of linked genome data. 
+% However, SMC'-based methods remain limited with regard to the scale 
+% at which they are applied, typically either acting across 
+% very few samples and only considering pairs of coalescent events instead of entire 
+% genealogies \citep{terhorst_etal2016,li_durbin2011, schiffels_durbin2014}. 
+%%The forward-backward algorithm of PSMC/MSMC/SMC++ does consider the whole sequence
+%%of trees, and being grounded in SMC' they do consider invisible recombination events
+%%In my mind the main limitation is with regard to sampling and constraining the model
+%%To an analytical solution for just two samples, studying the timing of a coalescence 
+%%between pairs rather than the relationships among all samples
+However, most applications of the SMC' remain highly limited with regard to 
+the scale over which they extract information from genomes -- extending forward 
+just one recombination event at a time. 
+By contrast, the recent development of solutions for predicting 
+tree- and topology-change waiting distances under the SMC' \citep{deng_distribution_2021} 
+effectively adds two additional, longer-range sources of information for 
+any position in a genome. 
+% \hl{In this original formulation,} 
+In their model,
+these distances are a 
+result of the probabilities of different phenomenological outcomes of the 
+SMC' process given a genealogy embedded in a single population coalescent
+model with constant $N_e$.
+% ^prob worth cleaning up this sentence
+% within the constraints of a demographic model.
+%regardless of the outcome for the genealogy \citep{terhorst_etal}. 
+%However, 
+%for many datasets, 
+%this limits the information that is available for SMC-based inference methods, 
+%recombination events between pairs of individuals will often be uninformative 
+%and the signal in the sequence data resulting from changes in the underlying genealogies
+%will be spread across larger distances and will simultaneously impact relationships among all samples. 
+% In contrast, the recent solutions by \citep{deng_distribution_2021} for the probabilities 
+% of different categorical types of recombination events (tree-changes and 
+% topology-changes) focus on "thinning" out invisible recombination events -- 
+% instead modeling impactful recombination events 
+% that extend over great spatial genomic distances and affect the relationships among samples. 
+% Further, these solutions are for the full genealogy of all samples simultaneously rather 
+% than isolating a subset of samples and coalescences. 
+Here we extended this framework, deriving new solutions for the probabilities 
+of tree-change and topology-change events for a genealogy embedded 
+in any arbitrarily parameterized structured coalescent model. 
+These solutions lay a groundwork for exploring how variation in
+species tree parameters affects neutral expectations of genealogical 
+heterogeneity across chromosomes.
 
+% These solutions, extended from initial work by \citep{deng_distribution_2021}, 
+% lay a groundwork for exploring how variation in species tree parameters 
+% affects neutral expectations of genealogical heterogeneity across chromosomes.
+
+% This provides a new framework for modeling spatial genealogical variation
 
 % Summarize what we did
+% We solved for the expected turnover rate in genealogical trees and topologies 
+% along a genome under an arbitrary species tree topology with arbitrary 
+% divergence times, and with arbitrary Ne values for each species tree branch.
+%structuring the equations to accept an arbitrary species tree topology 
+%and a different, arbitrary Ne value for each species tree branch. 
+% These solutions, extended from initial work by \citep{deng_distribution_2021}, 
+% lay a groundwork for exploring how variation in species tree parameters 
+% affects neutral expectations of genealogical heterogeneity across chromosomes.
+
+\subsection{Applications of the MS-SMC}
+% Our primary result is the ability to predict length of a genealogy
+Our MS-SMC approach provides a predictive model for the relationship between 
+a parameterized species tree and the length of a genomic interval over which 
+a genealogy is expected to be observed. We demonstrated the accuracy of our 
+implementation relative to stochastic simulations performed under both the 
+full coalescent with recombination and the SMC' approximation 
+\citep{hudson1983properties,wiuf_recombination_1999,mcvean2005approximating}. 
+% \hl{Within our framework, MSC model parameters determine rates of coalescence}
+Within our framework, MSC model parameters determine probabilities of coalescence
+in species tree intervals and prevent coalescence between lineages that are separated
+%into different species tree intervals.
+by species divergence events.
+%and dictate where coalescence may occur, 
+% preventing coalescences among lineages separated into different
+% species tree intervals. 
+% For any MSC model, the effects of MSC parameters
+% with regard to genealogy turnover can be statistically 
+The effects of MSC model parameters on spatial genealogical variation can be statistically
+modeled and visualized (Fig.~\ref{fig:fig1}; Fig.~\ref{fig:figS-edge-probabilities}), and 
+our examples show that the neutral rate
+of turnover in genealogical trees and topologies across a genome is highly 
+dependent on species tree model parameters.
+% feels like disconnected sentences
+
+
+% Recap of what a waiting distance is... maybe get rid of this.
+% The expected waiting distance between recombination events under the SMC' 
+% is modeled as the product of the recombination rate (in units of events 
+% per site per generation) and the summed edge lengths of a current genealogy 
+% (in units of generations). Because only a subset of possible recombination 
+% events cause a tree-change or topology-change, the expected waiting distances 
+% between these categorical types of events can be similarly modeled by simply
+% weighting by the probability that a recombination event is of the specified type.
+
+% Previously, lengths could only be simulated .But analytical methods are better.
+A complex relationship exists between a parameterized MSC model, 
+the distribution of genealogies that can arise under that model, and the 
+spatial distances over which those genealogies are expected to span.
+Previously, such patterns could only be examined through stochastic simulations. 
+For example, \cite{mckenzie_multispecies_2020} used exhaustive simulations to examine 
+the effect of species tree parameters on genetic linkage by varying species tree
+length, size, and shape. 
+While this approach is practical for estimating the \emph{mean} linkage across
+a large set of sampled genealogies under a specific demographic model, it is
+impractical for estimating the persistence of \emph{individual} genealogies. 
+% Indeed, a large distribution of simulated waiting distances would need to be 
+% generated for every genealogy to obtain expectations.
+% Simulation approaches are particularly intractable for studying sequences of 
+% many genealogies, for which individual distributions would need to be
+% generated for every tree in a sequence. 
+% Similarly, it did not... more here please.
+%\hl{In addition to providing fast calculations of waiting distances, 
+%analytical solutions also offer the opportunity to develop likelihood-based
+The analytical solutions presented here not only enable fast calculations but also the opportunity to develop likelihood-based
+methods for fitting models that link MSC parameters to ARGs.
+%%feels out of place -- eg we haven't used the word "analytical" yet
+% I'm OK with it, I think.
+
+% inferring MSC models from ARGs, or ARGs from MSC models 
+% (discussed below).
+% framework sequences of observed waiting distances, helping infer MSC models from ARGs or
+% ARGs from MSC models (see below).
+
+% The analytical solutions that we derived in this study 
+% allow us to quickly predict waiting distances for any embedded genealogy. 
+% Furthermore, they allow us to develop a likelihood framework for modeling
+% sequences of observed waiting distances, helping infer MSC models from ARGs or
+% ARGs from MSC models (see below).
+
+% This framework can be extended...
+Many extensions of the MS-SMC are possible, including applications to more
+complex demographic models and the development of specific hypothesis testing
+frameworks. 
+% allowing for the development
+% of hypothesis testing frameworks, or applications to more complex demographic models.
+%For example, instead of embedding genealogies in a species tree, they could instead
+For example, genealogies could instead
+be embedded in a species network following the multispecies network coalescent model 
+\citep{wen_bayesian_2016}. This would involve modeling the coalescent histories as a 
+probabilistic process that could follow one of multiple possible paths through a network.
+Differences between the expected waiting distances in genomic regions derived from 
+one embedding path history versus another may be highly informative about the 
+network model in which genealogies are embedded. 
+Therefore, incorporating linked genealogical information may prove valuable 
+towards resolving intractable problems in species tree or network
+inference by moving beyond the limited information available 
+from the frequencies of unlinked gene trees.
+
+
+
+
+% into phylogenetic net
+% Such information may be useful towards inferring local hybrid ancestry, or 
+% for estimating or comparing phylogenetic network models.
+% adds further complexity to the MSC by modeling ancestral reticulation events.
+% Evaluating waiting distances between topology changes in genomic regions derived 
+% from one network history versus another may be highly informative for inferring 
+% local hybrid ancestry while avoiding falsely implicating regions of shared ancestry 
+% due to ILS alone, or for inferring phylogenetic networks.
+% the expected distance 
+% from a given genealogy and to estimate the expected distance over which 
+% monophyly is expected to persist for this clade under neutrality. Doing so would be useful
+% for investigating turnover in specific relationships between taxa. 
+
+
+% this approach for estimating waiting distances MS-SMC 
+% are possible. One next step could be to isolate a clade
+% from a given genealogy and to estimate the expected distance over which 
+% monophyly is expected to persist for this clade under neutrality. Doing so would be useful
+% for investigating turnover in specific relationships between taxa. 
+% Another extension would be to accommodate the multispecies network coalescent, which 
+% adds further complexity to the MSC by modeling ancestral reticulation events.
+% Evaluating waiting distances between topology changes in genomic regions derived 
+% from one network history versus another may be highly informative for inferring 
+% local hybrid ancestry while avoiding falsely implicating regions of shared ancestry 
+% due to ILS alone, or for inferring phylogenetic networks.
+%% still need more here -- maybe stressing the specific value of the *distance*
+%% approach as a computational solution for likelihoods that we never thought we
+%% would have the power to do (eg marginalizing across sequence data probs given 
+%% all possible args is not possible)
+% Many extensions of this approach for estimating waiting distances MS-SMC 
+% are possible. One next step could be to isolate a clade
+% from a given genealogy and to estimate the expected distance over which 
+% monophyly is expected to persist for this clade under neutrality. Doing so would be useful
+% for investigating turnover in specific relationships between taxa. 
+% Another extension would be to accommodate the multispecies network coalescent, which 
+% adds further complexity to the MSC by modeling ancestral reticulation events.
+% Evaluating waiting distances between topology changes in genomic regions derived 
+% from one network history versus another may be highly informative for inferring 
+% local hybrid ancestry while avoiding falsely implicating regions of shared ancestry 
+% due to ILS alone, or for inferring phylogenetic networks.
+%%^specifically as a null hypothesis! 
+
+% MSC model requires gene tree frequencies, but what is a gene tree?
+% The multispecies coalescent is a model to describe an expected distribution 
+
+% The multispecies coalescent describes an expected distribution of genealogies
+% from unlinked regions of a genome, and therefore, despite the increasing 
+% availability of whole-genome data, it remains common practice to subsample 
+% a small number of unlinked loci from whole genomes for species tree inference
+% \citep[e.g.,][]{jarvis_whole-genome_2014}, to avoid this bias. 
+% This effectively discarding the vast majority of sequenced data. 
+% genomic datasets are often 
+% filtered prior to MSC analyses to avoid sampling linked regions, which could
+% bias this distribution. %effects on the distribution of sampled genealogies.
+% can cause this
+% distribution to deviate from its expectation, 
+% s under the MSC, 
+% multi-locus datasets are often highly filtered to avoid this bias. %sampling linked loci.
+% and is the basis for phylogenetic methods aimed 
+% at inferring a species tree as a hierarchical model of relationships among 
+% populations or species.
+% However, because genetic linkage can cause the distributions of genealogies
+% to deviate from their expectations under the MSC, multi-locus datasets are 
+% often highly filtered to avoid this bias. %sampling linked loci.
+% among genealogies sampled from different regions
+% of a genome can cause their distribution to deviate from the expectations of the
+% MSC, multi-locus datasets used for species tree inference are often highly filtered to 
+% avoid this type of model violation. 
+% For example, even as whole genome sequence data has become increasingly available, 
+% it remains common practice to subsample a small number of discrete unlinked loci
+% from whole genomes for species tree inference \citep[e.g.,][]{jarvis_whole-genome_2014},
+% effectively discarding the vast majority of sequenced data. 
+
+\subsection{Phylogenetic and local ancestry inference}
+
+% intralocus recombination, concatalescence, sliding windows, and null models.
+By linking species tree parameters to observable patterns in ARGs, the MS-SMC 
+can be used to improve both gene tree and species tree inference methods. 
+One practical application of waiting distance expectations 
+calculated under the MS-SMC is to guide the selection of appropriate 
+locus lengths for MSC analyses so as to avoid intra-locus recombination. 
+This process yields data within a locus that derive from multiple variable genealogies, 
+and so inferred gene trees represent concatenation artifacts.
+%For many multispecies datasets, topology-change waiting distances are much shorter
+Topology-change waiting distances are often much shorter
+than sampled locus lengths for multispecies datasets \citep{mckenzie_multispecies_2020}, and this is 
+especially likely when gene trees are inferred from large genomic sliding windows 
+\citep[e.g.,][]{li2019recombination}. 
+When repeated across many loci, concatenation artifacts can cause 
+the distribution of gene trees, or of their summary statistics, to deviate 
+from expectations under the MSC -- a process termed concatalescence 
+\citep{gatesy_concatenation_2013}. 
+
+
+% By addressing intra-locus recombination as a source of gene tree error, 
+% phylogenetic inference methods can be improved. ARG inference can be 
+% considered at the scale of individual contigs, as opposed to whole 
+% chromosomes... 
+One way to improve gene tree inference for individual loci is to 
+re-conceive the problem as one in which loci can have multiple
+gene tree histories and are thus better represented as ARGs.
+Applications of ARG inference have historically been applied at the
+scale of entire chromosomes, and usually to samples that are modeled
+%as existing within a single population 
+as being in a single population 
+\citep{rasmussen2014genome, kelleher2019inferring, speidel2019method}.
+However, ARGs can exist for any stretch of the genome, 
+including short aligned contigs, and recent methods can 
+infer ARGs conditional on a structured demographic model that 
+includes splits between more distantly related genomes 
+\citep{hubisz2020inference}.
+% ^is the "or genes" important here?
+% ^the nod to argweaver-D feels out of sync with the first part of the sentence
+Although our example likelihood-based implementation of the MS-SMC 
+showed that MSC model parameters can be estimated from an observed ARG 
+(Fig.~\ref{fig:fig-likelihood}, Fig.~\ref{fig:fig-likelihood-posterior}), 
+we expect that many useful applications of the MS-SMC will likely come 
+from the inverse application: inferring ARGs given a parameterized species
+tree model. Or, from joint inference of both MSC models and ARGs. 
+For example, although ARGWeaver-D \citep{hubisz2020inference} 
+can currently propose an ARG conditional 
+on a structured demographic model, which can generate genealogies with
+tree- and topology-change waiting distances as predicted under the SMC', 
+these distances do not contribute to the likelihood score of an ARG. 
+We speculate that incorporating this information could improve both accuracy
+and convergence.
+% We speculate that incorporating waiting distance expectations 
+% between tree and topology-change events into likelihood calculations within
+% existing frameworks like ARGWeaver-D \citep{hubisz2020inference} 
+% could improve both accuracy and convergence.
+% =======
+% We speculate that incorporating waiting distance expectations 
+% between tree- and topology-change events into likelihood calculations within
+% existing frameworks like ARGWeaver-D \citep{hubisz2020inference} 
+% could improve both accuracy and convergence.
+% >>>>>>> c05360427950ebf3ba4000c3d3fca958dae11264
+
+% The challenge of reconstructing accurate genealogies for such regions 
+% presents a major source of error in evolutionary studies. These 
+% gene trees serve not only as input to MSC-based models, but are also 
+% often of interest for providing insight into the evolutionary history 
+% of functional traits \citep{moore_targeted_2018}. 
+
+% SNP-based methods, discarding data, and a new paradigm.
+% MAYBE REMOVE (Save for a grant proposal)
+In contrast to current phylogenomic inference approaches which tend to 
+either ignore genetic linkage, or to discard the vast majority of 
+sequenced data in effort to avoid it, one could envision an 
+alternative, spatially aware phylogenetic inference framework 
+that more effectively utilizes linked genomic data. 
+This would mark a major transition in phylogenetics, where
+recombination could be viewed as a source of information rather than 
+%as opposed to 
+a source of error. We see the MS-SMC as an important step in this 
+direction. 
+For example, a joint ARG and species tree inference approach might build upon the 
+% One further approach may be to build upon the framework of the species
+species tree inference method SNAPP \citep{bryant2012inferring}. 
+SNAPP subsamples a single unlinked SNP from each locus and integrates over a 
+distribution of genealogies that could have produced it, with the goal
+of bypassing the problem of gene tree inference. 
+%SNAPP subsamples a single unlinked SNP from each locus with the goal
+%of bypassing the problem of gene tree inference by integrating over a 
+%distribution of genealogies that could produce each observed SNP pattern. 
+A theoretical ARG-based extension of this approach might 
+analyze many linked SNPs and integrate over a distribution of ARGs that 
+could have produced each linked pattern, with the goal of bypassing ARG inference.
+% and bypass ARG inference by integrating over a 
+% distribution of ARGs that could produce each linked pattern. 
+By reducing the complexity of ARG inference to a problem of windows between 
+topology-change events, as opposed to any two recombination events, 
+the MS-SMC provides a more efficient framework that could potentially
+make methods linking ARGs and species tree inference possible.
+
+% Evo Hypotheses; Null model; improving ARG inference.
+Finally, a common goal of many local ancestry inference methods is to test 
+evolutionary hypotheses involving selection or introgression \citep{martin_exploring_2017}.
+For example, sliding window analyses have been used to identify putatively 
+introgressed loci in \emph{Heliconius} butterflies \citep{zhang2016genome} 
+and felids \citep{li2019recombination}. Such conclusions are often based on 
+the genomic interval lengths over which certain topological gene tree patterns 
+are observed. We suggest that such conclusions should be examined 
+critically when made without reference to a null-model-based expectation.
+Our results show that neutral expectations for waiting distances between 
+genealogy changes can exhibit high variance, and that this variance will
+be spatially auto-correlated, such that a topology or clade may exist over
+long stretches of the genome simply by chance.
+% \hl{The MS-SMC can provide a null model for waiting distance expectations
+% given an inferred demographic model, from which a more robust evolutionary 
+% hypothesis testing framework can be implemented.}
+%^I think this last sentence inecessary -- and the one before it makes 
+% a slightly better final sentence!
+
+% Our simulations show
+% that the mean and variance of waiting distance expectations 
+
+% observed distances
+% could 
+
+%  The expected waiting distances between 
+% topology-change events can exhibit large variation, and depending on demographic
+% parameters, the waiting distances between changes in support for different
+% clades will similarly exhibit high variation. 
+
+
+
+
+
+% \subsection{Local ancestry inference}
+
+% A major challenge for such methods is that genealogies and their waiting 
+% distances cannot be observed directly, and so most approaches will require 
+% either jointly inferring ARGs, or integrating over distributions of possible 
+% % ARGs. However, genetic linkage can also provide useful phylogenetic information 
+% % even when ARG inference is unfeasible, such as among distantly related genomes. 
+
+
+% Of course, the MSC already allowed us to calculate the probability of observing a particular 
+% genealogy at some location in the genome, but the equations here represent a further step by 
+% generating a density function that represents the likelihood of \emph{persistence} 
+% of that topology across some region, under neutrality alone. 
+% This finding is particularly important for the practice of identifying evidence 
+% of selection or introgression based on the spatial distribution of gene tree 
+% patterns, which is an increasingly popular goal of phylogenomic studies. 
+% For example, sliding-window analyses for detecting introgression have 
+% been used to identify putatively introgressed loci in \emph{Heliconius} 
+% butterflies \citep{zhang2016genome} and felids \citep{li2019recombination}. 
+
+
+% A major challenge for this vision is that genealogies and their waiting 
+% distances cannot be observed directly, and so many approaches will require 
+% either jointly inferring ARGs, or integrating over distributions of possible 
+% ARGs. However, genetic linkage can also provide useful phylogenetic information 
+% even when ARG inference is unfeasible, such as among distantly related genomes. 
+
+% 
+% Genetic linkage can also bias species tree inference in the context of 
+% intra-locus recombination. This causes data within a locus to derive from 
+% multiple variable genealogies, and introduces concatenation artifacts into 
+% gene tree inference. When repeated across many loci, this can cause 
+% the overall distribution of gene trees, or of their summary statistics, 
+% to deviate from expectations under the MSC -- a process termed 
+% concatalescence \citep{gatesy_concatenation_2013}. 
+% One very practical application of the MS-SMC is to serve as a guide for 
+% selecting appropriate locus lengths to avoid intra-locus tree or topology
+% variation in MSC analyses. Mean waiting distances can be estimated for a 
+% proposed species tree model, recombination rate, and number of samples per 
+% species. For data sets in which tree and topology-change waiting distances 
+% are much shorter than locus lengths, SNP-based species tree inference 
+% methods \citep[e.g.,][]{chifman2014quartet, bryant2012inferring} 
+% may be preferable.
+
+
+
+
+% . Thus, any 
+% approach would require either jointly inferring ARGs, or integrating over 
+% distributions of possible ARGs. 
+
+
+% One approach, discussed below, focuses on the scale of whole genomes. However, 
+% genetic linkage could alternatively provide information at local scales as well, 
+% even among highly divergent species for which complete ARG inference is not 
+% possible. 
+
+
+
+% genetic linkage may 
+
+% However, before such an approach could become feasible, a number of significant 
+% challenges would need to be overcome, not least of which being the fact that 
+% genealogies and their waiting distances cannot be observed directly. Thus, any 
+% approach would require either jointly inferring ARGs, or integrating over 
+% distributions of possible ARGs. 
+
+% Because species trees
+% can be inferred from unlinked data, waiting distance information may be most applicable
+% for ARG inference given an inferred MSC model.
+
+% the most serious of which being the fact that genealogies
+% cannot be observed directly, and so any approach would likely require either 
+% inferring ARGs or integrating over distributions of possible ARGs. 
+% Another possible direction may involve bypassing local gene tree inference 
+% altogether, as in the approach taken by SNAPP \citep{bryant2012inferring}, 
+% which can compute the likelihood of a species tree from unlinked SNP 
+% patterns by effectively integrating over all possible gene trees that 
+% could produce each SNP. A spatially explicit version might instead
+% aim to calculate the likelihood that any two SNP patterns
+% , and thus their underlying topologies, 
+% %% (would probably start with topos, and then calculate snps from topos...)
+% would exist given the spatial distance
+% separating them. 
+
+% The development of new inference methods that can more effectively
+% utilize linked genome data could offer new opportunities to address 
+% some of the most challenging phylogenetic problems.
+
+% a common practice for has been to 
+% subsample a small number of discrete unlinked loci from whole genome 
+% alignments for species tree inference \citep[e.g.,][]{jarvis_whole-genome_2014}
+% effectively discarding the vast majority of sequenced data. 
+% The multispecies coalescent is a model to describe the expected distribution 
+% of unlinked genealogies given a parameterized MSC model and is the basis
+% for modern phylogenetic approaches that infer a species tree as a 
+% hierarchical model of relationships among populations or species. 
+% However, because genetic linkage among genealogies sampled from different regions
+% of a genome can cause their distribution to deviate from the expectations of the
+% MSC, multi-locus datasets used for species tree inference are often highly filtered to 
+% avoid this type of model violation. For example, even as whole genome sequence data 
+% has become increasingly available, a common practice for has been to 
+% subsample a small number of discrete unlinked loci from whole-genome 
+% alignments for species tree inference (e.g., Jarvis paper and that recent Moth paper), 
+% effectively discarding the vast majority of sequenced data. 
+
+% Although in many cases this may be sufficient for species tree inference, ...
+% Even after subsampling unlinked loci, genetic linkage can still bias
+% species tree inferences if the data within a locus is derived from 
+% multiple variable genealogies. 
+
+
+
+% intra-locus recombination, where the data within a locus is derived from 
+% multiple variable genealogies. 
+% This introduces concatenation artifacts into gene tree inference, which
+% can bias either distributions of gene trees, or of their summary statistics, 
+% such as quartet frequencies, leading to deviations from expectations under the 
+% MSC -- a process termed concatalescence \citep{gatesy_concatenation_2013}. 
+% tree inference can 
+% still
+% face potential problems from genetic linkage if the genealogical data within 
+% individual loci is variable. 
+% In theory, a locus is meant to correspond to sequences evolved on only a single 
+% genealogical tree or topology across its entire length, depending on whether 
+% the inference method uses branch length information \citep[e.g.,][]{liu2010maximum}
+% or not \citep[e.g.,][]{zhang2018astral}. 
+% If a locus corresponds to multiple genealogies then its inferred gene tree 
+% will be influenced by concatenation, which can bias the distribution
+% of gene trees, and even summary statistics like quartet frequencies, 
+% to deviate from the expectations of the MSC -- a process termed concatalescence 
+% \citep{gatesy_concatenation_2013}. One practical 
+% One very practical application of the MS-SMC is to serve as a guide for 
+% selecting appropriate locus lengths for MSC analyses. A reasonable waiting
+% distance between tree or topology changes can be estimated for a proposed
+% species tree model, recombination rate, and number of samples per species
+
+% , where a reasonable waiting distance between
+% genealogical trees or topologies can be estimated given a proposed 
+% species tree model, recombination rate, and number of samples per species.
+
+% One could envision a future, spatially explicit phylogenetic inference
+% framework in which linked genome data can be used directly for species
+% tree inference. This would mark a major transition in phylogenetics, where
+% recombination would shift from being viewed as a source of error to becoming
+% a source of information. We see the MS-SMC as a small step in this 
+% direction. 
+% As an example, we showed that species tree parameters can be 
+% estimated from the information in genealogical waiting distances alone. 
+% However, we must overcome many challenges before this approach 
+% could become practical, the most serious of which being the fact that genealogies
+% cannot be observed directly, and so any approach would likely require either 
+% inferring ARGs or integrating over distributions of possible ARGs. 
+% Another possible direction may involve bypassing local gene tree inference 
+% altogether, as in the approach taken by SNAPP \citep{bryant2012inferring}, 
+% which can compute the likelihood of a species tree from unlinked SNP 
+% patterns by effectively integrating over all possible gene trees that 
+% could produce each SNP. A spatially explicit version might instead
+% aim to calculate the likelihood that any two SNP patterns
+% , and thus their underlying topologies, 
+% %% (would probably start with topos, and then calculate snps from topos...)
+% would exist given the spatial distance
+% separating them. 
+% To extend these SNP-based methods and/or to improve gene-tree-based methods to better delimit gene tree breakpoints, 
+% we propose that incorporating the rates of turnover observed in the data as 
+% information could actually offer useful new information for inferring the species tree 
+% model that generated it. 
+
+
+% \subsection{Local ancestry inference}
+% As whole genomes 
+
+% 1. In most cases, unlinked genomic data may be sufficient to accurately infer 
+% an MSC model.
+% 2. Hypotheses to test
+% 3. But lack of null model. We now can have a hypothesis testing framework.
+% 1. Similarly, ARG slash local ancestry inference methods employ model-based
+% approaches that similarly use the SMC'. However, these approaches are 
+% currently limited in the range over which information is extracted from 
+% spatial genealogical patterns. Effectively reaching only one recombination
+% event at time. By incorporating tree-change or topology-change events, 
+% and their distances, ARG inference methods could optimize ARG inference
+% ... 
+% 2. This may especially help to extend the utility of such methods to more
+% deeply divergent populations, where waiting distances are shorter, and may
+% often involve many no-change events with little information for inferring
+% genealogies.
+
+
+% The ultimate goal of ARG inference in phylogenomic or population genomic studies
+% is often to detect signals of introgression or selection. 
+% However, even in the case of a neutral coalescent process 
+% with constant effective population sizes and with a constant recombination rate 
+% across the genome, highly structured demographic models can exhibit
+% high variance in the expected waiting distances until genealogical 
+% topology changes (e.g. Fig.~\ref{fig:fig-validation}). As genealogical trees and 
+% topologies vary along the genome, the waiting distance probability distribution 
+% does too -- the result of this is that certain genealogies are expected to persist longer than others 
+% due to their topology and coalescence times relative to the demographic model. 
+% Until now, there has been no analytical approach for generating a null hypothesis 
+% that describes the expected length of a region spanned by a particular genealogy under absolute neutrality.
+% Our results allow us to calculate this null expectations and to probe null hypotheses concerning the probability 
+% of observing specific waiting distances under different demographic models. 
+% Of course, the MSC already allowed us to calculate the probability of observing a particular 
+% genealogy at some location in the genome, but the equations here represent a further step by 
+% generating a density function that represents the likelihood of \emph{persistence} 
+% of that topology across some region, under neutrality alone. 
+% This finding is particularly important for the practice of identifying evidence 
+% of selection or introgression based on the spatial distribution of gene tree 
+% patterns, which is an increasingly popular goal of phylogenomic studies. 
+% For example, sliding-window analyses for detecting introgression have 
+% been used to identify putatively introgressed loci in \emph{Heliconius} 
+% butterflies \citep{zhang2016genome} and felids \citep{li2019recombination}. 
+% Further, since we are able to calculate the likelihood of observing any sequence of waiting 
+% distances associated with an ARG, we speculate that incorporating our waiting distance 
+% expectations could be incorporated into ARG-inference methods like
+% ARGweaver, ARGweaver-D, tsinfer, and relate \citep{rasmussen2014genome, hubisz2020inference, kelleher2019inferring, speidel2019method} 
+% as an additional source of information. 
+
+%Topological gravity wells. 
+%Even in the case of a neutral coalescent process 
+%with constant effective populations sizes and constant recombination rate 
+%across the span of a genome, highly structured demographic models can exhibit
+%high spatial variance in the expected waiting distances until topology changes. 
+%This finding is particularly important for the practice of identifying evidence 
+%of selection or introgression based on the spatial distribution of gene tree 
+%patterns. For example, sliding-window analyses for detecting introgression have 
+%been used to identify putatively introgressed loci in \emph{Heliconius} butterflies \citep{zhang2016genome}. 
+%Our results here highlight the fact that the demographic history of this group is 
+%important for establishing a null hypothesis for the expected rate of turnover of genealogies along the genome.
+
+
 %We began with a simple question: what is the expected turnover rate in 
 %topologies along a genome under a species tree model? We generalized a 
 %recent solution that used a single population and constant Ne \citep{deng_distribution_2021}, instead 
-We solved for the expected turnover rate in genealogical trees and topologies 
-along a genome under an arbitrary species tree topology with arbitrary 
-divergence times, and with arbitrary Ne values for each species tree branch.
-%structuring the equations to accept an arbitrary species tree topology 
-%and a different, arbitrary Ne value for each species tree branch. 
-These solutions, extended from initial work by \citep{deng_distribution_2021}, 
-lay a groundwork for exploring how variation in species tree parameters 
-affects neutral expectations of genealogical heterogeneity across chromosomes.
 
-% what do our results mean overall.
-A primary result of our work is solving the mechanistic link between a given species tree 
-and the length of a genomic interval representing a single genealogy 
-(i.e. calculating the expected waiting distance until a genealogy change). 
-With our analytical results it is clear how MSC parameters of divergence times and 
-effective population sizes influence these waiting distances, most obviously 
-by constraining the number and identity of available lineages and by determining 
-the coalescence rate in each branch of the species tree. 
-These parameters also affect the rate of recombination events along the genome, since the 
-number of recombination events per base pair is dependent on the total branch 
-length of each underlying genealogy. By preventing coalescence between select lineages toward the present, 
-species tree divergence events enforce minimum branch lengths for the genealogies, 
-increasing the number of recombination events per base pair. Similarly, by affecting coalescence rates, variation in Ne 
-affects the per-base-pair recombination rate. This is because coalescences farther back in time 
-(which are expected to be more common if Ne is large)
-increase the total branch lengths of the genealogies.
-Topological and sampling parameters, including tree shape, tree size (i.e. number of tips), 
-and the distribution of samples among species tree 
-lineages, similarly affect the expected distances until genealogy 
-changes. These factors all exert their influence via the same general mechanisms as above: they affect the 
-probability of coalescence among certain lineages by constraining the availability of those lineages 
-for coalescence with each other, and they influence the 
-rate of recombination by affecting the total branch length of each genealogy. 
-Taken together, it is clear that the scale at which we observe neutral turnover across 
-genealogies is highly dependent on the species tree model. The potential 
-intricacy of this species tree model alongside expected variation in individual genealogies 
-can lead to patterns of genealogical turnover (and therefore, linkage) that are highly complex. 
-%Because of low levels of incomplete lineage sorting, highly 
-%structured models might have much longer waiting distances than single-population models. 
-Previously, the expected linkage in phylogenetic datasets could only be computed 
-through exhaustive simulations (e.g., \citep{mckenzie_multispecies_2020}. While such methods
-are practical for estimating the \emph{mean} linkage across all genealogies under a 
-specific demographic model, they are less helpful for estimating the 
-persistence of \emph{individual} genealogies in localized regions. To generate an approximate distribution 
-of waiting distances locally on a chromosome using simulation methods, 
-simulations generating a full probability distribution must be 
-run individually for each genealogy in the sequence. 
-Although this is benign across single, short segments, it is not a tractable solution across long 
-sequences of genealogies and/or across many replicates. 
+% \subsubsection{older}
 
-% importance to phylogenetics
-%By accounting for the genomic heterogeneity that is expected due to incomplete 
-%lineage sorting, t
-While the multispecies coalescent model has facilitated the widespread 
-use of multilocus data for phylogenetic inference by accounting for genomic heterogeneity, 
-it does not consider autocorrelation along the genome due to linkage.
-%, and it assumes 
-%that each locus represents only a single genealogy. In reality, these assumptions might 
-%often be violated \citep{gatesy_concatenation_2013}. 
-%As phylogenetic systematics 
-%continues to turn toward whole genomes, methods should seek to extend the MSC to take advantage 
-%of the increased resolution offered by genomic data. 
-Specifically, the MSC overlooks the process of recombination, assuming that each locus 
-represents a single genetic history and that multiple loci are completely unlinked from one another. 
-From our results, and from previous work, we know that species tree parameters and recombination 
-rates will dictate the rate and magnitude of genealogical turnover along a chromosome, 
-potentially resulting in -- in some cases -- high linkage between loci, and 
--- in other cases -- multiple genealogical topologies 
-per locus. Therefore, not accounting for recombination might mislead 
-summary statistics methods \citep{liu2010maximum,gatesy_concatenation_2013,zhang2018astral}. 
-Some methods bypass genealogy inference by operating directly on SNP 
-frequencies \citep{bryant2012inferring,chifman2014quartet,vachaspati2018svdquest}, 
-and therefore might largely avoid bias from ignoring recombination. 
-To extend these SNP-based methods and/or to improve gene-tree-based methods to better delimit gene tree breakpoints, 
-we propose that incorporating the rates of turnover observed in the data as 
-information could actually offer useful new information for inferring the species tree 
-model that generated it. 
+% We solved for the expected turnover rate in genealogical trees and topologies 
+% along a genome under an arbitrary species tree topology with arbitrary 
+% divergence times, and with arbitrary Ne values for each species tree branch.
+% %structuring the equations to accept an arbitrary species tree topology 
+% %and a different, arbitrary Ne value for each species tree branch. 
+% These solutions, extended from initial work by \citep{deng_distribution_2021}, 
+% lay a groundwork for exploring how variation in species tree parameters 
+% affects neutral expectations of genealogical heterogeneity across chromosomes.
+
+% % what do our results mean overall.
+% A primary result of our work is solving the mechanistic link between a given species tree 
+% and the length of a genomic interval representing a single genealogy 
+% (i.e. calculating the expected waiting distance until a genealogy change). 
+% With our analytical results it is clear how MSC parameters of divergence times and 
+% effective population sizes influence these waiting distances, most obviously 
+% by constraining the number and identity of available lineages and by determining 
+% the coalescence rate in each branch of the species tree. 
+% These parameters also affect the rate of recombination events along the genome, since the 
+% number of recombination events per base pair is dependent on the total branch 
+% length of each underlying genealogy. By preventing coalescence between select lineages toward the present, 
+% species tree divergence events enforce minimum branch lengths for the genealogies, 
+% increasing the number of recombination events per base pair. Similarly, by affecting coalescence rates, variation in Ne 
+% affects the per-base-pair recombination rate. This is because coalescences farther back in time 
+% (which are expected to be more common if Ne is large)
+% increase the total branch lengths of the genealogies.
+% Topological and sampling parameters, including tree shape, tree size (i.e. number of tips), 
+% and the distribution of samples among species tree 
+% lineages, similarly affect the expected distances until genealogy 
+% changes. These factors all exert their influence via the same general mechanisms as above: they affect the 
+% probability of coalescence among certain lineages by constraining the availability of those lineages 
+% for coalescence with each other, and they influence the 
+% rate of recombination by affecting the total branch length of each genealogy. 
+% Taken together, it is clear that the scale at which we observe neutral turnover across 
+% genealogies is highly dependent on the species tree model. The potential 
+% intricacy of this species tree model alongside expected variation in individual genealogies 
+% can lead to patterns of genealogical turnover (and therefore, linkage) that are highly complex. 
+% %Because of low levels of incomplete lineage sorting, highly 
+% %structured models might have much longer waiting distances than single-population models. 
+% Previously, the expected linkage in phylogenetic datasets could only be computed 
+% through exhaustive simulations (e.g., \citep{mckenzie_multispecies_2020}. While such methods
+% are practical for estimating the \emph{mean} linkage across all genealogies under a 
+% specific demographic model, they are less helpful for estimating the 
+% persistence of \emph{individual} genealogies in localized regions. To generate an approximate distribution 
+% of waiting distances locally on a chromosome using simulation methods, 
+% simulations generating a full probability distribution must be 
+% run individually for each genealogy in the sequence. 
+% Although this is benign across single, short segments, it is not a tractable solution across long 
+% sequences of genealogies and/or across many replicates. 
+
+% % importance to phylogenetics
+% %By accounting for the genomic heterogeneity that is expected due to incomplete 
+% %lineage sorting, t
+% While the multispecies coalescent model has facilitated the widespread 
+% use of multilocus data for phylogenetic inference by accounting for genomic heterogeneity, 
+% it does not consider autocorrelation along the genome due to linkage.
+% %, and it assumes 
+% %that each locus represents only a single genealogy. In reality, these assumptions might 
+% %often be violated \citep{gatesy_concatenation_2013}. 
+% %As phylogenetic systematics 
+% %continues to turn toward whole genomes, methods should seek to extend the MSC to take advantage 
+% %of the increased resolution offered by genomic data. 
+% Specifically, the MSC overlooks the process of recombination, assuming that each locus 
+% represents a single genetic history and that multiple loci are completely unlinked from one another. 
+% From our results, and from previous work, we know that species tree parameters and recombination 
+% rates will dictate the rate and magnitude of genealogical turnover along a chromosome, 
+% potentially resulting in -- in some cases -- high linkage between loci, and 
+% -- in other cases -- multiple genealogical topologies 
+% per locus. Therefore, not accounting for recombination might mislead 
+% summary statistics methods \citep{liu2010maximum,gatesy_concatenation_2013,zhang2018astral}. 
+% Some methods bypass genealogy inference by operating directly on SNP 
+% frequencies \citep{bryant2012inferring,chifman2014quartet,vachaspati2018svdquest}, 
+% and therefore might largely avoid bias from ignoring recombination. 
+% To extend these SNP-based methods and/or to improve gene-tree-based methods to better delimit gene tree breakpoints, 
+% we propose that incorporating the rates of turnover observed in the data as 
+% information could actually offer useful new information for inferring the species tree 
+% model that generated it. 
 
 
-%Inference of genealogies along a chromosome is a common goal in population genetics, and similar efforts have been undertaken in phylogenetics. Often, the goal of such efforts is to detect signals of introgression or selection. However, the phylogenetic approaches usually do not explicitly incorporate a model for recombination \citep[e.g.,][]{li2019recombination}. A notable exception to this is ARGweaver-D, which accepts models with population divergence and migration event parameters. Rather than derive probabilities of sequences of genealogical trees, ARGweaver-D uses an MCMC to sample the sequences. This approach is a powerful extension of the single-population ARGweaver method and has been applied successfully to study evolution of hominins, but it is limited to small numbers of samples. Challenges remain for studying properties of tree sequences for larger sets of samples.
-%Rather than inferring the species tree model, many modern genomic methods aim to 
-%These  methods aim to 
-%infer ARGs analyzing local patterns along the genome.
-The ultimate goal of ARG inference in phylogenomic or population genomic studies
-is often to detect signals of introgression or selection. 
-However, even in the case of a neutral coalescent process 
-with constant effective population sizes and with a constant recombination rate 
-across the genome, highly structured demographic models can exhibit
-high variance in the expected waiting distances until genealogical 
-topology changes (e.g. Fig.~\ref{fig:fig-validation}). As genealogical trees and 
-topologies vary along the genome, the waiting distance probability distribution 
-does too -- the result of this is that certain genealogies are expected to persist longer than others 
-due to their topology and coalescence times relative to the demographic model. 
-Until now, there has been no analytical approach for generating a null hypothesis 
-that describes the expected length of a region spanned by a particular genealogy under absolute neutrality.
-Our results allow us to calculate this null expectations and to probe null hypotheses concerning the probability 
-of observing specific waiting distances under different demographic models. 
-Of course, the MSC already allowed us to calculate the probability of observing a particular 
-genealogy at some location in the genome, but the equations here represent a further step by 
-generating a density function that represents the likelihood of \emph{persistence} 
-of that topology across some region, under neutrality alone. 
-This finding is particularly important for the practice of identifying evidence 
-of selection or introgression based on the spatial distribution of gene tree 
-patterns, which is an increasingly popular goal of phylogenomic studies. 
-For example, sliding-window analyses for detecting introgression have 
-been used to identify putatively introgressed loci in \emph{Heliconius} 
-butterflies \citep{zhang2016genome} and felids \citep{li2019recombination}. 
-Further, since we are able to calculate the likelihood of observing any sequence of waiting 
-distances associated with an ARG, we speculate that incorporating our waiting distance 
-expectations could be incorporated into ARG-inference methods like
-ARGweaver, ARGweaver-D, tsinfer, and relate \citep{rasmussen2014genome, hubisz2020inference, kelleher2019inferring, speidel2019method} 
-as an additional source of information. 
+% %Inference of genealogies along a chromosome is a common goal in population genetics, and similar efforts have been undertaken in phylogenetics. Often, the goal of such efforts is to detect signals of introgression or selection. However, the phylogenetic approaches usually do not explicitly incorporate a model for recombination \citep[e.g.,][]{li2019recombination}. A notable exception to this is ARGweaver-D, which accepts models with population divergence and migration event parameters. Rather than derive probabilities of sequences of genealogical trees, ARGweaver-D uses an MCMC to sample the sequences. This approach is a powerful extension of the single-population ARGweaver method and has been applied successfully to study evolution of hominins, but it is limited to small numbers of samples. Challenges remain for studying properties of tree sequences for larger sets of samples.
+
+
+
+% %Rather than inferring the species tree model, many modern genomic methods aim to 
+% %These  methods aim to 
+% %infer ARGs analyzing local patterns along the genome.
+% The ultimate goal of ARG inference in phylogenomic or population genomic studies
+% is often to detect signals of introgression or selection. 
+% However, even in the case of a neutral coalescent process 
+% with constant effective population sizes and with a constant recombination rate 
+% across the genome, highly structured demographic models can exhibit
+% high variance in the expected waiting distances until genealogical 
+% topology changes (e.g. Fig.~\ref{fig:fig-validation}). As genealogical trees and 
+% topologies vary along the genome, the waiting distance probability distribution 
+% does too -- the result of this is that certain genealogies are expected to persist longer than others 
+% due to their topology and coalescence times relative to the demographic model. 
+% Until now, there has been no analytical approach for generating a null hypothesis 
+% that describes the expected length of a region spanned by a particular genealogy under absolute neutrality.
+% Our results allow us to calculate this null expectations and to probe null hypotheses concerning the probability 
+% of observing specific waiting distances under different demographic models. 
+% Of course, the MSC already allowed us to calculate the probability of observing a particular 
+% genealogy at some location in the genome, but the equations here represent a further step by 
+% generating a density function that represents the likelihood of \emph{persistence} 
+% of that topology across some region, under neutrality alone. 
+% This finding is particularly important for the practice of identifying evidence 
+% of selection or introgression based on the spatial distribution of gene tree 
+% patterns, which is an increasingly popular goal of phylogenomic studies. 
+% For example, sliding-window analyses for detecting introgression have 
+% been used to identify putatively introgressed loci in \emph{Heliconius} 
+% butterflies \citep{zhang2016genome} and felids \citep{li2019recombination}. 
+% Further, since we are able to calculate the likelihood of observing any sequence of waiting 
+% distances associated with an ARG, we speculate that incorporating our waiting distance 
+% expectations could be incorporated into ARG-inference methods like
+% ARGweaver, ARGweaver-D, tsinfer, and relate \citep{rasmussen2014genome, hubisz2020inference, kelleher2019inferring, speidel2019method} 
+% as an additional source of information. 
 
 %Our results here highlight the fact that demographic history plays an 
 %important role in establishing a null hypothesis for the expected rate 
@@ -2526,8 +3298,10 @@ as an additional source of information.
 
 \subsection{Acknowledgements}
 This work was supported by the National Science Foundation 
-(NSF DEB-2046813 awarded to D.A.R.E. and NSF Graduate Research Fellowship DGE 16-44869 awarded 
-to P.F.M.). Thanks to Yun Deng for guidance on preliminary ideas and to the Eaton Lab for valuable feedback.
+(NSF DEB-2046813 awarded to D.A.R.E. and NSF Graduate Research Fellowship 
+DGE 16-44869 awarded to P.F.M.). Thanks to Yun Deng for discussion
+on waiting distance methods, and to members of the Eaton Lab for valuable
+feedback.
 
 
 %\subsection{Citations}
@@ -2638,17 +3412,18 @@ to P.F.M.). Thanks to Yun Deng for guidance on preliminary ideas and to the Eato
 	\centering
 	\includegraphics[width=0.9\textwidth]{figures/Fig2-new-recomb-types.pdf}
 	\caption{
-		Four categories of outcomes of a recombination event occurring on a
-		genealogy at time t$_1$, where the detached subtree re-coalesces with
-		the remaining lineages under the SMC' process at time t$_2$. (a) The
+		Four categories of outcomes from a recombination event occurring on a
+		%genealogy at time t$_1$ and the detached subtree re-coalescing with
+		genealogy at time t$_1$, dictated by random subtree re-coalescence with
+		a remaining lineage under the SMC' process at time t$_2$. (a) The
 		detached subtree re-coalesces with the original lineage from which it
-		was detached leading to no change between the starting genealogy and 
+		was detached, leading to no change between the starting genealogy and 
 		subsequent genealogy. (b) The detached subtree re-coalesces with its
-		sister lineage prior to their previous coalescence, leading to a shortening
+		sibling lineage prior to their previous coalescence, leading to a shortening
 		of their coalescence time. (c) The detached subtree re-coalesces with
 		its parent lineage, leading to a lengthening of the coalescent time 
-		between the detached subtree lineage and its sister lineage. (d) The
-		detached subtree re-coalesces with a lineage other than itself, its sister,
+		between the detached subtree lineage and its sibling lineage. (d) The
+		detached subtree re-coalesces with a lineage other than itself, its sibling,
 		or its parent lineage, leading to a topology-change. 
 	}
      \label{fig:figS-recomb-types}
@@ -2664,15 +3439,15 @@ to P.F.M.). Thanks to Yun Deng for guidance on preliminary ideas and to the Eato
 	\caption{
 		Probabilities of different recombination event outcomes for a selected 
 		genealogy edge as a function of the time at which recombination occurs 
-		and a constant effective population size.
+		and of the constant effective population size.
 		(a) An MSC model with edge lengths in units of generations and an example
-		genealogy embedded. (b) An example genealogy embedding table for the MSC
+		genealogy embedded. (b) An genealogy embedding table for the example MSC
 		model and genealogy. (c) Probabilities of different recombination event
-		outcomes across genealogy edge 7. When N$_e$ is low probabilities are 
-		nearly constant within each interval, since re-coalescent in later intervals
-		is unlikely. When N$_e$ is high probabilities change nearly monotonically 
-		across the length of an edge, since population structure has little effect
-		in constraining the time of re-coalescence.
+		outcomes across genealogy edge 7. When $N_e$ is low, probabilities are 
+		nearly constant with respect to time within each interval since re-coalescence in later intervals
+		is unlikely. When $N_e$ is high, probabilities change nearly monotonically 
+		across the length of an edge since population structure does little
+		to constrain the time of re-coalescence.
 	}
      \label{fig:figS-edge-probabilities}
 \end{figure}
@@ -2681,34 +3456,126 @@ to P.F.M.). Thanks to Yun Deng for guidance on preliminary ideas and to the Eato
 
 
 % \section{Appendix: Derivations}
-% \subsection{Derivations of the Multispecies Sequentially Markov Coalescent (MS-SMC')}
+% \subsection{Derivations of the Multispecies Sequentially Markov Coalescent (MS-SMC)}
 
 
-\subsection{Investigating bias in MS-SMC' predictions}
+% \subsection{testing}
+
+% and also act in opposing directions, such that their
+% combined effect is further reduced.
+
+% The MS-SMC’ harbors two potential sources of bias. The first affects only 
+% topology-change waiting distances, and appears to have a relatively small effect. 
+% This stems from the potential for topology-change probabilities to vary spatially
+% across a distance of the genome between two topology-change events as a result 
+% of intermediate tree-change events 
+% (e.g., the second and third recombination events in Fig.~\ref{fig:fig2}).
+% Consequently, unlike the exact solution for tree-change waiting distances, 
+% topology-change waiting distances represent an approximation. 
+% Using  coalescent simulations we measured the variance in probabilities of 
+% topology-change across the spanned intervals between topology-change 
+% events (Supplemental Materials for methods and results; Fig.~\ref{fig:figS-bias-topo}).
+% Multispecies models do not exhibit greater error than single population models.
+% A second source of bias stems from assumptions of the SMC’ approximation to the full 
+% coalescent with recombination model. By not modeling recombination events that 
+% occurred among ancestors that do not contribute genetic material
+% to the samples, SMC'-based methods tend to under-estimate recombination events. 
+% The frequency of such events in single populations is small \citep{mcvean2005approximating}. 
+% We performed coalescent simulations to examine how this error increases in multi-species models 
+% (see Supplemental Materials for methods), and found that our MS-SMC estimations exhibit 
+% almost no error when compared to data simulated under the SMC' process, but approximately
+% -5\% compared to the full coalescent with recombination model (Fig.~\ref{fig:figS-bias-smc}). 
+
+% ....
+% ...
+% A second source of error affects only topology waiting distances. ...
+% he SMC’ approximation to the coalescent with recombination is expected to deviate more signifi-
+% cantly from the full model that it is approximating as the number of recombination events that the SMC’
+% does not model (among ancestors that do not contribute genetic material to sampled descendants) increases.
+% By not modeling some recombination events the SMC’ will tend to over-estimate waiting distances be-
+% tween tree or topology change events.
+
+% and the second from the approximate 
+% nature of waiting distance estimation for topology-change events. We examined both 
+% of these sources of error through comparison to stochastic simulations
+% and found that their effects are generally negligible, and also act in opposing directions, such that their
+% combined effect is further reduced.
+
+% % now present the caveats...
+% This final expectation comes with an important caveat. 
+% % does come with a caveat. 
+
+
+% % more complicated, % to derive, 
+% % waiting distance distribution to a \emph{topology} change is more 
+% % solution for a \emph{topology} change is more complicated, % to derive, 
+% % due to the possibility of intermediate recombination events 
+% % because of the possibility of intermediate recombination events 
+% % that change branch lengths but not the topology 
+
+% % In other words, during the waiting distance until a topology-change occurs,
+% % given a specific starting genealogy, the genealogy branch lengths could 
+% % change, thus affecting the probabilities of subsequent outcomes.
+% % subsequent recombination events, 
+% % including the relative probabilities of different categorical types.
+% % for the next event.
+% % As these events
+% % As the branch lengths of intermediate genealogies change this affects the
+% % rate of subsequent recombination events, and thus 
+% % These events impact the rate of recombination events and 
+% % the probability
+% % that each further recombination event changes
+% % that such events could change
+% % the topology of the %newly generated 
+% % next
+% % genealogy. 
+% % This problem was first described by \citet{deng_distribution_2021},
+% % who previously demonstrated that its effect can likely be ignored. 
+% Another potential source of error is the SMC' approximation itself, 
+% which excludes recombination events 
+% restricting re-coalescence to only occur with 
+
+
+
+% We re-examined this potential bias in the context of MSC models 
+% (Supplementary Materials 5.2) and found a similar result, 
+% with MSC models in fact exhibiting less spatial variation in 
+% topology-change probabilities than single population models, and 
+% thus less error. We also examined potential bias in waiting distance 
+% expectations that may arise from the SMC' approximation 
+% (Supplementary Information 5.2), where MSC models also exhibit less 
+% error than single population models, owing to their lower variance 
+% in tree and topology-change probabilities.
+
+
+\subsection{Investigating bias in MS-SMC predictions}
 % in addition to SMC' approximation, topo-change has additional bias.
-The MS-SMC' harbors two potential sources of bias, the first stemming from 
-assumptions of the SMC' approximation, and the second from the approximate 
+The MS-SMC harbors two potential sources of bias, the first stemming from 
+assumptions of the SMC' approximation and the second from the approximate 
 nature of waiting distance estimation for topology-change events. We examined 
 both of these sources of error through comparison to stochastic simulations 
-and found that their effects are generally negligible, and also act in opposing 
-directions, such that their combined effect is further reduced.
+and found that their effects are generally negligible and act in opposing 
+directions such that their combined effect is further reduced.
 
-The SMC' approximation to the coalescent with recombination is expected 
-to deviate more significantly from the full model that it is approximating 
+The SMC' approximation to the full coalescent with recombination is expected 
+to deviate increasingly far from the full model % from the full model that it is approximating 
 as the number of recombination events that the SMC' does not model 
-(among ancestors that do not contribute genetic material to sampled descendants) 
+(i.e., those that are among ancestors who do not contribute genetic material to sampled descendants) 
 increases. 
-By not modeling some recombination events the SMC' will tend to 
-over-estimate waiting distances between tree or topology change events. 
-Because our waiting distance predictions are built upon assumptions of 
-the SMC' model, they too will exhibit this bias. 
+By not modeling this subset of recombination events, the SMC' will tend to 
+exhibit greater waiting distances between tree or topology change events than the full model. 
+%% "exhibit" here because SMC' per se isn't estimating anything
+%Because our waiting distance predictions are built upon assumptions of 
+%the SMC' model, they too will exhibit this bias. 
 % Models with high population structure, such as MSC models with low Ne, 
 % where many recombination events
 % could occur among samples deep in time, but contribute no genetic material
 % to samples at the present. 
-To investigate this source of error we repeated the simulations from our 
-validation scenario using the \emph{msprime} setting ancestry="smc\_prime",
-to simulate tree sequences that exclude recombination events that would 
+To investigate this source of error 
+in our waiting distance predictions,
+we repeated the simulations from our 
+validation scenario using the \emph{msprime} setting ancestry="smc\_prime"
+to simulate tree sequences while excluding recombination events that would 
 not occur in the SMC' model. 
 We have already seen from our validations that the error in our predictions 
 is quite low when data are simulated under the full coalescent with 
@@ -2718,8 +3585,8 @@ As expected, we observe even less error
 between our predictions and coalescent simulations when data are simulated
 under the SMC' model. Whereas the error 
 rate is generally below 5\% when data are simulated under the full coalescent
-with recombination model, and only exceeds this at the lowest
-$N_e$ values examined, mean error rates do not exceed 5\% in any 
+with recombination model (only exceeding this at the lowest
+$N_e$ values examined) mean error rates do not exceed 5\% in any 
 models for data simulated under the SMC' assumptions. 
 This shows that the SMC' assumption does contribute a relatively small error 
 to our waiting distance predictions, especially at low $N_e$ values,
@@ -2747,11 +3614,11 @@ For each setting we examined one topology-change event from 1K tree sequences.
 
 In a single population model with constant $N_e$, \citet{deng_distribution_2021}
 previously showed that the bias in topology-change waiting distances is negligible
-because there is an inverse relationships between the length of a genealogy
+because of an inverse relationship between the length of a genealogy
 and the probability of a topology change. Our analysis confirms this result,
 showing that variance in the product of these two parameters, 
-which equates to the waiting distance rate parameter (equations 7,8, 10), 
-is very low (Fig.~\ref{fig:figS-bias-topo}a), and becomes smaller as more 
+which equates to the waiting distance rate parameter (equations 7, 8, 10), 
+is very low (Fig.~\ref{fig:figS-bias-topo}a) and becomes smaller as more 
 gene copies are sampled (Fig.~\ref{fig:figS-bias-topo}b-c). In the 2-population
 and 8-population MSC-type models we find the same result. Here, constraints 
 imposed by population structure lead to less variance in both the 
@@ -2762,21 +3629,21 @@ distance expectation exhibits little heterogeneity. When $N_e$ is high,
 there is little population structure, and so the waiting distance 
 expectation remains relatively constant for the same reason as in a 
 single population model. Overall, MSC models do not appear to exhibit a greater
-bias than a single population model from this effect.
+bias from this source than single population models.
 
 
 \begin{figure}[p]
 	\centering
 	\includegraphics[width=0.99\textwidth]{figures/error-smc-approx.pdf}
 	\caption{
-		Error in MS-SMC' waiting distance expectations caused by the 
+		Error in MS-SMC waiting distance expectations caused by the 
 		SMC' approximation. Error was measured as the mean percent 
 		difference between expected waiting distances calculated
-		under the MS-SMC' and observed waiting distances in stochastic 
+		under the MS-SMC and observed waiting distances in stochastic 
 		coalescent simulations. Simulations were performed under either 
 		the SMC' approximation (black) or the full coalescent 
-		with recombination (green). The MS-SMC' tends to under-estimate 
-		waiting distances compared to the full coalescent with recombination, 
+		with recombination (green). The MS-SMC tends to under-estimate 
+		waiting distances compared to the full coalescent with recombination 
 		but shows only a slight bias at very low $N_e$ values compared to 
 		simulations under the SMC'. 
 		% The single-population model shows a more significant 
@@ -2792,15 +3659,15 @@ bias than a single population model from this effect.
 	\centering
 	\includegraphics[width=0.99\textwidth]{figures/FigSX-bias.pdf}
 	\caption{
-		Variance in the fold-change in components affecting the expected waiting 
-		distance to a topology change between the starting tree and a subsequent
-		tree that has experienced a tree-change event that changed coalescent times
+		Variance in the fold-change for components affecting the expected waiting 
+		distance to a topology-change event between the starting tree and a subsequent
+		tree which has experienced a tree-change event, changing the coalescent times
 		but not the topology. The sum of genealogical edge lengths (L(G)), the 
 		P(topology-change | S,G), and the product of these two terms are shown for
-		three different demographic models and with different constant N$_e$ values, 
+		three different demographic models and with different constant $N_e$ values, 
 		and/or numbers of samples per lineage.
 		When the fold-change in the product exhibits low variance around 1 the 
-		MS-SMC' approximation for the expected waiting distance until a topology-change 
+		MS-SMC approximation for the expected waiting distance until a topology-change 
 		is expected to be more accurate. Larger effective population sizes and 
 		numbers of samples per lineage yield lower variance in the product.
 	}
@@ -2816,7 +3683,7 @@ Information from the genealogy embedding table (described in the following parag
 in equations that 
 calculate the 
 probabilities of no-change, tree-change, and topology-change events under the 
-MS-SMC'. These equations, described throughout rest of the Appendix, use the terms defined in 
+MS-SMC. These equations, described throughout rest of the Appendix, use the terms defined in 
 Table~\ref{tab:table-notation}. 
 % What is a species tree
 A parameterized species tree, $\mathcal{S}$, is a multispecies coalescent 
@@ -2894,7 +3761,7 @@ as a genealogy embedding table (e.g., Table~\ref{tab:table-1}).
 In the waiting distance solutions for a single population with constant $N_e$ 
 by \citet{deng_distribution_2021}, this table is delimited only by coalescent 
 events, and the intervals are non-overlapping. 
-Because N$_e$ is constant in their framework, only $k$ differs between 
+Because $N_e$ is constant in their framework, only $k$ differs between 
 intervals. Therefore, changes in $k$ alone determine differences in rates of coalescence, 
 with $k$ decreasing monotonically in subsequent intervals from the tips towards the root. 
 Our approach is similar, but adds additional complexity (Fig.~\ref{fig:fig1}). 
@@ -2979,7 +3846,7 @@ each branch are defined as $t_b^l$ and $t_b^u$, respectively.
 % respectively. Each interval of index $x$ is bounded by times $\sigma_x$ and $\sigma_{x+1}$.
 
 The probabilities of different recombination event types under the 
-MS-SMC' are calculated from the probability that recombination occurs on 
+MS-SMC are calculated from the probability that recombination occurs on 
 a specific branch and the probabilities that the resulting detached 
 subtree subsequently re-coalesces with any other available branch above that time. 
 The opportunity for recombination to occur on a branch is scaled by 
@@ -3277,6 +4144,10 @@ no-change event given the timing and branch on which recombination occurs:
 \end{aligned}
 \end{equation}
 
+\noindent Note that in equation 3 above, while we have split the terms for clarity, 
+the $f(i,i)$ term could be lumped into the summation. The summation would then be indexed 
+using $j \in \mathcal{I}_b$, with the understanding that $f(i,j)=0$ when $i>j$ -- 
+that is, when summing over intervals that fall below the time of recombination.
 
 % \begin{equation}
 	% \mathbb{P}(\textrm{tree unchanged} | b,t,\mathcal{G},\mathcal{S}) = \frac{1}{a_i}+\sum_{k=i}^{\mathcal{I}_b-1}{P_{ik}e^{\frac{a_i}{n_i}t}}
@@ -3341,15 +4212,15 @@ in equation 5 from the main text.
 \begin{equation}\tag{5}
 	= \frac{1}{t_b^u - t_b^l}
 	\sum_{i \in \mathcal{I}_b} 
-	\frac{1}{k_i} d_i + 
+	\left[\frac{1}{k_i} d_i + 
 	\Bigg(
 		\frac{2n_i}{k_i} 
-		\sum_{j \in \mathcal{J}_b(i)} f(i,j)
+		\sum_{j \in \mathcal{I}_b} f(i,j)
 		\bigg(
 			\exp\bigg\{ \frac{k_i}{2n_i} \mu_i \bigg\} - 
 			\exp\bigg\{ \frac{k_i}{2n_i} \sigma_i \bigg\}
 		\bigg)
-	\Bigg)
+	\Bigg)\right]
 \end{equation}
 
 
@@ -3401,7 +4272,7 @@ To isolate events that do not cause a topology change, we must find
 the union of events that cause a no-change event in addition to two types of 
 possible tree-change events which affect only branch lengths but not the 
 topology. These two types of events correspond to a re-coalescence with the 
-sister to branch $b$, termed $b'$, or with its parent, $c$ (Fig.~\ref{fig:fig3}d).
+sibling to branch $b$, termed $b'$, or with its parent, $c$ (Fig.~\ref{fig:fig3}d).
 Because branch $c$ is always ancestral to $b$, a recombination
 event on $b$ can potentially re-coalesce anywhere on $c$; however, 
 this is not the case for $b'$, which may only exist or be available for 
@@ -3422,17 +4293,25 @@ events that separate $b$ and $b'$ (Fig.~\ref{fig:figS-tbm}a-c).
 	\centering
 	\includegraphics[width=0.95\textwidth]{figures/FigS-tbm.pdf}
 	\caption{
-		To calculate the probability that recombination on genealogy branch 
+		Calculating the probability that recombination on genealogy branch 
 		$b$ leads to a topology change involves summing over the probabilities 
 		that the detached lineage does not re-coalesce with either
 		itself, its sibling, or its parent ($b$, $b'$ or $c$, respectively). 
-		When the timing of recombination ($t_r$) occ...
-		$b$ and $b'$ can either exist 
-		in different species tree intervals (a) or the same interval (b). This 
-		restricts the probability of tree-change outcomes (e.g., shortened coalescent 
-		time) until the lowest shared interval between $b$ and $b'$ at time 
-		$t_m$. This leads to two ordered sets of intervals (c-d) used in 
+		The possibility of a tree-change outcome (e.g., shortened coalescent 
+		time) is restricted until the lowest shared interval between $b$ and 
+		$b'$, designated at time $t_m$. Opportunities for such events could be
+		constrained by species divergences -- as in (a) and (d) -- or by the timing of 
+		prior coalescence events generating each branch -- as in (b), (c), and (e). 
+		The possibility that recombination ($t_r$) occurs prior
+		to $t_m$ leads to the two ordered sets of intervals used in 
 		equations 11 and 12.
+		%When the timing of recombination ($t_r$) \hl{occ...}
+		%$b$ and $b'$ can either exist 
+		%in different species tree intervals (a) or the same interval (b). This 
+		%restricts the probability of tree-change outcomes (e.g., shortened coalescent 
+		%time) until the lowest shared interval between $b$ and $b'$ at time 
+		%$t_m$, leading to the two ordered sets of intervals (c-d) used in 
+		%equations 11 and 12.
 	}
 	\label{fig:figS-tbm}
 \end{figure}
@@ -3687,7 +4566,7 @@ respectively.
 	\centering
 	\includegraphics[width=0.95\textwidth]{figures/verbose-equations}
 	\caption{A step-by-step calculation of the probability of a tree-unchanged 
-	event under the MS-SMC' given a species tree and genealogy.
+	event under the MS-SMC given a species tree and genealogy.
 	}
 	\label{fig:figS-tree-equations}
 \end{figure}
@@ -3699,7 +4578,7 @@ respectively.
 	\centering
 	\includegraphics[width=0.95\textwidth]{figures/verbose-equations-topology}
 	\caption{A step-by-step calculation of the probability of a topology-unchanged 
-	event under the MS-SMC' given a species tree and genealogy.
+	event under the MS-SMC given a species tree and genealogy.
 	}
 	\label{fig:figS-topo-equations}
 \end{figure}
