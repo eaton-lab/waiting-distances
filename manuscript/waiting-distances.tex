@@ -1208,6 +1208,10 @@ for iterating over the ordered intervals above $i$ on branch $b$ (e.g., Fig.~\re
 		branch on which recombination occurred, for which intervals are indexed using
 		the variable $\mathcal{I}_b$.
 		%, or $\mathcal{J}_b(i)$. 
+		(b) Indexing variables for calculating tree change probabilities. The indexing 
+		variable $\mathcal{I}_b$ records all intervals on branch $b$, and the 
+		recombination event for this example occurs in interval $i=0$. $\mathcal{J}_b(i)$ 
+		returns all intervals in $\mathcal{I}_b$ above interval $i$.
 		(c,f) The function $f(i,j)$ returns the probability that a subtree that detached 
 		in interval $i$ will re-coalesce in interval $j$. This involves excluding
 		the probability of re-coalescence in intervals between $i$ and $j$, which are 
@@ -1429,12 +1433,12 @@ We next derive an analogous probability distribution for waiting distances
 between topology-change events.
 % This involves events 
 % representing a subset of possible tree-change events. 
-Similar to our approach for calculating tree-change as the opposite of a 
-no-change (tree-unchanged) event, here we calculate topology-change as the 
-opposite of a topology-unchanged event, where topology-unchanged represents the 
-sum of probabilities of a no-change and a subset of possible tree-change events 
-that only affect branch lengths, but not the topology. 
-Our approach follows closely to that of \citet{deng_distribution_2021}.
+Similar to our approach for calculating tree-change probabilities as the opposite of those for a 
+no-change (tree-unchanged) event, here we calculate topology-change probabilities as the 
+opposite of those for a topology-unchanged event. Topology-unchanged events represent the union of 
+all no-change events and the subset of possible tree-change events 
+that only affect branch lengths but not the topology. 
+Our approach for calculating these probabilities follows closely to that of \citet{deng_distribution_2021}.
 % in which 
 % where the topology
 % This involves excluding 
