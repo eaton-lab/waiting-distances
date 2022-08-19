@@ -1267,7 +1267,10 @@ will reappear in several later equations.
 		\right)
 		\exp \bigg\{ -\frac{k_i}{2n_i}\mu_i - 
 		\sum_{q \in \mathcal{Q}_b(i,j)} \frac{k_q}{2n_q} d_q \bigg \}, 
-		& \text{if } i\ne j\\
+		& \text{if } i<j\\
+		% 
+		0, 
+		& \text{if } i>j\\
 	\end{dcases}
 \end{aligned}
 \end{equation}
@@ -1322,14 +1325,14 @@ change the tree:
 	% \\
 	% & 
 	\frac{1}{t_b^u - t_b^l}
-	\sum_{i \in \mathcal{I}_b} \frac{1}{k_i} d_i + 
+	\sum_{i \in \mathcal{I}_b} \left[\frac{1}{k_i} d_i + 
 	% \Bigg(
 	\frac{2n_i}{k_i} 
-	\sum_{j \in \mathcal{J}_b(i)}f(i,j)
+	\sum_{j \in \mathcal{I}_b}f(i,j)
 	\bigg(
 		\exp\bigg\{\frac{k_i}{2n_i}\mu_i \bigg\} - 
 		\exp\bigg\{\frac{k_i}{2n_i}\sigma_i \bigg\}
-	\bigg)
+	\bigg)\right]
 	% \Bigg)
 \end{aligned}
 \end{equation}
@@ -4141,6 +4144,10 @@ no-change event given the timing and branch on which recombination occurs:
 \end{aligned}
 \end{equation}
 
+\noindent Note that in equation 3 above, while we have split the terms for clarity, 
+the $f(i,i)$ term could be lumped into the summation. The summation would then be indexed 
+using $j \in \mathcal{I}_b$, with the understanding that $f(i,j)=0$ when $i>j$ -- 
+that is, when summing over intervals that fall below the time of recombination.
 
 % \begin{equation}
 	% \mathbb{P}(\textrm{tree unchanged} | b,t,\mathcal{G},\mathcal{S}) = \frac{1}{a_i}+\sum_{k=i}^{\mathcal{I}_b-1}{P_{ik}e^{\frac{a_i}{n_i}t}}
