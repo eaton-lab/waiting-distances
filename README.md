@@ -9,8 +9,24 @@ notebooks: Jupyter notebooks with reproducible code (see links below).
 
 ### Reproducible notebooks
 
+**Currently requires development versions of toytree and ipcoal, but 
+this will be updated to allow for a simpler conda install very soon.**
+
 ```bash
-conda install ipcoal -c conda-forge
+# get dependencies from conda
+conda install toytree ipcoal -c conda-forge --only-deps
+
+# pip install from github development branches
+git clone https://github.com/eaton-lab/toytree -b toy3
+cd toytree/
+pip install -e . --no-deps
+
+git clone https://github.com/eaton-lab/ipcoal -b toy3
+cd ipcoal/
+pip install -e . --no-deps
+
+# Will be available soon as:
+# conda install ipcoal -c conda-forge
 ```
 
 #### Links to view notebooks on nbviewer.org
