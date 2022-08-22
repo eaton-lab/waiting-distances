@@ -2,9 +2,9 @@
 
 ### Files
 
-- figures: figures in SVG and PDF format  
+- figures/: folder with figures in SVG and PDF format  
 - waiting-distances.tex: main manuscript document  
-- references.big: main manuscript references  
+- references.bib: main manuscript references  
 - ecol_let.bst: style
 
 
