@@ -94,7 +94,7 @@ Genealogical relationships vary spatially along genomes as a result of coalescen
  difficult to reconstruct from sequence data. Here, we extend recently developed 
  theory for predicting the genomic interval lengths between changes in 
  genealogical trees (different coalescent times) or topologies (different 
- coalescent times and relationships). Our new solutions allow for calculating 
+ coalescent times and relationships). Our solutions allow for calculating 
  these “waiting distances” within the context of a parameterized species tree 
  model. This new framework, termed the MS-SMC, provides a link between the 
  multispecies coalescent (MSC) and the sequentially Markov coalescent (SMC), 
@@ -155,75 +155,6 @@ the rate of coalescence and can vary across different lineages.
 
  % Conceptually, the MSC can be viewed as a piecewise model ... for joint likelihood of a 
 % genealogy embedded in a species tree.
-
-
-\begin{figure}
-	\centering
-	\includegraphics[width=0.99\textwidth]{figures/Fig1-embedding-and-probs-fill.pdf}
-	\caption{
-		The MS-SMC models the probability of different recombination outcomes 
-		given a genealogy embedded in a multispecies coalescent (MSC) model.
-		% The probability of different outcomes of recombination occurring on a 
-		% genealogy embedded in a species tree can be modeled using the MS-SMC. 
-		% A genealogy embedded in a species tree exhibits different probabilities
-		% of outcomes of recombination, when viewed backwards in time, depending on 
-		% the timing and branch on which recombination occurs.
-		(a) A parameterized MSC model is composed of multiple discrete population
-		intervals with associated effective population sizes ($N_e$) and divergence 
-		times ($W$). Given an embedded genealogy, each interval can be further divided 
-		at coalescence events (e.g., $t_9$) into a series of smaller intervals
-		with constant coalescent rates. The parameters of these intervals make up a 
-		genealogy embedding table (see Table 1).
-		% varies with respect to
-		% changing rates of coalescence, as well the number of samples present at any time.
-		% such that the an 
-		 % and estimating
-		% the expected waiting time between coalescence events (e.g., $t_9$--$t_{10}$) 
-		% requires integrating over these rates as they change through time/intervals.
-		% See Table 1 for the full genealogy embedding table for this 
-		% and the number of samples changes.
-		% by the rate of coalescence and the number of samples present.
-		% reduce the number of samples present in an interval, whereas population 
-		% divergence events (e.g., $W_{AB}$) increase the number in the subsequent interval.
-		(b-d) A recombination event leads to one of three possible outcomes 
-		between the genealogies in two sequential intervals of a genome: 
-		\emph{no-change}, \emph{tree-change}, or \emph{topology-change}. 		
-		% "no-change," "tree-change," or "topology-change". 
-		% Under the sequentially Markov coalescent (SMC') model a recombination 
-		% event will cause one of three possible outcomes between two genealogies 
-		% in sequential spatial intervals of a genome: 
-		% two sequential intervals
-		% can occur on any branch of a genealogy to cause one
-		% of three possible outcomes: 
-		The probabilities of each outcome as calculated under the MS-SMC 
-		are shown for three arbitrary branches. These probabilities are a function of the time ($t_r$) and branch 
-		on which recombination occurs.
-		% Each branch exhibits piecewise variation in these 
-		% probabilities across discrete intervals. 
-		% % We derive a solution for calculating these probabilities in the text. 
-		% Probabilities were calculated here for three selected branches as a 
-		% function of the time at which recombination occurs ($t_r$), given the 
-		% MSC model in (a) with parameters from Table~S2.% applied to the MSC model in (a).
-	% 	divergence times ($W$) define ancestral populations. The population 
-	% structure constrains which lineages of the genealogy can coalesce. Further, each 
-	% population which can have a different effective population size ($N_b$),
-	% which determine rates of coalescence within that population. Viewed backwards in time, 
-	% coalescent events (e.g., $t_7$) in the genealogy reduce the number of samples, whereas 
-	% species tree divergence events (e.g., $W_{AB}$) increase the number of samples present. 
-	% (b-d) 
-	% Recombination is modeled by detaching a branch at a specific time and 
-	% sampling a waiting time until it re-coalesces, leading to either no change, 
-	% a tree change (edge lengths), or topology change. We arbitrarily selected edges 2, 5, and 
-	% 7 to illustrate how piecewise variation in coalescent rates back in time through the 
-	% species tree leads to changing probabilities of each
-	% outcome (discussed in Demonstration). Note that the values in (b) and (c) must sum to 1, 
-	% since one of those two events must happen, while (d) is showing the probabilities of a 
-	% subset of the events in (c). See Table 1 for the full genealogy embedding table for this 
-	% example.
-	}
-	\label{fig:fig1}
-\end{figure}
-
 
 Importantly, both the coalescent and MSC are models of the expected distribution of 
 \emph{unlinked} (uncorrelated) genealogies.
@@ -305,6 +236,73 @@ This stems in part from the great complexity of this problem
 % results given limited information between recombination events;
 but also reflects limitations of our current models for 
 extracting historical information from linked genome data.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.99\textwidth]{figures/Fig1-embedding-and-probs-fill.pdf}
+	\caption{
+		The MS-SMC models the probability of different recombination outcomes 
+		given a genealogy embedded in a multispecies coalescent (MSC) model.
+		% The probability of different outcomes of recombination occurring on a 
+		% genealogy embedded in a species tree can be modeled using the MS-SMC. 
+		% A genealogy embedded in a species tree exhibits different probabilities
+		% of outcomes of recombination, when viewed backwards in time, depending on 
+		% the timing and branch on which recombination occurs.
+		(a) A parameterized MSC model is composed of multiple discrete population
+		intervals with associated effective population sizes ($N_e$) and divergence 
+		times ($W$). Given an embedded genealogy, each interval can be further divided 
+		at coalescence events (e.g., $t_9$) into a series of smaller intervals
+		with constant coalescent rates. The parameters of these intervals make up a 
+		genealogy embedding table (see Table 1).
+		% varies with respect to
+		% changing rates of coalescence, as well the number of samples present at any time.
+		% such that the an 
+		 % and estimating
+		% the expected waiting time between coalescence events (e.g., $t_9$--$t_{10}$) 
+		% requires integrating over these rates as they change through time/intervals.
+		% See Table 1 for the full genealogy embedding table for this 
+		% and the number of samples changes.
+		% by the rate of coalescence and the number of samples present.
+		% reduce the number of samples present in an interval, whereas population 
+		% divergence events (e.g., $W_{AB}$) increase the number in the subsequent interval.
+		(b-d) A recombination event leads to one of three possible outcomes 
+		between the genealogies in two sequential intervals of a genome: 
+		\emph{no-change}, \emph{tree-change}, or \emph{topology-change}. 		
+		% "no-change," "tree-change," or "topology-change". 
+		% Under the sequentially Markov coalescent (SMC') model a recombination 
+		% event will cause one of three possible outcomes between two genealogies 
+		% in sequential spatial intervals of a genome: 
+		% two sequential intervals
+		% can occur on any branch of a genealogy to cause one
+		% of three possible outcomes: 
+		The probabilities of each outcome as calculated under the MS-SMC 
+		are shown for three arbitrary branches. These probabilities are a function of the time ($t_r$) and branch 
+		on which recombination occurs.
+		% Each branch exhibits piecewise variation in these 
+		% probabilities across discrete intervals. 
+		% % We derive a solution for calculating these probabilities in the text. 
+		% Probabilities were calculated here for three selected branches as a 
+		% function of the time at which recombination occurs ($t_r$), given the 
+		% MSC model in (a) with parameters from Table~S2.% applied to the MSC model in (a).
+	% 	divergence times ($W$) define ancestral populations. The population 
+	% structure constrains which lineages of the genealogy can coalesce. Further, each 
+	% population which can have a different effective population size ($N_b$),
+	% which determine rates of coalescence within that population. Viewed backwards in time, 
+	% coalescent events (e.g., $t_7$) in the genealogy reduce the number of samples, whereas 
+	% species tree divergence events (e.g., $W_{AB}$) increase the number of samples present. 
+	% (b-d) 
+	% Recombination is modeled by detaching a branch at a specific time and 
+	% sampling a waiting time until it re-coalesces, leading to either no change, 
+	% a tree change (edge lengths), or topology change. We arbitrarily selected edges 2, 5, and 
+	% 7 to illustrate how piecewise variation in coalescent rates back in time through the 
+	% species tree leads to changing probabilities of each
+	% outcome (discussed in Demonstration). Note that the values in (b) and (c) must sum to 1, 
+	% since one of those two events must happen, while (d) is showing the probabilities of a 
+	% subset of the events in (c). See Table 1 for the full genealogy embedding table for this 
+	% example.
+	}
+	\label{fig:fig1}
+\end{figure}
 
 % about linked genealogies.
 % infinite series of genealogies can often yield similar
