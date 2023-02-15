@@ -169,6 +169,9 @@ By contrast, two linked genealogies that are drawn from nearby regions of a geno
 are expected to be more similar than two random draws under these models. This spatial 
 autocorrelation is a consequence of shared ancestry among samples at nearby regions, 
 which decays over time and distance as recombination events reduce their shared ancestry.
+\textcolor{red}{To be clear, the spatial correlation here refers to the similarity 
+among neighboring genealogies on a chromosome, and not to the similarity of genomes 
+in geographic space.}
 % This process can be approximated by randomly detaching an edge on a genealogy and sampling
 % a waiting time (based on the lineage effective population size) until it reconnects
 % to the genealogy at a different shared ancestor.
@@ -2825,6 +2828,12 @@ When repeated across many loci, concatenation artifacts can cause
 the distribution of gene trees, or of their summary statistics, to deviate 
 from expectations under the MSC -- a process termed concatalescence 
 \citep{gatesy_concatenation_2013}. 
+\textcolor{red}{There is an ongoing conversation in the literature 
+about the impact of concatalescence on inference under the MSC, and studies have used
+simulations with intra-locus recombination to investigate this \citep{lanier2012recombination,zhu2022simulation}. 
+We believe that our analytical solutions here will contribute to this conversation by explicitly linking 
+genealogy turnover due to recombination with MSC model parameters, 
+a gap in the theory specifically noted by \citet{zhu2022simulation}.}
 
 
 % By addressing intra-locus recombination as a source of gene tree error, 
@@ -2897,12 +2906,18 @@ species tree inference method SNAPP \citep{bryant2012inferring}.
 SNAPP subsamples a single unlinked SNP from each locus and integrates over a 
 distribution of genealogies that could have produced it, with the goal
 of bypassing the problem of gene tree inference. 
+\textcolor{red}{Recent work has pointed out drawbacks of approaches like SNAPP
+that pool unlinked SNPs for phylogenetic inference, since assuming full 
+independence of SNPs leads to a loss of information \citep{zhu2021complexity}.}
 %SNAPP subsamples a single unlinked SNP from each locus with the goal
 %of bypassing the problem of gene tree inference by integrating over a 
 %distribution of genealogies that could produce each observed SNP pattern. 
-A theoretical ARG-based extension of this approach might 
+\st{A theoretical ARG-based extension of this approach might 
 analyze many linked SNPs and integrate over a distribution of ARGs that 
-could have produced each linked pattern, with the goal of bypassing ARG inference.
+could have produced each linked pattern, with the goal of bypassing ARG inference.}
+\textcolor{red}{A theoretical ARG-based extension of such approaches might overcome 
+these drawbacks by analyzing linked SNPs and integrating over a distribution 
+of ARGs that could have produced each linked pattern.}
 % and bypass ARG inference by integrating over a 
 % distribution of ARGs that could produce each linked pattern. 
 By reducing the complexity of ARG inference to a problem of windows between 
