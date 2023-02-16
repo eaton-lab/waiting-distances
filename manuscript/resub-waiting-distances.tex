@@ -2843,17 +2843,23 @@ a gap in the theory specifically noted by \citet{zhu2022simulation}.}
 One way to improve gene tree inference for individual loci is to 
 re-conceive the problem as one in which loci can have multiple
 gene tree histories and are thus better represented as ARGs.
-Applications of ARG inference have historically been applied at the
+\st{Applications of ARG inference have historically been applied at the
 scale of entire chromosomes, and usually to samples that are modeled
 %as existing within a single population 
 as being in a single population 
-\citep{rasmussen2014genome, kelleher2019inferring, speidel2019method}.
-However, ARGs can exist for any stretch of the genome, 
-including short aligned contigs, and recent methods can 
+\mbox{\citep{rasmussen2014genome, kelleher2019inferring, speidel2019method}}.}
+\st{However,} ARGs can exist for any stretch of the genome, 
+including short aligned contigs, \textcolor{red}{similar to the data type 
+often encountered in multilocus phylogenetics studies. While most 
+modern ARG-inference methods (e.g. \emph{ARGweaver}, \emph{tsinfer}, \emph{Relate}) 
+model samples as being in a single population,
+the recent method ARGweaver-D} \st{and recent methods} can 
 infer ARGs conditional on a structured demographic model that 
 includes splits between more distantly related genomes 
-\citep{hubisz2020inference}, 
-\textcolor{red}{avoiding biases similar to what we observe in Fig.~\ref{fig:fig-likelihood}e}. 
+\citep{hubisz2020inference}. 
+\textcolor{red}{Doing so avoids biases similar to what we observe 
+in Fig.~\ref{fig:fig-likelihood}e, making ARGweaver-D a promising starting point for 
+incorporating multilocus ARG data for phylogenetic inference}. 
 % ^is the "or genes" important here?
 % ^the nod to argweaver-D feels out of sync with the first part of the sentence
 Although our example likelihood-based implementation of the MS-SMC 
@@ -2869,8 +2875,18 @@ can currently propose an ARG conditional
 on a structured demographic model, which can generate genealogies with
 tree- and topology-change waiting distances as predicted under the SMC', 
 these distances do not contribute to the likelihood score of an ARG. 
-We speculate that incorporating this information could improve both accuracy
-and convergence.
+We speculate that incorporating 
+\st{this information} 
+\textcolor{red}{waiting distance calculations from our work here}
+could improve both accuracy
+and convergence
+\textcolor{red}{of ARGweaver-D and related methods}. 
+\textcolor{red}{To improve computational efficiency, state-of-the-art ARG inference 
+methods optimized for large sample sizes like \emph{tsinfer} and 
+\emph{Relate} might also be extended beyond single populations 
+to an MS-SMC framework, in which case our theory should provide an important 
+correction, as described in \citet{deng_distribution_2021} 
+\citep{kelleher2019inferring, speidel2019method}.}
 % We speculate that incorporating waiting distance expectations 
 % between tree and topology-change events into likelihood calculations within
 % existing frameworks like ARGWeaver-D \citep{hubisz2020inference} 
