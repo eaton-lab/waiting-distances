@@ -656,9 +656,9 @@ spatial genealogical patterns can be extracted from genomes.
 Here, 
 \st{we extend the methods of \mbox{\citet{deng_distribution_2021}} to an MSC framework 
 to estimate the expected waiting distances between different types of}
-\textcolor{red}{we extend the theory of \citet{deng_distribution_2021} to an MSC framework}
-\textcolor{red}{to derive the distribution of the waiting distance until different types of} 
-genealogy changes under a parameterized species tree model. 
+\textcolor{red}{we extend the theory of \citet{deng_distribution_2021} to an MSC framework
+to derive the distribution of the waiting distance until different types of} 
+genealogy changes under a parameterized species tree model.
 The waiting distances between recombination events that cause topology-change 
 may be of greatest interest, as they leave the most detectable signatures 
 in sequence data and are relevant to expected gene tree distributions that form
@@ -844,7 +844,7 @@ density function:
 	
 \begin{equation}
 	% \mathcal{P}(t_k|\lambda) = \lambda e^{-\lambda t_k} 
-	f(t_k; \lambda) = \lambda e^{-\lambda t_k}
+	f(t_k; \lambda_k) = \lambda_k e^{-\lambda_k t_k}
 \end{equation}
 
 
@@ -1238,7 +1238,7 @@ for iterating over the ordered intervals above $i$ on branch $b$ (e.g., Fig.~\re
 		branch on which recombination occurred, for which intervals are indexed using
 		the variable $\mathcal{I}_b$.
 		%, or $\mathcal{J}_b(i)$. 
-		(b) Indexing variables for calculating tree-change probabilities. The indexing 
+		(b) Indexing variables for calculating \st{tree}\textcolor{red}{no}-change probabilities. The indexing 
 		variable $\mathcal{I}_b$ records all intervals on branch $b$, and the 
 		recombination event for this example occurs in interval $i=0$. $\mathcal{J}_b(i)$ 
 		returns all intervals in $\mathcal{I}_b$ above interval $i$.
@@ -1418,7 +1418,7 @@ be calculated from the exponential probability density function
 
 
 \begin{equation}
-	f(x; \lambda) = \lambda e^{-\lambda x}
+	f(x; \lambda_r) = \lambda_r e^{-\lambda_r x}
 \end{equation}
 
 %\noindent Because a no-change type event is a subset of all possible types of
@@ -1943,7 +1943,7 @@ are inversely related and sum to 1, since one or the other must occur at any
 %accompany any 
 %occur as a consequence 
 recombination event. By contrast, a topology-change event is a subset of the 
-probability of a tree-change; 
+\st{probability of a} tree-change \textcolor{red}{events}; 
 % recall that a topology-change event is 
 it is a tree-change event where the detached branch re-coalesces with 
 a branch other than itself, its sibling, or its parent.
@@ -2033,7 +2033,7 @@ The probability of topology-change decreases faster than the probability of
 tree-change as recombination occurs closer to node $t_9$. This is because 
 following $t_9$ there is a large stretch of time during which re-coalescence can
 only occur with the same branch or its sibling, neither of which can cause a topology-change
-event. It is only after $W_{abc}$ that it is once again possible for re-coalescence
+event. It is only after $W_{ABC}$ that it is once again possible for re-coalescence
 to occur with a more distant branch that would result in topology-change. 
 If the effective population size of this species tree interval (AB) were greater,
 then the probability of re-coalescence in a deeper interval would be more likely, 
@@ -2317,10 +2317,12 @@ or species tree inference methods.
 % inference by fitting waiting distances to expectations from a parameterized 
 % MSC model; or alternatively, it could improve species tree inference 
 % from genome data containing genetic linkage. 
-Here, to explore the potential of this approach, we developed a maximum 
-likelihood framework for the latter: we apply the MS-SMC to fit MSC 
+Here, to explore the potential of this approach, we developed a 
+\textcolor{red}{rudimentary} maximum 
+likelihood framework \textcolor{red}{as a proof-of-concept} for the latter: 
+we apply the MS-SMC to fit MSC 
 model parameters to observed distances between tree-change and/or
-topology-change events in simulated ARGs. 
+topology-change events in simulated ARGs.
 % It could similarly be applied to ARGs inferred 
 % from sequence data. 
 
@@ -2343,14 +2345,14 @@ G = ($\mathcal{G}_1, \mathcal{G}_2, ..., \mathcal{G}_n$) and
 their interval lengths in the genome X = ($x_1, x_2, ..., x_n$),
 a subset of genealogies can be extracted that represent the unique 
 trees between tree-change events, 
-G$_g$ = ($\mathcal{G}_1, \mathcal{G}_i, ...$), and 
+G$_g$ = ($\mathcal{G}_1, \mathcal{G}_j, ...$), and 
 waiting distances can be measured as the summed interval lengths between 
 these trees, 
 X$_g$ = ($\sum_{i=1}^j x_i, \sum_{i=j}^{k} x_i, ..., $).
 The same could be done for topology-change events. 
 Given a parameterized species tree $\mathcal{S}$ and recombination 
 rate $r$ we can then obtain a sequence of exponential rate parameters
-$\Lambda_g = (\lambda_1, \lambda_i, ...)$ corresponding to each genealogy
+$\Lambda_g = (\lambda_1, \lambda_j, ...)$ corresponding to each genealogy
 in G$_g$ (equations 10 or 14). 
 The likelihood of each observed waiting distance in X$_g$
 can then be calculated from the exponential probability density 
@@ -2624,7 +2626,11 @@ model with constant $N_e$.
 Here we extended this framework, deriving new solutions for the probabilities 
 of tree-change and topology-change events for a genealogy embedded 
 in any arbitrarily parameterized structured coalescent model. 
-These solutions lay a groundwork for exploring how variation in
+\textcolor{red}{While previous work has explored linkage in a species tree 
+context and found similar influence of $N_e$ and species divergence times,
+such attempts have been limited to special cases \citep[e.g.,][]{slatkin2006concordance}.}
+\st{These solutions} \textcolor{red}{Our generalized solutions here} 
+lay a groundwork for exploring how variation in
 species tree parameters affects neutral expectations of genealogical 
 heterogeneity across chromosomes.
 
@@ -3705,7 +3711,8 @@ bias from this source than single population models.
 		under the MS-SMC and observed waiting distances in stochastic 
 		coalescent simulations. Simulations were performed under either 
 		the SMC' approximation (black) or the full coalescent 
-		with recombination (green). The MS-SMC tends to under-estimate 
+		with recombination (green). The MS-SMC tends to 
+		\st{under}\textcolor{red}{over}-estimate 
 		waiting distances compared to the full coalescent with recombination 
 		but shows only a slight bias at very low $N_e$ values compared to 
 		simulations under the SMC'. 
@@ -4256,7 +4263,7 @@ we get the following solution.
 				\frac{k_q}{2n_q} d_q
 				\bigg\}
 			% \bigg)
-			\frac{-1}{k_j} \exp \bigg\{-\frac{k_j}{2n_j} d_j \bigg\}
+			\frac{1}{k_j} \bigg(1- \exp \bigg\{-\frac{k_j}{2n_j} d_j \bigg\} \bigg)
 		\Bigg)
 	\Bigg]
 \end{aligned}
@@ -4393,12 +4400,12 @@ Using the definition for $t_b^m$ from above, we can describe the probability
 of a topology-unchanged event given the branch and time of recombination
 as a two-part solution. These two parts correspond to scenarios in which
 the time of recombination, $t_r$, occurs either above (Fig.~\ref{fig:figS-tbm}a-c)
-or below (Fig.~\ref{fig:figS-tbm}d-e) $t_b^m$. When $t_r$ $<=$ $t_b^m$, there
+or below (Fig.~\ref{fig:figS-tbm}d-e) $t_b^m$. When $t_r$ $>=$ $t_b^m$, there
 are only two distinct intervals over which re-coalescence can occur: from
 $t_r$ to $t_b^u$ on branches $b$ or $b'$, and from $t_b^u$ to $t_c^u$ on 
-branch $c$ (Fig.~\ref{fig:figS-tbm}a-c). By contrast, when $t_r$ $>$ $t_b^m$
+branch $c$ (Fig.~\ref{fig:figS-tbm}a-c). By contrast, when $t_r$ $<$ $t_b^m$
 there are three distinct intervals for re-coalescence: from $t_r$ to $t_b^m$
-on $b$, $t_b^m$ to $t_b^u$ on $b'$, and $t_b^u$ to $t_c^u$ on 
+on $b$, $t_b^m$ to $t_b^u$ on \textcolor{red}{$b$ or} $b'$, and $t_b^u$ to $t_c^u$ on 
 branch $c$ (Fig.~\ref{fig:figS-tbm}d-e). Thus, in the first scenario 
 the opportunity for re-coalescence is the same for branches $b$ 
 and $b'$, whereas in the latter scenario it is different.
@@ -4485,7 +4492,7 @@ distinct intervals where re-coalescence can occur. The first is unique to branch
 the second integral is multiplied by two since from $t_b^m$ to $t_b^u$ re-coalescence
 can occur with $b$ or $b'$, and the final integral is over the length of branch $c$.
 By substituting the piece-wise constant solutions for each interval into this equation
-it can simplifed to the final form below, also shown in equation 11 of the main text:
+it can \textcolor{red}{be} simplifed to the final form below, also shown in equation 11 of the main text:
 
 \begin{equation}
 \begin{aligned}
@@ -4521,7 +4528,7 @@ The final form of this equation is also shown in equation 11 of the main text:
 \subsubsection{Across a full branch}
 
 Now we derive the overall probability that a recombination event falling on a specific branch will 
-change the topology by integrating across the range of possible values for $t_r$.
+\textcolor{red}{not} change the topology by integrating across the range of possible values for $t_r$.
 Following the approach above, we split this problem into two parts, above and below
 $t_b^m$, and we sum the two cases.
 
@@ -4600,7 +4607,7 @@ This is shown in the main text as equation 12.
 \subsubsection{Across the whole tree}
 
 Finally, we sum across all branches, each weighted by their relative length, 
-to find the probability of a recombination event changing the 
+to find the probability of a recombination event \textcolor{red}{not} changing the 
 topology of the tree. This appears as equation 13 in the main text.
 
 \begin{equation}\tag{13}
@@ -4620,8 +4627,8 @@ topology of the tree. This appears as equation 13 in the main text.
 
 
 \subsubsection{Examples}
-Examples showing how to compute the probablity of a no-change (tree-unchanged) 
-or topology-change event are shown with didactic step-by-step instructions in 
+Examples showing how to compute the \textcolor{red}{probability}\st{probablity} of a no-change (tree-unchanged) 
+or topology-\textcolor{red}{unchanged}\st{change} event are shown with didactic step-by-step instructions in 
 Fig.~\ref{fig:figS-tree-equations} and Fig.~\ref{fig:figS-topo-equations}, 
 respectively.
 
