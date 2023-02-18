@@ -283,6 +283,7 @@ if __name__ == "__main__":
     NLOCI = 100
     NREPS = 100
     OUTNAME = "validate"
+    NCORES = 60
     # NLOCI = 10
     # NREPS = 10
     # OUTNAME = "test"
