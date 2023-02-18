@@ -283,7 +283,7 @@ if __name__ == "__main__":
     NLOCI = 100
     NREPS = 100
     OUTNAME = "validate"
-    NCORES = 60
+    NCORES = 70
     # NLOCI = 10
     # NREPS = 10
     # OUTNAME = "test"
@@ -305,7 +305,7 @@ if __name__ == "__main__":
                 recomb=RECOMB,
                 seed=SEED,
                 smc=smc,
-                ncores=8,
+                ncores=NCORES,
                 outname=f"{OUTNAME}-npops{npops}-{'smc' if smc else 'full'}",
             )
             distribute_jobs(**kwargs)
