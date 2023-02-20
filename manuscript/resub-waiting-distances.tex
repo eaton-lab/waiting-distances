@@ -195,8 +195,8 @@ by an ancestral recombination graph (ARG)
 % \citep{griffiths_ancestral_1996} or tree-sequence \citep{kelleher2016efficient}
 % (hereafter we will refer to it generically as an ARG; Fig.~\ref{fig:fig2}).
 
-An algorithm to stochastically simulate sequences under the coalescent with 
-recombination was developed early on \citep{hudson1983properties} 
+\st{An algorithm to stochastically simulate sequences under the coalescent with 
+recombination was developed early on \mbox{\citep{hudson1983properties}} 
 % , however only with recent advances has it become 
 % tractable to scale such simulations to larger, genome-wide scales 
 % \citep{kelleher2016efficient}. 
@@ -218,8 +218,9 @@ recombination was developed early on \citep{hudson1983properties}
 % (i.e., "waiting distances").
  % between genealogies).
 and was later extended as a spatial algorithm for stochastically generating full 
-ARGs \citep{wiuf_recombination_1999}. 
-This process models the difference between sequential genealogies by 
+ARGs \mbox{\citep{wiuf_recombination_1999}}.} 
+\textcolor{red}{An algorithm to stochastically generate ARGs under the coalescent with recombination was developed early on by \citet{hudson1983properties} and later extended as a spatial algorithm by \citet{wiuf_recombination_1999}.}
+This \textcolor{red}{latter} process models the difference between sequential genealogies by 
 randomly detaching an edge from a genealogy and sampling
 a waiting time (based on the 
 \st{population} 
@@ -232,7 +233,7 @@ one ancestor for another on either side of each recombination breakpoint.
 % ancestor for another on either side of a recombination breakpoint 
 % \citep{wiuf_recombination_1999}. 
 Implicit to this algorithm is the assumption that recombination 
-occurs at some predictable rate (or rate map) from which the expected 
+occurs at some predictable rate (or rate map) from which the \st{expected} 
 waiting distance between recombination events can be modeled as an 
 exponentially distributed random variable \citep{wiuf_recombination_1999}.
 % (we will refer to ARGs hereafter; Fig. S1).
@@ -361,7 +362,7 @@ re-coalesce with ancestral lineages that contributed genetic material to samples
 in that interval (as opposed to re-coalescing with any ancestral lineage). 
 % the types of coalescent events that can occur between sequential
 % space of possible ARGs that 
-This greatly reduces the space of possible ARGs without changing the expected
+This greatly reduces the space of possible ARGs without changing the \st{expected}
 distribution of sequential genealogies, and in doing so it enables modeling
 changes between sequential genealogies
 as a Markov process \citep{mcvean2005approximating}. 
