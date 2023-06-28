@@ -118,6 +118,7 @@ def simulate(
             # this will be our new starting tree.
             if next_simple_tree.kc_distance(simple_tree0, lambda_=0):
                 tree1 = next_simple_tree
+                start = tree1.interval.left
                 break
 
         # get sum edge lengths of tree at starting position
@@ -193,8 +194,8 @@ def simulate(
         results[lidx, 1] = prob_topo
         results[lidx, 2] = stats.expon.mean(scale=1 / tree_rate)
         results[lidx, 3] = stats.expon.mean(scale=1 / topo_rate)
-        results[lidx, 4] = observed_tree_dist
-        results[lidx, 5] = observed_topo_dist
+        results[lidx, 4] = observed_tree_dist - start
+        results[lidx, 5] = observed_topo_dist - start
         results[lidx, 6] = tsumlen1
         results[lidx, 7] = event_type
     return results
