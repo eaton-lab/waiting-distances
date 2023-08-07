@@ -4,11 +4,11 @@
 
 The main function (simulate) takes a species tree and other parameters
 as input and simulates tree sequences under the specified species tree.
-For each tree sequence the first genealogy is sampled (tree0) and then
-the observed waiting distance until each of the possible event types
-is recorded (tree-change, or topo-change). In addition, the probabilities
-and expected distances until each event type is observed is also calculated
-for each tree sequence based on the species tree and first genealogy.
+For each tree sequence the first genealogy is sampled (tree0). We then
+sample until the first topology-change event occurs to find tree1. This
+is our true starting tree. From here, we calculate the probabilities
+of events and record the observed recombination events to the next tree
+or topology.
 
 The final results is saved as .npy (ndarray) and written to the current
 directory where this script is run.
@@ -71,13 +71,14 @@ def simulate(
         observed recombination events.
     """
     # ipcoal Model
-    model: ipcoal.Model = ipcoal.Model(
+    model = ipcoal.Model(
         tree=sptree,
         Ne=neff,
         seed_trees=seed,
         nsamples=nsamples,
         recomb=recomb,
         record_full_arg=True,
+        discrete_genome=False,
         ancestry_model="smc_prime" if smc else "hudson",
     )
 
@@ -114,7 +115,7 @@ def simulate(
             tree.next()
             next_simple_tree = stseq.at(tree.interval.left, sample_lists=True)
 
-            # if the topology changed then this break and save tree as
+            # if the topology changed then break and save tree as
             # this will be our new starting tree.
             if next_simple_tree.kc_distance(simple_tree0, lambda_=0):
                 tree1 = next_simple_tree
@@ -126,14 +127,14 @@ def simulate(
 
         # compute analytical probabilities of change given tree1
         toy1 = toytree.tree(tree1.as_newick(node_labels=model.tipdict))
-        prob_tree = ipcoal.smc.get_probability_tree_change(
+        prob_tree_unchanged = ipcoal.smc.get_prob_tree_unchanged(
             model.tree, toy1, imap)
-        prob_topo = ipcoal.smc.get_probability_topology_change(
+        prob_topo_unchanged = ipcoal.smc.get_prob_topo_unchanged(
             model.tree, toy1, imap)
 
         # compute lambda_ (rate) of tree/topo change given sptree and tree1
-        tree_rate = tsumlen1 * prob_tree * recomb
-        topo_rate = tsumlen1 * prob_topo * recomb
+        tree_rate = tsumlen1 * (1 - prob_tree_unchanged) * recomb
+        topo_rate = tsumlen1 * (1 - prob_topo_unchanged) * recomb
 
         # RECORD FIRST EVENT TYPE ------------------------------------
         # iterate over subsequent intervals of non-simplified tree seq
@@ -190,8 +191,8 @@ def simulate(
                     break
 
         # store final results
-        results[lidx, 0] = prob_tree
-        results[lidx, 1] = prob_topo
+        results[lidx, 0] = (1 - prob_tree_unchanged)
+        results[lidx, 1] = (1 - prob_topo_unchanged)
         results[lidx, 2] = stats.expon.mean(scale=1 / tree_rate)
         results[lidx, 3] = stats.expon.mean(scale=1 / topo_rate)
         results[lidx, 4] = observed_tree_dist - start
@@ -302,7 +303,7 @@ if __name__ == "__main__":
     # THE TEST PARAMS TAKE <10 minutes TO RUN ON AN 8-CORE LAPTOP.
     # THE FULL PARAMS TAKE 100X longer and should be run on a cluster
     # or workstation with the NCORES params cranked up.
-    for npops, nsamples in [(1, 8), (2, 4), (8, 1)]:
+    for npops, nsamples in [(1, 8), (2, 4), (4, 2)]:
         for smc in [True, False]:
 
             kwargs = dict(
