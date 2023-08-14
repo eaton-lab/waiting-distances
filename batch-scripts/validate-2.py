@@ -29,6 +29,7 @@ from pathlib import Path
 from concurrent.futures import ProcessPoolExecutor
 import numpy as np
 from scipy import stats
+from numba import set_num_threads
 import toytree
 import ipcoal
 
@@ -70,6 +71,8 @@ def simulate(
         ancestors of the samples. Thus 'smc_prime' leads to fewer
         observed recombination events.
     """
+    set_num_threads(1)
+
     # ipcoal Model
     model = ipcoal.Model(
         tree=sptree,
@@ -127,10 +130,12 @@ def simulate(
 
         # compute analytical probabilities of change given tree1
         toy1 = toytree.tree(tree1.as_newick(node_labels=model.tipdict))
-        prob_tree_unchanged = ipcoal.smc.get_prob_tree_unchanged(
-            model.tree, toy1, imap)
-        prob_topo_unchanged = ipcoal.smc.get_prob_topo_unchanged(
-            model.tree, toy1, imap)
+
+        T = ipcoal.smc.TreeEmbedding(model.tree, toy1, imap, nproc=1)
+        prob_tree_unchanged = ipcoal.smc.src.get_prob_tree_unchanged_from_arrays(
+            T.emb[0], T.enc[0], T.barr[0], T.sarr[0])
+        prob_topo_unchanged = 1 - ipcoal.smc.src.get_prob_topo_unchanged_from_arrays(
+            T.emb[0], T.enc[0], T.barr[0], T.sarr[0], T.rarr[0])
 
         # compute lambda_ (rate) of tree/topo change given sptree and tree1
         tree_rate = tsumlen1 * (1 - prob_tree_unchanged) * recomb
@@ -291,14 +296,14 @@ if __name__ == "__main__":
     SEED = 123
     NLOCI = 100
     NREPS = 100
-    # OUTNAME = "validate"
-    # NCORES = 70
+    OUTNAME = "validate"
+    NCORES = 70
 
     # TEST PARAMS
-    NCORES = 8
-    NLOCI = 10
-    NREPS = 10
-    OUTNAME = "TEST"
+    # NCORES = 8
+    # NLOCI = 10
+    # NREPS = 10
+    # OUTNAME = "TEST"
 
     # THE TEST PARAMS TAKE <10 minutes TO RUN ON AN 8-CORE LAPTOP.
     # THE FULL PARAMS TAKE 100X longer and should be run on a cluster

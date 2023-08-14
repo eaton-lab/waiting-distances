@@ -226,6 +226,11 @@ def distribute_jobs(
     outname: str,
 ) -> np.ndarray:
     """Parallelize simulator function across Ne values, reps, and SMC/Full
+
+    The total number of trees analyzed will be NLOCI * NREPS. Each is
+    started from a different random seed. The only distinction is that
+    NLOCI can be thought of here as the chunksize of trees sent to one
+    enging at a time during parallelization.
     """
     # compare smc and full
     results = np.zeros((nloci * nreps, neff_nvalues, 8))
