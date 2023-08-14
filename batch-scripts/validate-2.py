@@ -247,7 +247,7 @@ def distribute_jobs(
         # apply a different seed to each rep
         rng = np.random.default_rng(seed)
         for rep in range(nreps):
-            seed = rng.integers(1e9)
+            seed = rng.integers(1e12)
 
             # apply same seed for each diff value of Ne
             for nidx, neff in enumerate(nes):
@@ -308,7 +308,7 @@ if __name__ == "__main__":
     # THE TEST PARAMS TAKE <10 minutes TO RUN ON AN 8-CORE LAPTOP.
     # THE FULL PARAMS TAKE 100X longer and should be run on a cluster
     # or workstation with the NCORES params cranked up.
-    for npops, nsamples in [(1, 8), (2, 4), (4, 2)]:
+    for npops, nsamples in [(8, 1), (4, 2), (2, 4)]:
         for smc in [True, False]:
 
             kwargs = dict(
