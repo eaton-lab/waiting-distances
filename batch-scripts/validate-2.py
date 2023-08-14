@@ -280,6 +280,10 @@ def distribute_jobs(
         iresults = future.result()
         results[ival, nidx, :] = iresults
 
+        # ...
+        outname = Path(".") / f"tmp-{nidx}-{rep}-{outname}"
+        np.save(outname.with_suffix(".npy"), iresults)
+
     # save results to file
     outname = Path(".") / f"{outname}"
     np.save(outname.with_suffix(".npy"), results)
