@@ -281,8 +281,8 @@ def distribute_jobs(
         results[ival, nidx, :] = iresults
 
         # ...
-        outname = Path(".") / f"tmp-{nidx}-{rep}-{outname}"
-        np.save(outname.with_suffix(".npy"), iresults)
+        tmpname = Path(".") / f"tmp-{outname}-{nidx}-{rep}"
+        np.save(tmpname.with_suffix(".npy"), iresults)
 
     # save results to file
     outname = Path(".") / f"{outname}"
@@ -298,16 +298,16 @@ if __name__ == "__main__":
     NEFF_MAX = 500_000
     NEFF_NVALUES = 10
     SEED = 123
-    NLOCI = 100
-    NREPS = 1000
-    OUTNAME = "validate"
-    NCORES = 70
+    # NLOCI = 100
+    # NREPS = 1000
+    # OUTNAME = "validate"
+    # NCORES = 70
 
     # TEST PARAMS
-    # NCORES = 8
-    # NLOCI = 10
-    # NREPS = 10
-    # OUTNAME = "TEST"
+    NCORES = 8
+    NLOCI = 10
+    NREPS = 10
+    OUTNAME = "TESTX2"
 
     # THE TEST PARAMS TAKE <10 minutes TO RUN ON AN 8-CORE LAPTOP.
     # THE FULL PARAMS TAKE 100X longer and should be run on a cluster
