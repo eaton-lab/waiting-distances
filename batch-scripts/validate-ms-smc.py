@@ -114,9 +114,9 @@ def simulate(
         # compute analytical probabilities of change given tree0
         toy0 = toytree.tree(tree0.as_newick(node_labels=model.tipdict))
         T = ipcoal.smc.TreeEmbedding(model.tree, toy0, imap, nproc=1)
-        prob_tree = 1 - ipcoal.smc.get_prob_tree_unchanged_from_arrays(
+        prob_tree = 1 - ipcoal.smc.src.get_prob_tree_unchanged_from_arrays(
             T.emb[0], T.enc[0])
-        prob_topo = 1 - ipcoal.smc.get_prob_topo_unchanged_from_arrays(
+        prob_topo = 1 - ipcoal.smc.src.get_prob_topo_unchanged_from_arrays(
             T.emb[0], T.enc[0], T.barr[0], T.sarr[0], T.rarr[0])
 
         # compute lambda_ (rate) of tree/topo change given sptree and tree0
