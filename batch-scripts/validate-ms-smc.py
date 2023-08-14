@@ -28,6 +28,7 @@ from typing import Dict, List
 from pathlib import Path
 from concurrent.futures import ProcessPoolExecutor
 import numpy as np
+from numba import set_num_threads
 from scipy import stats
 import toytree
 import ipcoal
@@ -70,6 +71,8 @@ def simulate(
         ancestors of the samples. Thus 'smc_prime' leads to fewer
         observed recombination events.
     """
+    set_num_threads(1)
+
     # ipcoal Model
     model: ipcoal.Model = ipcoal.Model(
         tree=sptree,
@@ -290,7 +293,7 @@ if __name__ == "__main__":
     # NCORES = 70
 
     # TEST PARAMS
-    NCORES = 64
+    NCORES = 60
     NLOCI = 10
     NREPS = 10
     OUTNAME = "TESTX"
