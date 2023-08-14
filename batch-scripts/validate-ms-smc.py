@@ -115,7 +115,7 @@ def simulate(
         toy0 = toytree.tree(tree0.as_newick(node_labels=model.tipdict))
         T = ipcoal.smc.TreeEmbedding(model.tree, toy0, imap, nproc=1)
         prob_tree = 1 - ipcoal.smc.src.get_prob_tree_unchanged_from_arrays(
-            T.emb[0], T.enc[0])
+            T.emb[0], T.enc[0], T.barr[0], T.sarr[0])
         prob_topo = 1 - ipcoal.smc.src.get_prob_topo_unchanged_from_arrays(
             T.emb[0], T.enc[0], T.barr[0], T.sarr[0], T.rarr[0])
 
@@ -290,10 +290,10 @@ if __name__ == "__main__":
     # NCORES = 70
 
     # TEST PARAMS
-    NCORES = 8
+    NCORES = 64
     NLOCI = 10
     NREPS = 10
-    OUTNAME = "TEST"
+    OUTNAME = "TESTX"
 
     # THE TEST PARAMS TAKE <10 minutes TO RUN ON AN 8-CORE LAPTOP.
     # THE FULL PARAMS TAKE 100X longer and should be run on a cluster
