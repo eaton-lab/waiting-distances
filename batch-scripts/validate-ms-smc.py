@@ -78,6 +78,7 @@ def simulate(
         nsamples=nsamples,
         recomb=recomb,
         record_full_arg=True,
+        discrete_genome=False,
         ancestry_model="smc_prime" if smc else "hudson",
     )
 
@@ -104,25 +105,28 @@ def simulate(
         # simpler trees that can be compared to detect event types.
         stseq = tseq.simplify(filter_sites=False)
 
-        # get the starting tree and its sum branch lengths
+        # get the starting tree and its sum branch lengths. Here we
+        # actually start from the 2nd tree (index=1) bc we were worried
+        # the first tree interval length may be truncated.
         tree0 = stseq.at(0, sample_lists=True)
         tsumlen0 = tree0.get_total_branch_length()
 
         # compute analytical probabilities of change given tree0
         toy0 = toytree.tree(tree0.as_newick(node_labels=model.tipdict))
-        prob_tree = ipcoal.smc.get_probability_tree_change(
-            model.tree, toy0, imap)
-        prob_topo = ipcoal.smc.get_probability_topology_change(
-            model.tree, toy0, imap)
+        T = ipcoal.smc.TreeEmbedding(model.tree, toy0, imap, nproc=1)
+        prob_tree = 1 - ipcoal.smc.get_prob_tree_unchanged_from_arrays(
+            T.emb[0], T.enc[0])
+        prob_topo = 1 - ipcoal.smc.get_prob_topo_unchanged_from_arrays(
+            T.emb[0], T.enc[0], T.barr[0], T.sarr[0], T.rarr[0])
 
         # compute lambda_ (rate) of tree/topo change given sptree and tree0
         tree_rate = tsumlen0 * prob_tree * recomb
         topo_rate = tsumlen0 * prob_topo * recomb
 
-        # get the gene tree at the next *event*. Here we first fetch 
+        # get the gene tree at the next *event*. Here we first fetch
         # from `tseq` since only this tree sequence contains events that
         # may not change the tree. At this position we then fetch the
-        # tree from the simplified tree sequence.
+        # tree from the simplified tree sequence at the same position.
         first_event_position = tseq.at(0).interval[1]
 
         # get simplified tree at this position so we can compared to
@@ -282,14 +286,18 @@ if __name__ == "__main__":
     SEED = 123
     NLOCI = 100
     NREPS = 100
-    OUTNAME = "validate"
-    NCORES = 70
-    # NLOCI = 10
-    # NREPS = 10
-    # OUTNAME = "test"
+    # OUTNAME = "validate"
+    # NCORES = 70
 
-    # THIS TAKES ABOUT xxx TO RUN ON AN 8-CORE LAPTOP. (6:13 START)
-    # TRY LOWERING NLOCI AND NREPS WHEN TESTING.
+    # TEST PARAMS
+    NCORES = 8
+    NLOCI = 10
+    NREPS = 10
+    OUTNAME = "TEST"
+
+    # THE TEST PARAMS TAKE <10 minutes TO RUN ON AN 8-CORE LAPTOP.
+    # THE FULL PARAMS TAKE 100X longer and should be run on a cluster
+    # or workstation with the NCORES params cranked up.
     for npops, nsamples in [(1, 8), (2, 4), (8, 1)]:
         for smc in [True, False]:
 
