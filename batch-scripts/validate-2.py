@@ -298,8 +298,8 @@ if __name__ == "__main__":
     NEFF_NVALUES = 10
     SEED = 123
     NLOCI = 100
-    NREPS = 100
-    OUTNAME = "validate-run"
+    NREPS = 1000
+    OUTNAME = "validate-100K"
     NCORES = 60
 
     # TEST PARAMS
