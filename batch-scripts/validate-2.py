@@ -97,7 +97,7 @@ def simulate(
         # init a new tree sequence generator (new seed)
         tgen = model._get_tree_sequence_generator(nsites=nsites)
 
-        # sample the tree sequence for this chromosome
+        # sample a full tree sequence for this chromosome
         tseq = next(tgen)
 
         # get a copy of the tree sequence that has been simplified.
@@ -110,7 +110,7 @@ def simulate(
 
         # get the starting tree in each tree sequence.
         tree = tseq.first(sample_lists=True)
-        simple_tree0 = stseq.first(sample_lists=True)
+        simple_tree0 = stseq.first(sample_lists=True).copy()
 
         # iterate over subsequent intervals until the first topology
         # change event is observed. Start from that new fresh tree.
@@ -121,7 +121,7 @@ def simulate(
             # if the topology changed then break and save tree as
             # this will be our new starting tree.
             if next_simple_tree.kc_distance(simple_tree0, lambda_=0):
-                tree1 = next_simple_tree
+                tree1 = next_simple_tree.copy()
                 start = tree1.interval.left
                 break
 
@@ -130,11 +130,10 @@ def simulate(
 
         # compute analytical probabilities of change given tree1
         toy1 = toytree.tree(tree1.as_newick(node_labels=model.tipdict))
-
         T = ipcoal.smc.TreeEmbedding(model.tree, toy1, imap, nproc=1)
         prob_tree_unchanged = ipcoal.smc.src.get_prob_tree_unchanged_from_arrays(
             T.emb[0], T.enc[0], T.barr[0], T.sarr[0])
-        prob_topo_unchanged = 1 - ipcoal.smc.src.get_prob_topo_unchanged_from_arrays(
+        prob_topo_unchanged = ipcoal.smc.src.get_prob_topo_unchanged_from_arrays(
             T.emb[0], T.enc[0], T.barr[0], T.sarr[0], T.rarr[0])
 
         # compute lambda_ (rate) of tree/topo change given sptree and tree1
@@ -312,7 +311,7 @@ if __name__ == "__main__":
     # THE TEST PARAMS TAKE <10 minutes TO RUN ON AN 8-CORE LAPTOP.
     # THE FULL PARAMS TAKE 100X longer and should be run on a cluster
     # or workstation with the NCORES params cranked up.
-    for npops, nsamples in [(8, 1), (4, 2), (2, 4)]:
+    for npops, nsamples in [(8, 1), (2, 4), (1, 8), (4, 2)]:
         for smc in [True, False]:
 
             kwargs = dict(
