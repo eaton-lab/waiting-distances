@@ -32,6 +32,7 @@ from scipy import stats
 from numba import set_num_threads
 import toytree
 import ipcoal
+import msprime
 
 
 def simulate(
@@ -95,10 +96,20 @@ def simulate(
     for lidx in range(nloci):
 
         # init a new tree sequence generator (new seed)
-        tgen = model._get_tree_sequence_generator(nsites=nsites)
+        while 1:
+            # sample a full tree sequence for this chromosome
+            try:
+                tseq = next(model._get_tree_sequence_generator(nsites=nsites))
 
-        # sample a full tree sequence for this chromosome
-        tseq = next(tgen)
+            # catch the rare error that can occur when doing many many sims
+            # at very low Ne setting: "msprime._msprime.LibraryError: The simulation
+            # model supplied resulted in a parent node having a time value <= to
+            # its child. This can occur either as a result of multiple bottlenecks
+            # happening at the same time or because of numerical imprecision with
+            # very small population sizes.".
+            except msprime._msprime.LibraryError:
+                continue
+            break
 
         # get a copy of the tree sequence that has been simplified.
         # Because it was simulated with record_full_arg=True there are
@@ -280,8 +291,8 @@ def distribute_jobs(
         results[ival, nidx, :] = iresults
 
         # ...
-        tmpname = Path(".") / f"tmp-{outname}-{nidx}-{rep}"
-        np.save(tmpname.with_suffix(".npy"), iresults)
+        # tmpname = Path(".") / f"tmp-{outname}-{nidx}-{rep}"
+        # np.save(tmpname.with_suffix(".npy"), iresults)
 
     # save results to file
     outname = Path(".") / f"{outname}"
@@ -300,7 +311,7 @@ if __name__ == "__main__":
     NLOCI = 100
     NREPS = 1000
     OUTNAME = "validate-100K"
-    NCORES = 60
+    NCORES = 55
 
     # TEST PARAMS
     # NCORES = 8
@@ -311,8 +322,8 @@ if __name__ == "__main__":
     # THE TEST PARAMS TAKE <10 minutes TO RUN ON AN 8-CORE LAPTOP.
     # THE FULL PARAMS TAKE 100X longer and should be run on a cluster
     # or workstation with the NCORES params cranked up.
-    for npops, nsamples in [(8, 1), (2, 4), (1, 8), (4, 2)]:
-        for smc in [True, False]:
+    for npops, nsamples in [(8, 1), (1, 8), (2, 4), (4, 2)]:
+        for smc in [False, True]:
 
             kwargs = dict(
                 sptree=get_sptree(ntips=npops, height=SPECIES_TREE_HEIGHT),
