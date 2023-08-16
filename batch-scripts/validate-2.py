@@ -309,8 +309,8 @@ if __name__ == "__main__":
     NEFF_NVALUES = 10
     SEED = 123
     NLOCI = 100
-    NREPS = 1000
-    OUTNAME = "validate-100K"
+    NREPS = 100
+    OUTNAME = "validate-10K"
     NCORES = 55
 
     # TEST PARAMS
@@ -322,7 +322,7 @@ if __name__ == "__main__":
     # THE TEST PARAMS TAKE <10 minutes TO RUN ON AN 8-CORE LAPTOP.
     # THE FULL PARAMS TAKE 100X longer and should be run on a cluster
     # or workstation with the NCORES params cranked up.
-    for npops, nsamples in [(8, 1), (1, 8), (2, 4), (4, 2)]:
+    for npops, nsamples in [(4, 2), (4, 3), (8, 1), (8, 3), (1, 8), (2, 4)]:
         for smc in [False, True]:
 
             kwargs = dict(
@@ -338,6 +338,6 @@ if __name__ == "__main__":
                 seed=SEED,
                 smc=smc,
                 ncores=NCORES,
-                outname=f"{OUTNAME}-npops{npops}-{'smc' if smc else 'full'}",
+                outname=f"{OUTNAME}-npops{npops}-nsamps{nsamples}-{'smc' if smc else 'full'}",
             )
             distribute_jobs(**kwargs)
