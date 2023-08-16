@@ -322,7 +322,7 @@ if __name__ == "__main__":
     # THE TEST PARAMS TAKE <10 minutes TO RUN ON AN 8-CORE LAPTOP.
     # THE FULL PARAMS TAKE 100X longer and should be run on a cluster
     # or workstation with the NCORES params cranked up.
-    SETUPS = [(1, 8), (2, 4), (8, 1), (8, 3), (2, 8)]
+    SETUPS = [(8, 3), (8, 1), (1, 8), (2, 4), (2, 8)]
     for (npops, nsamples) in SETUPS:
         for smc in [False, True]:
 
