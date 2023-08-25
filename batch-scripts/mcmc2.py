@@ -466,7 +466,7 @@ def main(
     sptree = toytree.tree(tree)
 
     # require correct number params for tree size
-    assert len(params) == sptree.nnodes + (sptree.nnodes - 2) + 1
+    assert len(params) == sptree.nnodes + (sptree.nnodes - sptree.ntips) + 1
 
     # set Ne and Tau values on species tree
     true_params = params.copy()
