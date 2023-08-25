@@ -355,7 +355,8 @@ class Mcmc2:
             else:
                 self.params = self._params.copy()
                 # store accepted embedding
-                self.embedding.emb = self._embedding.emb.copy()
+                if uidx < len(self.params):
+                    self.embedding.emb = self._embedding.emb.copy()
                 if (uidx > self.species_tree.nnodes) and (uidx < len(self.params)):
                     self.embedding.enc = self._embedding.enc.copy()
                 curr_loglik = new_loglik
@@ -466,7 +467,6 @@ def main(
     sptree = toytree.tree(tree)
 
     # require correct number params for tree size
-    logger.info((tree, len(params), sptree.nnodes, sptree.ntips))
     assert len(params) == sptree.nnodes + (sptree.nnodes - sptree.ntips) + 1
 
     # set Ne and Tau values on species tree
