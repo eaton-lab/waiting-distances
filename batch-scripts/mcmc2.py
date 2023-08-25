@@ -178,11 +178,13 @@ class Mcmc2:
 
         # set neff value on current embedding tables
         if pidx < self.species_tree.nnodes:
+            # randomly sample which interval to change
+            # pidx = self.rng.choice(range(self.species_tree.nnodes))
             self._params = self.params.copy()
             self._params[pidx] = self.get_proposal(pidx)
             self._embedding.emb = _jit_update_neff(self.embedding.emb, pidx, self._params[pidx])
-            logger.debug(f"CURRENT EMBEDDING {self.params}\n{self.embedding.get_table(1)}")
-            logger.debug(f"PROPOSE EMBEDDING {self._params}\n{self._embedding.get_table(1)}")
+            # logger.debug(f"CURRENT EMBEDDING {self.params}\n{self.embedding.get_table(1)}")
+            # logger.debug(f"PROPOSE EMBEDDING {self._params}\n{self._embedding.get_table(1)}")
 
         # set a tau value to new setting and get new embeddings. This is
         # only currently tested for 2-tip tree. Need a more advanced
@@ -329,8 +331,8 @@ class Mcmc2:
             aratios[uidx] += aratio
             apropos[uidx] += 1
 
-            # tuning during the burnin
-            if (idx < burnin) and (not idx % 30):
+            # tuning during the burnin every 30 iterations (accepted or not)
+            if (idx < burnin) and (not idx % 50):
                 oldjump = self.jumpsize.copy()
                 accept_rates = aratios / apropos
                 for i, j in enumerate(accept_rates.mask):
@@ -363,7 +365,7 @@ class Mcmc2:
                 aidx += 1
 
                 # only store every Nth accepted result
-                if idx > burnin:
+                if aidx > burnin:
                     if (aidx % sample_interval) == 0:
                         posterior[sidx] = list(self.params) + [new_loglik]
                         sidx += 1
@@ -371,7 +373,7 @@ class Mcmc2:
                 # print on interval
                 if not aidx % print_interval:
                     elapsed = timedelta(seconds=int(time.time() - start))
-                    stype = "sample" if idx > burnin else "burnin"
+                    stype = "sample" if aidx > burnin else "burnin"
                     params = "\t".join([f"{i:.3e}" for i in self.params])
                     logger.info(
                         f"{aidx:>4}\t"
@@ -385,7 +387,7 @@ class Mcmc2:
                     )
 
                 # save to disk and print summary every 1K sidx
-                if sidx and (not sidx % 100) and sidx != pidx:
+                if sidx and (not sidx % 50) and sidx != pidx:
                     np.save(self.outpath, posterior[:sidx])
                     logger.info("checkpoint saved.")
                     means = posterior[:sidx].mean(axis=0)
