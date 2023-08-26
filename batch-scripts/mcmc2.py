@@ -103,7 +103,7 @@ class Mcmc2:
         self.msc = msc
         """: calculate msc likelihood."""
 
-        # ...
+        # get proposal sampler of param indices
         self.fixed_params = [] if fixed_params is None else fixed_params
         pidxs = list(range(len(self.params)))
         for i in self.fixed_params:
@@ -223,7 +223,10 @@ class Mcmc2:
 
                     # re-embed the gene trees in the species tree
                     # logger.debug(f"trying tau = {self.params[pidx]:.3e} -> {self._params[pidx]:.3e} ")
-                    emb, enc = get_genealogy_embedding_arrays(tmptree, self.genealogies, self.imap)
+                    # emb, enc = get_genealogy_embedding_arrays(tmptree, self.genealogies, self.imap)
+                    self._embedding.species_tree = tmptree
+                    chunk = int(np.ceil(len(self._embedding.genealogies) / self._embedding._nproc))
+                    emb, enc = self._embedding._get_embedding_table_parallel(chunk)
                     break
                 except ValueError:
                     pass
@@ -514,7 +517,7 @@ def main(
 
     # get initial embedding
     logger.info(f"embedding includes {len(trees)} tree-changes, {len(topo_spans)} topo-changes")
-    edata = ipcoal.smc.TreeEmbedding(model.tree, trees, imap)
+    edata = ipcoal.smc.TreeEmbedding(model.tree, trees, imap, nproc=kwargs["threads"])
 
     # convert priors into probability distributions
     prior_dists = []
