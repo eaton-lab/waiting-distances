@@ -472,13 +472,9 @@ def main(
     The posterior is saved to file as a numpy array.
     """
     outpath = Path(name).expanduser().absolute().with_suffix(".npy")
-    outlog = Path(name).expanduser().absolute().with_suffix(".log")
     outpath.parent.mkdir(exist_ok=True)
     if force and outpath.exists():
         outpath.unlink()
-
-    # set logger
-    ipcoal.set_log_level(log_level=cli_args.log_level, log_file=str(outlog))
 
     # get species tree topology
     sptree = toytree.tree(tree)
@@ -662,6 +658,14 @@ if __name__ == "__main__":
 
     # get command line args
     cli_args = command_line()
+
+    # set logger
+    outlog = Path(cli_args.name).expanduser().absolute().with_suffix(".log")
+    outlog.parent.mkdir(exist_ok=True)
+    ipcoal.set_log_level(log_level=cli_args.log_level, log_file=str(outlog))
+    logger.info(f"NAME: {str(cli_args.name)}")
+    logger.info(f"DATE: {time.strftime('%Y-%m-%d %H:%M')}")
+    logger.info(f"CMD: {' '.join(sys.argv)}")
 
     # limit n threads
     if cli_args.threads:
