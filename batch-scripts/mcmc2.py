@@ -16,9 +16,6 @@ Ideas....
 - show ARG likelihood of true ARG
 - compare to ARG likelihood of inferred ARGs
 
-- write to log file.
-- 
-
 """
 
 from typing import Dict, Sequence
@@ -47,10 +44,10 @@ from ipcoal.smc.src.utils import get_waiting_distance_data_from_model
 from ipcoal.smc.src.embedding import _jit_update_neff
 
 # optional. If installed the ESS will be printed.
-try:
-    import arviz as az
-except ImportError:
-    pass
+# try:
+#     import arviz as az
+# except ImportError:
+#     pass
 
 
 logger = logger.bind(name="ipcoal")
@@ -108,7 +105,15 @@ class Mcmc2:
         pidxs = list(range(len(self.params)))
         for i in self.fixed_params:
             pidxs.remove(i)
-        self._proposal_idx = itertools.cycle(pidxs)
+        # cycle through non-fixed params in order
+        # self._proposal_idx = itertools.cycle(pidxs)
+        # sample with 2X weight on non-tau parameters
+        freqs = np.ones(len(pidxs)) / 5
+        tau_idxs = [i for i in pidxs[:-1] if i > self.species_tree.nnodes]
+        freqs[tau_idxs] /= 3
+        freqs = freqs / freqs.sum()
+        self._proposal_idxs = pidxs
+        self._proposal_weights = freqs
 
         # The embedding updated to the proposed params
         self._embedding = deepcopy(self.embedding)
@@ -184,7 +189,10 @@ class Mcmc2:
         """
         # select the next parameter to change
         if pidx is None:
-            pidx = next(self._proposal_idx)
+            # cycle through proposal idxs
+            # pidx = next(self._proposal_idx)
+            # randomly sample weighted proposal types
+            pidx = self.rng.choice(self._proposal_idxs, p=self._proposal_weights)
 
         # set neff value on current embedding tables
         if pidx < self.species_tree.nnodes:
@@ -411,13 +419,13 @@ class Mcmc2:
                     logger.info(f"MCMC current posterior std ={stds}")
 
                     # print mcmc if optional pkg arviz is installed.
-                    if sys.modules.get("arviz"):
-                        ess_vals = []
-                        for col in range(posterior.shape[1]):
-                            azdata = az.convert_to_dataset(posterior[:sidx, col])
-                            ess = az.ess(azdata).x.values
-                            ess_vals.append(int(ess))
-                        logger.info(f"MCMC current posterior ESS ={ess_vals}\n")
+                    # if sys.modules.get("arviz"):
+                    #     ess_vals = []
+                    #     for col in range(posterior.shape[1]):
+                    #         azdata = az.convert_to_dataset(posterior[:sidx, col])
+                    #         ess = az.ess(azdata).x.values
+                    #         ess_vals.append(int(ess))
+                    #     logger.info(f"MCMC current posterior ESS ={ess_vals}\n")
                     pidx = sidx
 
                 # # adjust tuning of the jumpsize during burnin
@@ -563,10 +571,11 @@ def main(
     )
 
     # report loglik at true params and then set back to start params
+    values = '\t'.join([f'{i:.5g}' for i in params])
     prior_loglik = mcmc.prior_log_likelihood()
     data_loglik = mcmc.log_likelihood()
     loglik = data_loglik + prior_loglik
-    logger.info(f"log-likelihood of true params ({params}): {prior_loglik:.3f} {data_loglik:.3f} {loglik:.3f}")
+    logger.info(f"log-likelihood of true params  ({values}): {prior_loglik:.3f} {data_loglik:.3f} {loglik:.3f}")
 
     # run MCMC chain
     posterior = mcmc.run(
@@ -628,15 +637,15 @@ def command_line():
     parser.add_argument(
         '--mcmc-nsamples', type=int, default=1000, help='Number of samples in posterior')
     parser.add_argument(
-        '--mcmc-sample-interval', type=int, default=6, help='N accepted iterations between samples')
+        '--mcmc-sample-interval', type=int, default=10, help='N accepted iterations between samples')
     parser.add_argument(
-        '--mcmc-print-interval', type=int, default=6, help='N accepted iterations between printing progress')
+        '--mcmc-print-interval', type=int, default=10, help='N accepted iterations between printing progress')
     parser.add_argument(
         '--mcmc-burnin', type=int, default=100, help='N accepted iterations before starting sampling')
     parser.add_argument(
         '--threads', type=int, default=7, help='Max number of threads (0=all detected)')
     parser.add_argument(
-        '--force', type=bool, default=True, help='Overwrite existing file w/ same name.')
+        '--force', action="store_true", help='Overwrite existing file w/ same name.')
     parser.add_argument(
         '--msc', action="store_true", help='Calculate MSC likelihood.')
     parser.add_argument(
