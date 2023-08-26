@@ -10,12 +10,8 @@ return a mask or index of the trees representing topology-changes to
 subset from the same embedding. This saves time for re-embeddings.
 
 Ideas....
-- If MSC parameters are not identifiable from waiting dists...
-- But tree waiting dists are predictable from MSC models...
-- ..
-- show ARG likelihood of true ARG
-- compare to ARG likelihood of inferred ARGs
-
+- re-embed for tau changes using the relate table.
+- store Ne values in separate array from the emb?
 """
 
 from typing import Dict, Sequence
@@ -293,7 +289,7 @@ class Mcmc2:
         jumpsize = self.jumpsize.copy()
         self.jumpsize[:] = 0
         for i in range(len(self.params)):
-            self.update_embedding()
+            self.update_embedding(i)
             self.embedding.emb = self._embedding.emb.copy()
             self.embedding.enc = self._embedding.enc.copy()
         self.jumpsize = jumpsize
