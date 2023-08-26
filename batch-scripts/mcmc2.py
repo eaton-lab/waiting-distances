@@ -9,6 +9,16 @@ we should instead make the same table as for tree-changes but also
 return a mask or index of the trees representing topology-changes to
 subset from the same embedding. This saves time for re-embeddings.
 
+Ideas....
+- If MSC parameters are not identifiable from waiting dists...
+- But tree waiting dists are predictable from MSC models...
+- ..
+- show ARG likelihood of true ARG
+- compare to ARG likelihood of inferred ARGs
+
+- write to log file.
+- 
+
 """
 
 from typing import Dict, Sequence
@@ -443,6 +453,7 @@ def main(
     force: bool,
     fixed_params: Sequence[int],
     init_values: Sequence[float],
+    log_level: str,
     *args,
     **kwargs,
 ) -> None:
@@ -461,9 +472,13 @@ def main(
     The posterior is saved to file as a numpy array.
     """
     outpath = Path(name).expanduser().absolute().with_suffix(".npy")
+    outlog = Path(name).expanduser().absolute().with_suffix(".log")
     outpath.parent.mkdir(exist_ok=True)
     if force and outpath.exists():
         outpath.unlink()
+
+    # set logger
+    ipcoal.set_log_level(log_level=cli_args.log_level, log_file=str(outlog))
 
     # get species tree topology
     sptree = toytree.tree(tree)
@@ -647,9 +662,6 @@ if __name__ == "__main__":
 
     # get command line args
     cli_args = command_line()
-
-    # set logger
-    ipcoal.set_log_level(cli_args.log_level)
 
     # limit n threads
     if cli_args.threads:
