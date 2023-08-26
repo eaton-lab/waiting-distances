@@ -452,7 +452,8 @@ def main(
     nloci: int,
     nsites: int,
     priors: Sequence[str],
-    seed: int,
+    seed_trees: int,
+    seed_mcmc: int,
     name: str,
     mcmc_nsamples: int,
     mcmc_sample_interval: int,
@@ -506,7 +507,7 @@ def main(
         sptree,
         nsamples=nsamples,
         recomb=true_recomb,
-        seed_trees=seed,
+        seed_trees=seed_trees,
         discrete_genome=False,
         ancestry_model="smc_prime",
     )
@@ -563,7 +564,7 @@ def main(
         topo_idxs=topo_idxs,
         init_params=true_params,
         prior_dists=prior_dists,
-        seed=seed,
+        seed=seed_mcmc,
         msc=msc,
         smc=smc,
         outpath=outpath,
@@ -620,10 +621,10 @@ def command_line():
     parser.add_argument(
         '--tree', type=str, default="(A,B)C;", help='A newick tree topology.')
     parser.add_argument(
-        '--params', type=float, default=[2e5, 2e5, 2e5, 1e6, 2e-9], nargs="*", help='Ne[x nnodes] Tau[x nnodes-2] and recomb values.')
+        '--params', type=float, default=[2e5, 3e5, 4e5, 1e6, 2e-9], nargs="*", help='Ne[x nnodes] Tau[x nnodes-2] and recomb values.')
     # i,3,5e5 i,3,5e5 i,3,5e5 i,3,2e6 i,3,4e-9
     parser.add_argument(
-        '--priors', type=str, nargs="*", default=["i,3,4e5", "i,3,4e5", "i,3,4e5", "i,3,2e6", "i,3,4e-9"], help='Priors: U,2e5,5e5 I,3,1000')
+        '--priors', type=str, nargs="*", default=["i,3,6e5", "i,3,6e5", "i,3,6e5", "i,3,1e6", "i,3,4e-9"], help='Priors: U,2e5,5e5 I,3,1000')
     parser.add_argument(
         '--nloci', type=int, default=6, help='number of independent loci to simulate')
     parser.add_argument(
@@ -631,19 +632,21 @@ def command_line():
     parser.add_argument(
         '--nsamples', type=int, default=4, help='Number of samples per species lineage')
     parser.add_argument(
-        '--seed', type=int, default=666, help='Random number generator seed')
+        '--seed-trees', type=int, default=666, help='Seed of RNG used for ARG simulation')
+    parser.add_argument(
+        '--seed-mcmc', type=int, default=666, help='Seed of RNG used for MCMC proposals')
     parser.add_argument(
         '--name', type=str, default='smc', help='Prefix path for output files')
     parser.add_argument(
-        '--mcmc-nsamples', type=int, default=1000, help='Number of samples in posterior')
+        '--mcmc-nsamples', type=int, default=10_000, help='Number of samples in posterior')
     parser.add_argument(
         '--mcmc-sample-interval', type=int, default=10, help='N accepted iterations between samples')
     parser.add_argument(
         '--mcmc-print-interval', type=int, default=10, help='N accepted iterations between printing progress')
     parser.add_argument(
-        '--mcmc-burnin', type=int, default=100, help='N accepted iterations before starting sampling')
+        '--mcmc-burnin', type=int, default=500, help='N accepted iterations before starting sampling')
     parser.add_argument(
-        '--threads', type=int, default=7, help='Max number of threads (0=all detected)')
+        '--threads', type=int, default=6, help='Max number of threads (0=all detected)')
     parser.add_argument(
         '--force', action="store_true", help='Overwrite existing file w/ same name.')
     parser.add_argument(
