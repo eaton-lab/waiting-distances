@@ -95,6 +95,7 @@ class Mcmc2:
         """: calculate smc likelihood."""
         self.msc = msc
         """: calculate msc likelihood."""
+        self.max_taus = np.full(self.params.size, 1e12)
 
         # get proposal sampler of param indices
         self.fixed_params = [] if fixed_params is None else fixed_params
@@ -106,7 +107,7 @@ class Mcmc2:
         # sample with 2X weight on non-tau parameters
         freqs = np.ones(len(pidxs)) / 5
         tau_idxs = [i for i in pidxs[:-1] if i > self.species_tree.nnodes]
-        freqs[tau_idxs] /= 3
+        freqs[tau_idxs] /= 4
         freqs = freqs / freqs.sum()
         self._proposal_idxs = pidxs
         self._proposal_weights = freqs
@@ -168,6 +169,7 @@ class Mcmc2:
 
     def get_proposal(self, index: int) -> np.ndarray:
         """Return a proposal for one parameter at a time."""
+        logger.debug(f"proposed {index} {self._params[index]:.3e} N({self.params[index]:.3e},{self.jumpsize[index]:.3e})")
         return self.rng.normal(loc=self.params[index], scale=self.jumpsize[index])
 
     def prior_log_likelihood(self) -> float:
@@ -189,29 +191,35 @@ class Mcmc2:
             # pidx = next(self._proposal_idx)
             # randomly sample weighted proposal types
             pidx = self.rng.choice(self._proposal_idxs, p=self._proposal_weights)
+            # logger.debug(f"propose change to param {pidx}")
 
         # set neff value on current embedding tables
         if pidx < self.species_tree.nnodes:
             # randomly sample which interval to change
             # pidx = self.rng.choice(range(self.species_tree.nnodes))
             self._params = self.params.copy()
-            self._params[pidx] = self.get_proposal(pidx)
+            self._params[pidx] = max(10, self.get_proposal(pidx))
             self._embedding.emb = _jit_update_neff(self.embedding.emb, pidx, self._params[pidx])
             # logger.debug(f"CURRENT EMBEDDING {self.params}\n{self.embedding.get_table(1)}")
             # logger.debug(f"PROPOSE EMBEDDING {self._params}\n{self._embedding.get_table(1)}")
 
-        # set a tau value to new setting and get new embeddings. This is
-        # only currently tested for 2-tip tree. Need a more advanced
-        # node slider for more tips.
+        # set a tau value to new valid setting and re-embed genealogies
         elif pidx < len(self.params) - 1:
             self._params = self.params.copy()
             while 1:
-                tau = self.get_proposal(pidx)
+                tau = max(10, self.get_proposal(pidx))
                 self._params[pidx] = tau
+
+                # quick reject
+                if tau > self.max_taus[pidx]:
+                    # logger.warning(f'fast reject tau {tau:.2e} > max tau {self.max_taus[pidx]}')
+                    continue
+                # logger.warning(f'testable tau {tau:.2e}')
 
                 # try/except to sample an allowed node height
                 try:
                     # raise an exception to sample new value if out of bounds
+                    # this is only relevant for sptrees w/ >2 tips
                     t = self.species_tree
                     node = t[pidx - t.ntips + 1]
                     for child in node.children:
@@ -226,27 +234,91 @@ class Mcmc2:
                     tmptree = t.set_node_data("height", taus).set_node_data("Ne", neffs)
 
                     # re-embed the gene trees in the species tree
-                    # logger.debug(f"trying tau = {self.params[pidx]:.3e} -> {self._params[pidx]:.3e} ")
-                    # emb, enc = get_genealogy_embedding_arrays(tmptree, self.genealogies, self.imap)
                     self._embedding.species_tree = tmptree
                     chunk = int(np.ceil(len(self._embedding.genealogies) / self._embedding._nproc))
                     emb, enc = self._embedding._get_embedding_table_parallel(chunk)
                     break
                 except ValueError:
+                    self.max_taus[pidx] = min(self.max_taus[pidx], tau)
                     pass
             self._embedding.emb = emb
             self._embedding.enc = enc
-            # logger.info(f"\n{self.embedding.get_table(0)}")
-            # logger.info(f"\n{self._embedding.get_table(0)}")
 
         # update recombination rate
         else:
             self._params = self.params.copy()
-            self._params[pidx] = self.get_proposal(pidx)
-            # self._embedding = deepcopy(self.embedding)
-            # self._embedding.emb = self.embedding.emb.copy()
-            # self._embedding.enc = embedding.enc.copy()
+            self._params[pidx] = max(1e-16, self.get_proposal(pidx))
         return pidx
+
+    def _set_starting_values(self, init_values: Sequence[float] = None) -> None:
+        """...
+
+        """
+        # get starting values user or sample from priors
+        self._params = np.zeros(self.params.size)
+        for idx, param in enumerate(self._params):
+
+            # sample a starting value from the priors
+            if idx not in self.fixed_params:
+                # tau cannot be higher than parent, or lower than child
+                if idx < self.species_tree.nnodes:
+                    self._params[idx] = max(10, self.prior_dists[idx].rvs())
+                    self._embedding.emb = _jit_update_neff(
+                        self._embedding.emb, idx, self._params[idx])
+
+                # ...
+                elif idx < len(self.params) - 1:
+                    while 1:
+                        try:
+                            # quick reject
+                            tau = self.prior_dists[idx].rvs()
+                            self._params[idx] = tau
+                            if tau > self.max_taus[idx]:
+                                continue
+                                # logger.warning(f'fast reject tau {tau:.2e} > max tau {self.max_taus[idx]}')
+                            # logger.warning(f'testable tau {tau:.2e}')
+
+                            # assign value to sptree node
+                            t = self.species_tree
+                            taus = dict(zip(range(t.ntips, t.nnodes), self._params[t.nnodes:-1]))
+                            neffs = dict(zip(range(t.nnodes), self._params[:t.nnodes]))
+                            tmptree = t.set_node_data("height", taus).set_node_data("Ne", neffs)
+
+                            # try to re-embed the gene trees in the species tree
+                            self._embedding.species_tree = tmptree
+                            chunk = int(np.ceil(len(self._embedding.genealogies) / self._embedding._nproc))
+                            emb, enc = self._embedding._get_embedding_table_parallel(chunk)
+                            break
+                        except ValueError:
+                            self.max_taus[idx] = min(self.max_taus[idx], self._params[idx])
+                # ...
+                else:
+                    self._params[idx] = max(1e-18, self.prior_dists[idx].rvs())
+
+            # set fixed param.
+            else:
+                # set to true values w/ no sample variance
+                if init_values in ([], None):
+                    self._params[idx] = self.params[idx]
+                # set fixed param to the user-entered init value
+                else:
+                    self._params[idx] = init_values[idx]
+
+        self.params = self._params.copy()
+        self.embedding = self._embedding
+        self.jumpsize[:] = self.params * 0.5
+
+        # format initial values (sampled or user supplied)
+        values = ', '.join([f'{i:.3e}' for i in self._params])
+
+        # report likelihood of starting params
+        prior_loglik = self.prior_log_likelihood()
+        data_loglik = self.log_likelihood()
+        curr_loglik = prior_loglik + data_loglik
+        logger.info(
+            f"log-likelihood of start params ({values}): {prior_loglik:.3f}, "
+            f"{data_loglik:.3f}, {curr_loglik:.3f}")
+        return curr_loglik
 
     def run(
         self,
@@ -273,39 +345,8 @@ class Mcmc2:
         -------
         np.ndarray
         """
-        # get starting values user or sample from priors
-        if init_values in ([], None):
-            init_values = np.array([
-                self.params[i] if i in self.fixed_params
-                else self.prior_dists[i].rvs()
-                for i in range(len(self.params))
-            ])
-
-        # set init values as the current param settings
-        self.params = init_values
-        self._params = self.params.copy()
-
-        # update embedding to match current params
-        jumpsize = self.jumpsize.copy()
-        self.jumpsize[:] = 0
-        for i in range(len(self.params)):
-            self.update_embedding(i)
-            self.embedding.emb = self._embedding.emb.copy()
-            self.embedding.enc = self._embedding.enc.copy()
-        self.jumpsize = jumpsize
-
-        # self.update_embedding(0)
-        # self.embedding._emb = self._embedding.emb.copy()
-        # self.embedding._enc = self._embedding.enc.copy()
-
-        # format initial values (sampled or user supplied)
-        values = '\t'.join([f'{i:.5g}' for i in self._params])
-
-        # report likelihood of starting params
-        prior_loglik = self.prior_log_likelihood()
-        data_loglik = self.log_likelihood()
-        curr_loglik = prior_loglik + data_loglik
-        logger.info(f"log-likelihood of start params ({values}): {prior_loglik:.3f} {data_loglik:.3f} {curr_loglik:.3f}")
+        # get starting values
+        curr_loglik = self._set_starting_values(init_values)
 
         # start sampler
         logger.info(f"starting MCMC sampler for {nsamples} samples.")
@@ -317,13 +358,16 @@ class Mcmc2:
         posterior = np.zeros(shape=(nsamples, len(self.params) + 1))
 
         # counters
-        idx = 0      # iteration index
+        idx = 1      # iteration index
         aidx = 0     # accepted proposal index
         sidx = 0     # sample stored index
         its = 0
         acc = 0
         pidx = 0
-        aratios = np.ma.array([0] * len(self.params), mask=np.bincount(self.fixed_params, minlength=len(self.params)))
+        aratios = np.ma.array(
+            [0] * len(self.params),
+            mask=np.bincount(self.fixed_params, minlength=len(self.params))
+        )
         apropos = np.zeros(len(self.params))
         while 1:
 
@@ -348,8 +392,8 @@ class Mcmc2:
             aratios[uidx] += aratio
             apropos[uidx] += 1
 
-            # tuning during the burnin every 30 iterations (accepted or not)
-            if (idx < burnin) and (not idx % 50):
+            # tuning during the burnin every X iterations (accepted or not)
+            if (idx < burnin) and (not idx % 100):
                 oldjump = self.jumpsize.copy()
                 accept_rates = aratios / apropos
                 for i, j in enumerate(accept_rates.mask):
@@ -360,7 +404,10 @@ class Mcmc2:
                         elif rate > 0.6:
                             self.jumpsize[i] *= 1.5
                 logger.debug(f"\n{accept_rates}\n{oldjump}\n{self.jumpsize}")
-                aratios = np.ma.array([0] * len(self.params), mask=np.bincount(self.fixed_params, minlength=len(self.params)))
+                aratios = np.ma.array(
+                    [0] * len(self.params),
+                    mask=np.bincount(self.fixed_params, minlength=len(self.params)),
+                )
                 apropos = np.zeros(len(self.params))
 
             # proposal rejected
@@ -411,8 +458,10 @@ class Mcmc2:
                     means = "\t".join([f"{i:.5e}" for i in means])
                     stds = posterior[:sidx].std(axis=0)
                     stds = "\t".join([f"{i:.5e}" for i in stds])
+                    rates = "\t".join([f"{i:.5e}" for i in aratios])
                     logger.info(f"MCMC current posterior mean={means}")
                     logger.info(f"MCMC current posterior std ={stds}")
+                    logger.info(f"MCMC mean proposal acc rate={rates}")
 
                     # print mcmc if optional pkg arviz is installed.
                     # if sys.modules.get("arviz"):
@@ -568,11 +617,13 @@ def main(
     )
 
     # report loglik at true params and then set back to start params
-    values = '\t'.join([f'{i:.5g}' for i in params])
+    values = ', '.join([f'{i:.3e}' for i in params])
     prior_loglik = mcmc.prior_log_likelihood()
     data_loglik = mcmc.log_likelihood()
     loglik = data_loglik + prior_loglik
-    logger.info(f"log-likelihood of true params  ({values}): {prior_loglik:.3f} {data_loglik:.3f} {loglik:.3f}")
+    logger.info(
+        f"log-likelihood of true params  ({values}): {prior_loglik:.3f}, "
+        f"{data_loglik:.3f}, {loglik:.3f}")
 
     # run MCMC chain
     posterior = mcmc.run(
