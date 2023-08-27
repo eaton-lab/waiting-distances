@@ -399,9 +399,9 @@ class Mcmc2:
                 for i, j in enumerate(accept_rates.mask):
                     if not j:
                         rate = accept_rates[i]
-                        if rate < 0.3:
+                        if rate < 0.35:
                             self.jumpsize[i] *= 0.5
-                        elif rate > 0.6:
+                        elif rate > 0.65:
                             self.jumpsize[i] *= 1.5
                 logger.debug(f"\n{accept_rates}\n{oldjump}\n{self.jumpsize}")
                 aratios = np.ma.array(
