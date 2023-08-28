@@ -394,9 +394,9 @@ class Mcmc2:
             aratio = self.get_accept_ratio(curr_loglik, new_loglik)
 
             # accept or reject
-            acc += aratio
-            its += 1
             accept = int(aratio > self.rng.random())
+            acc += accept
+            its += 1
             _cparams = "  ".join([f"{i:.4e}" for i in self.params])
             _nparams = "  ".join([f"{i:.4e}" for i in self._params])
             logger.debug(f"{curr_loglik:.2f} old=[{_cparams}] ")
@@ -428,6 +428,7 @@ class Mcmc2:
                     mask=np.bincount(self.fixed_params, minlength=len(self.params)),
                 )
                 apropos = np.zeros(len(self.params))
+                # acc = 0
 
             # proposal rejected
             if not accept:
@@ -465,7 +466,8 @@ class Mcmc2:
                         f"{data_loglik:>8.3f}\t"
                         f"{new_loglik:>8.3f}\t"
                         f"{params}\t"
-                        f"{acc/its:.2f}\t"
+                        f"{acc / its:.2f}\t"
+                        # f"{np.mean(aratios / apropos):.2f}\t"
                         f"{elapsed}\t{stype}"
                     )
 
