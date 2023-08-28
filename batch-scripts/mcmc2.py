@@ -376,7 +376,7 @@ class Mcmc2:
         # counters
         idx = 1      # iteration index
         its = 0
-        acc = 0
+        accsum = 0
         aratios = np.ma.array(
             [0] * len(self.params),
             mask=np.bincount(self.fixed_params, minlength=len(self.params))
@@ -395,14 +395,14 @@ class Mcmc2:
 
             # accept or reject
             accept = int(aratio > self.rng.random())
-            acc += accept
+            accsum += accept
             its += 1
             _cparams = "  ".join([f"{i:.4e}" for i in self.params])
             _nparams = "  ".join([f"{i:.4e}" for i in self._params])
             logger.debug(f"{curr_loglik:.2f} old=[{_cparams}] ")
             logger.debug(f"{new_loglik:.2f} new=[{_nparams}] aratio={aratio:.3f}\n")
 
-            aratios[uidx] += aratio
+            aratios[uidx] += accept
             apropos[uidx] += 1
 
             # tuning during the burnin every X iterations (accepted or not)
@@ -466,7 +466,7 @@ class Mcmc2:
                         f"{data_loglik:>8.3f}\t"
                         f"{new_loglik:>8.3f}\t"
                         f"{params}\t"
-                        f"{acc / its:.2f}\t"
+                        f"{accsum / its:.2f}\t"
                         # f"{np.mean(aratios / apropos):.2f}\t"
                         f"{elapsed}\t{stype}"
                     )
@@ -722,7 +722,7 @@ def command_line():
     parser.add_argument(
         '--seed-mcmc', type=int, default=666, help='Seed of RNG used for MCMC proposals')
     parser.add_argument(
-        '--name', type=str, default='smc', help='Prefix path for output files')
+        '--name', type=str, default='smc', help='Prefix for outputs, e.g., test or testdir/test')
     parser.add_argument(
         '--mcmc-nsamples', type=int, default=10_000, help='Number of samples in posterior')
     parser.add_argument(
