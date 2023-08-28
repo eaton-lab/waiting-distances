@@ -19,7 +19,6 @@ from typing import Dict, Sequence
 import argparse
 import time
 import sys
-import itertools
 from copy import deepcopy
 from pathlib import Path
 from datetime import timedelta
@@ -31,7 +30,7 @@ from numba import set_num_threads
 from scipy import stats
 from loguru import logger
 from ipcoal.msc import get_msc_loglik_from_embedding
-from ipcoal.smc import get_genealogy_embedding_arrays
+# from ipcoal.smc import get_genealogy_embedding_arrays
 from ipcoal.smc import get_ms_smc_loglik_from_embedding
 # from ipcoal.smc.src import iter_spans_and_topos_from_model
 # from ipcoal.smc.src import iter_spans_and_trees_from_model
@@ -251,8 +250,11 @@ class Mcmc2:
         return pidx
 
     def _set_starting_values(self, init_values: Sequence[float] = None) -> None:
-        """...
+        """Set _params and params to sampled starting values.
 
+        Values are drawn from the priors and checked to be valid if
+        starting a new run, else they are drawn from the last sample
+        in the npy output if continuing a previous run.
         """
         # get starting values user or sample from priors
         self._params = np.zeros(self.params.size)
@@ -399,9 +401,15 @@ class Mcmc2:
                 for i, j in enumerate(accept_rates.mask):
                     if not j:
                         rate = accept_rates[i]
-                        if rate < 0.35:
+                        if rate < 0.15:
                             self.jumpsize[i] *= 0.5
-                        elif rate > 0.65:
+                        elif rate < 0.35:
+                            self.jumpsize[i] *= 0.25
+                        elif rate < 0.65:
+                            pass
+                        elif rate < 0.85:
+                            self.jumpsize[i] *= 1.25
+                        else:
                             self.jumpsize[i] *= 1.5
                 logger.debug(f"\n{accept_rates}\n{oldjump}\n{self.jumpsize}")
                 aratios = np.ma.array(
@@ -508,6 +516,7 @@ def main(
     smc: bool,
     smc_data_type: str,
     force: bool,
+    append: bool,
     fixed_params: Sequence[int],
     init_values: Sequence[float],
     log_level: str,
@@ -530,8 +539,15 @@ def main(
     """
     outpath = Path(name).expanduser().absolute().with_suffix(".npy")
     outpath.parent.mkdir(exist_ok=True)
+
+    # if force and outpath exists then overwrite result, otherwise
+    # append to result up to the requested number of samples.
+    if force and append:
+        raise ValueError("select either force or append but not both.")
     if force and outpath.exists():
         outpath.unlink()
+    if append and not outpath.exists():
+        raise ValueError(f"cannot append, outfile {outpath} does not exist.")
 
     # get species tree topology
     sptree = toytree.tree(tree)
@@ -671,7 +687,7 @@ def command_line():
         '--params', type=float, default=[2e5, 3e5, 4e5, 1e6, 2e-9], nargs="*", help='Ne[x nnodes] Tau[x nnodes-2] and recomb values.')
     # i,3,5e5 i,3,5e5 i,3,5e5 i,3,2e6 i,3,4e-9
     parser.add_argument(
-        '--priors', type=str, nargs="*", default=["i,3,6e5", "i,3,6e5", "i,3,6e5", "i,3,1e6", "i,3,4e-9"], help='Priors: U,2e5,5e5 I,3,1000')
+        '--priors', type=str, nargs="*", default=["i,3,1e6", "i,3,1e6", "i,3,1e6", "i,3,2e6", "i,3,8e-9"], help='e.g. U,2e5,5e5 I,3,1000')
     parser.add_argument(
         '--nloci', type=int, default=6, help='number of independent loci to simulate')
     parser.add_argument(
@@ -696,6 +712,8 @@ def command_line():
         '--threads', type=int, default=6, help='Max number of threads (0=all detected)')
     parser.add_argument(
         '--force', action="store_true", help='Overwrite existing file w/ same name.')
+    parser.add_argument(
+        '--append', action="store_true", help='Append to existing file w/ same name.')
     parser.add_argument(
         '--msc', action="store_true", help='Calculate MSC likelihood.')
     parser.add_argument(
