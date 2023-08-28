@@ -14,7 +14,7 @@ Ideas....
 - store Ne values in separate array from the emb?
 """
 
-from typing import Dict, Sequence
+from typing import Dict, Sequence, Optional
 # from abc import ABC, abstractmethod
 import argparse
 import time
@@ -197,7 +197,7 @@ class Mcmc2:
             # randomly sample which interval to change
             # pidx = self.rng.choice(range(self.species_tree.nnodes))
             self._params = self.params.copy()
-            self._params[pidx] = max(10, self.get_proposal(pidx))
+            self._params[pidx] = max(100, self.get_proposal(pidx))
             self._embedding.emb = _jit_update_neff(self.embedding.emb, pidx, self._params[pidx])
             # logger.debug(f"CURRENT EMBEDDING {self.params}\n{self.embedding.get_table(1)}")
             # logger.debug(f"PROPOSE EMBEDDING {self._params}\n{self._embedding.get_table(1)}")
@@ -206,7 +206,7 @@ class Mcmc2:
         elif pidx < len(self.params) - 1:
             self._params = self.params.copy()
             while 1:
-                tau = max(10, self.get_proposal(pidx))
+                tau = max(100, self.get_proposal(pidx))
                 self._params[pidx] = tau
 
                 # quick reject
@@ -264,7 +264,7 @@ class Mcmc2:
             if idx not in self.fixed_params:
                 # tau cannot be higher than parent, or lower than child
                 if idx < self.species_tree.nnodes:
-                    self._params[idx] = max(10, self.prior_dists[idx].rvs())
+                    self._params[idx] = max(100, self.prior_dists[idx].rvs())
                     self._embedding.emb = _jit_update_neff(
                         self._embedding.emb, idx, self._params[idx])
 
@@ -329,6 +329,7 @@ class Mcmc2:
         sample_interval: int = 5,
         print_interval: int = 25,
         init_values: Sequence[float] = None,
+        posterior: Optional[np.ndarray] = None,
     ) -> np.ndarray:
         """Run to sample from the posterior distribution.
 
@@ -357,15 +358,25 @@ class Mcmc2:
         start = time.time()
 
         # array to store posterior samples
-        posterior = np.zeros(shape=(nsamples, len(self.params) + 1))
+        if posterior is None:
+            posterior = np.zeros(shape=(nsamples, len(self.params) + 1))
+            aidx = 0
+            sidx = 0
+            pidx = 0
+        else:
+            self.jumpsize = np.load(self.outpath.with_suffix(".ckp.npy"))
+            post = np.zeros(shape=(nsamples, len(self.params) + 1))
+            idx = burnin + 1
+            sidx = pidx = posterior.shape[0]
+            post[:sidx] = posterior
+            posterior = post
+            aidx = int(burnin + (sidx * sample_interval))
+            logger.warning(f"continuing sampler from checkpoint \n{post}")
 
         # counters
         idx = 1      # iteration index
-        aidx = 0     # accepted proposal index
-        sidx = 0     # sample stored index
         its = 0
         acc = 0
-        pidx = 0
         aratios = np.ma.array(
             [0] * len(self.params),
             mask=np.bincount(self.fixed_params, minlength=len(self.params))
@@ -460,13 +471,15 @@ class Mcmc2:
 
                 # save to disk and print summary every 1K sidx
                 if sidx and (not sidx % 50) and sidx != pidx:
+                    # csvdata = pd.DataFrame(posterior[:sidx], columns=)
                     np.save(self.outpath, posterior[:sidx])
+                    np.save(self.outpath.with_suffix(".ckp"), self.jumpsize)
                     logger.info("checkpoint saved.")
                     means = posterior[:sidx].mean(axis=0)
                     means = "\t".join([f"{i:.5e}" for i in means])
                     stds = posterior[:sidx].std(axis=0)
                     stds = "\t".join([f"{i:.5e}" for i in stds])
-                    rates = "\t".join([f"{i:.5e}" for i in aratios])
+                    rates = "\t".join([f"{i:.5e}" for i in aratios / apropos])
                     logger.info(f"MCMC current posterior mean={means}")
                     logger.info(f"MCMC current posterior std ={stds}")
                     logger.info(f"MCMC mean proposal acc rate={rates}")
@@ -542,12 +555,19 @@ def main(
 
     # if force and outpath exists then overwrite result, otherwise
     # append to result up to the requested number of samples.
+    posterior = None
     if force and append:
         raise ValueError("select either force or append but not both.")
     if force and outpath.exists():
         outpath.unlink()
-    if append and not outpath.exists():
+    if (not append) and (not force) and outpath.exists():
+        raise IOError(f"outfile '{outpath}' already exists. Use --force or --append.")
+    if append and (not outpath.exists()):
         raise ValueError(f"cannot append, outfile {outpath} does not exist.")
+    if append:
+        # load starting values from previous result and set burnin to 0
+        posterior = np.load(outpath)
+        init_values = posterior[-1, :-1]
 
     # get species tree topology
     sptree = toytree.tree(tree)
@@ -648,6 +668,7 @@ def main(
         sample_interval=mcmc_sample_interval,
         burnin=mcmc_burnin,
         init_values=init_values,
+        posterior=posterior,
     )
 
     # if adding to existing data then concatenate first.
