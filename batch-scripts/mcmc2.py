@@ -441,7 +441,10 @@ class Mcmc2:
                             self.jumpsize[i] *= 1.25
                         else:
                             self.jumpsize[i] *= 1.5
-                logger.info(f"tuning proposal dists, acc-rates={accept_rates} new-jump={self.jumpsize}")
+
+                rates = ", ".join([f"{i:.5e}" for i in accept_rates.data])
+                jumps = ", ".join([f"{i:.5e}" for i in self.jumpsize])
+                logger.info(f"tuning: acc-rates=[{rates}], new-jumps=[{jumps}]")
                 aratios = np.ma.array(
                     [0] * len(self.params),
                     mask=np.bincount(self.fixed_params, minlength=len(self.params)),
@@ -476,7 +479,7 @@ class Mcmc2:
                 # print on interval
                 if not aidx % print_interval:
                     elapsed = timedelta(seconds=int(time.time() - start))
-                    stype = "sample" if aidx > burnin else "burnin"
+                    stype = "sample" if aidx > burnin else "burn-in"
                     params = "\t".join([f"{i:.3e}" for i in self.params])
                     logger.info(
                         f"{aidx:>4}\t"
