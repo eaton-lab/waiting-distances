@@ -202,8 +202,8 @@ class Mcmc2:
             self._params = self.params.copy()
             self._params[pidx] = max(100, self.get_proposal(pidx))
             self._embedding.emb = _jit_update_neff(self.embedding.emb, pidx, self._params[pidx])
-            # logger.debug(f"CURRENT EMBEDDING \n{self.embedding.get_table(1)}")
-            # logger.debug(f"PROPOSE EMBEDDING \n{self._embedding.get_table(1)}")
+            logger.debug(f"CURRENT EMBEDDING \n{self.embedding.get_table(1)}")
+            logger.debug(f"PROPOSE EMBEDDING \n{self._embedding.get_table(1)}")
 
         # set a tau value to new valid setting and re-embed genealogies
         elif pidx < len(self.params) - 1:
@@ -422,8 +422,8 @@ class Mcmc2:
             apropos[uidx] += 1
 
             # tuning during the burnin every X iterations (accepted or not)
-            if (idx < burnin) and (not idx % 100):
-                oldjump = self.jumpsize.copy()
+            if (aidx < burnin) and (not idx % 100):
+                # oldjump = self.jumpsize.copy()
                 accept_rates = aratios / apropos
                 for i, j in enumerate(accept_rates.mask):
                     if not j:
@@ -438,7 +438,7 @@ class Mcmc2:
                             self.jumpsize[i] *= 1.25
                         else:
                             self.jumpsize[i] *= 1.5
-                logger.debug(f"\n{accept_rates}\n{oldjump}\n{self.jumpsize}")
+                logger.info(f"tuning proposal dists, acc-rates={accept_rates} new-jump={self.jumpsize}")
                 aratios = np.ma.array(
                     [0] * len(self.params),
                     mask=np.bincount(self.fixed_params, minlength=len(self.params)),
