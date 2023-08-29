@@ -163,7 +163,10 @@ class Mcmc2:
                 idxs=self.topo_idxs,
             )
         if self.msc:
-            loglik += get_msc_loglik_from_embedding(embedding=self._embedding.emb)
+            loglik += get_msc_loglik_from_embedding(
+                embedding=self._embedding.emb,
+                dists=self.tree_spans,
+            )
         return loglik
 
     def get_proposal(self, index: int) -> np.ndarray:
