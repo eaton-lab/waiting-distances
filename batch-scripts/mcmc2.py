@@ -105,12 +105,12 @@ class Mcmc2:
         # self._proposal_idx = itertools.cycle(pidxs)
         # sample with 2X weight on non-tau parameters
         freqs = np.ones(len(pidxs)) / 5
-        tau_idxs = [i for i in pidxs[:-1] if i > self.species_tree.nnodes]
-        freqs[tau_idxs] /= 4
+        tau_idxs = [i for i in pidxs[:-1] if i >= self.species_tree.nnodes]
+        freqs[tau_idxs] /= 3
         freqs = freqs / freqs.sum()
         self._proposal_idxs = pidxs
         self._proposal_weights = freqs
-
+        # logger.warning((self._proposal_idxs, self._proposal_weights))
         # The embedding updated to the proposed params
         self._embedding = deepcopy(self.embedding)
 
@@ -168,8 +168,13 @@ class Mcmc2:
 
     def get_proposal(self, index: int) -> np.ndarray:
         """Return a proposal for one parameter at a time."""
-        logger.debug(f"proposed {index} {self._params[index]:.3e} N({self.params[index]:.3e},{self.jumpsize[index]:.3e})")
-        return self.rng.normal(loc=self.params[index], scale=self.jumpsize[index])
+        new_value = self.rng.normal(loc=self.params[index], scale=self.jumpsize[index])
+        # logger.debug(
+        #     "---------------------------------\n"
+        #     f"proposal for param={index} = {new_value:.3e} from "
+        #     f"N({self.params[index]:.3e},{self.jumpsize[index]:.3e})"
+        # )
+        return new_value
 
     def prior_log_likelihood(self) -> float:
         """Return prior loglikelihood"""
@@ -194,13 +199,11 @@ class Mcmc2:
 
         # set neff value on current embedding tables
         if pidx < self.species_tree.nnodes:
-            # randomly sample which interval to change
-            # pidx = self.rng.choice(range(self.species_tree.nnodes))
             self._params = self.params.copy()
             self._params[pidx] = max(100, self.get_proposal(pidx))
             self._embedding.emb = _jit_update_neff(self.embedding.emb, pidx, self._params[pidx])
-            # logger.debug(f"CURRENT EMBEDDING {self.params}\n{self.embedding.get_table(1)}")
-            # logger.debug(f"PROPOSE EMBEDDING {self._params}\n{self._embedding.get_table(1)}")
+            # logger.debug(f"CURRENT EMBEDDING \n{self.embedding.get_table(1)}")
+            # logger.debug(f"PROPOSE EMBEDDING \n{self._embedding.get_table(1)}")
 
         # set a tau value to new valid setting and re-embed genealogies
         elif pidx < len(self.params) - 1:
@@ -246,7 +249,7 @@ class Mcmc2:
         # update recombination rate
         else:
             self._params = self.params.copy()
-            self._params[pidx] = max(1e-16, self.get_proposal(pidx))
+            self._params[pidx] = max(1e-15, self.get_proposal(pidx))
         return pidx
 
     def _set_starting_values(self, init_values: Sequence[float] = None) -> None:
@@ -260,54 +263,67 @@ class Mcmc2:
         self._params = np.zeros(self.params.size)
         for idx, param in enumerate(self._params):
 
-            # sample a starting value from the priors
-            if idx not in self.fixed_params:
-                # tau cannot be higher than parent, or lower than child
-                if idx < self.species_tree.nnodes:
-                    self._params[idx] = max(100, self.prior_dists[idx].rvs())
-                    self._embedding.emb = _jit_update_neff(
-                        self._embedding.emb, idx, self._params[idx])
+            # set the Ne values
+            if idx < self.species_tree.nnodes:
 
-                # ...
-                elif idx < len(self.params) - 1:
-                    while 1:
-                        try:
-                            # quick reject
-                            tau = self.prior_dists[idx].rvs()
-                            self._params[idx] = tau
-                            if tau > self.max_taus[idx]:
-                                continue
-                                # logger.warning(f'fast reject tau {tau:.2e} > max tau {self.max_taus[idx]}')
-                            # logger.warning(f'testable tau {tau:.2e}')
-
-                            # assign value to sptree node
-                            t = self.species_tree
-                            taus = dict(zip(range(t.ntips, t.nnodes), self._params[t.nnodes:-1]))
-                            neffs = dict(zip(range(t.nnodes), self._params[:t.nnodes]))
-                            tmptree = t.set_node_data("height", taus).set_node_data("Ne", neffs)
-
-                            # try to re-embed the gene trees in the species tree
-                            self._embedding.species_tree = tmptree
-                            chunk = int(np.ceil(len(self._embedding.genealogies) / self._embedding._nproc))
-                            emb, enc = self._embedding._get_embedding_table_parallel(chunk)
-                            break
-                        except ValueError:
-                            self.max_taus[idx] = min(self.max_taus[idx], self._params[idx])
-                # ...
-                else:
-                    self._params[idx] = max(1e-18, self.prior_dists[idx].rvs())
-
-            # set fixed param.
-            else:
-                # set to true values w/ no sample variance
-                if init_values in ([], None):
+                # set fixed params to their true value
+                if idx in self.fixed_params:
                     self._params[idx] = self.params[idx]
-                # set fixed param to the user-entered init value
-                else:
+                elif init_values not in ([], None):
                     self._params[idx] = init_values[idx]
+                else:
+                    self._params[idx] = max(100, self.prior_dists[idx].rvs())
+
+                # update the embedding table
+                self._embedding.emb = _jit_update_neff(self._embedding.emb, idx, self._params[idx])
+
+            # set the tau values
+            elif idx < len(self.params) - 1:
+
+                # search for a validated tau value
+                while 1:
+                    try:
+                        # set fixed params to their true value
+                        if idx in self.fixed_params:
+                            self._params[idx] = self.params[idx]
+                        elif init_values not in ([], None):
+                            self._params[idx] = init_values[idx]
+                        else:
+                            self._params[idx] = max(500, self.prior_dists[idx].rvs())
+
+                        if self._params[idx] > self.max_taus[idx]:
+                            # logger.debug("fast reject tau")
+                            continue
+
+                        # assign value to sptree node
+                        t = self.species_tree
+                        taus = dict(zip(range(t.ntips, t.nnodes), self._params[t.nnodes:-1]))
+                        neffs = dict(zip(range(t.nnodes), self._params[:t.nnodes]))
+                        tmptree = t.set_node_data("height", taus).set_node_data("Ne", neffs)
+
+                        # try to re-embed the gene trees in the species tree
+                        self._embedding.species_tree = tmptree
+                        chunk = int(np.ceil(len(self._embedding.genealogies) / self._embedding._nproc))
+                        emb, enc = self._embedding._get_embedding_table_parallel(chunk)
+                        break
+                    except ValueError:
+                        self.max_taus[idx] = min(self.max_taus[idx], self._params[idx])
+
+                self._embedding.emb = emb
+                self._embedding.enc = enc
+
+            # ...
+            else:
+                if idx in self.fixed_params:
+                    self._params[idx] = self.params[idx]
+                elif init_values not in ([], None):
+                    self._params[idx] = init_values[idx]
+                else:
+                    self._params[idx] = max(1e-15, self.prior_dists[idx].rvs())
 
         self.params = self._params.copy()
-        self.embedding = self._embedding
+        self.embedding.emb = self._embedding.emb.copy()
+        self.embedding.enc = self._embedding.enc.copy()
         self.jumpsize[:] = self.params * 0.5
 
         # format initial values (sampled or user supplied)
@@ -399,8 +415,8 @@ class Mcmc2:
             its += 1
             _cparams = "  ".join([f"{i:.4e}" for i in self.params])
             _nparams = "  ".join([f"{i:.4e}" for i in self._params])
-            logger.debug(f"{curr_loglik:.2f} old=[{_cparams}] ")
-            logger.debug(f"{new_loglik:.2f} new=[{_nparams}] aratio={aratio:.3f}\n")
+            logger.debug(f"old=[{_cparams}] {curr_loglik:.2f} ")
+            logger.debug(f"new=[{_nparams}] {new_loglik:.2f} aratio={aratio:.3f}\n")
 
             aratios[uidx] += accept
             apropos[uidx] += 1
@@ -434,7 +450,7 @@ class Mcmc2:
             if not accept:
                 # revert to last accepted embedding
                 self._embedding.emb = self.embedding.emb.copy()
-                if (uidx > self.species_tree.nnodes) and (uidx < len(self.params)):
+                if (uidx >= self.species_tree.nnodes) and (uidx < len(self.params) - 1):
                     self._embedding.enc = self.embedding.enc.copy()
 
             # proposal accepted
@@ -443,7 +459,7 @@ class Mcmc2:
                 # store accepted embedding
                 if uidx < len(self.params):
                     self.embedding.emb = self._embedding.emb.copy()
-                if (uidx > self.species_tree.nnodes) and (uidx < len(self.params)):
+                if (uidx >= self.species_tree.nnodes) and (uidx < len(self.params) - 1):
                     self.embedding.enc = self._embedding.enc.copy()
                 curr_loglik = new_loglik
                 aidx += 1
@@ -481,7 +497,7 @@ class Mcmc2:
                     means = "\t".join([f"{i:.5e}" for i in means])
                     stds = posterior[:sidx].std(axis=0)
                     stds = "\t".join([f"{i:.5e}" for i in stds])
-                    rates = "\t".join([f"{i:.5e}" for i in aratios / apropos])
+                    rates = "\t".join([f"{i:.5e}" for i in (aratios / apropos).data])
                     logger.info(f"MCMC current posterior mean={means}")
                     logger.info(f"MCMC current posterior std ={stds}")
                     logger.info(f"MCMC mean proposal acc rate={rates}")
