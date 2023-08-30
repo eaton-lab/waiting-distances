@@ -272,7 +272,7 @@ class Mcmc2:
                 # set fixed params to their true value
                 if idx in self.fixed_params:
                     self._params[idx] = self.params[idx]
-                elif init_values not in ([], None):
+                elif init_values is not None:
                     self._params[idx] = init_values[idx]
                 else:
                     self._params[idx] = max(100, self.prior_dists[idx].rvs())
@@ -289,7 +289,7 @@ class Mcmc2:
                         # set fixed params to their true value
                         if idx in self.fixed_params:
                             self._params[idx] = self.params[idx]
-                        elif init_values not in ([], None):
+                        elif init_values is not None:
                             self._params[idx] = init_values[idx]
                         else:
                             self._params[idx] = max(500, self.prior_dists[idx].rvs())
@@ -319,7 +319,7 @@ class Mcmc2:
             else:
                 if idx in self.fixed_params:
                     self._params[idx] = self.params[idx]
-                elif init_values not in ([], None):
+                elif init_values is not None:
                     self._params[idx] = init_values[idx]
                 else:
                     self._params[idx] = max(1e-15, self.prior_dists[idx].rvs())
