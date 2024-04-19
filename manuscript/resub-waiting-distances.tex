@@ -2539,7 +2539,9 @@ parameter values (Fig.~\ref{fig:fig-likelihood}b), while the topology-change
 likelihood surface exhibited a distinct peak at the true values
 (Fig.~\ref{fig:fig-likelihood}c). The summed log-likelihoods from both tree 
 and topology change distances provided the most informative likelihood surface
-(Fig.~\ref{fig:fig-likelihood}d).
+(Fig.~\ref{fig:fig-likelihood}d) \textcolor{red}{, which was consistent with our 
+expectation that the waiting distance distributions for tree and 
+topology changes together are more informative than either distribution on its own}.
 We also inferred a likelihood surface for a misspecified model, in which 
 the genealogies were generated under a 2-population model, but 
 the $\Lambda_g$ rate parameters were calculated for a single population 
@@ -3641,6 +3643,10 @@ feedback.
 \beginsupplement
 \section{Supplementary Information}
 
+\setcounter{equation}{0}
+\renewcommand{\theequation}{S\arabic{equation}}
+
+
 \subsection{Supplementary Figures}
 
 \begin{figure}[p]
@@ -3782,13 +3788,13 @@ feedback.
 % error than single population models, owing to their lower variance 
 % in tree and topology-change probabilities.
 
-\subsection{Implementation of theoretical results}
+%\subsection{Implementation of theoretical results}
 
-\textcolor{red}{* get a species tree and gene tree
-* decompose into the embedding table
-* implement each of the key equations
-* visualize results
-Describe using these to generate the likelihood solutions.}
+%\textcolor{red}{* get a species tree and gene tree
+%* decompose into the embedding table
+%* implement each of the key equations
+%* visualize results
+%Describe using these to generate the likelihood solutions.}
 
 \subsection{Investigating bias in MS-SMC predictions}
 % in addition to SMC' approximation, topo-change has additional bias.
