@@ -14,12 +14,11 @@ Ideas....
 - store Ne values in separate array from the emb?
 """
 
-from typing import Dict, Sequence
+from typing import Dict, Sequence, Optional
 # from abc import ABC, abstractmethod
 import argparse
 import time
 import sys
-import itertools
 from copy import deepcopy
 from pathlib import Path
 from datetime import timedelta
@@ -31,7 +30,7 @@ from numba import set_num_threads
 from scipy import stats
 from loguru import logger
 from ipcoal.msc import get_msc_loglik_from_embedding
-from ipcoal.smc import get_genealogy_embedding_arrays
+# from ipcoal.smc import get_genealogy_embedding_arrays
 from ipcoal.smc import get_ms_smc_loglik_from_embedding
 # from ipcoal.smc.src import iter_spans_and_topos_from_model
 # from ipcoal.smc.src import iter_spans_and_trees_from_model
@@ -106,12 +105,12 @@ class Mcmc2:
         # self._proposal_idx = itertools.cycle(pidxs)
         # sample with 2X weight on non-tau parameters
         freqs = np.ones(len(pidxs)) / 5
-        tau_idxs = [i for i in pidxs[:-1] if i > self.species_tree.nnodes]
-        freqs[tau_idxs] /= 4
+        tau_idxs = [i for i in pidxs[:-1] if i >= self.species_tree.nnodes]
+        freqs[tau_idxs] /= 3
         freqs = freqs / freqs.sum()
         self._proposal_idxs = pidxs
         self._proposal_weights = freqs
-
+        # logger.warning((self._proposal_idxs, self._proposal_weights))
         # The embedding updated to the proposed params
         self._embedding = deepcopy(self.embedding)
 
@@ -164,13 +163,21 @@ class Mcmc2:
                 idxs=self.topo_idxs,
             )
         if self.msc:
-            loglik += get_msc_loglik_from_embedding(embedding=self._embedding.emb)
+            loglik += get_msc_loglik_from_embedding(
+                embedding=self._embedding.emb,
+                dists=self.tree_spans,
+            )
         return loglik
 
     def get_proposal(self, index: int) -> np.ndarray:
         """Return a proposal for one parameter at a time."""
-        logger.debug(f"proposed {index} {self._params[index]:.3e} N({self.params[index]:.3e},{self.jumpsize[index]:.3e})")
-        return self.rng.normal(loc=self.params[index], scale=self.jumpsize[index])
+        new_value = self.rng.normal(loc=self.params[index], scale=self.jumpsize[index])
+        # logger.debug(
+        #     "---------------------------------\n"
+        #     f"proposal for param={index} = {new_value:.3e} from "
+        #     f"N({self.params[index]:.3e},{self.jumpsize[index]:.3e})"
+        # )
+        return new_value
 
     def prior_log_likelihood(self) -> float:
         """Return prior loglikelihood"""
@@ -195,19 +202,17 @@ class Mcmc2:
 
         # set neff value on current embedding tables
         if pidx < self.species_tree.nnodes:
-            # randomly sample which interval to change
-            # pidx = self.rng.choice(range(self.species_tree.nnodes))
             self._params = self.params.copy()
-            self._params[pidx] = max(10, self.get_proposal(pidx))
+            self._params[pidx] = max(100, self.get_proposal(pidx))
             self._embedding.emb = _jit_update_neff(self.embedding.emb, pidx, self._params[pidx])
-            # logger.debug(f"CURRENT EMBEDDING {self.params}\n{self.embedding.get_table(1)}")
-            # logger.debug(f"PROPOSE EMBEDDING {self._params}\n{self._embedding.get_table(1)}")
+            logger.debug(f"CURRENT EMBEDDING \n{self.embedding.get_table(1)}")
+            logger.debug(f"PROPOSE EMBEDDING \n{self._embedding.get_table(1)}")
 
         # set a tau value to new valid setting and re-embed genealogies
         elif pidx < len(self.params) - 1:
             self._params = self.params.copy()
             while 1:
-                tau = max(10, self.get_proposal(pidx))
+                tau = max(100, self.get_proposal(pidx))
                 self._params[pidx] = tau
 
                 # quick reject
@@ -247,65 +252,81 @@ class Mcmc2:
         # update recombination rate
         else:
             self._params = self.params.copy()
-            self._params[pidx] = max(1e-16, self.get_proposal(pidx))
+            self._params[pidx] = max(1e-15, self.get_proposal(pidx))
         return pidx
 
     def _set_starting_values(self, init_values: Sequence[float] = None) -> None:
-        """...
+        """Set _params and params to sampled starting values.
 
+        Values are drawn from the priors and checked to be valid if
+        starting a new run, else they are drawn from the last sample
+        in the npy output if continuing a previous run.
         """
         # get starting values user or sample from priors
         self._params = np.zeros(self.params.size)
         for idx, param in enumerate(self._params):
 
-            # sample a starting value from the priors
-            if idx not in self.fixed_params:
-                # tau cannot be higher than parent, or lower than child
-                if idx < self.species_tree.nnodes:
-                    self._params[idx] = max(10, self.prior_dists[idx].rvs())
-                    self._embedding.emb = _jit_update_neff(
-                        self._embedding.emb, idx, self._params[idx])
+            # set the Ne values
+            if idx < self.species_tree.nnodes:
 
-                # ...
-                elif idx < len(self.params) - 1:
-                    while 1:
-                        try:
-                            # quick reject
-                            tau = self.prior_dists[idx].rvs()
-                            self._params[idx] = tau
-                            if tau > self.max_taus[idx]:
-                                continue
-                                # logger.warning(f'fast reject tau {tau:.2e} > max tau {self.max_taus[idx]}')
-                            # logger.warning(f'testable tau {tau:.2e}')
-
-                            # assign value to sptree node
-                            t = self.species_tree
-                            taus = dict(zip(range(t.ntips, t.nnodes), self._params[t.nnodes:-1]))
-                            neffs = dict(zip(range(t.nnodes), self._params[:t.nnodes]))
-                            tmptree = t.set_node_data("height", taus).set_node_data("Ne", neffs)
-
-                            # try to re-embed the gene trees in the species tree
-                            self._embedding.species_tree = tmptree
-                            chunk = int(np.ceil(len(self._embedding.genealogies) / self._embedding._nproc))
-                            emb, enc = self._embedding._get_embedding_table_parallel(chunk)
-                            break
-                        except ValueError:
-                            self.max_taus[idx] = min(self.max_taus[idx], self._params[idx])
-                # ...
-                else:
-                    self._params[idx] = max(1e-18, self.prior_dists[idx].rvs())
-
-            # set fixed param.
-            else:
-                # set to true values w/ no sample variance
-                if init_values in ([], None):
+                # set fixed params to their true value
+                if idx in self.fixed_params:
                     self._params[idx] = self.params[idx]
-                # set fixed param to the user-entered init value
-                else:
+                elif init_values is not None:
                     self._params[idx] = init_values[idx]
+                else:
+                    self._params[idx] = max(100, self.prior_dists[idx].rvs())
+
+                # update the embedding table
+                self._embedding.emb = _jit_update_neff(self._embedding.emb, idx, self._params[idx])
+
+            # set the tau values
+            elif idx < len(self.params) - 1:
+
+                # search for a validated tau value
+                while 1:
+                    try:
+                        # set fixed params to their true value
+                        if idx in self.fixed_params:
+                            self._params[idx] = self.params[idx]
+                        elif init_values is not None:
+                            self._params[idx] = init_values[idx]
+                        else:
+                            self._params[idx] = max(500, self.prior_dists[idx].rvs())
+
+                        if self._params[idx] > self.max_taus[idx]:
+                            # logger.debug("fast reject tau")
+                            continue
+
+                        # assign value to sptree node
+                        t = self.species_tree
+                        taus = dict(zip(range(t.ntips, t.nnodes), self._params[t.nnodes:-1]))
+                        neffs = dict(zip(range(t.nnodes), self._params[:t.nnodes]))
+                        tmptree = t.set_node_data("height", taus).set_node_data("Ne", neffs)
+
+                        # try to re-embed the gene trees in the species tree
+                        self._embedding.species_tree = tmptree
+                        chunk = int(np.ceil(len(self._embedding.genealogies) / self._embedding._nproc))
+                        emb, enc = self._embedding._get_embedding_table_parallel(chunk)
+                        break
+                    except ValueError:
+                        self.max_taus[idx] = min(self.max_taus[idx], self._params[idx])
+
+                self._embedding.emb = emb
+                self._embedding.enc = enc
+
+            # ...
+            else:
+                if idx in self.fixed_params:
+                    self._params[idx] = self.params[idx]
+                elif init_values is not None:
+                    self._params[idx] = init_values[idx]
+                else:
+                    self._params[idx] = max(1e-15, self.prior_dists[idx].rvs())
 
         self.params = self._params.copy()
-        self.embedding = self._embedding
+        self.embedding.emb = self._embedding.emb.copy()
+        self.embedding.enc = self._embedding.enc.copy()
         self.jumpsize[:] = self.params * 0.5
 
         # format initial values (sampled or user supplied)
@@ -327,6 +348,7 @@ class Mcmc2:
         sample_interval: int = 5,
         print_interval: int = 25,
         init_values: Sequence[float] = None,
+        posterior: Optional[np.ndarray] = None,
     ) -> np.ndarray:
         """Run to sample from the posterior distribution.
 
@@ -355,15 +377,25 @@ class Mcmc2:
         start = time.time()
 
         # array to store posterior samples
-        posterior = np.zeros(shape=(nsamples, len(self.params) + 1))
+        if posterior is None:
+            posterior = np.zeros(shape=(nsamples, len(self.params) + 1))
+            aidx = 0
+            sidx = 0
+            pidx = 0
+        else:
+            self.jumpsize = np.load(self.outpath.with_suffix(".ckp.npy"))
+            post = np.zeros(shape=(nsamples, len(self.params) + 1))
+            idx = burnin + 1
+            sidx = pidx = posterior.shape[0]
+            post[:sidx] = posterior
+            posterior = post
+            aidx = int(burnin + (sidx * sample_interval))
+            logger.warning(f"continuing sampler from checkpoint \n{post}")
 
         # counters
         idx = 1      # iteration index
-        aidx = 0     # accepted proposal index
-        sidx = 0     # sample stored index
         its = 0
-        acc = 0
-        pidx = 0
+        accsum = 0
         aratios = np.ma.array(
             [0] * len(self.params),
             mask=np.bincount(self.fixed_params, minlength=len(self.params))
@@ -381,40 +413,50 @@ class Mcmc2:
             aratio = self.get_accept_ratio(curr_loglik, new_loglik)
 
             # accept or reject
-            acc += aratio
-            its += 1
             accept = int(aratio > self.rng.random())
+            accsum += accept
+            its += 1
             _cparams = "  ".join([f"{i:.4e}" for i in self.params])
             _nparams = "  ".join([f"{i:.4e}" for i in self._params])
-            logger.debug(f"{curr_loglik:.2f} old=[{_cparams}] ")
-            logger.debug(f"{new_loglik:.2f} new=[{_nparams}] aratio={aratio:.3f}\n")
+            logger.debug(f"old=[{_cparams}] {curr_loglik:.2f} ")
+            logger.debug(f"new=[{_nparams}] {new_loglik:.2f} aratio={aratio:.3f}\n")
 
-            aratios[uidx] += aratio
+            aratios[uidx] += accept
             apropos[uidx] += 1
 
             # tuning during the burnin every X iterations (accepted or not)
-            if (idx < burnin) and (not idx % 100):
-                oldjump = self.jumpsize.copy()
+            if (aidx < burnin) and (not idx % 100):
+                # oldjump = self.jumpsize.copy()
                 accept_rates = aratios / apropos
                 for i, j in enumerate(accept_rates.mask):
                     if not j:
                         rate = accept_rates[i]
-                        if rate < 0.3:
+                        if rate < 0.15:
                             self.jumpsize[i] *= 0.5
-                        elif rate > 0.6:
+                        elif rate < 0.35:
+                            self.jumpsize[i] *= 0.25
+                        elif rate < 0.65:
+                            pass
+                        elif rate < 0.85:
+                            self.jumpsize[i] *= 1.25
+                        else:
                             self.jumpsize[i] *= 1.5
-                logger.debug(f"\n{accept_rates}\n{oldjump}\n{self.jumpsize}")
+
+                rates = ", ".join([f"{i:.5e}" for i in accept_rates.data])
+                jumps = ", ".join([f"{i:.5e}" for i in self.jumpsize])
+                logger.info(f"tuning: acc-rates=[{rates}], new-jumps=[{jumps}]")
                 aratios = np.ma.array(
                     [0] * len(self.params),
                     mask=np.bincount(self.fixed_params, minlength=len(self.params)),
                 )
                 apropos = np.zeros(len(self.params))
+                # acc = 0
 
             # proposal rejected
             if not accept:
                 # revert to last accepted embedding
                 self._embedding.emb = self.embedding.emb.copy()
-                if (uidx > self.species_tree.nnodes) and (uidx < len(self.params)):
+                if (uidx >= self.species_tree.nnodes) and (uidx < len(self.params) - 1):
                     self._embedding.enc = self.embedding.enc.copy()
 
             # proposal accepted
@@ -423,7 +465,7 @@ class Mcmc2:
                 # store accepted embedding
                 if uidx < len(self.params):
                     self.embedding.emb = self._embedding.emb.copy()
-                if (uidx > self.species_tree.nnodes) and (uidx < len(self.params)):
+                if (uidx >= self.species_tree.nnodes) and (uidx < len(self.params) - 1):
                     self.embedding.enc = self._embedding.enc.copy()
                 curr_loglik = new_loglik
                 aidx += 1
@@ -437,7 +479,7 @@ class Mcmc2:
                 # print on interval
                 if not aidx % print_interval:
                     elapsed = timedelta(seconds=int(time.time() - start))
-                    stype = "sample" if aidx > burnin else "burnin"
+                    stype = "sample" if aidx > burnin else "burn-in"
                     params = "\t".join([f"{i:.3e}" for i in self.params])
                     logger.info(
                         f"{aidx:>4}\t"
@@ -446,19 +488,22 @@ class Mcmc2:
                         f"{data_loglik:>8.3f}\t"
                         f"{new_loglik:>8.3f}\t"
                         f"{params}\t"
-                        f"{acc/its:.2f}\t"
+                        f"{accsum / its:.2f}\t"
+                        # f"{np.mean(aratios / apropos):.2f}\t"
                         f"{elapsed}\t{stype}"
                     )
 
                 # save to disk and print summary every 1K sidx
                 if sidx and (not sidx % 50) and sidx != pidx:
+                    # csvdata = pd.DataFrame(posterior[:sidx], columns=)
                     np.save(self.outpath, posterior[:sidx])
+                    np.save(self.outpath.with_suffix(".ckp"), self.jumpsize)
                     logger.info("checkpoint saved.")
                     means = posterior[:sidx].mean(axis=0)
                     means = "\t".join([f"{i:.5e}" for i in means])
                     stds = posterior[:sidx].std(axis=0)
                     stds = "\t".join([f"{i:.5e}" for i in stds])
-                    rates = "\t".join([f"{i:.5e}" for i in aratios])
+                    rates = "\t".join([f"{i:.5e}" for i in (aratios / apropos).data])
                     logger.info(f"MCMC current posterior mean={means}")
                     logger.info(f"MCMC current posterior std ={stds}")
                     logger.info(f"MCMC mean proposal acc rate={rates}")
@@ -508,6 +553,7 @@ def main(
     smc: bool,
     smc_data_type: str,
     force: bool,
+    append: bool,
     fixed_params: Sequence[int],
     init_values: Sequence[float],
     log_level: str,
@@ -530,8 +576,22 @@ def main(
     """
     outpath = Path(name).expanduser().absolute().with_suffix(".npy")
     outpath.parent.mkdir(exist_ok=True)
+
+    # if force and outpath exists then overwrite result, otherwise
+    # append to result up to the requested number of samples.
+    posterior = None
+    if force and append:
+        raise ValueError("select either force or append but not both.")
     if force and outpath.exists():
         outpath.unlink()
+    if (not append) and (not force) and outpath.exists():
+        raise IOError(f"outfile '{outpath}' already exists. Use --force or --append.")
+    if append and (not outpath.exists()):
+        raise ValueError(f"cannot append, outfile {outpath} does not exist.")
+    if append:
+        # load starting values from previous result and set burnin to 0
+        posterior = np.load(outpath)
+        init_values = posterior[-1, :-1]
 
     # get species tree topology
     sptree = toytree.tree(tree)
@@ -632,6 +692,7 @@ def main(
         sample_interval=mcmc_sample_interval,
         burnin=mcmc_burnin,
         init_values=init_values,
+        posterior=posterior,
     )
 
     # if adding to existing data then concatenate first.
@@ -671,7 +732,7 @@ def command_line():
         '--params', type=float, default=[2e5, 3e5, 4e5, 1e6, 2e-9], nargs="*", help='Ne[x nnodes] Tau[x nnodes-2] and recomb values.')
     # i,3,5e5 i,3,5e5 i,3,5e5 i,3,2e6 i,3,4e-9
     parser.add_argument(
-        '--priors', type=str, nargs="*", default=["i,3,6e5", "i,3,6e5", "i,3,6e5", "i,3,1e6", "i,3,4e-9"], help='Priors: U,2e5,5e5 I,3,1000')
+        '--priors', type=str, nargs="*", default=["i,3,1e6", "i,3,1e6", "i,3,1e6", "i,3,2e6", "i,3,8e-9"], help='e.g. U,2e5,5e5 I,3,1000')
     parser.add_argument(
         '--nloci', type=int, default=6, help='number of independent loci to simulate')
     parser.add_argument(
@@ -683,7 +744,7 @@ def command_line():
     parser.add_argument(
         '--seed-mcmc', type=int, default=666, help='Seed of RNG used for MCMC proposals')
     parser.add_argument(
-        '--name', type=str, default='smc', help='Prefix path for output files')
+        '--name', type=str, default='smc', help='Prefix for outputs, e.g., test or testdir/test')
     parser.add_argument(
         '--mcmc-nsamples', type=int, default=10_000, help='Number of samples in posterior')
     parser.add_argument(
@@ -696,6 +757,8 @@ def command_line():
         '--threads', type=int, default=6, help='Max number of threads (0=all detected)')
     parser.add_argument(
         '--force', action="store_true", help='Overwrite existing file w/ same name.')
+    parser.add_argument(
+        '--append', action="store_true", help='Append to existing file w/ same name.')
     parser.add_argument(
         '--msc', action="store_true", help='Calculate MSC likelihood.')
     parser.add_argument(

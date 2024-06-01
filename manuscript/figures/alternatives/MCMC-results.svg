@@ -1,0 +1,564 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   class="toyplot-canvas-Canvas"
+   width="800"
+   height="250"
+   viewBox="0 0 800 250"
+   preserveAspectRatio="xMidYMid"
+   style="font-size:12px;font-family:Helvetica;opacity:1;fill:#282623;fill-opacity:1;stroke:#282623;stroke-width:1;stroke-opacity:1"
+   id="t08c5d59a365c436cb69c4b46451e6faf"
+   version="1.1"
+   sodipodi:docname="MCMC-results.svg"
+   inkscape:version="1.2 (1:1.2+202206011327+fc4e4096c5)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs300">
+    <clipPath
+       id="tb0f883cf67ac4fdbbff7aed018d249e9">
+      <rect
+         x="55"
+         y="55"
+         width="390"
+         height="140"
+         id="rect168" />
+    </clipPath>
+  </defs>
+  <sodipodi:namedview
+     id="namedview298"
+     pagecolor="#ffffff"
+     bordercolor="#999999"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     showgrid="false"
+     inkscape:zoom="0.95868895"
+     inkscape:cx="303.01799"
+     inkscape:cy="142.38195"
+     inkscape:window-width="1860"
+     inkscape:window-height="1016"
+     inkscape:window-x="60"
+     inkscape:window-y="27"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="t08c5d59a365c436cb69c4b46451e6faf" />
+  <g
+     clip-path="url(#tb0f883cf67ac4fdbbff7aed018d249e9)"
+     id="g210"
+     transform="translate(332.63119,-15.879421)">
+    <g
+       class="toyplot-mark-FillBoundaries"
+       style="stroke:none"
+       id="tdaff07ce4beb42e4abca42a3a0c1e99e">
+      <polygon
+         points="88.392368,185 91.734134,185 95.075901,185 98.417668,185 101.75943,185 105.1012,185 108.44297,185 111.78474,185 115.1265,185 118.46827,185 121.81004,185 125.1518,185 128.49357,185 131.83534,185 135.1771,185 138.51887,185 141.86064,185 145.2024,185 148.54417,185 151.88594,185 155.2277,185 158.56947,185 161.91124,185 165.253,185 168.59477,185 171.93654,185 175.2783,185 178.62007,185 181.96184,185 185.3036,185 188.64537,185 191.98714,185 195.32891,185 198.67067,185 202.01244,185 205.35421,185 208.69597,185 212.03774,185 215.37951,185 218.72127,185 222.06304,185 225.40481,185 228.74657,185 228.74657,184.64602 225.40481,185 222.06304,184.82301 218.72127,184.82301 215.37951,184.46903 212.03774,184.64602 208.69597,183.40708 205.35421,183.93805 202.01244,183.23009 198.67067,181.28319 195.32891,178.80531 191.98714,179.51327 188.64537,176.32743 185.3036,169.0708 181.96184,170.66372 178.62007,161.63717 175.2783,159.69027 171.93654,150.13274 168.59477,144.46903 165.253,134.55752 161.91124,120.75221 158.56947,114.20354 155.2277,105.35398 151.88594,88.893805 148.54417,76.327434 145.2024,71.548673 141.86064,71.548673 138.51887,74.20354 135.1771,83.053097 131.83534,69.778761 128.49357,80.221239 125.1518,92.079646 121.81004,93.141593 118.46827,114.9115 115.1265,131.90265 111.78474,142.87611 108.44297,151.90265 105.1012,157.0354 101.75943,167.12389 98.417668,173.49558 95.075901,178.45133 91.734134,180.9292 88.392368,182.52212 85.050601,183.93805 81.708834,184.46903 78.367067,184.64602 75.0253,184.82301 71.683534,185 68.341767,185 65,184.82301 65,185 68.341767,185 71.683534,185 75.0253,185 78.367067,185 81.708834,185 85.050601,185 "
+         style="opacity:0.3;fill:#66c2a3;fill-opacity:1;stroke:none"
+         id="polygon171" />
+    </g>
+    <g
+       class="toyplot-mark-Plot"
+       style="fill:none;stroke-width:3"
+       id="tdd8f71f227ae4179957a3c78ff25511b">
+      <g
+         class="toyplot-Series"
+         id="g176">
+        <path
+           d="M 65,184.82301 68.341767,185 h 3.341767 l 3.341766,-0.17699 3.341767,-0.17699 3.341767,-0.17699 3.341767,-0.53098 3.341767,-1.41593 3.341766,-1.59292 3.341767,-2.47787 3.341767,-4.95575 3.341762,-6.37169 3.34177,-10.08849 3.34177,-5.13275 3.34177,-9.02654 3.34176,-10.97346 3.34177,-16.99115 3.34177,-21.769907 3.34176,-1.061947 3.34177,-11.858407 3.34177,-10.442478 3.34176,13.274336 3.34177,-8.849557 3.34177,-2.654867 h 3.34176 l 3.34177,4.778761 3.34177,12.566371 3.34176,16.460175 3.34177,8.84956 3.34177,6.54867 3.34176,13.80531 3.34177,9.91151 3.34177,5.66371 3.34176,9.55753 3.34177,1.9469 3.34177,9.02655 3.34176,-1.59292 3.34177,7.25663 3.34177,3.18584 3.34177,-0.70796 3.34176,2.47788 3.34177,1.9469 3.34177,0.70796 3.34176,-0.53097 3.34177,1.23894 3.34177,-0.17699 3.34176,0.35398 h 3.34177 l 3.34177,0.17699 3.34176,-0.35398"
+           style="stroke:#66c2a3;stroke-width:3;stroke-opacity:1"
+           id="path174" />
+      </g>
+    </g>
+    <g
+       class="toyplot-mark-FillBoundaries"
+       style="stroke:none"
+       id="t5a319ddcd11a48e4b5756f6de6fbb843">
+      <polygon
+         points="191.67392,185 197.4674,185 203.26087,185 209.05435,185 214.84783,185 220.64131,185 226.43479,185 232.22826,185 238.02174,185 243.81522,185 249.6087,185 255.40218,185 261.19566,185 266.98913,185 272.78261,185 278.57609,185 284.36957,185 290.16305,185 295.95652,185 301.75,185 307.54348,185 313.33696,185 319.13044,185 324.92392,185 330.71739,185 336.51087,185 342.30435,185 348.09783,185 353.89131,185 359.68478,185 365.47826,185 371.27174,185 377.06522,185 382.8587,185 388.65217,185 394.44565,185 400.23913,185 406.03261,185 411.82609,185 417.61957,185 423.41304,185 429.20652,185 435,185 435,184.64602 429.20652,185 423.41304,184.82301 417.61957,185 411.82609,185 406.03261,184.82301 400.23913,184.64602 394.44565,185 388.65217,184.82301 382.8587,184.64602 377.06522,184.64602 371.27174,184.11504 365.47826,183.58407 359.68478,182.87611 353.89131,183.40708 348.09783,182.34513 342.30435,181.28319 336.51087,177.74336 330.71739,177.56637 324.92392,173.14159 319.13044,166.23894 313.33696,165.53097 307.54348,158.80531 301.75,149.77876 295.95652,141.46018 290.16305,131.0177 284.36957,122.52212 278.57609,121.28319 272.78261,108.18584 266.98913,91.548673 261.19566,75.442478 255.40218,73.849558 249.6087,72.079646 243.81522,65 238.02174,66.061947 232.22826,68.185841 226.43479,78.274336 220.64131,92.079646 214.84783,107.30088 209.05435,110.13274 203.26087,123.93805 197.4674,142.52212 191.67392,155.26549 185.88044,162.16814 180.08696,168.53982 174.29348,174.02655 168.50001,180.04425 162.70653,181.99115 156.91305,183.40708 151.11957,184.29204 151.11957,185 156.91305,185 162.70653,185 168.50001,185 174.29348,185 180.08696,185 185.88044,185 "
+         style="opacity:0.3;fill:#fa8c61;fill-opacity:1;stroke:none"
+         id="polygon179" />
+    </g>
+    <g
+       class="toyplot-mark-Plot"
+       style="fill:none;stroke-width:3"
+       id="t72b6bc897b76498cb9f2c3cd3ba41f55">
+      <g
+         class="toyplot-Series"
+         id="g184">
+        <path
+           d="m 151.11957,184.29204 5.79348,-0.88496 5.79348,-1.41593 5.79348,-1.9469 5.79347,-6.0177 5.79348,-5.48673 5.79348,-6.37168 5.79348,-6.90265 5.79348,-12.74337 5.79347,-18.58407 5.79348,-13.80531 5.79348,-2.83186 5.79348,-15.221234 5.79348,-13.80531 5.79347,-10.088495 5.79348,-2.123894 L 243.81522,65 l 5.79348,7.079646 5.79348,1.769912 5.79348,1.59292 5.79347,16.106195 5.79348,16.637167 5.79348,13.09735 5.79348,1.23893 5.79348,8.49558 5.79347,10.44248 5.79348,8.31858 5.79348,9.02655 5.79348,6.72566 5.79348,0.70797 5.79348,6.90265 5.79347,4.42478 5.79348,0.17699 5.79348,3.53983 5.79348,1.06194 5.79348,1.06195 5.79347,-0.53097 5.79348,0.70796 5.79348,0.53097 5.79348,0.53098 h 5.79348 l 5.79347,0.17699 5.79348,0.17699 5.79348,-0.35398 5.79348,0.17699 5.79348,0.17699 h 5.79348 l 5.79347,-0.17699 L 429.20652,185 435,184.64602"
+           style="stroke:#fa8c61;stroke-width:3;stroke-opacity:1"
+           id="path182" />
+      </g>
+    </g>
+    <g
+       class="toyplot-mark-FillBoundaries"
+       style="stroke:none"
+       id="t1f95ab7c7f7b45a7ac64f7ed10f1bfd6">
+      <polygon
+         points="250.21128,185 253.96546,185 257.71964,185 261.47382,185 265.228,185 268.98218,185 272.73636,185 276.49054,185 280.24472,185 283.9989,185 287.75308,185 291.50726,185 295.26144,185 299.01562,185 302.7698,185 306.52398,185 310.27816,185 314.03234,185 317.78652,185 321.5407,185 325.29487,185 329.04905,185 332.80323,185 336.55741,185 340.31159,185 344.06577,185 347.81995,185 351.57413,185 355.32831,185 359.08249,185 362.83667,185 366.59085,185 370.34503,185 374.09921,185 377.85339,185 381.60757,185 385.36175,185 389.11593,185 392.87011,185 396.62429,185 400.37847,185 404.13265,185 407.88683,185 407.88683,184.82301 404.13265,184.82301 400.37847,184.46903 396.62429,184.64602 392.87011,184.64602 389.11593,184.82301 385.36175,184.82301 381.60757,183.58407 377.85339,183.40708 374.09921,183.40708 370.34503,181.63717 366.59085,180.39823 362.83667,177.56637 359.08249,177.21239 355.32831,170.66372 351.57413,165.88496 347.81995,161.63717 344.06577,154.38053 340.31159,148.71681 336.55741,143.40708 332.80323,128.53982 329.04905,123.58407 325.29487,114.73451 321.5407,100.75221 317.78652,99.336283 314.03234,81.106195 310.27816,79.513274 306.52398,77.212389 302.7698,82.699115 299.01562,73.318584 295.26144,88.185841 291.50726,85.176991 287.75308,92.433628 283.9989,108.00885 280.24472,124.64602 276.49054,124.64602 272.73636,131.72566 268.98218,144.64602 265.228,156.68142 261.47382,163.23009 257.71964,168.00885 253.96546,171.54867 250.21128,175.0885 246.4571,179.33628 242.70292,180.75221 238.94874,182.69912 235.19456,184.46903 231.44038,184.11504 227.6862,184.46903 223.93202,184.46903 223.93202,185 227.6862,185 231.44038,185 235.19456,185 238.94874,185 242.70292,185 246.4571,185 "
+         style="opacity:0.3;fill:#8c9eca;fill-opacity:1;stroke:none"
+         id="polygon187" />
+    </g>
+    <g
+       class="toyplot-mark-Plot"
+       style="fill:none;stroke-width:3"
+       id="t9a3c4999143c4b17aeb2ea07005cee62">
+      <g
+         class="toyplot-Series"
+         id="g192">
+        <path
+           d="m 223.93202,184.46903 h 3.75418 l 3.75418,-0.35399 3.75418,0.35399 3.75418,-1.76991 3.75418,-1.94691 3.75418,-1.41593 3.75418,-4.24778 3.75418,-3.53983 3.75418,-3.53982 3.75418,-4.77876 3.75418,-6.54867 3.75418,-12.0354 3.75418,-12.92036 3.75418,-7.07964 h 3.75418 l 3.75418,-16.63717 3.75418,-15.575222 3.75418,-7.256637 3.75418,3.00885 3.75418,-14.867257 3.75418,9.380531 3.75418,-5.486726 3.75418,2.300885 3.75418,1.592921 3.75418,18.230088 3.75418,1.415927 3.75417,13.9823 3.75418,8.84956 3.75418,4.95575 3.75418,14.86726 3.75418,5.30973 3.75418,5.66372 3.75418,7.25664 3.75418,4.24779 3.75418,4.77876 3.75418,6.54867 3.75418,0.35398 3.75418,2.83186 3.75418,1.23894 3.75418,1.76991 h 3.75418 l 3.75418,0.17699 3.75418,1.23894 h 3.75418 l 3.75418,-0.17699 h 3.75418 l 3.75418,-0.17699 3.75418,0.35398 h 3.75418"
+           style="stroke:#8c9eca;stroke-width:3;stroke-opacity:1"
+           id="path190" />
+      </g>
+    </g>
+    <g
+       class="toyplot-mark-AxisLines"
+       style="stroke:#66c2a3;stroke-width:3;stroke-dasharray:6, 6;stroke-opacity:1"
+       id="tf19a016690fb45efa0c6d1eeb6f72741">
+      <g
+         class="toyplot-Series"
+         id="g197">
+        <line
+           class="toyplot-Datum"
+           x1="143.17072"
+           x2="143.17072"
+           y1="65"
+           y2="185"
+           style="opacity:1;stroke:#66c2a3;stroke-width:3;stroke-dasharray:6, 6;stroke-opacity:1"
+           id="line195" />
+      </g>
+    </g>
+    <g
+       class="toyplot-mark-AxisLines"
+       style="stroke:#fa8c61;stroke-width:3;stroke-dasharray:6, 6;stroke-opacity:1"
+       id="t6d49ac6220314f1099844c548de14f81">
+      <g
+         class="toyplot-Series"
+         id="g202">
+        <line
+           class="toyplot-Datum"
+           x1="228.83066"
+           x2="228.83066"
+           y1="65"
+           y2="185"
+           style="opacity:1;stroke:#fa8c61;stroke-width:3;stroke-dasharray:6, 6;stroke-opacity:1"
+           id="line200" />
+      </g>
+    </g>
+    <g
+       class="toyplot-mark-AxisLines"
+       style="stroke:#8c9eca;stroke-width:3;stroke-dasharray:6, 6;stroke-opacity:1"
+       id="tf4de582c71c74c389370e899b2e01141">
+      <g
+         class="toyplot-Series"
+         id="g207">
+        <line
+           class="toyplot-Datum"
+           x1="314.4906"
+           x2="314.4906"
+           y1="65"
+           y2="185"
+           style="opacity:1;stroke:#8c9eca;stroke-width:3;stroke-dasharray:6, 6;stroke-opacity:1"
+           id="line205" />
+      </g>
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-size:40px;line-height:1.25;font-family:sans-serif;word-spacing:0px"
+       x="-198.65509"
+       y="178.65204"
+       id="text60630"><tspan
+         sodipodi:role="line"
+         id="tspan60628"
+         x="-198.65509"
+         y="178.65204" /></text>
+  </g>
+  <g
+     class="toyplot-coordinates-Axis"
+     id="t77667271edc04eef9853133f61afa626"
+     transform="translate(397.63119,179.12058)">
+    <line
+       x1="0"
+       y1="0"
+       x2="370"
+       y2="0"
+       style="stroke-width:3"
+       id="line212" />
+    <g
+       id="g222">
+      <line
+         x1="78.170723"
+         y1="7.5"
+         x2="78.170723"
+         y2="0"
+         style="stroke-width:3"
+         id="line214" />
+      <line
+         x1="163.83066"
+         y1="7.5"
+         x2="163.83066"
+         y2="0"
+         style="stroke-width:3"
+         id="line216" />
+      <line
+         x1="249.4906"
+         y1="7.5"
+         x2="249.4906"
+         y2="0"
+         style="stroke-width:3"
+         id="line218" />
+      <line
+         x1="335.15054"
+         y1="7.5"
+         x2="335.15054"
+         y2="0"
+         style="stroke-width:3"
+         id="line220" />
+    </g>
+    <g
+       id="g240">
+      <g
+         transform="translate(78.17072,12)"
+         id="g226">
+        <text
+           x="-26.688"
+           y="13.688"
+           style="font-weight:normal;font-size:16px;font-family:helvetica;white-space:pre;fill:#282623;fill-opacity:1;stroke:none"
+           id="text224">200000</text>
+      </g>
+      <g
+         transform="translate(163.83066,12)"
+         id="g230">
+        <text
+           x="-26.688"
+           y="13.688"
+           style="font-weight:normal;font-size:16px;font-family:helvetica;white-space:pre;fill:#282623;fill-opacity:1;stroke:none"
+           id="text228">300000</text>
+      </g>
+      <g
+         transform="translate(249.4906,12)"
+         id="g234">
+        <text
+           x="-26.688"
+           y="13.688"
+           style="font-weight:normal;font-size:16px;font-family:helvetica;white-space:pre;fill:#282623;fill-opacity:1;stroke:none"
+           id="text232">400000</text>
+      </g>
+      <g
+         transform="translate(335.15053,12)"
+         id="g238">
+        <text
+           x="-26.688"
+           y="13.688"
+           style="font-weight:normal;font-size:16px;font-family:helvetica;white-space:pre;fill:#282623;fill-opacity:1;stroke:none"
+           id="text236">500000</text>
+      </g>
+    </g>
+    <g
+       transform="translate(185,35)"
+       id="g246">
+      <text
+         x="-140.2256"
+         y="13.688"
+         style="font-weight:bold;font-size:16px;font-family:helvetica;white-space:pre;fill:#282623;fill-opacity:1;stroke:none"
+         id="text242">Diploid Effective Population Size (N<tspan
+   style="font-size:65%;baseline-shift:sub"
+   id="tspan60626">e</tspan>)</text>
+    </g>
+    <g
+       class="toyplot-coordinates-Axis-coordinates"
+       style="visibility:hidden"
+       id="g252">
+      <text
+         x="0"
+         y="-12"
+         style="font-weight:normal;font-size:10px;text-anchor:middle;fill:#6e7f8f;fill-opacity:1;stroke:none"
+         id="text250" />
+    </g>
+  </g>
+  <g
+     class="toyplot-coordinates-Axis"
+     id="t084b600e372947cab61bdabc1a48a228"
+     transform="rotate(-90,278.37588,-109.25531)">
+    <line
+       x1="0"
+       y1="0"
+       x2="120"
+       y2="0"
+       style="stroke-width:3"
+       id="line255" />
+    <g
+       id="g265">
+      <line
+         x1="0"
+         y1="-7.5"
+         x2="0"
+         y2="0"
+         style="stroke-width:3"
+         id="line257" />
+      <line
+         x1="35.398232"
+         y1="-7.5"
+         x2="35.398232"
+         y2="0"
+         style="stroke-width:3"
+         id="line259" />
+      <line
+         x1="70.796463"
+         y1="-7.5"
+         x2="70.796463"
+         y2="0"
+         style="stroke-width:3"
+         id="line261" />
+      <line
+         x1="106.19469"
+         y1="-7.5"
+         x2="106.19469"
+         y2="0"
+         style="stroke-width:3"
+         id="line263" />
+    </g>
+    <g
+       id="g283">
+      <g
+         transform="translate(0,-12)"
+         id="g269">
+        <text
+           x="-4.448"
+           y="0"
+           style="font-weight:normal;font-size:16px;font-family:helvetica;white-space:pre;fill:#282623;fill-opacity:1;stroke:none"
+           id="text267">0</text>
+      </g>
+      <g
+         transform="translate(35.39823,-12)"
+         id="g273">
+        <text
+           x="-13.344"
+           y="0"
+           style="font-weight:normal;font-size:16px;font-family:helvetica;white-space:pre;fill:#282623;fill-opacity:1;stroke:none"
+           id="text271">200</text>
+      </g>
+      <g
+         transform="translate(70.79646,-12)"
+         id="g277">
+        <text
+           x="-13.344"
+           y="0"
+           style="font-weight:normal;font-size:16px;font-family:helvetica;white-space:pre;fill:#282623;fill-opacity:1;stroke:none"
+           id="text275">400</text>
+      </g>
+      <g
+         transform="translate(106.19469,-12)"
+         id="g281">
+        <text
+           x="-13.344"
+           y="0"
+           style="font-weight:normal;font-size:16px;font-family:helvetica;white-space:pre;fill:#282623;fill-opacity:1;stroke:none"
+           id="text279">600</text>
+      </g>
+    </g>
+    <g
+       transform="translate(60,-35)"
+       id="g287">
+      <text
+         x="-65.351997"
+         y="0"
+         style="font-weight:bold;font-size:16px;font-family:helvetica;white-space:pre;fill:#282623;fill-opacity:1;stroke:none"
+         id="text285">Posterior density</text>
+    </g>
+    <g
+       class="toyplot-coordinates-Axis-coordinates"
+       style="visibility:hidden"
+       id="g293">
+      <text
+         x="0"
+         y="12"
+         style="font-weight:normal;font-size:10px;text-anchor:middle;fill:#6e7f8f;fill-opacity:1;stroke:none"
+         id="text291" />
+    </g>
+    <g
+       transform="translate(60,-370.75298)"
+       id="g60843">
+      <text
+         x="-73.351997"
+         y="0"
+         style="font-weight:bold;font-size:16px;font-family:helvetica;white-space:pre;fill:#282623;fill-opacity:1;stroke:none"
+         id="text60841">Time (generations)</text>
+    </g>
+  </g>
+  <text
+     xml:space="preserve"
+     style="font-size:14.0405px;line-height:1.25;font-family:sans-serif;word-spacing:0px;fill:#282623;fill-opacity:1;stroke:none;stroke-width:0.877531;stroke-opacity:1"
+     x="38.665726"
+     y="38.742626"
+     id="text1708019-9"><tspan
+       sodipodi:role="line"
+       id="tspan1708017-5"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14.0405px;font-family:Helvetica;-inkscape-font-specification:Helvetica;stroke:none;stroke-width:0.877531"
+       x="38.665726"
+       y="38.742626">inf</tspan></text>
+  <g
+     class="toyplot-coordinates-Axis-coordinates"
+     style="font-size:12px;font-family:Helvetica;visibility:hidden;fill:#282623;fill-opacity:1;stroke:#282623;stroke-width:1;stroke-opacity:1"
+     id="g1707985-3"
+     transform="matrix(0.92925495,0,0,0.92925495,72.794747,202.20762)">
+    <line
+       x1="0"
+       x2="0"
+       y1="-5"
+       y2="7.5"
+       style="stroke:none;stroke-width:1;stroke-opacity:1"
+       id="line1707981-0" />
+    <text
+       x="0"
+       y="-10"
+       style="font-weight:normal;font-size:10px;text-anchor:middle;fill:#6e7f8f;fill-opacity:1;stroke:none"
+       id="text1707983-2" />
+  </g>
+  <line
+     x1="70.522278"
+     y1="192.9151"
+     x2="70.522278"
+     y2="34.941929"
+     style="font-size:12px;font-family:Helvetica;fill:#282623;fill-opacity:1;stroke:#282623;stroke-width:2.32314;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+     id="line1707987-0" />
+  <g
+     id="g1707999-7"
+     transform="matrix(0,-0.92925495,0.92925495,0,70.52246,192.91508)"
+     style="font-size:12px;font-family:Helvetica;fill:#282623;fill-opacity:1;stroke:#282623;stroke-width:1;stroke-opacity:1">
+    <line
+       x1="0"
+       y1="-5"
+       x2="0"
+       y2="0"
+       style="stroke-width:2.5;stroke-miterlimit:4;stroke-dasharray:none"
+       id="line1707989-4" />
+    <line
+       x1="85"
+       y1="-5"
+       x2="85"
+       y2="0"
+       style="stroke-width:2.5;stroke-miterlimit:4;stroke-dasharray:none"
+       id="line1707993-7" />
+    <line
+       x1="170"
+       y1="-5"
+       x2="170"
+       y2="0"
+       style="stroke-width:2.5;stroke-miterlimit:4;stroke-dasharray:none"
+       id="line1707997-3" />
+  </g>
+  <g
+     class="toyplot-coordinates-Axis-coordinates"
+     style="font-size:12px;font-family:Helvetica;visibility:hidden;fill:#282623;fill-opacity:1;stroke:#282623;stroke-width:1;stroke-opacity:1"
+     id="g1708025-0"
+     transform="matrix(0,-0.92925495,0.92925495,0,70.52246,192.91508)">
+    <line
+       x1="0"
+       x2="0"
+       y1="5"
+       y2="-7.5"
+       style="stroke:none;stroke-width:1;stroke-opacity:1"
+       id="line1708021-1" />
+    <text
+       x="0"
+       y="10"
+       style="font-weight:normal;font-size:10px;text-anchor:middle;fill:#6e7f8f;fill-opacity:1;stroke:none"
+       id="text1708023-6" />
+  </g>
+  <path
+     style="font-variation-settings:normal;fill:#e6e6e6;fill-opacity:1;stroke:#000000;stroke-width:3.51012;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;stop-color:#000000"
+     d="M 97.438199,193.22837 H 156.617 l 42.29974,-74.34035 36.6781,74.34035 h 56.98685 L 227.53384,44.547589 H 167.1323 Z"
+     id="path1855888-8"
+     sodipodi:nodetypes="cccccccc" />
+  <path
+     style="font-variation-settings:normal;fill:none;fill-opacity:1;stroke:#000000;stroke-width:3.51012;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;stop-color:#000000"
+     d="M 97.438199,193.22837 H 156.617 l 42.29974,-74.34035 36.6781,74.34035 h 56.98685 L 227.53384,44.547589 H 167.1323 Z"
+     id="path411230-1-3"
+     sodipodi:nodetypes="cccccccc" />
+  <path
+     style="font-variation-settings:normal;opacity:1;vector-effect:none;fill:#8d9ec9;fill-opacity:0.29803923;stroke:#8c9eca;stroke-width:5.42049;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;stop-color:#000000;stop-opacity:1"
+     d="M 133.63171,115.04874 H 258.50678 L 227.30817,44.709784 H 167.0261 Z"
+     id="path59900" />
+  <text
+     xml:space="preserve"
+     style="font-size:12.2854px;line-height:1.25;font-family:sans-serif;word-spacing:0px;fill:#282623;fill-opacity:1;stroke:none;stroke-width:0.877531;stroke-opacity:1"
+     x="43.873856"
+     y="117.69872"
+     id="text1772078-3"><tspan
+       sodipodi:role="line"
+       id="tspan1772076-1"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.2854px;font-family:Helvetica;-inkscape-font-specification:Helvetica;stroke:none;stroke-width:0.877531"
+       x="43.873856"
+       y="117.69872">5e<tspan
+   style="font-size:65%;baseline-shift:super"
+   id="tspan60903">5</tspan></tspan></text>
+  <text
+     xml:space="preserve"
+     style="font-size:14.0405px;line-height:1.25;font-family:sans-serif;word-spacing:0px;fill:#282623;fill-opacity:1;stroke:none;stroke-width:0.877531;stroke-opacity:1"
+     x="50.463821"
+     y="197.09798"
+     id="text1785154-3"><tspan
+       sodipodi:role="line"
+       id="tspan1785152-89"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:14.0405px;font-family:Helvetica;-inkscape-font-specification:Helvetica;stroke:none;stroke-width:0.877531"
+       x="50.463821"
+       y="197.09798">0</tspan></text>
+  <text
+     x="94.150742"
+     y="228.17758"
+     style="font-weight:bold;font-size:18.7206px;font-family:helvetica;white-space:pre;fill:#282623;fill-opacity:1;stroke:none;stroke-width:0.877531;stroke-opacity:1"
+     id="text1841701-2">Two-population Model</text>
+  <path
+     style="font-variation-settings:normal;opacity:1;fill:#65c3a4;fill-opacity:0.29803923;stroke:#66c2a3;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;stop-color:#000000;stop-opacity:1"
+     d="m 198.53824,119.17923 h -66.6853 l -34.074848,73.915 h 59.126438 z"
+     id="path57326" />
+  <text
+     xml:space="preserve"
+     style="font-size:21.3333px;line-height:1.25;font-family:sans-serif;word-spacing:0px"
+     x="122.87643"
+     y="173.56996"
+     id="text60752"><tspan
+       sodipodi:role="line"
+       id="tspan60750"
+       x="122.87643"
+       y="173.56996"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:21.3333px;font-family:Lato;-inkscape-font-specification:Lato">1e<tspan
+   style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:21.3333px;font-family:Lato;-inkscape-font-specification:Lato;baseline-shift:super"
+   id="tspan60754">5</tspan></tspan></text>
+  <path
+     style="font-variation-settings:normal;opacity:1;fill:#fc8d61;fill-opacity:0.29803923;stroke:#fa8c61;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;stop-color:#000000;stop-opacity:1"
+     d="m 199.33059,119.17923 60.79508,0 32.41254,73.915 H 235.655 Z"
+     id="path59139"
+     sodipodi:nodetypes="ccccc" />
+  <text
+     xml:space="preserve"
+     style="font-size:21.3333px;line-height:1.25;font-family:sans-serif;word-spacing:0px"
+     x="233.69327"
+     y="173.56996"
+     id="text60833"><tspan
+       sodipodi:role="line"
+       id="tspan60831"
+       x="233.69327"
+       y="173.56996"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:21.3333px;font-family:Lato;-inkscape-font-specification:Lato">2e<tspan
+   style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:21.3333px;font-family:Lato;-inkscape-font-specification:Lato;baseline-shift:super"
+   id="tspan60829">5</tspan></tspan></text>
+  <text
+     xml:space="preserve"
+     style="font-size:21.3333px;line-height:1.25;font-family:sans-serif;word-spacing:0px"
+     x="182.37383"
+     y="90.685699"
+     id="text60839"><tspan
+       sodipodi:role="line"
+       id="tspan60837"
+       x="182.37383"
+       y="90.685699"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:21.3333px;font-family:Lato;-inkscape-font-specification:Lato">3e<tspan
+   style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:21.3333px;font-family:Lato;-inkscape-font-specification:Lato;baseline-shift:super"
+   id="tspan60835">5</tspan></tspan></text>
+</svg>
