@@ -225,7 +225,7 @@ def distribute_jobs(
                     # submit smc' jobs
                     kwargs = {
                         "sptree": sptree,
-                        "nsamples": nsamples,
+                        "nsamples": nsamples * mult,
                         "neff": neff,
                         "nsites": nsites,
                         "nloci": nloci,
@@ -267,22 +267,21 @@ if __name__ == "__main__":
     SETUPS = [(1, 8), (2, 4), (8, 1)]
     #SETUPS = [(8, 1)]
     for (pops, samps) in SETUPS:
-        first_tree = False
         sptree = get_sptree(pops)
-
-        distribute_jobs(
-            sptree,
-            nsamples=samps,
-            first_tree=first_tree,
-            neffs=NEFFS,
-            nloci=NLOCI,
-            nreps=NREPS,
-            nsites=500_000,
-            recomb=RECOMB,
-            seed=SEED,
-            ncores=NCORES,
-            outname=f"bias-fold-full-p{pops}-s{samps}-f{int(first_tree)}.npy",
-        )
+        for first_tree in [True, False]:
+            distribute_jobs(
+                sptree,
+                nsamples=samps,
+                first_tree=first_tree,
+                neffs=NEFFS,
+                nloci=NLOCI,
+                nreps=NREPS,
+                nsites=500_000,
+                recomb=RECOMB,
+                seed=SEED,
+                ncores=NCORES,
+                outname=f"bias-fold-full-p{pops}-s{samps}-f{int(first_tree)}.npy",
+            )
 
     # # TEST PARAMS
     # # NCORES = 8
