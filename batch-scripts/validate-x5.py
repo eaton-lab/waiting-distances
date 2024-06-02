@@ -266,10 +266,10 @@ if __name__ == "__main__":
     SEED = 123
     NLOCI = 10
     NREPS = 100
-    NLOCI = NREPS = 2
     # thus we will get 1000 results from diff random seeds. The params
-    # nloci and nreps only affect how the jobs are distributed.
-    # NCORES = 30
+    # nloci and nreps only affect how the jobs are distributed. For
+    # example, the 1000 loci for a specific set of parameters will be
+    # distributed on 10 CPUs if NLOCI=10, where each does 100 reps.
 
     SETUPS = [(1, 8), (2, 4), (8, 1)]
     #SETUPS = [(8, 1)]
