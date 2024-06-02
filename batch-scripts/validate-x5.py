@@ -264,14 +264,16 @@ if __name__ == "__main__":
     # nloci and nreps only affect how the jobs are distributed.
     NCORES = 8
 
-    SETUPS = [(1, 8), (2, 4), (1, 8)]
+    SETUPS = [(1, 8), (2, 4), (8, 1)]
+    #SETUPS = [(8, 1)]
     for (pops, samps) in SETUPS:
+        first_tree = False
         sptree = get_sptree(pops)
 
         distribute_jobs(
             sptree,
             nsamples=samps,
-            first_tree=True,
+            first_tree=first_tree,
             neffs=NEFFS,
             nloci=NLOCI,
             nreps=NREPS,
@@ -279,7 +281,7 @@ if __name__ == "__main__":
             recomb=RECOMB,
             seed=SEED,
             ncores=NCORES,
-            outname=f"bias-fold-full-p{pops}-s{samps}.npy",
+            outname=f"bias-fold-full-p{pops}-s{samps}-f{int(first_tree)}.npy",
         )
 
     # # TEST PARAMS
