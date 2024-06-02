@@ -247,11 +247,17 @@ def distribute_jobs(
         # np.save(tmpname.with_suffix(".npy"), iresults)
 
     # save results to file
-    outname = Path(".") / f"{outname}"
+    outname = Path(f"{outname}")
     np.save(outname.with_suffix(".npy"), results)
 
 
 if __name__ == "__main__":
+
+    # parse ncores and outname
+    import sys
+    args = sys.argv[1:]
+    ncores = int(args[0]) if args else 4
+    outname = str(args[1]) if len(args) > 1 else "bias-fold-full"
 
     # GLOBALS
     RECOMB = 2e-9
@@ -259,10 +265,11 @@ if __name__ == "__main__":
     NEFFS = [50_000, 100_000, 500_000]
     SEED = 123
     NLOCI = 10
-    NREPS = 100  
+    NREPS = 100
+    NLOCI = NREPS = 2
     # thus we will get 1000 results from diff random seeds. The params
     # nloci and nreps only affect how the jobs are distributed.
-    NCORES = 8
+    # NCORES = 30
 
     SETUPS = [(1, 8), (2, 4), (8, 1)]
     #SETUPS = [(8, 1)]
@@ -279,8 +286,8 @@ if __name__ == "__main__":
                 nsites=500_000,
                 recomb=RECOMB,
                 seed=SEED,
-                ncores=NCORES,
-                outname=f"bias-fold-full-p{pops}-s{samps}-f{int(first_tree)}.npy",
+                ncores=ncores,
+                outname=f"{outname}-p{pops}-s{samps}-f{int(first_tree)}.npy",
             )
 
     # # TEST PARAMS
