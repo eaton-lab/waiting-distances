@@ -6,9 +6,12 @@ The main function (simulate) takes a species tree and other parameters
 as input and simulates tree sequences under the specified species tree.
 For each tree sequence the first genealogy is sampled (tree0). We then
 sample until the first topology-change event occurs to find tree1. This
-is our true starting tree. From here, we calculate the probabilities
-of events and record the observed recombination events to the next tree
-or topology.
+is treated as our true starting tree. (This tweak was made after finding
+that the distance from the init tree in a tskit tree-sequence until the
+next recomb event is anomalous compared to all other waiting distances,
+so we instead start fresh from the next topology change.)
+From here, we calculate the probabilities of events and record the 
+observed recombination events to the next tree or topology.
 
 The final results is saved as .npy (ndarray) and written to the current
 directory where this script is run.
@@ -77,7 +80,7 @@ def simulate(
     # ipcoal Model
     model = ipcoal.Model(
         tree=sptree,
-        Ne=neff,
+        Ne=int(neff),
         seed_trees=seed,
         nsamples=nsamples,
         recomb=recomb,
@@ -295,23 +298,31 @@ def distribute_jobs(
         # np.save(tmpname.with_suffix(".npy"), iresults)
 
     # save results to file
-    outname = Path(".") / f"{outname}"
+    outname = Path(f"{outname}")
     np.save(outname.with_suffix(".npy"), results)
 
 
 if __name__ == "__main__":
 
-    # GLOBALS
+    # parse some optional args if provided, else use defaults
+    import sys
+    args = sys.argv[1:]
+    NCORES = int(args[0]) if args else 55
+    OUTNAME = str(args[1]) if len(args) > 1 else "validate-100K"
+    NLOCI = int(args[2]) if len(args) > 2 else 100
+    NREPS = int(args[3]) if len(args) > 3 else 1000
+
+    # other GLOBALS
     RECOMB = 2e-9
     SPECIES_TREE_HEIGHT = 1e6
     NEFF_MIN = 50_000
     NEFF_MAX = 500_000
     NEFF_NVALUES = 10
     SEED = 123
-    NLOCI = 100
-    NREPS = 1000
-    OUTNAME = "validate-100K"
-    NCORES = 55
+    # NLOCI = 100
+    # NREPS = 1000
+    # OUTNAME = "validate-100K"
+    # NCORES = 55
 
     # TEST PARAMS
     # NCORES = 8
