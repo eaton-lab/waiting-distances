@@ -3,15 +3,15 @@
 """Posterior sampling of demographic model parameters under the MS-SMC'
 by Metropolis-Hastings MCMC.
 
-TODO:
-Instead of making a separate embedding table for the topology-changes
-we should instead make the same table as for tree-changes but also
-return a mask or index of the trees representing topology-changes to
-subset from the same embedding. This saves time for re-embeddings.
-
-Ideas....
-- re-embed for tau changes using the relate table.
-- store Ne values in separate array from the emb?
+TODO
+----
+[x] implement topo_idxs to reduce embeddings needed.
+[x] append (resume) method for existing analysis.
+[x] print ESS at checkpoints and end if optional arviz is installed.
+[ ] implement event option for any recomb event.
+[ ] implement concatenation tree (one tree per locus)
+[ ] consider: re-embed for tau changes using the relate table.
+[ ] consider: store Ne values in separate array from the emb.
 """
 
 from typing import Dict, Sequence, Optional
@@ -39,12 +39,12 @@ from ipcoal.smc.src.utils import get_waiting_distance_data_from_model
 from ipcoal.smc.src.embedding import _jit_update_neff
 
 # optional. If installed the ESS will be printed.
-# try:
-#     import arviz as az
-# except ImportError:
-#     pass
+try:
+    import arviz as az
+except ImportError:
+    pass
 
-
+# logging
 logger = logger.bind(name="ipcoal")
 
 
@@ -192,10 +192,8 @@ class Mcmc2:
         array needs to be completely reconstructed. If recomb changed
         then no change is needed.
         """
-        # select the next parameter to change
+        # select the next parameter to change by random weighted sampling
         if pidx is None:
-            # cycle through proposal idxs
-            # pidx = next(self._proposal_idx)
             # randomly sample weighted proposal types
             pidx = self.rng.choice(self._proposal_idxs, p=self._proposal_weights)
             # logger.debug(f"propose change to param {pidx}")
@@ -509,13 +507,13 @@ class Mcmc2:
                     logger.info(f"MCMC mean proposal acc rate={rates}")
 
                     # print mcmc if optional pkg arviz is installed.
-                    # if sys.modules.get("arviz"):
-                    #     ess_vals = []
-                    #     for col in range(posterior.shape[1]):
-                    #         azdata = az.convert_to_dataset(posterior[:sidx, col])
-                    #         ess = az.ess(azdata).x.values
-                    #         ess_vals.append(int(ess))
-                    #     logger.info(f"MCMC current posterior ESS ={ess_vals}\n")
+                    if sys.modules.get("arviz"):
+                        ess_vals = []
+                        for col in range(posterior.shape[1]):
+                            azdata = az.convert_to_dataset(posterior[:sidx, col])
+                            ess = az.ess(azdata).x.values
+                            ess_vals.append(int(ess))
+                        logger.info(f"MCMC current posterior ESS ={ess_vals}\n")
                     pidx = sidx
 
                 # # adjust tuning of the jumpsize during burnin
@@ -585,13 +583,21 @@ def main(
     if force and outpath.exists():
         outpath.unlink()
     if (not append) and (not force) and outpath.exists():
-        raise IOError(f"outfile '{outpath}' already exists. Use --force or --append.")
+        msg = f"outfile '{outpath}' already exists. Use --force or --append."
+        logger.error(msg)
+        raise IOError(msg)
     if append and (not outpath.exists()):
-        raise ValueError(f"cannot append, outfile {outpath} does not exist.")
+        msg = f"cannot append, outfile {outpath} does not exist."
+        logger.error(msg)
+        raise ValueError(msg)
     if append:
         # load starting values from previous result and set burnin to 0
         posterior = np.load(outpath)
         init_values = posterior[-1, :-1]
+
+    # warning if no data selected
+    if not (smc or msc):
+        logger.warning("No data selected (--smc or --msc) only the prior will be returned.")
 
     # get species tree topology
     sptree = toytree.tree(tree)
@@ -647,7 +653,7 @@ def main(
             raise ValueError("prior not supported.")
         prior_dists.append(dist)
 
-    # smc
+    # smc is currently boolean, and smc_data_type is a str
     if not smc:
         smc = 0
     else:
@@ -765,6 +771,8 @@ def command_line():
         '--smc', action="store_true", help='Calculate SMC likelihood.')
     parser.add_argument(
         '--smc-data-type', type=str, default="combined", help='tree, topology, or combined')
+    parser.add_argument(
+        '--msc-tree-type', type=str, default="weighted", help='weighted or sampled')
     # parser.add_argument(
     #     '--mcmc-jumpsize', type=float, default=[10_000, 20_000, 30_000], nargs="*", help='MCMC jump size.')
     parser.add_argument(
@@ -775,8 +783,6 @@ def command_line():
         '--init-values', type=float, default=None, nargs="*", help='Fixed params at true values')
     return parser.parse_args()
 
-
-# TODO: RESUME?
 
 
 if __name__ == "__main__":
@@ -797,4 +803,7 @@ if __name__ == "__main__":
         set_num_threads(cli_args.threads)
 
     # run main
-    main(**vars(cli_args))
+    try:
+        main(**vars(cli_args))
+    except KeyboardInterrupt as kbd:
+        raise SystemExit("Interrupted by user") from kbd
