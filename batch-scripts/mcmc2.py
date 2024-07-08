@@ -3,12 +3,6 @@
 """Posterior sampling of demographic model parameters under the MS-SMC'
 by Metropolis-Hastings MCMC.
 
-TODO:
-Instead of making a separate embedding table for the topology-changes
-we should instead make the same table as for tree-changes but also
-return a mask or index of the trees representing topology-changes to
-subset from the same embedding. This saves time for re-embeddings.
-
 Ideas....
 - re-embed for tau changes using the relate table.
 - store Ne values in separate array from the emb?
@@ -130,17 +124,24 @@ class Mcmc2:
         such as the population Ne and diverence times.
         """
         loglik = 0
-        # logger.warning(self.smc)
-        # logger.warning(self._embedding)
-        # logger.warning(self._params)
-        if self.smc == 1:
+        # recombination event likelihood
+        if self.smc == "event":
+            loglik += get_ms_smc_loglik_from_embedding(
+                # embedding=self._embedding,  # No embedding data used.
+                recombination_rate=self._params[-1],
+                lengths=self.tree_spans,
+                event_type=0,
+            )
+        # tree-change likelihood
+        elif self.smc == "tree":            
             loglik += get_ms_smc_loglik_from_embedding(
                 embedding=self._embedding,
                 recombination_rate=self._params[-1],
                 lengths=self.tree_spans,
                 event_type=1,
             )
-        elif self.smc == 2:
+        # topo-change likelihood            
+        elif self.smc == "topology":
             loglik += get_ms_smc_loglik_from_embedding(
                 embedding=self._embedding,
                 recombination_rate=self._params[-1],
@@ -148,7 +149,8 @@ class Mcmc2:
                 event_type=2,
                 idxs=self.topo_idxs,
             )
-        elif self.smc == 3:
+        # tree-change likelihood * topo-change likelihood
+        elif self.smc == "combined":
             loglik += get_ms_smc_loglik_from_embedding(
                 embedding=self._embedding,
                 recombination_rate=self._params[-1],
@@ -162,6 +164,8 @@ class Mcmc2:
                 event_type=2,
                 idxs=self.topo_idxs,
             )
+
+        # coalescent likelihood
         if self.msc:
             loglik += get_msc_loglik_from_embedding(
                 embedding=self._embedding.emb,
@@ -649,14 +653,18 @@ def main(
 
     # smc
     if not smc:
-        smc = 0
+        smc = None
     else:
         if smc_data_type == "combined":
             smc = 3
         elif smc_data_type == "topology":
             smc = 2
-        else:
+        elif smc_data_type == "tree":
             smc = 1
+        elif smc_data_type == "event":
+            smc = 0
+        else:
+            raise ValueError(f"bad argument {smc_data_type} for smc_data_type.")
 
     # ...
     mcmc = Mcmc2(
@@ -764,7 +772,7 @@ def command_line():
     parser.add_argument(
         '--smc', action="store_true", help='Calculate SMC likelihood.')
     parser.add_argument(
-        '--smc-data-type', type=str, default="combined", help='tree, topology, or combined')
+        '--smc-data-type', type=str, default="combined", help='event, tree, topology, or combined')
     # parser.add_argument(
     #     '--mcmc-jumpsize', type=float, default=[10_000, 20_000, 30_000], nargs="*", help='MCMC jump size.')
     parser.add_argument(
