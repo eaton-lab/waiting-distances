@@ -60,6 +60,8 @@ class Mcmc2:
         smc: Optional[int],
         outpath: Path,
         fixed_params: Sequence[float],
+        msc_scaler: float,
+        ancestry_model: str,
         # jumpsize: int,
     ):
         # store the inputs
@@ -88,6 +90,10 @@ class Mcmc2:
         """: calculate smc likelihood."""
         self.msc = msc
         """: calculate msc likelihood."""
+        self.msc_scaler = msc_scaler
+        """: optional scaler to downweight msc relative to smc"""
+        self.ancestry_model = ancestry_model
+        """: msprime ancestry model"""
         self.max_taus = np.full(self.params.size, 1e12)
 
         # get proposal sampler of param indices
@@ -169,10 +175,11 @@ class Mcmc2:
 
         # coalescent likelihood
         if self.msc:
-            loglik += get_msc_loglik_from_embedding(
+            msc_loglik = get_msc_loglik_from_embedding(
                 embedding=self._embedding.emb,
                 dists=self.tree_spans,
             )
+            loglik += msc_loglik * self.msc_scaler
         return loglik
 
     def get_proposal(self, index: int) -> np.ndarray:
@@ -558,6 +565,8 @@ def main(
     msc: bool,
     smc: bool,
     smc_event_type: str,
+    msc_scaler: float,
+    ancestry_model: str,
     force: bool,
     append: bool,
     fixed_params: Sequence[int],
@@ -620,7 +629,7 @@ def main(
         recomb=true_recomb,
         seed_trees=seed_trees,
         discrete_genome=False,
-        # ancestry_model="smc_prime",
+        ancestry_model="smc_prime",
     )
 
     # get mapping of sample names to lineages
@@ -687,6 +696,8 @@ def main(
         smc=smc,
         outpath=outpath,
         fixed_params=fixed_params,
+        msc_scaler=msc_scaler,
+        ancestry_model=ancestry_model,
     )
 
     # report loglik at true params and then set back to start params
@@ -778,6 +789,10 @@ def command_line():
         '--smc', action="store_true", help='Calculate SMC likelihood.')
     parser.add_argument(
         '--smc-event-type', type=str, default="combined", help='event, tree, topology, or combined')
+    parser.add_argument(
+        '--msc-scaler', type=float, default=1.0, help='msc log-likelihood scaler')
+    parser.add_argument(
+        '--ancestry-model', type=str, default="hudson", help='hudson or smcprime')
     # parser.add_argument(
     #     '--mcmc-jumpsize', type=float, default=[10_000, 20_000, 30_000], nargs="*", help='MCMC jump size.')
     parser.add_argument(
