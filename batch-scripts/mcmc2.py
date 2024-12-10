@@ -571,6 +571,7 @@ def main(
     fixed_params: Sequence[int],
     init_values: Sequence[float],
     log_level: str,
+    ancestry_model: str,
     *args,
     **kwargs,
 ) -> None:
@@ -628,7 +629,7 @@ def main(
         recomb=true_recomb,
         seed_trees=seed_trees,
         discrete_genome=False,
-        # ancestry_model="smc_prime",
+        ancestry_model=ancestry_model,
     )
 
     # get mapping of sample names to lineages
@@ -794,6 +795,8 @@ def command_line():
         '--fixed-params', type=int, default=None, nargs="*", help='Fixed params at true values')
     parser.add_argument(
         '--init-values', type=float, default=None, nargs="*", help='Fixed params at true values')
+    parser.add_argument(
+        '--ancestry-model', type=str, default="smc_prime", help='hudson or smc_prime')
     return parser.parse_args()
 
 
