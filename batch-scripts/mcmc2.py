@@ -3,12 +3,6 @@
 """Posterior sampling of demographic model parameters under the MS-SMC'
 by Metropolis-Hastings MCMC.
 
-TODO:
-Instead of making a separate embedding table for the topology-changes
-we should instead make the same table as for tree-changes but also
-return a mask or index of the trees representing topology-changes to
-subset from the same embedding. This saves time for re-embeddings.
-
 Ideas....
 - re-embed for tau changes using the relate table.
 - store Ne values in separate array from the emb?
@@ -66,6 +60,8 @@ class Mcmc2:
         smc: Optional[int],
         outpath: Path,
         fixed_params: Sequence[float],
+        msc_scaler: float,
+        ancestry_model: str,
         # jumpsize: int,
     ):
         # store the inputs
@@ -94,6 +90,10 @@ class Mcmc2:
         """: calculate smc likelihood."""
         self.msc = msc
         """: calculate msc likelihood."""
+        self.msc_scaler = msc_scaler
+        """: optional scaler to downweight msc relative to smc"""
+        self.ancestry_model = ancestry_model
+        """: msprime ancestry model"""
         self.max_taus = np.full(self.params.size, 1e12)
 
         # get proposal sampler of param indices
@@ -130,10 +130,6 @@ class Mcmc2:
         such as the population Ne and diverence times.
         """
         loglik = 0
-        # logger.warning(self.smc)
-        # logger.warning(self._embedding)
-        # logger.warning(self._params)
-
         # Note: self.smc will be set to None if no SMC is set.
         
         # any recomb event distance likelihood
@@ -176,11 +172,14 @@ class Mcmc2:
                 event_type=2,
                 idxs=self.topo_idxs,
             )
+
+        # coalescent likelihood
         if self.msc:
-            loglik += get_msc_loglik_from_embedding(
+            msc_loglik = get_msc_loglik_from_embedding(
                 embedding=self._embedding.emb,
                 dists=self.tree_spans,
             )
+            loglik += msc_loglik * self.msc_scaler
         return loglik
 
     def get_proposal(self, index: int) -> np.ndarray:
@@ -566,6 +565,8 @@ def main(
     msc: bool,
     smc: bool,
     smc_event_type: str,
+    msc_scaler: float,
+    ancestry_model: str,
     force: bool,
     append: bool,
     fixed_params: Sequence[int],
@@ -629,7 +630,11 @@ def main(
         recomb=true_recomb,
         seed_trees=seed_trees,
         discrete_genome=False,
+<<<<<<< HEAD
         ancestry_model=ancestry_model,
+=======
+        ancestry_model="smc_prime",
+>>>>>>> 1dd54c676af73f2829e7a0b9f3de98ad3d60d721
     )
 
     # get mapping of sample names to lineages
@@ -696,6 +701,8 @@ def main(
         smc=smc,
         outpath=outpath,
         fixed_params=fixed_params,
+        msc_scaler=msc_scaler,
+        ancestry_model=ancestry_model,
     )
 
     # report loglik at true params and then set back to start params
@@ -787,6 +794,10 @@ def command_line():
         '--smc', action="store_true", help='Calculate SMC likelihood.')
     parser.add_argument(
         '--smc-event-type', type=str, default="combined", help='event, tree, topology, or combined')
+    parser.add_argument(
+        '--msc-scaler', type=float, default=1.0, help='msc log-likelihood scaler')
+    parser.add_argument(
+        '--ancestry-model', type=str, default="hudson", help='hudson or smcprime')
     # parser.add_argument(
     #     '--mcmc-jumpsize', type=float, default=[10_000, 20_000, 30_000], nargs="*", help='MCMC jump size.')
     parser.add_argument(
