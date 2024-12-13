@@ -1,0 +1,2897 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="800mm"
+   height="300mm"
+   viewBox="0 0 800 300"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.3.2 (1:1.3.2+202311252150+091e20ef0f)"
+   sodipodi:docname="Fig8-likelihood-posteriors.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#999999"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     inkscape:zoom="0.47165317"
+     inkscape:cx="969.99243"
+     inkscape:cy="513.08889"
+     inkscape:window-width="1517"
+     inkscape:window-height="916"
+     inkscape:window-x="759"
+     inkscape:window-y="136"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs1">
+    <clipPath
+       id="tb8e2e4eff4ef4c9a808bcd2ddccd4a50">
+      <rect
+         x="40"
+         y="40"
+         width="370"
+         height="145"
+         id="rect2507" />
+    </clipPath>
+    <clipPath
+       id="clipPath1">
+      <rect
+         x="40"
+         y="40"
+         width="370"
+         height="145"
+         id="rect1" />
+    </clipPath>
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <rect
+       style="fill:#dcdcdc;stroke-width:0.697388;stroke-linecap:round;stroke-linejoin:round"
+       id="rect335"
+       width="141.74791"
+       height="87.789955"
+       x="111.31129"
+       y="5.5085731"
+       ry="5.7205074e-16" />
+    <g
+       id="g55896"
+       transform="matrix(2.0087216,0,0,2.0087216,-228.73805,9.6262527)"
+       style="stroke-linecap:butt;stroke-linejoin:round">
+      <g
+         transform="matrix(0,-0.14282553,0.14282553,0,176.80405,19.727208)"
+         id="g287-2"
+         style="font-size:12px;font-family:Helvetica;fill:#282623;fill-opacity:1;stroke:#282623;stroke-width:1;stroke-linecap:butt;stroke-linejoin:round;stroke-opacity:1">
+        <text
+           x="-87.179306"
+           y="-9.3545513"
+           style="font-weight:bold;font-size:20.7879px;font-family:helvetica;white-space:pre;fill:#282623;fill-opacity:1;stroke:none;stroke-linecap:butt;stroke-linejoin:round"
+           id="text285-0">Posterior density</text>
+      </g>
+    </g>
+    <rect
+       style="fill:#dcdcdc;stroke-width:0.586018;stroke-linecap:round;stroke-linejoin:round"
+       id="rect332"
+       width="100.08922"
+       height="87.789955"
+       x="5.6446767"
+       y="5.6986251"
+       ry="5.7205074e-16" />
+    <text
+       xml:space="preserve"
+       style="font-size:5.04156px;line-height:1.25;font-family:sans-serif;word-spacing:0px;fill:#282623;fill-opacity:1;stroke:none;stroke-width:0.276508;stroke-linecap:butt;stroke-linejoin:round;stroke-opacity:1"
+       x="18.839226"
+       y="25.902483"
+       id="text1708019-9-6"><tspan
+         sodipodi:role="line"
+         id="tspan1708017-5-4"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.04156px;font-family:Lato;-inkscape-font-specification:Lato;stroke:none;stroke-width:0.276508"
+         x="18.839226"
+         y="25.902483">inf</tspan></text>
+    <g
+       class="toyplot-coordinates-Axis-coordinates"
+       style="font-size:12px;font-family:Helvetica;visibility:hidden;fill:#282623;fill-opacity:1;stroke:#282623;stroke-width:1;stroke-linecap:butt;stroke-linejoin:round;stroke-opacity:1"
+       id="g1707985-3-95"
+       transform="matrix(0.29280529,0,0,0.29280529,31.042648,84.270901)">
+      <line
+         x1="0"
+         x2="0"
+         y1="-5"
+         y2="7.5"
+         style="stroke:none;stroke-width:1;stroke-linecap:butt;stroke-linejoin:round;stroke-opacity:1"
+         id="line1707981-0-0" />
+      <text
+         x="0"
+         y="-10"
+         style="font-weight:normal;font-size:10px;text-anchor:middle;fill:#6e7f8f;fill-opacity:1;stroke:none;stroke-linecap:butt;stroke-linejoin:round"
+         id="text1707983-2-4" />
+    </g>
+    <line
+       x1="28.877205"
+       y1="74.203247"
+       x2="28.877205"
+       y2="24.426737"
+       style="font-size:12px;font-family:Helvetica;fill:#282623;fill-opacity:1;stroke:#282623;stroke-width:0.958034;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="line1707987-0-8" />
+    <g
+       id="g1707999-7-7"
+       transform="matrix(0,-0.29280529,0.29280529,0,28.8772,74.203471)"
+       style="font-size:12px;font-family:Helvetica;fill:#282623;fill-opacity:1;stroke:#282623;stroke-width:1;stroke-linecap:butt;stroke-linejoin:round;stroke-opacity:1">
+      <line
+         x1="0"
+         y1="-5"
+         x2="0"
+         y2="0"
+         style="stroke-width:3.27191;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none"
+         id="line1707989-4-1" />
+      <line
+         x1="85"
+         y1="-5"
+         x2="85"
+         y2="0"
+         style="stroke-width:3.27191;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none"
+         id="line1707993-7-7" />
+      <line
+         x1="170"
+         y1="-5"
+         x2="170"
+         y2="0"
+         style="stroke-width:3.27191;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none"
+         id="line1707997-3-2" />
+    </g>
+    <g
+       class="toyplot-coordinates-Axis-coordinates"
+       style="font-size:12px;font-family:Helvetica;visibility:hidden;fill:#282623;fill-opacity:1;stroke:#282623;stroke-width:1;stroke-linecap:butt;stroke-linejoin:round;stroke-opacity:1"
+       id="g1708025-0-7"
+       transform="matrix(0,-0.29280529,0.29280529,0,30.326664,86.466911)">
+      <line
+         x1="0"
+         x2="0"
+         y1="5"
+         y2="-7.5"
+         style="stroke:none;stroke-width:1;stroke-linecap:butt;stroke-linejoin:round;stroke-opacity:1"
+         id="line1708021-1-2" />
+      <text
+         x="0"
+         y="10"
+         style="font-weight:normal;font-size:10px;text-anchor:middle;fill:#6e7f8f;fill-opacity:1;stroke:none;stroke-linecap:butt;stroke-linejoin:round"
+         id="text1708023-6-2" />
+    </g>
+    <path
+       style="font-size:12px;font-family:Helvetica;font-variation-settings:normal;fill:#e6e6e6;fill-opacity:1;stroke:#000000;stroke-width:1.10603;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;stop-color:#000000"
+       d="M 32.70939,74.302201 H 51.356467 L 64.684996,50.877786 76.242135,74.302201 H 94.198498 L 73.702129,27.45334 H 54.669795 Z"
+       id="path1855888-8-61"
+       sodipodi:nodetypes="cccccccc" />
+    <path
+       style="font-size:12px;font-family:Helvetica;font-variation-settings:normal;fill:none;fill-opacity:1;stroke:#000000;stroke-width:1.10603;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;stop-color:#000000"
+       d="M 32.70939,74.302201 H 51.356467 L 64.684996,50.877786 76.242135,74.302201 H 94.198498 L 73.702129,27.45334 H 54.669795 Z"
+       id="path411230-1-3-0"
+       sodipodi:nodetypes="cccccccc" />
+    <path
+       style="font-size:12px;font-family:Helvetica;font-variation-settings:normal;fill:#8d9ec9;fill-opacity:0.298039;stroke:#8c9eca;stroke-width:1.70798;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;stop-color:#000000"
+       d="M 44.113847,49.66803 H 83.46161 L 73.631048,27.504438 H 54.636313 Z"
+       id="path59900-6" />
+    <text
+       xml:space="preserve"
+       style="font-size:5.04156px;line-height:1.25;font-family:sans-serif;word-spacing:0px;fill:#282623;fill-opacity:1;stroke:none;stroke-width:0.276508;stroke-linecap:butt;stroke-linejoin:round;stroke-opacity:1"
+       x="18.601345"
+       y="52.435394"
+       id="text1772078-3-1"><tspan
+         sodipodi:role="line"
+         id="tspan1772076-1-5"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.04156px;font-family:lato;-inkscape-font-specification:lato;stroke:none;stroke-width:0.276508"
+         x="18.601345"
+         y="52.435394">1e<tspan
+   style="font-size:3.27701px;baseline-shift:super;stroke-width:0.276508"
+   id="tspan2281">6</tspan></tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:5.04156px;line-height:1.25;font-family:sans-serif;word-spacing:0px;fill:#282623;fill-opacity:1;stroke:none;stroke-width:0.276508;stroke-linecap:butt;stroke-linejoin:round;stroke-opacity:1"
+       x="22.556782"
+       y="75.521332"
+       id="text1785154-3-4"><tspan
+         sodipodi:role="line"
+         id="tspan1785152-89-9"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.04156px;font-family:Lato;-inkscape-font-specification:Lato;stroke:none;stroke-width:0.276508"
+         x="22.556782"
+         y="75.521332">0</tspan></text>
+    <path
+       style="font-size:12px;font-family:Helvetica;font-variation-settings:normal;fill:#65c3a4;fill-opacity:0.298039;stroke:#66c2a3;stroke-width:1.26038;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;stop-color:#000000"
+       d="M 64.565706,50.969533 H 43.553384 L 32.816478,74.259911 h 18.630558 z"
+       id="path57326-0" />
+    <text
+       xml:space="preserve"
+       style="font-size:6.72206px;line-height:1.25;font-family:sans-serif;word-spacing:0px;fill:#282623;fill-opacity:1;stroke:none;stroke-width:0.315097;stroke-linecap:butt;stroke-linejoin:round;stroke-opacity:1"
+       x="38.75296"
+       y="69.5644"
+       id="text60752-9"><tspan
+         sodipodi:role="line"
+         id="tspan60750-1"
+         x="38.75296"
+         y="69.5644"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.72206px;font-family:Lato;-inkscape-font-specification:Lato;stroke:none;stroke-width:0.315097">(2e<tspan
+   style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.72206px;font-family:Lato;-inkscape-font-specification:Lato;baseline-shift:super;stroke:none;stroke-width:0.315097"
+   id="tspan60754-7">5</tspan>)</tspan></text>
+    <path
+       style="font-size:12px;font-family:Helvetica;font-variation-settings:normal;fill:#fc8d61;fill-opacity:0.298039;stroke:#fa8c61;stroke-width:1.26038;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;stop-color:#000000"
+       d="M 64.815393,50.969533 H 83.971735 L 94.184808,74.259911 H 76.26109 Z"
+       id="path59139-7"
+       sodipodi:nodetypes="ccccc" />
+    <text
+       xml:space="preserve"
+       style="font-size:6.72206px;line-height:1.25;font-family:sans-serif;word-spacing:0px;fill:#282623;fill-opacity:1;stroke:none;stroke-width:0.315097;stroke-linecap:butt;stroke-linejoin:round;stroke-opacity:1"
+       x="74.552711"
+       y="69.5644"
+       id="text60833-1"><tspan
+         sodipodi:role="line"
+         id="tspan60831-1"
+         x="74.552711"
+         y="69.5644"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.72206px;font-family:Lato;-inkscape-font-specification:Lato;stroke:none;stroke-width:0.315097">(3e<tspan
+   style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.72206px;font-family:Lato;-inkscape-font-specification:Lato;baseline-shift:super;stroke:none;stroke-width:0.315097"
+   id="tspan60829-5">5</tspan>)</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:6.72206px;line-height:1.25;font-family:sans-serif;word-spacing:0px;fill:#282623;fill-opacity:1;stroke:none;stroke-width:0.315097;stroke-linecap:butt;stroke-linejoin:round;stroke-opacity:1"
+       x="57.605148"
+       y="45.222572"
+       id="text60839-9"><tspan
+         sodipodi:role="line"
+         id="tspan60837-7"
+         x="57.605148"
+         y="45.222572"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.72206px;font-family:Lato;-inkscape-font-specification:Lato;stroke:none;stroke-width:0.315097">(4e<tspan
+   style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.72206px;font-family:Lato;-inkscape-font-specification:Lato;baseline-shift:super;stroke:none;stroke-width:0.315097"
+   id="tspan60835-7">5</tspan>)</tspan></text>
+    <g
+       style="font-size:12px;font-family:Helvetica;fill:#282623;fill-opacity:1;stroke:#282623;stroke-width:1;stroke-linecap:butt;stroke-linejoin:round;stroke-opacity:1"
+       id="g2685"
+       transform="matrix(0.30327134,0,0,0.30327134,120.14507,15.742662)">
+      <g
+         class="toyplot-coordinates-Cartesian"
+         id="teba58646c28945819368e45a36019dbb"
+         style="stroke-linecap:butt;stroke-linejoin:round">
+        <clipPath
+           id="clipPath1-4">
+          <rect
+             x="40"
+             y="40"
+             width="370"
+             height="145"
+             id="rect1-9" />
+        </clipPath>
+        <g
+           clip-path="url(#tb8e2e4eff4ef4c9a808bcd2ddccd4a50)"
+           id="g2558"
+           style="stroke-linecap:butt;stroke-linejoin:round">
+          <g
+             class="toyplot-mark-FillBoundaries"
+             style="stroke:none;stroke-linecap:butt;stroke-linejoin:round"
+             id="tcaace1a5f9ba49a5a84aaf11c90fa040">
+            <polygon
+               points="89.603557,175 93.563913,175 97.524269,175 101.48462,175 105.44498,175 109.40534,175 113.36569,175 117.32605,175 121.2864,175 125.24676,175 129.20711,175 133.16747,175 137.12783,175 141.08818,175 145.04854,175 149.00889,175 152.96925,175 156.9296,175 160.88996,175 164.85032,175 168.81067,175 172.77103,175 176.73138,175 180.69174,175 184.65209,175 188.61245,175 192.57281,175 196.53316,175 200.49352,175 204.45387,175 204.45387,174.69325 200.49352,174.84663 196.53316,174.84663 192.57281,174.53988 188.61245,174.53988 184.65209,173.46626 180.69174,173.46626 176.73138,171.16564 172.77103,167.79141 168.81067,168.25153 164.85032,161.19632 160.88996,158.89571 156.9296,149.07975 152.96925,145.70552 149.00889,131.13497 145.04854,122.85276 141.08818,104.90798 137.12783,93.865031 133.16747,79.447853 129.20711,58.282209 125.24676,51.380368 121.2864,58.128834 117.32605,59.662577 113.36569,50 109.40534,59.815951 105.44498,74.693252 101.48462,92.791411 97.524269,115.03067 93.563913,130.82822 89.603557,141.10429 85.643202,151.38037 81.682846,161.80982 77.72249,167.79141 73.762134,171.93252 69.801779,173.31288 65.841423,174.23313 61.881067,174.69325 57.920711,174.84663 53.960356,175 50,174.84663 50,175 53.960356,175 57.920711,175 61.881067,175 65.841423,175 69.801779,175 73.762134,175 77.72249,175 81.682846,175 85.643202,175 "
+               style="opacity:0.3;fill:#66c2a3;fill-opacity:1;stroke:none;stroke-linecap:butt;stroke-linejoin:round"
+               id="polygon2510" />
+          </g>
+          <g
+             class="toyplot-mark-FillBoundaries"
+             style="stroke:none;stroke-linecap:butt;stroke-linejoin:round"
+             id="t70112b9536504875bd1f4d026fcf323a">
+            <polygon
+               points="152.96925,175 152.96925,145.70552 149.00889,131.13497 145.04854,122.85276 141.08818,104.90798 137.12783,93.865031 133.16747,79.447853 129.20711,58.282209 125.24676,51.380368 121.2864,58.128834 117.32605,59.662577 113.36569,50 109.40534,59.815951 105.44498,74.693252 101.48462,92.791411 97.524269,115.03067 93.563913,130.82822 89.603557,141.10429 85.643202,151.38037 81.682846,161.80982 81.682846,175 85.643202,175 89.603557,175 93.563913,175 97.524269,175 101.48462,175 105.44498,175 109.40534,175 113.36569,175 117.32605,175 121.2864,175 125.24676,175 129.20711,175 133.16747,175 137.12783,175 141.08818,175 145.04854,175 149.00889,175 "
+               style="opacity:0.5;fill:#66c2a3;fill-opacity:1;stroke:none;stroke-linecap:butt;stroke-linejoin:round"
+               id="polygon2513" />
+          </g>
+          <g
+             class="toyplot-mark-Plot"
+             style="fill:none;stroke-width:3;stroke-linecap:butt;stroke-linejoin:round"
+             id="tc7b5b2d1372948a5ab02767c38ebff30">
+            <g
+               class="toyplot-Series"
+               id="g2518"
+               style="stroke-linecap:butt;stroke-linejoin:round">
+              <path
+                 d="M 50,174.84663 53.960356,175 l 3.960355,-0.15337 3.960356,-0.15338 3.960356,-0.46012 3.960356,-0.92025 3.960355,-1.38036 3.960356,-4.14111 3.960356,-5.98159 3.960356,-10.42945 3.960355,-10.27608 3.960356,-10.27607 3.960356,-15.79755 3.960351,-22.239259 3.96036,-18.098159 3.96036,-14.877301 L 113.36569,50 l 3.96036,9.662577 3.96035,-1.533743 3.96036,-6.748466 3.96035,6.901841 3.96036,21.165644 3.96036,14.417178 3.96035,11.042949 3.96036,17.94478 3.96035,8.28221 3.96036,14.57055 3.96035,3.37423 3.96036,9.81596 3.96036,2.30061 3.96035,7.05521 3.96036,-0.46012 3.96035,3.37423 3.96036,2.30062 h 3.96035 l 3.96036,1.07362 h 3.96036 l 3.96035,0.30675 h 3.96036 l 3.96035,-0.15338"
+                 style="stroke:#66c2a3;stroke-width:3;stroke-linecap:butt;stroke-linejoin:round;stroke-opacity:1"
+                 id="path2516" />
+            </g>
+          </g>
+          <g
+             class="toyplot-mark-FillBoundaries"
+             style="stroke:none;stroke-linecap:butt;stroke-linejoin:round"
+             id="t8fb10a86d4d34e53a4b1f20b50aa87dd">
+            <polygon
+               points="200.88892,175 207.75482,175 214.62072,175 221.48662,175 228.35252,175 235.21842,175 242.08432,175 248.95021,175 255.81611,175 262.68201,175 269.54791,175 276.41381,175 283.27971,175 290.14561,175 297.01151,175 303.87741,175 310.74331,175 317.60921,175 324.47511,175 331.34101,175 338.20691,175 345.07281,175 351.9387,175 358.8046,175 365.6705,175 372.5364,175 379.4023,175 386.2682,175 393.1341,175 400,175 400,174.82306 393.1341,174.91153 386.2682,175 379.4023,175 372.5364,174.82306 365.6705,174.91153 358.8046,174.91153 351.9387,174.82306 345.07281,174.73459 338.20691,174.46919 331.34101,173.76144 324.47511,173.84991 317.60921,173.05369 310.74331,172.169 303.87741,170.2227 297.01151,168.09945 290.14561,163.58755 283.27971,161.28737 276.41381,154.91763 269.54791,148.63636 262.68201,139.87796 255.81611,135.98535 248.95021,130.23489 242.08432,118.73397 235.21842,104.93287 228.35252,108.56008 221.48662,99.536281 214.62072,100.77484 207.75482,102.72115 200.88892,109.53323 194.02302,124.48443 187.15712,128.81939 180.29122,139.70103 173.42532,150.93654 166.55942,158.3679 159.69352,164.73764 152.82762,168.71873 145.96173,172.52288 139.09583,173.5845 132.22993,174.55766 132.22993,175 139.09583,175 145.96173,175 152.82762,175 159.69352,175 166.55942,175 173.42532,175 180.29122,175 187.15712,175 194.02302,175 "
+               style="opacity:0.3;fill:#fa8c61;fill-opacity:1;stroke:none;stroke-linecap:butt;stroke-linejoin:round"
+               id="polygon2521" />
+          </g>
+          <g
+             class="toyplot-mark-FillBoundaries"
+             style="stroke:none;stroke-linecap:butt;stroke-linejoin:round"
+             id="tce9d7381230f462a98342ece59f64574">
+            <polygon
+               points="283.27971,175 283.27971,161.28737 276.41381,154.91763 269.54791,148.63636 262.68201,139.87796 255.81611,135.98535 248.95021,130.23489 242.08432,118.73397 235.21842,104.93287 228.35252,108.56008 221.48662,99.536281 214.62072,100.77484 207.75482,102.72115 200.88892,109.53323 194.02302,124.48443 187.15712,128.81939 180.29122,139.70103 173.42532,150.93654 166.55942,158.3679 159.69352,164.73764 159.69352,175 166.55942,175 173.42532,175 180.29122,175 187.15712,175 194.02302,175 200.88892,175 207.75482,175 214.62072,175 221.48662,175 228.35252,175 235.21842,175 242.08432,175 248.95021,175 255.81611,175 262.68201,175 269.54791,175 276.41381,175 "
+               style="opacity:0.5;fill:#fa8c61;fill-opacity:1;stroke:none;stroke-linecap:butt;stroke-linejoin:round"
+               id="polygon2524" />
+          </g>
+          <g
+             class="toyplot-mark-Plot"
+             style="fill:none;stroke-width:3;stroke-linecap:butt;stroke-linejoin:round"
+             id="td3c46f68a6ea433d98820f3e88b7dbca">
+            <g
+               class="toyplot-Series"
+               id="g2529"
+               style="stroke-linecap:butt;stroke-linejoin:round">
+              <path
+                 d="m 132.22993,174.55766 6.8659,-0.97316 6.8659,-1.06162 6.86589,-3.80415 6.8659,-3.98109 6.8659,-6.36974 6.8659,-7.43136 6.8659,-11.23551 6.8659,-10.88164 6.8659,-4.33496 6.8659,-14.9512 6.8659,-6.81208 6.8659,-1.94631 6.8659,-1.238559 6.8659,9.023799 6.8659,-3.62721 6.8659,13.8011 6.86589,11.50092 6.8659,5.75046 6.8659,3.89261 6.8659,8.7584 6.8659,6.28127 6.8659,6.36974 6.8659,2.30018 6.8659,4.5119 6.8659,2.12325 6.8659,1.9463 6.8659,0.88469 6.8659,0.79622 6.8659,-0.0885 6.8659,0.70775 6.8659,0.2654 6.86589,0.0885 6.8659,0.0885 h 6.8659 l 6.8659,-0.0885 6.8659,0.17694 h 6.8659 l 6.8659,-0.0885 L 400,174.823"
+                 style="stroke:#fa8c61;stroke-width:3;stroke-linecap:butt;stroke-linejoin:round;stroke-opacity:1"
+                 id="path2527" />
+            </g>
+          </g>
+          <g
+             class="toyplot-mark-FillBoundaries"
+             style="stroke:none;stroke-linecap:butt;stroke-linejoin:round"
+             id="t47c77725e9044c9c9cb52a096de5e483">
+            <polygon
+               points="245.27018,175 249.71929,175 254.1684,175 258.61751,175 263.06662,175 267.51573,175 271.96484,175 276.41395,175 280.86306,175 285.31217,175 289.76128,175 294.21039,175 298.6595,175 303.10861,175 307.55772,175 312.00683,175 316.45594,175 320.90505,175 325.35416,175 329.80327,175 334.25238,175 338.70149,175 343.1506,175 347.59971,175 352.04882,175 356.49792,175 360.94703,175 365.39614,175 369.84525,175 374.29436,175 374.29436,174.86347 369.84525,174.59042 365.39614,174.59042 360.94703,174.72695 356.49792,174.86347 352.04882,174.59042 347.59971,173.3617 343.1506,173.3617 338.70149,171.45034 334.25238,170.08509 329.80327,167.35458 325.35416,162.16661 320.90505,155.34034 316.45594,152.20026 312.00683,140.18602 307.55772,135.81721 303.10861,121.07246 298.6595,112.33484 294.21039,97.99967 289.76128,92.402128 285.31217,73.01552 280.86306,72.74247 276.41395,75.746029 271.96484,68.783233 267.51573,77.930435 263.06662,83.937553 258.61751,93.494332 254.1684,115.61145 249.71929,118.47848 245.27018,128.03526 240.82107,142.91653 236.37196,153.15593 231.92285,159.02653 227.47374,163.66839 223.02463,168.31026 218.57552,170.22161 214.12641,173.22517 209.6773,174.18085 205.22819,174.4539 200.77908,174.4539 200.77908,175 205.22819,175 209.6773,175 214.12641,175 218.57552,175 223.02463,175 227.47374,175 231.92285,175 236.37196,175 240.82107,175 "
+               style="opacity:0.3;fill:#8c9eca;fill-opacity:1;stroke:none;stroke-linecap:butt;stroke-linejoin:round"
+               id="polygon2532" />
+          </g>
+          <g
+             class="toyplot-mark-FillBoundaries"
+             style="stroke:none;stroke-linecap:butt;stroke-linejoin:round"
+             id="tdbc98966745542b09ce39d0ac4776a97">
+            <polygon
+               points="240.82107,175 245.27018,175 249.71929,175 254.1684,175 258.61751,175 263.06662,175 267.51573,175 271.96484,175 276.41395,175 280.86306,175 285.31217,175 289.76128,175 294.21039,175 298.6595,175 303.10861,175 307.55772,175 312.00683,175 316.45594,175 320.90505,175 320.90505,155.34034 316.45594,152.20026 312.00683,140.18602 307.55772,135.81721 303.10861,121.07246 298.6595,112.33484 294.21039,97.99967 289.76128,92.402128 285.31217,73.01552 280.86306,72.74247 276.41395,75.746029 271.96484,68.783233 267.51573,77.930435 263.06662,83.937553 258.61751,93.494332 254.1684,115.61145 249.71929,118.47848 245.27018,128.03526 240.82107,142.91653 236.37196,153.15593 231.92285,159.02653 231.92285,175 236.37196,175 "
+               style="opacity:0.5;fill:#8c9eca;fill-opacity:1;stroke:none;stroke-linecap:butt;stroke-linejoin:round"
+               id="polygon2535" />
+          </g>
+          <g
+             class="toyplot-mark-Plot"
+             style="fill:none;stroke-width:3;stroke-linecap:butt;stroke-linejoin:round"
+             id="t16e1028f4ff74c57a7f776fb67652283">
+            <g
+               class="toyplot-Series"
+               id="g2540"
+               style="stroke-linecap:butt;stroke-linejoin:round">
+              <path
+                 d="m 200.77908,174.4539 h 4.44911 l 4.44911,-0.27305 4.44911,-0.95568 4.44911,-3.00356 4.44911,-1.91135 4.44911,-4.64187 4.44911,-4.64186 4.44911,-5.8706 4.44911,-10.2394 4.44911,-14.88127 4.44911,-9.55678 4.44911,-2.86703 4.44911,-22.117118 4.44911,-9.556779 4.44911,-6.007118 4.44911,-9.147202 4.44911,6.962796 4.44911,-3.003559 4.44911,0.27305 4.44911,19.386608 4.44911,5.597542 4.44911,14.33517 4.44911,8.73762 4.44911,14.74475 4.44911,4.36881 4.44911,12.01424 4.44911,3.14008 4.44911,6.82627 4.44911,5.18797 4.44911,2.73051 4.44911,1.36525 4.44911,1.91136 h 4.44911 l 4.44911,1.22872 4.4491,0.27305 4.44911,-0.13652 4.44911,-0.13653 h 4.44911 l 4.44911,0.27305"
+                 style="stroke:#8c9eca;stroke-width:3;stroke-linecap:butt;stroke-linejoin:round;stroke-opacity:1"
+                 id="path2538" />
+            </g>
+          </g>
+          <g
+             class="toyplot-mark-AxisLines"
+             style="stroke:#66c2a3;stroke-width:3;stroke-linecap:butt;stroke-linejoin:round;stroke-dasharray:4, 4;stroke-opacity:1"
+             id="tac896074382b4f618d357d0d88e6b7a8">
+            <g
+               class="toyplot-Series"
+               id="g2545"
+               style="stroke-linecap:butt;stroke-linejoin:round">
+              <line
+                 class="toyplot-Datum"
+                 x1="123.32055"
+                 x2="123.32055"
+                 y1="50"
+                 y2="175"
+                 style="opacity:1;stroke:#66c2a3;stroke-width:3;stroke-linecap:butt;stroke-linejoin:round;stroke-dasharray:4, 4;stroke-opacity:1"
+                 id="line2543" />
+            </g>
+          </g>
+          <g
+             class="toyplot-mark-AxisLines"
+             style="stroke:#fa8c61;stroke-width:3;stroke-linecap:butt;stroke-linejoin:round;stroke-dasharray:4, 4;stroke-opacity:1"
+             id="t02eadd974ff04b86bca956af6ae30684">
+            <g
+               class="toyplot-Series"
+               id="g2550"
+               style="stroke-linecap:butt;stroke-linejoin:round">
+              <line
+                 class="toyplot-Datum"
+                 x1="204.5336"
+                 x2="204.5336"
+                 y1="50"
+                 y2="175"
+                 style="opacity:1;stroke:#fa8c61;stroke-width:3;stroke-linecap:butt;stroke-linejoin:round;stroke-dasharray:4, 4;stroke-opacity:1"
+                 id="line2548" />
+            </g>
+          </g>
+          <g
+             class="toyplot-mark-AxisLines"
+             style="stroke:#8c9eca;stroke-width:3;stroke-linecap:butt;stroke-linejoin:round;stroke-dasharray:4, 4;stroke-opacity:1"
+             id="t976c437de5a34156b1c5a8d77ef55111">
+            <g
+               class="toyplot-Series"
+               id="g2555"
+               style="stroke-linecap:butt;stroke-linejoin:round">
+              <line
+                 class="toyplot-Datum"
+                 x1="285.74664"
+                 x2="285.74664"
+                 y1="50"
+                 y2="175"
+                 style="opacity:1;stroke:#8c9eca;stroke-width:3;stroke-linecap:butt;stroke-linejoin:round;stroke-dasharray:4, 4;stroke-opacity:1"
+                 id="line2553" />
+            </g>
+          </g>
+        </g>
+        <g
+           class="toyplot-coordinates-Axis"
+           id="t16e8c4cea97c46a7b1dc7fff8c922d09"
+           transform="translate(50,185)"
+           style="stroke-linecap:butt;stroke-linejoin:round">
+          <line
+             x1="0"
+             y1="0"
+             x2="350"
+             y2="0"
+             style="stroke-width:3;stroke-linecap:butt;stroke-linejoin:round"
+             id="line2560" />
+          <g
+             id="g2570"
+             style="stroke-linecap:butt;stroke-linejoin:round">
+            <line
+               x1="73.320549"
+               y1="7.5"
+               x2="73.320549"
+               y2="0"
+               style="stroke-width:3;stroke-linecap:butt;stroke-linejoin:round"
+               id="line2562" />
+            <line
+               x1="154.5336"
+               y1="7.5"
+               x2="154.5336"
+               y2="0"
+               style="stroke-width:3;stroke-linecap:butt;stroke-linejoin:round"
+               id="line2564" />
+            <line
+               x1="235.74664"
+               y1="7.5"
+               x2="235.74664"
+               y2="0"
+               style="stroke-width:3;stroke-linecap:butt;stroke-linejoin:round"
+               id="line2566" />
+            <line
+               x1="316.95969"
+               y1="7.5"
+               x2="316.95969"
+               y2="0"
+               style="stroke-width:3;stroke-linecap:butt;stroke-linejoin:round"
+               id="line2568" />
+          </g>
+          <g
+             id="g2588"
+             style="stroke-linecap:butt;stroke-linejoin:round">
+            <g
+               transform="translate(73.320547,12)"
+               id="g2574"
+               style="stroke-linecap:butt;stroke-linejoin:round">
+              <text
+                 x="-26.688"
+                 y="13.688"
+                 style="font-weight:normal;font-size:16px;font-family:helvetica;white-space:pre;fill:#282623;fill-opacity:1;stroke:none;stroke-linecap:butt;stroke-linejoin:round"
+                 id="text2572">200000</text>
+            </g>
+            <g
+               transform="translate(154.53359,12)"
+               id="g2578"
+               style="stroke-linecap:butt;stroke-linejoin:round">
+              <text
+                 x="-26.688"
+                 y="13.688"
+                 style="font-weight:normal;font-size:16px;font-family:helvetica;white-space:pre;fill:#282623;fill-opacity:1;stroke:none;stroke-linecap:butt;stroke-linejoin:round"
+                 id="text2576">300000</text>
+            </g>
+            <g
+               transform="translate(235.74664,12)"
+               id="g2582"
+               style="stroke-linecap:butt;stroke-linejoin:round">
+              <text
+                 x="-26.688"
+                 y="13.688"
+                 style="font-weight:normal;font-size:16px;font-family:helvetica;white-space:pre;fill:#282623;fill-opacity:1;stroke:none;stroke-linecap:butt;stroke-linejoin:round"
+                 id="text2580">400000</text>
+            </g>
+            <g
+               transform="translate(316.95969,12)"
+               id="g2586"
+               style="stroke-linecap:butt;stroke-linejoin:round">
+              <text
+                 x="-26.688"
+                 y="13.688"
+                 style="font-weight:normal;font-size:16px;font-family:helvetica;white-space:pre;fill:#282623;fill-opacity:1;stroke:none;stroke-linecap:butt;stroke-linejoin:round"
+                 id="text2584">500000</text>
+            </g>
+          </g>
+          <g
+             class="toyplot-coordinates-Axis-coordinates"
+             style="visibility:hidden;stroke-linecap:butt;stroke-linejoin:round"
+             id="g2594">
+            <text
+               x="0"
+               y="-12"
+               style="font-weight:normal;font-size:10px;text-anchor:middle;fill:#6e7f8f;fill-opacity:1;stroke:none;stroke-linecap:butt;stroke-linejoin:round"
+               id="text2592" />
+          </g>
+        </g>
+        <g
+           class="toyplot-coordinates-Axis"
+           id="t68dac4bc474146aaa4d7e32992012255"
+           transform="rotate(-90,107.5,67.5)"
+           style="stroke-linecap:butt;stroke-linejoin:round">
+          <line
+             x1="0"
+             y1="0"
+             x2="125"
+             y2="0"
+             style="stroke-width:3.00023;stroke-linecap:butt;stroke-linejoin:round;stroke-dasharray:none"
+             id="line2597" />
+          <g
+             id="g2607"
+             style="stroke-linecap:butt;stroke-linejoin:round">
+            <line
+               x1="0"
+               y1="-7.5"
+               x2="0"
+               y2="0"
+               style="stroke-width:3;stroke-linecap:butt;stroke-linejoin:round"
+               id="line2599" />
+            <line
+               x1="37.396488"
+               y1="-7.5"
+               x2="37.396488"
+               y2="0"
+               style="stroke-width:3;stroke-linecap:butt;stroke-linejoin:round"
+               id="line2601" />
+            <line
+               x1="74.792976"
+               y1="-7.5"
+               x2="74.792976"
+               y2="0"
+               style="stroke-width:3;stroke-linecap:butt;stroke-linejoin:round"
+               id="line2603" />
+            <line
+               x1="112.18946"
+               y1="-7.5"
+               x2="112.18946"
+               y2="0"
+               style="stroke-width:3;stroke-linecap:butt;stroke-linejoin:round"
+               id="line2605" />
+          </g>
+          <g
+             class="toyplot-coordinates-Axis-coordinates"
+             style="visibility:hidden;stroke-linecap:butt;stroke-linejoin:round"
+             id="g2613">
+            <text
+               x="0"
+               y="12"
+               style="font-weight:normal;font-size:10px;text-anchor:middle;fill:#6e7f8f;fill-opacity:1;stroke:none;stroke-linecap:butt;stroke-linejoin:round"
+               id="text2611" />
+          </g>
+        </g>
+      </g>
+    </g>
+    <path
+       style="fill:#f6f5f4;stroke:#66c2a3;stroke-width:1.59443;stroke-linecap:butt;stroke-linejoin:round;stroke-dashoffset:3.1748;stroke-opacity:1"
+       d="M 144.92257,27.820567 H 166.3147"
+       id="path2842" />
+    <path
+       style="fill:#f6f5f4;stroke:#fa8c61;stroke-width:1.59443;stroke-linecap:butt;stroke-linejoin:round;stroke-dashoffset:3.1748;stroke-opacity:1"
+       d="m 168.51443,23.70502 h 37.45471"
+       id="path2844" />
+    <path
+       style="fill:#f6f5f4;stroke:#8c9eca;stroke-width:1.59443;stroke-linecap:butt;stroke-linejoin:round;stroke-dashoffset:3.1748;stroke-opacity:1"
+       d="m 190.47749,19.034152 h 26.81798"
+       id="path2846" />
+    <text
+       xml:space="preserve"
+       style="font-size:4.25181px;line-height:1.25;font-family:sans-serif;word-spacing:0px;stroke-width:0.531473;stroke-linecap:butt;stroke-linejoin:round"
+       x="133.67792"
+       y="29.397062"
+       id="text2902"><tspan
+         sodipodi:role="line"
+         id="tspan2900"
+         style="font-size:4.25181px;stroke-width:0.531473"
+         x="133.67792"
+         y="29.397062">148K</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:4.25181px;line-height:1.25;font-family:sans-serif;word-spacing:0px;stroke-width:0.531473;stroke-linecap:butt;stroke-linejoin:round"
+       x="166.99866"
+       y="29.303949"
+       id="text2906"><tspan
+         sodipodi:role="line"
+         id="tspan2904"
+         style="font-size:4.25181px;stroke-width:0.531473"
+         x="166.99866"
+         y="29.303949">241K</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:4.25181px;line-height:1.25;font-family:sans-serif;word-spacing:0px;stroke-width:0.531473;stroke-linecap:butt;stroke-linejoin:round"
+       x="156.41623"
+       y="24.935686"
+       id="text2960"><tspan
+         sodipodi:role="line"
+         id="tspan2958"
+         style="font-size:4.25181px;stroke-width:0.531473"
+         x="156.41623"
+         y="24.935686">242K</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:4.25181px;line-height:1.25;font-family:sans-serif;word-spacing:0px;stroke-width:0.531473;stroke-linecap:butt;stroke-linejoin:round"
+       x="206.72778"
+       y="24.935686"
+       id="text2964"><tspan
+         sodipodi:role="line"
+         id="tspan2962"
+         style="font-size:4.25181px;stroke-width:0.531473"
+         x="206.72778"
+         y="24.935686">400K</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:4.25181px;line-height:1.25;font-family:sans-serif;word-spacing:0px;stroke-width:0.531473;stroke-linecap:butt;stroke-linejoin:round"
+       x="178.91914"
+       y="20.760099"
+       id="text2968"><tspan
+         sodipodi:role="line"
+         id="tspan2966"
+         style="font-size:4.25181px;stroke-width:0.531473"
+         x="178.91914"
+         y="20.760099">332K</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:4.25181px;line-height:1.25;font-family:sans-serif;word-spacing:0px;stroke-width:0.531473;stroke-linecap:butt;stroke-linejoin:round"
+       x="218.20576"
+       y="20.760099"
+       id="text2972"><tspan
+         sodipodi:role="line"
+         id="tspan2970"
+         style="font-size:4.25181px;stroke-width:0.531473"
+         x="218.20576"
+         y="20.760099">444K</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:7.72578px;line-height:1.25;font-family:sans-serif;word-spacing:0px;stroke-width:0.193148;stroke-linecap:butt;stroke-linejoin:round"
+       x="42.822491"
+       y="60.054054"
+       id="text40322-9-7"><tspan
+         sodipodi:role="line"
+         id="tspan40320-2-2"
+         style="stroke-width:0.193148"
+         x="42.822491"
+         y="60.054054">Ne0</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:7.72578px;line-height:1.25;font-family:sans-serif;word-spacing:0px;stroke-width:0.193148;stroke-linecap:butt;stroke-linejoin:round"
+       x="70.654381"
+       y="60.054054"
+       id="text705"><tspan
+         sodipodi:role="line"
+         id="tspan705"
+         style="stroke-width:0.193148"
+         x="70.654381"
+         y="60.054054">Ne1</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:7.72578px;line-height:1.25;font-family:sans-serif;word-spacing:0px;stroke-width:0.193148;stroke-linecap:butt;stroke-linejoin:round"
+       x="56.739357"
+       y="35.017159"
+       id="text707"><tspan
+         sodipodi:role="line"
+         id="tspan707"
+         style="stroke-width:0.193148"
+         x="56.739357"
+         y="35.017159">Ne2</tspan></text>
+    <text
+       x="293.60193"
+       y="119.89658"
+       style="font-weight:bold;font-size:5.96398px;font-family:helvetica;white-space:pre;fill:#282623;fill-opacity:1;stroke:none;stroke-width:0.286898;stroke-linecap:butt;stroke-linejoin:round;stroke-opacity:1"
+       id="text2282">Species tree interval diploid N<tspan
+   style="font-size:5.96398px;baseline-shift:sub;stroke-width:0.286898"
+   id="tspan2282">e</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:6.76416px;line-height:1.1;font-family:sans-serif;word-spacing:0px;stroke-width:0.391978;stroke-linecap:butt;stroke-linejoin:round"
+       x="6.9761424"
+       y="12.774515"
+       id="text333"><tspan
+         sodipodi:role="line"
+         id="tspan333"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.76416px;font-family:Arial;-inkscape-font-specification:Arial;stroke-width:0.391978"
+         x="6.9761424"
+         y="12.774515">(a) Demographic (MSC) model</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:6.76416px;line-height:1.1;font-family:sans-serif;word-spacing:0px;stroke-width:0.391978;stroke-linecap:butt;stroke-linejoin:round"
+       x="116.70211"
+       y="12.584467"
+       id="text336"><tspan
+         sodipodi:role="line"
+         id="tspan336"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.76416px;font-family:Arial;-inkscape-font-specification:Arial;stroke-width:0.391978"
+         x="116.70211"
+         y="12.584467">(b) Joint parameter inference (10Mb)</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:5.55876px;line-height:1.1;font-family:Arial;-inkscape-font-specification:Arial;word-spacing:0px;stroke-width:0.119116;stroke-linecap:butt;stroke-linejoin:round"
+       x="-73.178917"
+       y="12.101513"
+       id="text3"
+       transform="rotate(-90)"><tspan
+         sodipodi:role="line"
+         id="tspan3"
+         style="stroke-width:0.119116"
+         x="-73.178917"
+         y="12.101513">Time (generations)</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:7.72578px;line-height:1.25;font-family:sans-serif;word-spacing:0px;stroke-width:0.193148;stroke-linecap:butt;stroke-linejoin:round"
+       x="89.225655"
+       y="52.301735"
+       id="text4"><tspan
+         sodipodi:role="line"
+         id="tspan4"
+         style="stroke-width:0.193148"
+         x="89.225655"
+         y="52.301735">Tau</tspan></text>
+    <path
+       style="fill:#ff4400;stroke:#000000;stroke-width:0.724732;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:2.89893, 2.89893;stroke-dashoffset:0;stroke-opacity:1"
+       d="M 28.869007,49.328856 H 88.599652"
+       id="path18" />
+    <text
+       xml:space="preserve"
+       style="font-size:5.55876px;line-height:1.1;font-family:Arial;-inkscape-font-specification:Arial;word-spacing:0px;stroke-width:0.119116;stroke-linecap:butt;stroke-linejoin:round"
+       x="21.292139"
+       y="86.817856"
+       id="text44"><tspan
+         sodipodi:role="line"
+         id="tspan44"
+         style="stroke-width:0.119116"
+         x="21.292139"
+         y="86.817856">Recombination rate (r) = 2e-9</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:5.55876px;line-height:1.1;font-family:Arial;-inkscape-font-specification:Arial;word-spacing:0px;stroke-width:0.119116;stroke-linecap:butt;stroke-linejoin:round"
+       x="148.82051"
+       y="88.802032"
+       id="text45"><tspan
+         sodipodi:role="line"
+         id="tspan45"
+         style="stroke-width:0.119116"
+         x="148.82051"
+         y="88.802032">Effective population size (Ne)</tspan></text>
+    <rect
+       style="fill:#dcdcdc;stroke-width:0.586018;stroke-linecap:round;stroke-linejoin:round"
+       id="rect332-9"
+       width="100.08922"
+       height="87.789955"
+       x="-142.47359"
+       y="0.2713868"
+       ry="5.7205074e-16" />
+    <text
+       xml:space="preserve"
+       style="font-size:5.04156px;line-height:1.25;font-family:sans-serif;word-spacing:0px;fill:#282623;fill-opacity:1;stroke:none;stroke-width:0.276508;stroke-linecap:butt;stroke-linejoin:round;stroke-opacity:1"
+       x="-129.27902"
+       y="20.475245"
+       id="text1708019-9-6-1"><tspan
+         sodipodi:role="line"
+         id="tspan1708017-5-4-2"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.04156px;font-family:Arial;-inkscape-font-specification:Arial;stroke:none;stroke-width:0.276508"
+         x="-129.27902"
+         y="20.475245">inf</tspan></text>
+    <g
+       class="toyplot-coordinates-Axis-coordinates"
+       style="font-size:12px;font-family:Helvetica;visibility:hidden;fill:#282623;fill-opacity:1;stroke:#282623;stroke-width:1;stroke-linecap:butt;stroke-linejoin:round;stroke-opacity:1"
+       id="g1707985-3-95-4"
+       transform="matrix(0.29280529,0,0,0.29280529,-117.07557,78.843711)">
+      <line
+         x1="0"
+         x2="0"
+         y1="-5"
+         y2="7.5"
+         style="stroke:none;stroke-width:1;stroke-linecap:butt;stroke-linejoin:round;stroke-opacity:1"
+         id="line1707981-0-0-8" />
+      <text
+         x="0"
+         y="-10"
+         style="font-weight:normal;font-size:10px;text-anchor:middle;fill:#6e7f8f;fill-opacity:1;stroke:none;stroke-linecap:butt;stroke-linejoin:round"
+         id="text1707983-2-4-5" />
+    </g>
+    <line
+       x1="-119.24106"
+       y1="68.776016"
+       x2="-119.24106"
+       y2="18.999514"
+       style="font-size:12px;font-family:Helvetica;fill:#282623;fill-opacity:1;stroke:#282623;stroke-width:0.958034;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="line1707987-0-8-1" />
+    <g
+       id="g1707999-7-7-2"
+       transform="matrix(0,-0.29280529,0.29280529,0,-119.24103,68.776281)"
+       style="font-size:12px;font-family:Helvetica;fill:#282623;fill-opacity:1;stroke:#282623;stroke-width:1;stroke-linecap:butt;stroke-linejoin:round;stroke-opacity:1">
+      <line
+         x1="0"
+         y1="-5"
+         x2="0"
+         y2="0"
+         style="stroke-width:3.27191;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none"
+         id="line1707989-4-1-2" />
+      <line
+         x1="85"
+         y1="-5"
+         x2="85"
+         y2="0"
+         style="stroke-width:3.27191;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none"
+         id="line1707993-7-7-1" />
+      <line
+         x1="170"
+         y1="-5"
+         x2="170"
+         y2="0"
+         style="stroke-width:3.27191;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none"
+         id="line1707997-3-2-3" />
+    </g>
+    <g
+       class="toyplot-coordinates-Axis-coordinates"
+       style="font-size:12px;font-family:Helvetica;visibility:hidden;fill:#282623;fill-opacity:1;stroke:#282623;stroke-width:1;stroke-linecap:butt;stroke-linejoin:round;stroke-opacity:1"
+       id="g1708025-0-7-1"
+       transform="matrix(0,-0.29280529,0.29280529,0,-117.79156,81.039721)">
+      <line
+         x1="0"
+         x2="0"
+         y1="5"
+         y2="-7.5"
+         style="stroke:none;stroke-width:1;stroke-linecap:butt;stroke-linejoin:round;stroke-opacity:1"
+         id="line1708021-1-2-4" />
+      <text
+         x="0"
+         y="10"
+         style="font-weight:normal;font-size:10px;text-anchor:middle;fill:#6e7f8f;fill-opacity:1;stroke:none;stroke-linecap:butt;stroke-linejoin:round"
+         id="text1708023-6-2-5" />
+    </g>
+    <path
+       style="font-size:12px;font-family:Helvetica;font-variation-settings:normal;fill:#e6e6e6;fill-opacity:1;stroke:#000000;stroke-width:1.10603;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;stop-color:#000000"
+       d="m -115.40883,68.875011 h 18.647071 l 13.32854,-23.424412 11.55713,23.424412 h 17.95639 l -20.4964,-46.848858 h -19.03233 z"
+       id="path1855888-8-61-5"
+       sodipodi:nodetypes="cccccccc" />
+    <path
+       style="font-size:12px;font-family:Helvetica;font-variation-settings:normal;fill:none;fill-opacity:1;stroke:#000000;stroke-width:1.10603;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;stop-color:#000000"
+       d="m -115.40883,68.875011 h 18.647071 l 13.32854,-23.424412 11.55713,23.424412 h 17.95639 l -20.4964,-46.848858 h -19.03233 z"
+       id="path411230-1-3-0-3"
+       sodipodi:nodetypes="cccccccc" />
+    <path
+       style="font-size:12px;font-family:Helvetica;font-variation-settings:normal;fill:#8d9ec9;fill-opacity:0.298039;stroke:#8c9eca;stroke-width:1.70798;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;stop-color:#000000"
+       d="m -104.00438,44.240844 h 39.347771 l -9.83057,-22.163592 h -18.99473 z"
+       id="path59900-6-3" />
+    <text
+       xml:space="preserve"
+       style="font-size:5.29167px;line-height:1.25;font-family:sans-serif;word-spacing:0px;fill:#282623;fill-opacity:1;stroke:none;stroke-width:0.276508;stroke-linecap:butt;stroke-linejoin:round;stroke-opacity:1"
+       x="-130.57521"
+       y="46.478989"
+       id="text1772078-3-1-7"><tspan
+         sodipodi:role="line"
+         id="tspan1772076-1-5-7"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.29167px;font-family:Arial;-inkscape-font-specification:Arial;stroke:none;stroke-width:0.276508"
+         x="-130.57521"
+         y="46.478989">1e<tspan
+   style="font-size:65%;baseline-shift:super"
+   id="tspan1">6</tspan></tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:5.04156px;line-height:1.25;font-family:sans-serif;word-spacing:0px;fill:#282623;fill-opacity:1;stroke:none;stroke-width:0.276508;stroke-linecap:butt;stroke-linejoin:round;stroke-opacity:1"
+       x="-125.56149"
+       y="70.094101"
+       id="text1785154-3-4-0"><tspan
+         sodipodi:role="line"
+         id="tspan1785152-89-9-7"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.04156px;font-family:Arial;-inkscape-font-specification:Arial;stroke:none;stroke-width:0.276508"
+         x="-125.56149"
+         y="70.094101">0</tspan></text>
+    <path
+       style="font-size:12px;font-family:Helvetica;font-variation-settings:normal;fill:#65c3a4;fill-opacity:0.298039;stroke:#66c2a3;stroke-width:1.26038;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;stop-color:#000000"
+       d="m -83.552519,45.542347 h -21.012321 l -10.7369,23.290374 h 18.630551 z"
+       id="path57326-0-9" />
+    <text
+       xml:space="preserve"
+       style="font-size:6.72206px;line-height:1.25;font-family:sans-serif;word-spacing:0px;fill:#282623;fill-opacity:1;stroke:none;stroke-width:0.315097;stroke-linecap:butt;stroke-linejoin:round;stroke-opacity:1"
+       x="-109.3653"
+       y="64.137161"
+       id="text60752-9-5"><tspan
+         sodipodi:role="line"
+         id="tspan60750-1-5"
+         x="-109.3653"
+         y="64.137161"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.72206px;font-family:Lato;-inkscape-font-specification:Lato;stroke:none;stroke-width:0.315097">(2e<tspan
+   style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.72206px;font-family:Lato;-inkscape-font-specification:Lato;baseline-shift:super;stroke:none;stroke-width:0.315097"
+   id="tspan60754-7-9">5</tspan>)</tspan></text>
+    <path
+       style="font-size:12px;font-family:Helvetica;font-variation-settings:normal;fill:#fc8d61;fill-opacity:0.298039;stroke:#fa8c61;stroke-width:1.26038;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;stop-color:#000000"
+       d="m -83.302839,45.542347 h 19.15636 l 10.21307,23.290374 h -17.92373 z"
+       id="path59139-7-1"
+       sodipodi:nodetypes="ccccc" />
+    <text
+       xml:space="preserve"
+       style="font-size:6.72206px;line-height:1.25;font-family:sans-serif;word-spacing:0px;fill:#282623;fill-opacity:1;stroke:none;stroke-width:0.315097;stroke-linecap:butt;stroke-linejoin:round;stroke-opacity:1"
+       x="-73.565552"
+       y="64.137161"
+       id="text60833-1-0"><tspan
+         sodipodi:role="line"
+         id="tspan60831-1-2"
+         x="-73.565552"
+         y="64.137161"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.72206px;font-family:Lato;-inkscape-font-specification:Lato;stroke:none;stroke-width:0.315097">(3e<tspan
+   style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.72206px;font-family:Lato;-inkscape-font-specification:Lato;baseline-shift:super;stroke:none;stroke-width:0.315097"
+   id="tspan60829-5-6">5</tspan>)</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:6.72206px;line-height:1.25;font-family:sans-serif;word-spacing:0px;fill:#282623;fill-opacity:1;stroke:none;stroke-width:0.315097;stroke-linecap:butt;stroke-linejoin:round;stroke-opacity:1"
+       x="-90.513123"
+       y="39.795341"
+       id="text60839-9-3"><tspan
+         sodipodi:role="line"
+         id="tspan60837-7-4"
+         x="-90.513123"
+         y="39.795341"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.72206px;font-family:Lato;-inkscape-font-specification:Lato;stroke:none;stroke-width:0.315097">(4e<tspan
+   style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.72206px;font-family:Lato;-inkscape-font-specification:Lato;baseline-shift:super;stroke:none;stroke-width:0.315097"
+   id="tspan60835-7-9">5</tspan>)</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:7.72578px;line-height:1.25;font-family:sans-serif;word-spacing:0px;stroke-width:0.193148;stroke-linecap:butt;stroke-linejoin:round"
+       x="-105.29578"
+       y="54.626831"
+       id="text40322-9-7-5"><tspan
+         sodipodi:role="line"
+         id="tspan40320-2-2-8"
+         style="stroke-width:0.193148"
+         x="-105.29578"
+         y="54.626831">Ne0</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:7.72578px;line-height:1.25;font-family:sans-serif;word-spacing:0px;stroke-width:0.193148;stroke-linecap:butt;stroke-linejoin:round"
+       x="-77.463867"
+       y="54.626831"
+       id="text705-0"><tspan
+         sodipodi:role="line"
+         id="tspan705-0"
+         style="stroke-width:0.193148"
+         x="-77.463867"
+         y="54.626831">Ne1</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:7.72578px;line-height:1.25;font-family:sans-serif;word-spacing:0px;stroke-width:0.193148;stroke-linecap:butt;stroke-linejoin:round"
+       x="-91.378906"
+       y="29.589933"
+       id="text707-1"><tspan
+         sodipodi:role="line"
+         id="tspan707-2"
+         style="stroke-width:0.193148"
+         x="-91.378906"
+         y="29.589933">Ne2</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:6.76416px;line-height:1.1;font-family:sans-serif;word-spacing:0px;stroke-width:0.391978;stroke-linecap:butt;stroke-linejoin:round"
+       x="-141.14204"
+       y="7.3472915"
+       id="text333-2"><tspan
+         sodipodi:role="line"
+         id="tspan333-2"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.76416px;font-family:Arial;-inkscape-font-specification:Arial;stroke-width:0.391978"
+         x="-141.14204"
+         y="7.3472915">(a) Demographic (MSC) model</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:5.55876px;line-height:1.1;font-family:Arial;-inkscape-font-specification:Arial;word-spacing:0px;stroke-width:0.119116;stroke-linecap:butt;stroke-linejoin:round"
+       x="-67.751686"
+       y="-136.01674"
+       id="text3-5"
+       transform="rotate(-90)"><tspan
+         sodipodi:role="line"
+         id="tspan3-4"
+         style="stroke-width:0.119116"
+         x="-67.751686"
+         y="-136.01674">Time (generations)</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:7.72578px;line-height:1.25;font-family:sans-serif;word-spacing:0px;stroke-width:0.193148;stroke-linecap:butt;stroke-linejoin:round"
+       x="-57.266918"
+       y="46.874504"
+       id="text4-9"><tspan
+         sodipodi:role="line"
+         id="tspan4-0"
+         style="stroke-width:0.193148"
+         x="-57.266918"
+         y="46.874504">W</tspan></text>
+    <path
+       style="fill:#ff4400;stroke:#000000;stroke-width:0.724732;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:2.89893, 2.89893;stroke-dashoffset:0;stroke-opacity:1"
+       d="m -119.24922,43.901669 h 59.730641"
+       id="path18-94" />
+    <text
+       xml:space="preserve"
+       style="font-size:5.55876px;line-height:1.1;font-family:Arial;-inkscape-font-specification:Arial;word-spacing:0px;stroke-width:0.119116;stroke-linecap:butt;stroke-linejoin:round"
+       x="-126.82611"
+       y="81.390648"
+       id="text44-6"><tspan
+         sodipodi:role="line"
+         id="tspan44-8"
+         style="stroke-width:0.119116"
+         x="-126.82611"
+         y="81.390648">Recombination rate (r) = 2e-9</tspan></text>
+    <rect
+       style="fill:#dcdcdc;stroke-width:0.697388;stroke-linecap:round;stroke-linejoin:round"
+       id="rect2"
+       width="141.74791"
+       height="87.789955"
+       x="260.02994"
+       y="5.5085731"
+       ry="5.7205074e-16" />
+    <g
+       id="g3"
+       transform="matrix(2.0087216,0,0,2.0087216,-80.019431,9.6262527)"
+       style="stroke-linecap:butt;stroke-linejoin:round">
+      <g
+         transform="matrix(0,-0.14282553,0.14282553,0,176.80405,19.727208)"
+         id="g2"
+         style="font-size:12px;font-family:Helvetica;fill:#282623;fill-opacity:1;stroke:#282623;stroke-width:1;stroke-linecap:butt;stroke-linejoin:round;stroke-opacity:1">
+        <text
+           x="-87.179306"
+           y="-9.3545513"
+           style="font-weight:bold;font-size:20.7879px;font-family:helvetica;white-space:pre;fill:#282623;fill-opacity:1;stroke:none;stroke-linecap:butt;stroke-linejoin:round"
+           id="text2">Posterior density</text>
+      </g>
+    </g>
+    <g
+       style="font-size:12px;font-family:Helvetica;fill:#282623;fill-opacity:1;stroke:#282623;stroke-width:1;stroke-linecap:butt;stroke-linejoin:round;stroke-opacity:1"
+       id="g41"
+       transform="matrix(0.30327134,0,0,0.30327134,268.86369,15.742662)">
+      <g
+         class="toyplot-coordinates-Cartesian"
+         id="g40"
+         style="stroke-linecap:butt;stroke-linejoin:round">
+        <clipPath
+           id="clipPath3">
+          <rect
+             x="40"
+             y="40"
+             width="370"
+             height="145"
+             id="rect3" />
+        </clipPath>
+        <g
+           clip-path="url(#tb8e2e4eff4ef4c9a808bcd2ddccd4a50)"
+           id="g22"
+           style="stroke-linecap:butt;stroke-linejoin:round">
+          <g
+             class="toyplot-mark-FillBoundaries"
+             style="stroke:none;stroke-linecap:butt;stroke-linejoin:round"
+             id="g4">
+            <polygon
+               points="85.643202,175 89.603557,175 93.563913,175 97.524269,175 101.48462,175 105.44498,175 109.40534,175 113.36569,175 117.32605,175 121.2864,175 125.24676,175 129.20711,175 133.16747,175 137.12783,175 141.08818,175 145.04854,175 149.00889,175 152.96925,175 156.9296,175 160.88996,175 164.85032,175 168.81067,175 172.77103,175 176.73138,175 180.69174,175 184.65209,175 188.61245,175 192.57281,175 196.53316,175 200.49352,175 204.45387,175 204.45387,174.69325 200.49352,174.84663 196.53316,174.84663 192.57281,174.53988 188.61245,174.53988 184.65209,173.46626 180.69174,173.46626 176.73138,171.16564 172.77103,167.79141 168.81067,168.25153 164.85032,161.19632 160.88996,158.89571 156.9296,149.07975 152.96925,145.70552 149.00889,131.13497 145.04854,122.85276 141.08818,104.90798 137.12783,93.865031 133.16747,79.447853 129.20711,58.282209 125.24676,51.380368 121.2864,58.128834 117.32605,59.662577 113.36569,50 109.40534,59.815951 105.44498,74.693252 101.48462,92.791411 97.524269,115.03067 93.563913,130.82822 89.603557,141.10429 85.643202,151.38037 81.682846,161.80982 77.72249,167.79141 73.762134,171.93252 69.801779,173.31288 65.841423,174.23313 61.881067,174.69325 57.920711,174.84663 53.960356,175 50,174.84663 50,175 53.960356,175 57.920711,175 61.881067,175 65.841423,175 69.801779,175 73.762134,175 77.72249,175 81.682846,175 "
+               style="opacity:0.3;fill:#66c2a3;fill-opacity:1;stroke:none;stroke-linecap:butt;stroke-linejoin:round"
+               id="polygon3" />
+          </g>
+          <g
+             class="toyplot-mark-FillBoundaries"
+             style="stroke:none;stroke-linecap:butt;stroke-linejoin:round"
+             id="g5">
+            <polygon
+               points="149.00889,175 152.96925,175 152.96925,145.70552 149.00889,131.13497 145.04854,122.85276 141.08818,104.90798 137.12783,93.865031 133.16747,79.447853 129.20711,58.282209 125.24676,51.380368 121.2864,58.128834 117.32605,59.662577 113.36569,50 109.40534,59.815951 105.44498,74.693252 101.48462,92.791411 97.524269,115.03067 93.563913,130.82822 89.603557,141.10429 85.643202,151.38037 81.682846,161.80982 81.682846,175 85.643202,175 89.603557,175 93.563913,175 97.524269,175 101.48462,175 105.44498,175 109.40534,175 113.36569,175 117.32605,175 121.2864,175 125.24676,175 129.20711,175 133.16747,175 137.12783,175 141.08818,175 145.04854,175 "
+               style="opacity:0.5;fill:#66c2a3;fill-opacity:1;stroke:none;stroke-linecap:butt;stroke-linejoin:round"
+               id="polygon4" />
+          </g>
+          <g
+             class="toyplot-mark-Plot"
+             style="fill:none;stroke-width:3;stroke-linecap:butt;stroke-linejoin:round"
+             id="g7">
+            <g
+               class="toyplot-Series"
+               id="g6"
+               style="stroke-linecap:butt;stroke-linejoin:round">
+              <path
+                 d="M 50,174.84663 53.960356,175 l 3.960355,-0.15337 3.960356,-0.15338 3.960356,-0.46012 3.960356,-0.92025 3.960355,-1.38036 3.960356,-4.14111 3.960356,-5.98159 3.960356,-10.42945 3.960355,-10.27608 3.960356,-10.27607 3.960356,-15.79755 3.960351,-22.239259 3.96036,-18.098159 3.96036,-14.877301 L 113.36569,50 l 3.96036,9.662577 3.96035,-1.533743 3.96036,-6.748466 3.96035,6.901841 3.96036,21.165644 3.96036,14.417178 3.96035,11.042949 3.96036,17.94478 3.96035,8.28221 3.96036,14.57055 3.96035,3.37423 3.96036,9.81596 3.96036,2.30061 3.96035,7.05521 3.96036,-0.46012 3.96035,3.37423 3.96036,2.30062 h 3.96035 l 3.96036,1.07362 h 3.96036 l 3.96035,0.30675 h 3.96036 l 3.96035,-0.15338"
+                 style="stroke:#66c2a3;stroke-width:3;stroke-linecap:butt;stroke-linejoin:round;stroke-opacity:1"
+                 id="path5" />
+            </g>
+          </g>
+          <g
+             class="toyplot-mark-FillBoundaries"
+             style="stroke:none;stroke-linecap:butt;stroke-linejoin:round"
+             id="g8">
+            <polygon
+               points="194.02302,175 200.88892,175 207.75482,175 214.62072,175 221.48662,175 228.35252,175 235.21842,175 242.08432,175 248.95021,175 255.81611,175 262.68201,175 269.54791,175 276.41381,175 283.27971,175 290.14561,175 297.01151,175 303.87741,175 310.74331,175 317.60921,175 324.47511,175 331.34101,175 338.20691,175 345.07281,175 351.9387,175 358.8046,175 365.6705,175 372.5364,175 379.4023,175 386.2682,175 393.1341,175 400,175 400,174.82306 393.1341,174.91153 386.2682,175 379.4023,175 372.5364,174.82306 365.6705,174.91153 358.8046,174.91153 351.9387,174.82306 345.07281,174.73459 338.20691,174.46919 331.34101,173.76144 324.47511,173.84991 317.60921,173.05369 310.74331,172.169 303.87741,170.2227 297.01151,168.09945 290.14561,163.58755 283.27971,161.28737 276.41381,154.91763 269.54791,148.63636 262.68201,139.87796 255.81611,135.98535 248.95021,130.23489 242.08432,118.73397 235.21842,104.93287 228.35252,108.56008 221.48662,99.536281 214.62072,100.77484 207.75482,102.72115 200.88892,109.53323 194.02302,124.48443 187.15712,128.81939 180.29122,139.70103 173.42532,150.93654 166.55942,158.3679 159.69352,164.73764 152.82762,168.71873 145.96173,172.52288 139.09583,173.5845 132.22993,174.55766 132.22993,175 139.09583,175 145.96173,175 152.82762,175 159.69352,175 166.55942,175 173.42532,175 180.29122,175 187.15712,175 "
+               style="opacity:0.3;fill:#fa8c61;fill-opacity:1;stroke:none;stroke-linecap:butt;stroke-linejoin:round"
+               id="polygon7" />
+          </g>
+          <g
+             class="toyplot-mark-FillBoundaries"
+             style="stroke:none;stroke-linecap:butt;stroke-linejoin:round"
+             id="g9">
+            <polygon
+               points="276.41381,175 283.27971,175 283.27971,161.28737 276.41381,154.91763 269.54791,148.63636 262.68201,139.87796 255.81611,135.98535 248.95021,130.23489 242.08432,118.73397 235.21842,104.93287 228.35252,108.56008 221.48662,99.536281 214.62072,100.77484 207.75482,102.72115 200.88892,109.53323 194.02302,124.48443 187.15712,128.81939 180.29122,139.70103 173.42532,150.93654 166.55942,158.3679 159.69352,164.73764 159.69352,175 166.55942,175 173.42532,175 180.29122,175 187.15712,175 194.02302,175 200.88892,175 207.75482,175 214.62072,175 221.48662,175 228.35252,175 235.21842,175 242.08432,175 248.95021,175 255.81611,175 262.68201,175 269.54791,175 "
+               style="opacity:0.5;fill:#fa8c61;fill-opacity:1;stroke:none;stroke-linecap:butt;stroke-linejoin:round"
+               id="polygon8" />
+          </g>
+          <g
+             class="toyplot-mark-Plot"
+             style="fill:none;stroke-width:3;stroke-linecap:butt;stroke-linejoin:round"
+             id="g11">
+            <g
+               class="toyplot-Series"
+               id="g10"
+               style="stroke-linecap:butt;stroke-linejoin:round">
+              <path
+                 d="m 132.22993,174.55766 6.8659,-0.97316 6.8659,-1.06162 6.86589,-3.80415 6.8659,-3.98109 6.8659,-6.36974 6.8659,-7.43136 6.8659,-11.23551 6.8659,-10.88164 6.8659,-4.33496 6.8659,-14.9512 6.8659,-6.81208 6.8659,-1.94631 6.8659,-1.238559 6.8659,9.023799 6.8659,-3.62721 6.8659,13.8011 6.86589,11.50092 6.8659,5.75046 6.8659,3.89261 6.8659,8.7584 6.8659,6.28127 6.8659,6.36974 6.8659,2.30018 6.8659,4.5119 6.8659,2.12325 6.8659,1.9463 6.8659,0.88469 6.8659,0.79622 6.8659,-0.0885 6.8659,0.70775 6.8659,0.2654 6.86589,0.0885 6.8659,0.0885 h 6.8659 l 6.8659,-0.0885 6.8659,0.17694 h 6.8659 l 6.8659,-0.0885 L 400,174.823"
+                 style="stroke:#fa8c61;stroke-width:3;stroke-linecap:butt;stroke-linejoin:round;stroke-opacity:1"
+                 id="path9" />
+            </g>
+          </g>
+          <g
+             class="toyplot-mark-FillBoundaries"
+             style="stroke:none;stroke-linecap:butt;stroke-linejoin:round"
+             id="g12">
+            <polygon
+               points="240.82107,175 245.27018,175 249.71929,175 254.1684,175 258.61751,175 263.06662,175 267.51573,175 271.96484,175 276.41395,175 280.86306,175 285.31217,175 289.76128,175 294.21039,175 298.6595,175 303.10861,175 307.55772,175 312.00683,175 316.45594,175 320.90505,175 325.35416,175 329.80327,175 334.25238,175 338.70149,175 343.1506,175 347.59971,175 352.04882,175 356.49792,175 360.94703,175 365.39614,175 369.84525,175 374.29436,175 374.29436,174.86347 369.84525,174.59042 365.39614,174.59042 360.94703,174.72695 356.49792,174.86347 352.04882,174.59042 347.59971,173.3617 343.1506,173.3617 338.70149,171.45034 334.25238,170.08509 329.80327,167.35458 325.35416,162.16661 320.90505,155.34034 316.45594,152.20026 312.00683,140.18602 307.55772,135.81721 303.10861,121.07246 298.6595,112.33484 294.21039,97.99967 289.76128,92.402128 285.31217,73.01552 280.86306,72.74247 276.41395,75.746029 271.96484,68.783233 267.51573,77.930435 263.06662,83.937553 258.61751,93.494332 254.1684,115.61145 249.71929,118.47848 245.27018,128.03526 240.82107,142.91653 236.37196,153.15593 231.92285,159.02653 227.47374,163.66839 223.02463,168.31026 218.57552,170.22161 214.12641,173.22517 209.6773,174.18085 205.22819,174.4539 200.77908,174.4539 200.77908,175 205.22819,175 209.6773,175 214.12641,175 218.57552,175 223.02463,175 227.47374,175 231.92285,175 236.37196,175 "
+               style="opacity:0.3;fill:#8c9eca;fill-opacity:1;stroke:none;stroke-linecap:butt;stroke-linejoin:round"
+               id="polygon11" />
+          </g>
+          <g
+             class="toyplot-mark-FillBoundaries"
+             style="stroke:none;stroke-linecap:butt;stroke-linejoin:round"
+             id="g13">
+            <polygon
+               points="236.37196,175 240.82107,175 245.27018,175 249.71929,175 254.1684,175 258.61751,175 263.06662,175 267.51573,175 271.96484,175 276.41395,175 280.86306,175 285.31217,175 289.76128,175 294.21039,175 298.6595,175 303.10861,175 307.55772,175 312.00683,175 316.45594,175 320.90505,175 320.90505,155.34034 316.45594,152.20026 312.00683,140.18602 307.55772,135.81721 303.10861,121.07246 298.6595,112.33484 294.21039,97.99967 289.76128,92.402128 285.31217,73.01552 280.86306,72.74247 276.41395,75.746029 271.96484,68.783233 267.51573,77.930435 263.06662,83.937553 258.61751,93.494332 254.1684,115.61145 249.71929,118.47848 245.27018,128.03526 240.82107,142.91653 236.37196,153.15593 231.92285,159.02653 231.92285,175 "
+               style="opacity:0.5;fill:#8c9eca;fill-opacity:1;stroke:none;stroke-linecap:butt;stroke-linejoin:round"
+               id="polygon12" />
+          </g>
+          <g
+             class="toyplot-mark-Plot"
+             style="fill:none;stroke-width:3;stroke-linecap:butt;stroke-linejoin:round"
+             id="g15">
+            <g
+               class="toyplot-Series"
+               id="g14"
+               style="stroke-linecap:butt;stroke-linejoin:round">
+              <path
+                 d="m 200.77908,174.4539 h 4.44911 l 4.44911,-0.27305 4.44911,-0.95568 4.44911,-3.00356 4.44911,-1.91135 4.44911,-4.64187 4.44911,-4.64186 4.44911,-5.8706 4.44911,-10.2394 4.44911,-14.88127 4.44911,-9.55678 4.44911,-2.86703 4.44911,-22.117118 4.44911,-9.556779 4.44911,-6.007118 4.44911,-9.147202 4.44911,6.962796 4.44911,-3.003559 4.44911,0.27305 4.44911,19.386608 4.44911,5.597542 4.44911,14.33517 4.44911,8.73762 4.44911,14.74475 4.44911,4.36881 4.44911,12.01424 4.44911,3.14008 4.44911,6.82627 4.44911,5.18797 4.44911,2.73051 4.44911,1.36525 4.44911,1.91136 h 4.44911 l 4.44911,1.22872 4.4491,0.27305 4.44911,-0.13652 4.44911,-0.13653 h 4.44911 l 4.44911,0.27305"
+                 style="stroke:#8c9eca;stroke-width:3;stroke-linecap:butt;stroke-linejoin:round;stroke-opacity:1"
+                 id="path13" />
+            </g>
+          </g>
+          <g
+             class="toyplot-mark-AxisLines"
+             style="stroke:#66c2a3;stroke-width:3;stroke-linecap:butt;stroke-linejoin:round;stroke-dasharray:4, 4;stroke-opacity:1"
+             id="g17">
+            <g
+               class="toyplot-Series"
+               id="g16"
+               style="stroke-linecap:butt;stroke-linejoin:round">
+              <line
+                 class="toyplot-Datum"
+                 x1="123.32055"
+                 x2="123.32055"
+                 y1="50"
+                 y2="175"
+                 style="opacity:1;stroke:#66c2a3;stroke-width:3;stroke-linecap:butt;stroke-linejoin:round;stroke-dasharray:4, 4;stroke-opacity:1"
+                 id="line15" />
+            </g>
+          </g>
+          <g
+             class="toyplot-mark-AxisLines"
+             style="stroke:#fa8c61;stroke-width:3;stroke-linecap:butt;stroke-linejoin:round;stroke-dasharray:4, 4;stroke-opacity:1"
+             id="g19">
+            <g
+               class="toyplot-Series"
+               id="g18"
+               style="stroke-linecap:butt;stroke-linejoin:round">
+              <line
+                 class="toyplot-Datum"
+                 x1="204.5336"
+                 x2="204.5336"
+                 y1="50"
+                 y2="175"
+                 style="opacity:1;stroke:#fa8c61;stroke-width:3;stroke-linecap:butt;stroke-linejoin:round;stroke-dasharray:4, 4;stroke-opacity:1"
+                 id="line17" />
+            </g>
+          </g>
+          <g
+             class="toyplot-mark-AxisLines"
+             style="stroke:#8c9eca;stroke-width:3;stroke-linecap:butt;stroke-linejoin:round;stroke-dasharray:4, 4;stroke-opacity:1"
+             id="g21">
+            <g
+               class="toyplot-Series"
+               id="g20"
+               style="stroke-linecap:butt;stroke-linejoin:round">
+              <line
+                 class="toyplot-Datum"
+                 x1="285.74664"
+                 x2="285.74664"
+                 y1="50"
+                 y2="175"
+                 style="opacity:1;stroke:#8c9eca;stroke-width:3;stroke-linecap:butt;stroke-linejoin:round;stroke-dasharray:4, 4;stroke-opacity:1"
+                 id="line19" />
+            </g>
+          </g>
+        </g>
+        <g
+           class="toyplot-coordinates-Axis"
+           id="g33"
+           transform="translate(50,185)"
+           style="stroke-linecap:butt;stroke-linejoin:round">
+          <line
+             x1="0"
+             y1="0"
+             x2="350"
+             y2="0"
+             style="stroke-width:3;stroke-linecap:butt;stroke-linejoin:round"
+             id="line22" />
+          <g
+             id="g26"
+             style="stroke-linecap:butt;stroke-linejoin:round">
+            <line
+               x1="73.320549"
+               y1="7.5"
+               x2="73.320549"
+               y2="0"
+               style="stroke-width:3;stroke-linecap:butt;stroke-linejoin:round"
+               id="line23" />
+            <line
+               x1="154.5336"
+               y1="7.5"
+               x2="154.5336"
+               y2="0"
+               style="stroke-width:3;stroke-linecap:butt;stroke-linejoin:round"
+               id="line24" />
+            <line
+               x1="235.74664"
+               y1="7.5"
+               x2="235.74664"
+               y2="0"
+               style="stroke-width:3;stroke-linecap:butt;stroke-linejoin:round"
+               id="line25" />
+            <line
+               x1="316.95969"
+               y1="7.5"
+               x2="316.95969"
+               y2="0"
+               style="stroke-width:3;stroke-linecap:butt;stroke-linejoin:round"
+               id="line26" />
+          </g>
+          <g
+             id="g31"
+             style="stroke-linecap:butt;stroke-linejoin:round">
+            <g
+               transform="translate(73.320547,12)"
+               id="g27"
+               style="stroke-linecap:butt;stroke-linejoin:round">
+              <text
+                 x="-26.688"
+                 y="13.688"
+                 style="font-weight:normal;font-size:16px;font-family:helvetica;white-space:pre;fill:#282623;fill-opacity:1;stroke:none;stroke-linecap:butt;stroke-linejoin:round"
+                 id="text26">200000</text>
+            </g>
+            <g
+               transform="translate(154.53359,12)"
+               id="g28"
+               style="stroke-linecap:butt;stroke-linejoin:round">
+              <text
+                 x="-26.688"
+                 y="13.688"
+                 style="font-weight:normal;font-size:16px;font-family:helvetica;white-space:pre;fill:#282623;fill-opacity:1;stroke:none;stroke-linecap:butt;stroke-linejoin:round"
+                 id="text27">300000</text>
+            </g>
+            <g
+               transform="translate(235.74664,12)"
+               id="g29"
+               style="stroke-linecap:butt;stroke-linejoin:round">
+              <text
+                 x="-26.688"
+                 y="13.688"
+                 style="font-weight:normal;font-size:16px;font-family:helvetica;white-space:pre;fill:#282623;fill-opacity:1;stroke:none;stroke-linecap:butt;stroke-linejoin:round"
+                 id="text28">400000</text>
+            </g>
+            <g
+               transform="translate(316.95969,12)"
+               id="g30"
+               style="stroke-linecap:butt;stroke-linejoin:round">
+              <text
+                 x="-26.688"
+                 y="13.688"
+                 style="font-weight:normal;font-size:16px;font-family:helvetica;white-space:pre;fill:#282623;fill-opacity:1;stroke:none;stroke-linecap:butt;stroke-linejoin:round"
+                 id="text29">500000</text>
+            </g>
+          </g>
+          <g
+             class="toyplot-coordinates-Axis-coordinates"
+             style="visibility:hidden;stroke-linecap:butt;stroke-linejoin:round"
+             id="g32">
+            <text
+               x="0"
+               y="-12"
+               style="font-weight:normal;font-size:10px;text-anchor:middle;fill:#6e7f8f;fill-opacity:1;stroke:none;stroke-linecap:butt;stroke-linejoin:round"
+               id="text31" />
+          </g>
+        </g>
+        <g
+           class="toyplot-coordinates-Axis"
+           id="g39"
+           transform="rotate(-90,107.5,67.5)"
+           style="stroke-linecap:butt;stroke-linejoin:round">
+          <line
+             x1="0"
+             y1="0"
+             x2="125"
+             y2="0"
+             style="stroke-width:3.00023;stroke-linecap:butt;stroke-linejoin:round;stroke-dasharray:none"
+             id="line33" />
+          <g
+             id="g37"
+             style="stroke-linecap:butt;stroke-linejoin:round">
+            <line
+               x1="0"
+               y1="-7.5"
+               x2="0"
+               y2="0"
+               style="stroke-width:3;stroke-linecap:butt;stroke-linejoin:round"
+               id="line34" />
+            <line
+               x1="37.396488"
+               y1="-7.5"
+               x2="37.396488"
+               y2="0"
+               style="stroke-width:3;stroke-linecap:butt;stroke-linejoin:round"
+               id="line35" />
+            <line
+               x1="74.792976"
+               y1="-7.5"
+               x2="74.792976"
+               y2="0"
+               style="stroke-width:3;stroke-linecap:butt;stroke-linejoin:round"
+               id="line36" />
+            <line
+               x1="112.18946"
+               y1="-7.5"
+               x2="112.18946"
+               y2="0"
+               style="stroke-width:3;stroke-linecap:butt;stroke-linejoin:round"
+               id="line37" />
+          </g>
+          <g
+             class="toyplot-coordinates-Axis-coordinates"
+             style="visibility:hidden;stroke-linecap:butt;stroke-linejoin:round"
+             id="g38">
+            <text
+               x="0"
+               y="12"
+               style="font-weight:normal;font-size:10px;text-anchor:middle;fill:#6e7f8f;fill-opacity:1;stroke:none;stroke-linecap:butt;stroke-linejoin:round"
+               id="text37" />
+          </g>
+        </g>
+      </g>
+    </g>
+    <path
+       style="fill:#f6f5f4;stroke:#66c2a3;stroke-width:1.59443;stroke-linecap:butt;stroke-linejoin:round;stroke-dashoffset:3.1748;stroke-opacity:1"
+       d="m 293.64119,27.820567 h 21.39213"
+       id="path41" />
+    <path
+       style="fill:#f6f5f4;stroke:#fa8c61;stroke-width:1.59443;stroke-linecap:butt;stroke-linejoin:round;stroke-dashoffset:3.1748;stroke-opacity:1"
+       d="m 317.23305,23.70502 h 37.45471"
+       id="path42" />
+    <path
+       style="fill:#f6f5f4;stroke:#8c9eca;stroke-width:1.59443;stroke-linecap:butt;stroke-linejoin:round;stroke-dashoffset:3.1748;stroke-opacity:1"
+       d="m 339.19611,19.034152 h 26.81798"
+       id="path43" />
+    <text
+       xml:space="preserve"
+       style="font-size:4.25181px;line-height:1.25;font-family:sans-serif;word-spacing:0px;stroke-width:0.531473;stroke-linecap:butt;stroke-linejoin:round"
+       x="282.39655"
+       y="29.397062"
+       id="text43"><tspan
+         sodipodi:role="line"
+         id="tspan43"
+         style="font-size:4.25181px;stroke-width:0.531473"
+         x="282.39655"
+         y="29.397062">148K</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:4.25181px;line-height:1.25;font-family:sans-serif;word-spacing:0px;stroke-width:0.531473;stroke-linecap:butt;stroke-linejoin:round"
+       x="315.71729"
+       y="29.303949"
+       id="text46"><tspan
+         sodipodi:role="line"
+         id="tspan46"
+         style="font-size:4.25181px;stroke-width:0.531473"
+         x="315.71729"
+         y="29.303949">241K</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:4.25181px;line-height:1.25;font-family:sans-serif;word-spacing:0px;stroke-width:0.531473;stroke-linecap:butt;stroke-linejoin:round"
+       x="305.13486"
+       y="24.935686"
+       id="text47"><tspan
+         sodipodi:role="line"
+         id="tspan47"
+         style="font-size:4.25181px;stroke-width:0.531473"
+         x="305.13486"
+         y="24.935686">242K</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:4.25181px;line-height:1.25;font-family:sans-serif;word-spacing:0px;stroke-width:0.531473;stroke-linecap:butt;stroke-linejoin:round"
+       x="355.44641"
+       y="24.935686"
+       id="text48"><tspan
+         sodipodi:role="line"
+         id="tspan48"
+         style="font-size:4.25181px;stroke-width:0.531473"
+         x="355.44641"
+         y="24.935686">400K</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:4.25181px;line-height:1.25;font-family:sans-serif;word-spacing:0px;stroke-width:0.531473;stroke-linecap:butt;stroke-linejoin:round"
+       x="327.63776"
+       y="20.760099"
+       id="text49"><tspan
+         sodipodi:role="line"
+         id="tspan49"
+         style="font-size:4.25181px;stroke-width:0.531473"
+         x="327.63776"
+         y="20.760099">332K</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:4.25181px;line-height:1.25;font-family:sans-serif;word-spacing:0px;stroke-width:0.531473;stroke-linecap:butt;stroke-linejoin:round"
+       x="366.92441"
+       y="20.760099"
+       id="text50"><tspan
+         sodipodi:role="line"
+         id="tspan50"
+         style="font-size:4.25181px;stroke-width:0.531473"
+         x="366.92441"
+         y="20.760099">444K</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:6.76416px;line-height:1.1;font-family:sans-serif;word-spacing:0px;stroke-width:0.391978;stroke-linecap:butt;stroke-linejoin:round"
+       x="265.42075"
+       y="12.584467"
+       id="text51"><tspan
+         sodipodi:role="line"
+         id="tspan51"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.76416px;font-family:Arial;-inkscape-font-specification:Arial;stroke-width:0.391978"
+         x="265.42075"
+         y="12.584467">(b) Joint parameter inference (10Mb)</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:5.55876px;line-height:1.1;font-family:Arial;-inkscape-font-specification:Arial;word-spacing:0px;stroke-width:0.119116;stroke-linecap:butt;stroke-linejoin:round"
+       x="297.53912"
+       y="88.802032"
+       id="text52"><tspan
+         sodipodi:role="line"
+         id="tspan52"
+         style="stroke-width:0.119116"
+         x="297.53912"
+         y="88.802032">Effective population size (Ne)</tspan></text>
+    <rect
+       style="fill:#dcdcdc;stroke-width:0.697388;stroke-linecap:round;stroke-linejoin:round"
+       id="rect52"
+       width="141.74791"
+       height="87.789955"
+       x="406.21082"
+       y="5.5085731"
+       ry="5.7205074e-16" />
+    <g
+       id="g54"
+       transform="matrix(2.0087216,0,0,2.0087216,66.161432,9.6262527)"
+       style="stroke-linecap:butt;stroke-linejoin:round">
+      <g
+         transform="matrix(0,-0.14282553,0.14282553,0,176.80405,19.727208)"
+         id="g53"
+         style="font-size:12px;font-family:Helvetica;fill:#282623;fill-opacity:1;stroke:#282623;stroke-width:1;stroke-linecap:butt;stroke-linejoin:round;stroke-opacity:1">
+        <text
+           x="-87.179306"
+           y="-9.3545513"
+           style="font-weight:bold;font-size:20.7879px;font-family:helvetica;white-space:pre;fill:#282623;fill-opacity:1;stroke:none;stroke-linecap:butt;stroke-linejoin:round"
+           id="text53">Posterior density</text>
+      </g>
+    </g>
+    <g
+       style="font-size:12px;font-family:Helvetica;fill:#282623;fill-opacity:1;stroke:#282623;stroke-width:1;stroke-linecap:butt;stroke-linejoin:round;stroke-opacity:1"
+       id="g92"
+       transform="matrix(0.30327134,0,0,0.30327134,415.04455,15.742662)">
+      <g
+         class="toyplot-coordinates-Cartesian"
+         id="g91"
+         style="stroke-linecap:butt;stroke-linejoin:round">
+        <clipPath
+           id="clipPath54">
+          <rect
+             x="40"
+             y="40"
+             width="370"
+             height="145"
+             id="rect54" />
+        </clipPath>
+        <g
+           clip-path="url(#tb8e2e4eff4ef4c9a808bcd2ddccd4a50)"
+           id="g73"
+           style="stroke-linecap:butt;stroke-linejoin:round">
+          <g
+             class="toyplot-mark-FillBoundaries"
+             style="stroke:none;stroke-linecap:butt;stroke-linejoin:round"
+             id="g55">
+            <polygon
+               points="89.603557,175 93.563913,175 97.524269,175 101.48462,175 105.44498,175 109.40534,175 113.36569,175 117.32605,175 121.2864,175 125.24676,175 129.20711,175 133.16747,175 137.12783,175 141.08818,175 145.04854,175 149.00889,175 152.96925,175 156.9296,175 160.88996,175 164.85032,175 168.81067,175 172.77103,175 176.73138,175 180.69174,175 184.65209,175 188.61245,175 192.57281,175 196.53316,175 200.49352,175 204.45387,175 204.45387,174.69325 200.49352,174.84663 196.53316,174.84663 192.57281,174.53988 188.61245,174.53988 184.65209,173.46626 180.69174,173.46626 176.73138,171.16564 172.77103,167.79141 168.81067,168.25153 164.85032,161.19632 160.88996,158.89571 156.9296,149.07975 152.96925,145.70552 149.00889,131.13497 145.04854,122.85276 141.08818,104.90798 137.12783,93.865031 133.16747,79.447853 129.20711,58.282209 125.24676,51.380368 121.2864,58.128834 117.32605,59.662577 113.36569,50 109.40534,59.815951 105.44498,74.693252 101.48462,92.791411 97.524269,115.03067 93.563913,130.82822 89.603557,141.10429 85.643202,151.38037 81.682846,161.80982 77.72249,167.79141 73.762134,171.93252 69.801779,173.31288 65.841423,174.23313 61.881067,174.69325 57.920711,174.84663 53.960356,175 50,174.84663 50,175 53.960356,175 57.920711,175 61.881067,175 65.841423,175 69.801779,175 73.762134,175 77.72249,175 81.682846,175 85.643202,175 "
+               style="opacity:0.3;fill:#66c2a3;fill-opacity:1;stroke:none;stroke-linecap:butt;stroke-linejoin:round"
+               id="polygon54" />
+          </g>
+          <g
+             class="toyplot-mark-FillBoundaries"
+             style="stroke:none;stroke-linecap:butt;stroke-linejoin:round"
+             id="g56">
+            <polygon
+               points="152.96925,175 152.96925,145.70552 149.00889,131.13497 145.04854,122.85276 141.08818,104.90798 137.12783,93.865031 133.16747,79.447853 129.20711,58.282209 125.24676,51.380368 121.2864,58.128834 117.32605,59.662577 113.36569,50 109.40534,59.815951 105.44498,74.693252 101.48462,92.791411 97.524269,115.03067 93.563913,130.82822 89.603557,141.10429 85.643202,151.38037 81.682846,161.80982 81.682846,175 85.643202,175 89.603557,175 93.563913,175 97.524269,175 101.48462,175 105.44498,175 109.40534,175 113.36569,175 117.32605,175 121.2864,175 125.24676,175 129.20711,175 133.16747,175 137.12783,175 141.08818,175 145.04854,175 149.00889,175 "
+               style="opacity:0.5;fill:#66c2a3;fill-opacity:1;stroke:none;stroke-linecap:butt;stroke-linejoin:round"
+               id="polygon55" />
+          </g>
+          <g
+             class="toyplot-mark-Plot"
+             style="fill:none;stroke-width:3;stroke-linecap:butt;stroke-linejoin:round"
+             id="g58">
+            <g
+               class="toyplot-Series"
+               id="g57"
+               style="stroke-linecap:butt;stroke-linejoin:round">
+              <path
+                 d="M 50,174.84663 53.960356,175 l 3.960355,-0.15337 3.960356,-0.15338 3.960356,-0.46012 3.960356,-0.92025 3.960355,-1.38036 3.960356,-4.14111 3.960356,-5.98159 3.960356,-10.42945 3.960355,-10.27608 3.960356,-10.27607 3.960356,-15.79755 3.960351,-22.239259 3.96036,-18.098159 3.96036,-14.877301 L 113.36569,50 l 3.96036,9.662577 3.96035,-1.533743 3.96036,-6.748466 3.96035,6.901841 3.96036,21.165644 3.96036,14.417178 3.96035,11.042949 3.96036,17.94478 3.96035,8.28221 3.96036,14.57055 3.96035,3.37423 3.96036,9.81596 3.96036,2.30061 3.96035,7.05521 3.96036,-0.46012 3.96035,3.37423 3.96036,2.30062 h 3.96035 l 3.96036,1.07362 h 3.96036 l 3.96035,0.30675 h 3.96036 l 3.96035,-0.15338"
+                 style="stroke:#66c2a3;stroke-width:3;stroke-linecap:butt;stroke-linejoin:round;stroke-opacity:1"
+                 id="path56" />
+            </g>
+          </g>
+          <g
+             class="toyplot-mark-FillBoundaries"
+             style="stroke:none;stroke-linecap:butt;stroke-linejoin:round"
+             id="g59">
+            <polygon
+               points="200.88892,175 207.75482,175 214.62072,175 221.48662,175 228.35252,175 235.21842,175 242.08432,175 248.95021,175 255.81611,175 262.68201,175 269.54791,175 276.41381,175 283.27971,175 290.14561,175 297.01151,175 303.87741,175 310.74331,175 317.60921,175 324.47511,175 331.34101,175 338.20691,175 345.07281,175 351.9387,175 358.8046,175 365.6705,175 372.5364,175 379.4023,175 386.2682,175 393.1341,175 400,175 400,174.82306 393.1341,174.91153 386.2682,175 379.4023,175 372.5364,174.82306 365.6705,174.91153 358.8046,174.91153 351.9387,174.82306 345.07281,174.73459 338.20691,174.46919 331.34101,173.76144 324.47511,173.84991 317.60921,173.05369 310.74331,172.169 303.87741,170.2227 297.01151,168.09945 290.14561,163.58755 283.27971,161.28737 276.41381,154.91763 269.54791,148.63636 262.68201,139.87796 255.81611,135.98535 248.95021,130.23489 242.08432,118.73397 235.21842,104.93287 228.35252,108.56008 221.48662,99.536281 214.62072,100.77484 207.75482,102.72115 200.88892,109.53323 194.02302,124.48443 187.15712,128.81939 180.29122,139.70103 173.42532,150.93654 166.55942,158.3679 159.69352,164.73764 152.82762,168.71873 145.96173,172.52288 139.09583,173.5845 132.22993,174.55766 132.22993,175 139.09583,175 145.96173,175 152.82762,175 159.69352,175 166.55942,175 173.42532,175 180.29122,175 187.15712,175 194.02302,175 "
+               style="opacity:0.3;fill:#fa8c61;fill-opacity:1;stroke:none;stroke-linecap:butt;stroke-linejoin:round"
+               id="polygon58" />
+          </g>
+          <g
+             class="toyplot-mark-FillBoundaries"
+             style="stroke:none;stroke-linecap:butt;stroke-linejoin:round"
+             id="g60">
+            <polygon
+               points="283.27971,175 283.27971,161.28737 276.41381,154.91763 269.54791,148.63636 262.68201,139.87796 255.81611,135.98535 248.95021,130.23489 242.08432,118.73397 235.21842,104.93287 228.35252,108.56008 221.48662,99.536281 214.62072,100.77484 207.75482,102.72115 200.88892,109.53323 194.02302,124.48443 187.15712,128.81939 180.29122,139.70103 173.42532,150.93654 166.55942,158.3679 159.69352,164.73764 159.69352,175 166.55942,175 173.42532,175 180.29122,175 187.15712,175 194.02302,175 200.88892,175 207.75482,175 214.62072,175 221.48662,175 228.35252,175 235.21842,175 242.08432,175 248.95021,175 255.81611,175 262.68201,175 269.54791,175 276.41381,175 "
+               style="opacity:0.5;fill:#fa8c61;fill-opacity:1;stroke:none;stroke-linecap:butt;stroke-linejoin:round"
+               id="polygon59" />
+          </g>
+          <g
+             class="toyplot-mark-Plot"
+             style="fill:none;stroke-width:3;stroke-linecap:butt;stroke-linejoin:round"
+             id="g62">
+            <g
+               class="toyplot-Series"
+               id="g61"
+               style="stroke-linecap:butt;stroke-linejoin:round">
+              <path
+                 d="m 132.22993,174.55766 6.8659,-0.97316 6.8659,-1.06162 6.86589,-3.80415 6.8659,-3.98109 6.8659,-6.36974 6.8659,-7.43136 6.8659,-11.23551 6.8659,-10.88164 6.8659,-4.33496 6.8659,-14.9512 6.8659,-6.81208 6.8659,-1.94631 6.8659,-1.238559 6.8659,9.023799 6.8659,-3.62721 6.8659,13.8011 6.86589,11.50092 6.8659,5.75046 6.8659,3.89261 6.8659,8.7584 6.8659,6.28127 6.8659,6.36974 6.8659,2.30018 6.8659,4.5119 6.8659,2.12325 6.8659,1.9463 6.8659,0.88469 6.8659,0.79622 6.8659,-0.0885 6.8659,0.70775 6.8659,0.2654 6.86589,0.0885 6.8659,0.0885 h 6.8659 l 6.8659,-0.0885 6.8659,0.17694 h 6.8659 l 6.8659,-0.0885 L 400,174.823"
+                 style="stroke:#fa8c61;stroke-width:3;stroke-linecap:butt;stroke-linejoin:round;stroke-opacity:1"
+                 id="path60" />
+            </g>
+          </g>
+          <g
+             class="toyplot-mark-FillBoundaries"
+             style="stroke:none;stroke-linecap:butt;stroke-linejoin:round"
+             id="g63">
+            <polygon
+               points="245.27018,175 249.71929,175 254.1684,175 258.61751,175 263.06662,175 267.51573,175 271.96484,175 276.41395,175 280.86306,175 285.31217,175 289.76128,175 294.21039,175 298.6595,175 303.10861,175 307.55772,175 312.00683,175 316.45594,175 320.90505,175 325.35416,175 329.80327,175 334.25238,175 338.70149,175 343.1506,175 347.59971,175 352.04882,175 356.49792,175 360.94703,175 365.39614,175 369.84525,175 374.29436,175 374.29436,174.86347 369.84525,174.59042 365.39614,174.59042 360.94703,174.72695 356.49792,174.86347 352.04882,174.59042 347.59971,173.3617 343.1506,173.3617 338.70149,171.45034 334.25238,170.08509 329.80327,167.35458 325.35416,162.16661 320.90505,155.34034 316.45594,152.20026 312.00683,140.18602 307.55772,135.81721 303.10861,121.07246 298.6595,112.33484 294.21039,97.99967 289.76128,92.402128 285.31217,73.01552 280.86306,72.74247 276.41395,75.746029 271.96484,68.783233 267.51573,77.930435 263.06662,83.937553 258.61751,93.494332 254.1684,115.61145 249.71929,118.47848 245.27018,128.03526 240.82107,142.91653 236.37196,153.15593 231.92285,159.02653 227.47374,163.66839 223.02463,168.31026 218.57552,170.22161 214.12641,173.22517 209.6773,174.18085 205.22819,174.4539 200.77908,174.4539 200.77908,175 205.22819,175 209.6773,175 214.12641,175 218.57552,175 223.02463,175 227.47374,175 231.92285,175 236.37196,175 240.82107,175 "
+               style="opacity:0.3;fill:#8c9eca;fill-opacity:1;stroke:none;stroke-linecap:butt;stroke-linejoin:round"
+               id="polygon62" />
+          </g>
+          <g
+             class="toyplot-mark-FillBoundaries"
+             style="stroke:none;stroke-linecap:butt;stroke-linejoin:round"
+             id="g64">
+            <polygon
+               points="240.82107,175 245.27018,175 249.71929,175 254.1684,175 258.61751,175 263.06662,175 267.51573,175 271.96484,175 276.41395,175 280.86306,175 285.31217,175 289.76128,175 294.21039,175 298.6595,175 303.10861,175 307.55772,175 312.00683,175 316.45594,175 320.90505,175 320.90505,155.34034 316.45594,152.20026 312.00683,140.18602 307.55772,135.81721 303.10861,121.07246 298.6595,112.33484 294.21039,97.99967 289.76128,92.402128 285.31217,73.01552 280.86306,72.74247 276.41395,75.746029 271.96484,68.783233 267.51573,77.930435 263.06662,83.937553 258.61751,93.494332 254.1684,115.61145 249.71929,118.47848 245.27018,128.03526 240.82107,142.91653 236.37196,153.15593 231.92285,159.02653 231.92285,175 236.37196,175 "
+               style="opacity:0.5;fill:#8c9eca;fill-opacity:1;stroke:none;stroke-linecap:butt;stroke-linejoin:round"
+               id="polygon63" />
+          </g>
+          <g
+             class="toyplot-mark-Plot"
+             style="fill:none;stroke-width:3;stroke-linecap:butt;stroke-linejoin:round"
+             id="g66">
+            <g
+               class="toyplot-Series"
+               id="g65"
+               style="stroke-linecap:butt;stroke-linejoin:round">
+              <path
+                 d="m 200.77908,174.4539 h 4.44911 l 4.44911,-0.27305 4.44911,-0.95568 4.44911,-3.00356 4.44911,-1.91135 4.44911,-4.64187 4.44911,-4.64186 4.44911,-5.8706 4.44911,-10.2394 4.44911,-14.88127 4.44911,-9.55678 4.44911,-2.86703 4.44911,-22.117118 4.44911,-9.556779 4.44911,-6.007118 4.44911,-9.147202 4.44911,6.962796 4.44911,-3.003559 4.44911,0.27305 4.44911,19.386608 4.44911,5.597542 4.44911,14.33517 4.44911,8.73762 4.44911,14.74475 4.44911,4.36881 4.44911,12.01424 4.44911,3.14008 4.44911,6.82627 4.44911,5.18797 4.44911,2.73051 4.44911,1.36525 4.44911,1.91136 h 4.44911 l 4.44911,1.22872 4.4491,0.27305 4.44911,-0.13652 4.44911,-0.13653 h 4.44911 l 4.44911,0.27305"
+                 style="stroke:#8c9eca;stroke-width:3;stroke-linecap:butt;stroke-linejoin:round;stroke-opacity:1"
+                 id="path64" />
+            </g>
+          </g>
+          <g
+             class="toyplot-mark-AxisLines"
+             style="stroke:#66c2a3;stroke-width:3;stroke-linecap:butt;stroke-linejoin:round;stroke-dasharray:4, 4;stroke-opacity:1"
+             id="g68">
+            <g
+               class="toyplot-Series"
+               id="g67"
+               style="stroke-linecap:butt;stroke-linejoin:round">
+              <line
+                 class="toyplot-Datum"
+                 x1="123.32055"
+                 x2="123.32055"
+                 y1="50"
+                 y2="175"
+                 style="opacity:1;stroke:#66c2a3;stroke-width:3;stroke-linecap:butt;stroke-linejoin:round;stroke-dasharray:4, 4;stroke-opacity:1"
+                 id="line66" />
+            </g>
+          </g>
+          <g
+             class="toyplot-mark-AxisLines"
+             style="stroke:#fa8c61;stroke-width:3;stroke-linecap:butt;stroke-linejoin:round;stroke-dasharray:4, 4;stroke-opacity:1"
+             id="g70">
+            <g
+               class="toyplot-Series"
+               id="g69"
+               style="stroke-linecap:butt;stroke-linejoin:round">
+              <line
+                 class="toyplot-Datum"
+                 x1="204.5336"
+                 x2="204.5336"
+                 y1="50"
+                 y2="175"
+                 style="opacity:1;stroke:#fa8c61;stroke-width:3;stroke-linecap:butt;stroke-linejoin:round;stroke-dasharray:4, 4;stroke-opacity:1"
+                 id="line68" />
+            </g>
+          </g>
+          <g
+             class="toyplot-mark-AxisLines"
+             style="stroke:#8c9eca;stroke-width:3;stroke-linecap:butt;stroke-linejoin:round;stroke-dasharray:4, 4;stroke-opacity:1"
+             id="g72">
+            <g
+               class="toyplot-Series"
+               id="g71"
+               style="stroke-linecap:butt;stroke-linejoin:round">
+              <line
+                 class="toyplot-Datum"
+                 x1="285.74664"
+                 x2="285.74664"
+                 y1="50"
+                 y2="175"
+                 style="opacity:1;stroke:#8c9eca;stroke-width:3;stroke-linecap:butt;stroke-linejoin:round;stroke-dasharray:4, 4;stroke-opacity:1"
+                 id="line70" />
+            </g>
+          </g>
+        </g>
+        <g
+           class="toyplot-coordinates-Axis"
+           id="g84"
+           transform="translate(50,185)"
+           style="stroke-linecap:butt;stroke-linejoin:round">
+          <line
+             x1="0"
+             y1="0"
+             x2="350"
+             y2="0"
+             style="stroke-width:3;stroke-linecap:butt;stroke-linejoin:round"
+             id="line73" />
+          <g
+             id="g77"
+             style="stroke-linecap:butt;stroke-linejoin:round">
+            <line
+               x1="73.320549"
+               y1="7.5"
+               x2="73.320549"
+               y2="0"
+               style="stroke-width:3;stroke-linecap:butt;stroke-linejoin:round"
+               id="line74" />
+            <line
+               x1="154.5336"
+               y1="7.5"
+               x2="154.5336"
+               y2="0"
+               style="stroke-width:3;stroke-linecap:butt;stroke-linejoin:round"
+               id="line75" />
+            <line
+               x1="235.74664"
+               y1="7.5"
+               x2="235.74664"
+               y2="0"
+               style="stroke-width:3;stroke-linecap:butt;stroke-linejoin:round"
+               id="line76" />
+            <line
+               x1="316.95969"
+               y1="7.5"
+               x2="316.95969"
+               y2="0"
+               style="stroke-width:3;stroke-linecap:butt;stroke-linejoin:round"
+               id="line77" />
+          </g>
+          <g
+             id="g82"
+             style="stroke-linecap:butt;stroke-linejoin:round">
+            <g
+               transform="translate(73.320547,12)"
+               id="g78"
+               style="stroke-linecap:butt;stroke-linejoin:round">
+              <text
+                 x="-26.688"
+                 y="13.688"
+                 style="font-weight:normal;font-size:16px;font-family:helvetica;white-space:pre;fill:#282623;fill-opacity:1;stroke:none;stroke-linecap:butt;stroke-linejoin:round"
+                 id="text77">200000</text>
+            </g>
+            <g
+               transform="translate(154.53359,12)"
+               id="g79"
+               style="stroke-linecap:butt;stroke-linejoin:round">
+              <text
+                 x="-26.688"
+                 y="13.688"
+                 style="font-weight:normal;font-size:16px;font-family:helvetica;white-space:pre;fill:#282623;fill-opacity:1;stroke:none;stroke-linecap:butt;stroke-linejoin:round"
+                 id="text78">300000</text>
+            </g>
+            <g
+               transform="translate(235.74664,12)"
+               id="g80"
+               style="stroke-linecap:butt;stroke-linejoin:round">
+              <text
+                 x="-26.688"
+                 y="13.688"
+                 style="font-weight:normal;font-size:16px;font-family:helvetica;white-space:pre;fill:#282623;fill-opacity:1;stroke:none;stroke-linecap:butt;stroke-linejoin:round"
+                 id="text79">400000</text>
+            </g>
+            <g
+               transform="translate(316.95969,12)"
+               id="g81"
+               style="stroke-linecap:butt;stroke-linejoin:round">
+              <text
+                 x="-26.688"
+                 y="13.688"
+                 style="font-weight:normal;font-size:16px;font-family:helvetica;white-space:pre;fill:#282623;fill-opacity:1;stroke:none;stroke-linecap:butt;stroke-linejoin:round"
+                 id="text80">500000</text>
+            </g>
+          </g>
+          <g
+             class="toyplot-coordinates-Axis-coordinates"
+             style="visibility:hidden;stroke-linecap:butt;stroke-linejoin:round"
+             id="g83">
+            <text
+               x="0"
+               y="-12"
+               style="font-weight:normal;font-size:10px;text-anchor:middle;fill:#6e7f8f;fill-opacity:1;stroke:none;stroke-linecap:butt;stroke-linejoin:round"
+               id="text82" />
+          </g>
+        </g>
+        <g
+           class="toyplot-coordinates-Axis"
+           id="g90"
+           transform="rotate(-90,107.5,67.5)"
+           style="stroke-linecap:butt;stroke-linejoin:round">
+          <line
+             x1="0"
+             y1="0"
+             x2="125"
+             y2="0"
+             style="stroke-width:3.00023;stroke-linecap:butt;stroke-linejoin:round;stroke-dasharray:none"
+             id="line84" />
+          <g
+             id="g88"
+             style="stroke-linecap:butt;stroke-linejoin:round">
+            <line
+               x1="0"
+               y1="-7.5"
+               x2="0"
+               y2="0"
+               style="stroke-width:3;stroke-linecap:butt;stroke-linejoin:round"
+               id="line85" />
+            <line
+               x1="37.396488"
+               y1="-7.5"
+               x2="37.396488"
+               y2="0"
+               style="stroke-width:3;stroke-linecap:butt;stroke-linejoin:round"
+               id="line86" />
+            <line
+               x1="74.792976"
+               y1="-7.5"
+               x2="74.792976"
+               y2="0"
+               style="stroke-width:3;stroke-linecap:butt;stroke-linejoin:round"
+               id="line87" />
+            <line
+               x1="112.18946"
+               y1="-7.5"
+               x2="112.18946"
+               y2="0"
+               style="stroke-width:3;stroke-linecap:butt;stroke-linejoin:round"
+               id="line88" />
+          </g>
+          <g
+             class="toyplot-coordinates-Axis-coordinates"
+             style="visibility:hidden;stroke-linecap:butt;stroke-linejoin:round"
+             id="g89">
+            <text
+               x="0"
+               y="12"
+               style="font-weight:normal;font-size:10px;text-anchor:middle;fill:#6e7f8f;fill-opacity:1;stroke:none;stroke-linecap:butt;stroke-linejoin:round"
+               id="text88" />
+          </g>
+        </g>
+      </g>
+    </g>
+    <path
+       style="fill:#f6f5f4;stroke:#66c2a3;stroke-width:1.59443;stroke-linecap:butt;stroke-linejoin:round;stroke-dashoffset:3.1748;stroke-opacity:1"
+       d="m 439.82205,27.820567 h 21.39213"
+       id="path92" />
+    <path
+       style="fill:#f6f5f4;stroke:#fa8c61;stroke-width:1.59443;stroke-linecap:butt;stroke-linejoin:round;stroke-dashoffset:3.1748;stroke-opacity:1"
+       d="m 463.41391,23.70502 h 37.45471"
+       id="path93" />
+    <path
+       style="fill:#f6f5f4;stroke:#8c9eca;stroke-width:1.59443;stroke-linecap:butt;stroke-linejoin:round;stroke-dashoffset:3.1748;stroke-opacity:1"
+       d="m 485.37697,19.034152 h 26.81798"
+       id="path94" />
+    <text
+       xml:space="preserve"
+       style="font-size:4.25181px;line-height:1.25;font-family:sans-serif;word-spacing:0px;stroke-width:0.531473;stroke-linecap:butt;stroke-linejoin:round"
+       x="428.57742"
+       y="29.397062"
+       id="text94"><tspan
+         sodipodi:role="line"
+         id="tspan94"
+         style="font-size:4.25181px;stroke-width:0.531473"
+         x="428.57742"
+         y="29.397062">148K</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:4.25181px;line-height:1.25;font-family:sans-serif;word-spacing:0px;stroke-width:0.531473;stroke-linecap:butt;stroke-linejoin:round"
+       x="461.89816"
+       y="29.303949"
+       id="text95"><tspan
+         sodipodi:role="line"
+         id="tspan95"
+         style="font-size:4.25181px;stroke-width:0.531473"
+         x="461.89816"
+         y="29.303949">241K</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:4.25181px;line-height:1.25;font-family:sans-serif;word-spacing:0px;stroke-width:0.531473;stroke-linecap:butt;stroke-linejoin:round"
+       x="451.31573"
+       y="24.935686"
+       id="text96"><tspan
+         sodipodi:role="line"
+         id="tspan96"
+         style="font-size:4.25181px;stroke-width:0.531473"
+         x="451.31573"
+         y="24.935686">242K</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:4.25181px;line-height:1.25;font-family:sans-serif;word-spacing:0px;stroke-width:0.531473;stroke-linecap:butt;stroke-linejoin:round"
+       x="501.62729"
+       y="24.935686"
+       id="text97"><tspan
+         sodipodi:role="line"
+         id="tspan97"
+         style="font-size:4.25181px;stroke-width:0.531473"
+         x="501.62729"
+         y="24.935686">400K</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:4.25181px;line-height:1.25;font-family:sans-serif;word-spacing:0px;stroke-width:0.531473;stroke-linecap:butt;stroke-linejoin:round"
+       x="473.81863"
+       y="20.760099"
+       id="text98"><tspan
+         sodipodi:role="line"
+         id="tspan98"
+         style="font-size:4.25181px;stroke-width:0.531473"
+         x="473.81863"
+         y="20.760099">332K</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:4.25181px;line-height:1.25;font-family:sans-serif;word-spacing:0px;stroke-width:0.531473;stroke-linecap:butt;stroke-linejoin:round"
+       x="513.10529"
+       y="20.760099"
+       id="text99"><tspan
+         sodipodi:role="line"
+         id="tspan99"
+         style="font-size:4.25181px;stroke-width:0.531473"
+         x="513.10529"
+         y="20.760099">444K</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:6.76416px;line-height:1.1;font-family:sans-serif;word-spacing:0px;stroke-width:0.391978;stroke-linecap:butt;stroke-linejoin:round"
+       x="411.60162"
+       y="12.584467"
+       id="text100"><tspan
+         sodipodi:role="line"
+         id="tspan100"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.76416px;font-family:Arial;-inkscape-font-specification:Arial;stroke-width:0.391978"
+         x="411.60162"
+         y="12.584467">(b) Joint parameter inference (10Mb)</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:5.55876px;line-height:1.1;font-family:Arial;-inkscape-font-specification:Arial;word-spacing:0px;stroke-width:0.119116;stroke-linecap:butt;stroke-linejoin:round"
+       x="443.72"
+       y="88.802032"
+       id="text101"><tspan
+         sodipodi:role="line"
+         id="tspan101"
+         style="stroke-width:0.119116"
+         x="443.72"
+         y="88.802032">Effective population size (Ne)</tspan></text>
+    <rect
+       style="fill:#dcdcdc;stroke-width:0.697388;stroke-linecap:round;stroke-linejoin:round"
+       id="rect101"
+       width="141.74791"
+       height="87.789955"
+       x="111.31129"
+       y="97.13974"
+       ry="5.7205074e-16" />
+    <g
+       id="g103"
+       transform="matrix(2.0087216,0,0,2.0087216,-228.73805,101.25741)"
+       style="stroke-linecap:butt;stroke-linejoin:round">
+      <g
+         transform="matrix(0,-0.14282553,0.14282553,0,176.80405,19.727208)"
+         id="g102"
+         style="font-size:12px;font-family:Helvetica;fill:#282623;fill-opacity:1;stroke:#282623;stroke-width:1;stroke-linecap:butt;stroke-linejoin:round;stroke-opacity:1">
+        <text
+           x="-87.179306"
+           y="-9.3545513"
+           style="font-weight:bold;font-size:20.7879px;font-family:helvetica;white-space:pre;fill:#282623;fill-opacity:1;stroke:none;stroke-linecap:butt;stroke-linejoin:round"
+           id="text102">Posterior density</text>
+      </g>
+    </g>
+    <g
+       style="font-size:12px;font-family:Helvetica;fill:#282623;fill-opacity:1;stroke:#282623;stroke-width:1;stroke-linecap:butt;stroke-linejoin:round;stroke-opacity:1"
+       id="g141"
+       transform="matrix(0.30327134,0,0,0.30327134,120.14507,107.37382)">
+      <g
+         class="toyplot-coordinates-Cartesian"
+         id="g140"
+         style="stroke-linecap:butt;stroke-linejoin:round">
+        <clipPath
+           id="clipPath103">
+          <rect
+             x="40"
+             y="40"
+             width="370"
+             height="145"
+             id="rect103" />
+        </clipPath>
+        <g
+           clip-path="url(#tb8e2e4eff4ef4c9a808bcd2ddccd4a50)"
+           id="g122"
+           style="stroke-linecap:butt;stroke-linejoin:round">
+          <g
+             class="toyplot-mark-FillBoundaries"
+             style="stroke:none;stroke-linecap:butt;stroke-linejoin:round"
+             id="g104">
+            <polygon
+               points="93.563913,175 97.524269,175 101.48462,175 105.44498,175 109.40534,175 113.36569,175 117.32605,175 121.2864,175 125.24676,175 129.20711,175 133.16747,175 137.12783,175 141.08818,175 145.04854,175 149.00889,175 152.96925,175 156.9296,175 160.88996,175 164.85032,175 168.81067,175 172.77103,175 176.73138,175 180.69174,175 184.65209,175 188.61245,175 192.57281,175 196.53316,175 200.49352,175 204.45387,175 204.45387,174.69325 200.49352,174.84663 196.53316,174.84663 192.57281,174.53988 188.61245,174.53988 184.65209,173.46626 180.69174,173.46626 176.73138,171.16564 172.77103,167.79141 168.81067,168.25153 164.85032,161.19632 160.88996,158.89571 156.9296,149.07975 152.96925,145.70552 149.00889,131.13497 145.04854,122.85276 141.08818,104.90798 137.12783,93.865031 133.16747,79.447853 129.20711,58.282209 125.24676,51.380368 121.2864,58.128834 117.32605,59.662577 113.36569,50 109.40534,59.815951 105.44498,74.693252 101.48462,92.791411 97.524269,115.03067 93.563913,130.82822 89.603557,141.10429 85.643202,151.38037 81.682846,161.80982 77.72249,167.79141 73.762134,171.93252 69.801779,173.31288 65.841423,174.23313 61.881067,174.69325 57.920711,174.84663 53.960356,175 50,174.84663 50,175 53.960356,175 57.920711,175 61.881067,175 65.841423,175 69.801779,175 73.762134,175 77.72249,175 81.682846,175 85.643202,175 89.603557,175 "
+               style="opacity:0.3;fill:#66c2a3;fill-opacity:1;stroke:none;stroke-linecap:butt;stroke-linejoin:round"
+               id="polygon103" />
+          </g>
+          <g
+             class="toyplot-mark-FillBoundaries"
+             style="stroke:none;stroke-linecap:butt;stroke-linejoin:round"
+             id="g105">
+            <polygon
+               points="152.96925,145.70552 149.00889,131.13497 145.04854,122.85276 141.08818,104.90798 137.12783,93.865031 133.16747,79.447853 129.20711,58.282209 125.24676,51.380368 121.2864,58.128834 117.32605,59.662577 113.36569,50 109.40534,59.815951 105.44498,74.693252 101.48462,92.791411 97.524269,115.03067 93.563913,130.82822 89.603557,141.10429 85.643202,151.38037 81.682846,161.80982 81.682846,175 85.643202,175 89.603557,175 93.563913,175 97.524269,175 101.48462,175 105.44498,175 109.40534,175 113.36569,175 117.32605,175 121.2864,175 125.24676,175 129.20711,175 133.16747,175 137.12783,175 141.08818,175 145.04854,175 149.00889,175 152.96925,175 "
+               style="opacity:0.5;fill:#66c2a3;fill-opacity:1;stroke:none;stroke-linecap:butt;stroke-linejoin:round"
+               id="polygon104" />
+          </g>
+          <g
+             class="toyplot-mark-Plot"
+             style="fill:none;stroke-width:3;stroke-linecap:butt;stroke-linejoin:round"
+             id="g107">
+            <g
+               class="toyplot-Series"
+               id="g106"
+               style="stroke-linecap:butt;stroke-linejoin:round">
+              <path
+                 d="M 50,174.84663 53.960356,175 l 3.960355,-0.15337 3.960356,-0.15338 3.960356,-0.46012 3.960356,-0.92025 3.960355,-1.38036 3.960356,-4.14111 3.960356,-5.98159 3.960356,-10.42945 3.960355,-10.27608 3.960356,-10.27607 3.960356,-15.79755 3.960351,-22.239259 3.96036,-18.098159 3.96036,-14.877301 L 113.36569,50 l 3.96036,9.662577 3.96035,-1.533743 3.96036,-6.748466 3.96035,6.901841 3.96036,21.165644 3.96036,14.417178 3.96035,11.042949 3.96036,17.94478 3.96035,8.28221 3.96036,14.57055 3.96035,3.37423 3.96036,9.81596 3.96036,2.30061 3.96035,7.05521 3.96036,-0.46012 3.96035,3.37423 3.96036,2.30062 h 3.96035 l 3.96036,1.07362 h 3.96036 l 3.96035,0.30675 h 3.96036 l 3.96035,-0.15338"
+                 style="stroke:#66c2a3;stroke-width:3;stroke-linecap:butt;stroke-linejoin:round;stroke-opacity:1"
+                 id="path105" />
+            </g>
+          </g>
+          <g
+             class="toyplot-mark-FillBoundaries"
+             style="stroke:none;stroke-linecap:butt;stroke-linejoin:round"
+             id="g108">
+            <polygon
+               points="207.75482,175 214.62072,175 221.48662,175 228.35252,175 235.21842,175 242.08432,175 248.95021,175 255.81611,175 262.68201,175 269.54791,175 276.41381,175 283.27971,175 290.14561,175 297.01151,175 303.87741,175 310.74331,175 317.60921,175 324.47511,175 331.34101,175 338.20691,175 345.07281,175 351.9387,175 358.8046,175 365.6705,175 372.5364,175 379.4023,175 386.2682,175 393.1341,175 400,175 400,174.82306 393.1341,174.91153 386.2682,175 379.4023,175 372.5364,174.82306 365.6705,174.91153 358.8046,174.91153 351.9387,174.82306 345.07281,174.73459 338.20691,174.46919 331.34101,173.76144 324.47511,173.84991 317.60921,173.05369 310.74331,172.169 303.87741,170.2227 297.01151,168.09945 290.14561,163.58755 283.27971,161.28737 276.41381,154.91763 269.54791,148.63636 262.68201,139.87796 255.81611,135.98535 248.95021,130.23489 242.08432,118.73397 235.21842,104.93287 228.35252,108.56008 221.48662,99.536281 214.62072,100.77484 207.75482,102.72115 200.88892,109.53323 194.02302,124.48443 187.15712,128.81939 180.29122,139.70103 173.42532,150.93654 166.55942,158.3679 159.69352,164.73764 152.82762,168.71873 145.96173,172.52288 139.09583,173.5845 132.22993,174.55766 132.22993,175 139.09583,175 145.96173,175 152.82762,175 159.69352,175 166.55942,175 173.42532,175 180.29122,175 187.15712,175 194.02302,175 200.88892,175 "
+               style="opacity:0.3;fill:#fa8c61;fill-opacity:1;stroke:none;stroke-linecap:butt;stroke-linejoin:round"
+               id="polygon107" />
+          </g>
+          <g
+             class="toyplot-mark-FillBoundaries"
+             style="stroke:none;stroke-linecap:butt;stroke-linejoin:round"
+             id="g109">
+            <polygon
+               points="283.27971,161.28737 276.41381,154.91763 269.54791,148.63636 262.68201,139.87796 255.81611,135.98535 248.95021,130.23489 242.08432,118.73397 235.21842,104.93287 228.35252,108.56008 221.48662,99.536281 214.62072,100.77484 207.75482,102.72115 200.88892,109.53323 194.02302,124.48443 187.15712,128.81939 180.29122,139.70103 173.42532,150.93654 166.55942,158.3679 159.69352,164.73764 159.69352,175 166.55942,175 173.42532,175 180.29122,175 187.15712,175 194.02302,175 200.88892,175 207.75482,175 214.62072,175 221.48662,175 228.35252,175 235.21842,175 242.08432,175 248.95021,175 255.81611,175 262.68201,175 269.54791,175 276.41381,175 283.27971,175 "
+               style="opacity:0.5;fill:#fa8c61;fill-opacity:1;stroke:none;stroke-linecap:butt;stroke-linejoin:round"
+               id="polygon108" />
+          </g>
+          <g
+             class="toyplot-mark-Plot"
+             style="fill:none;stroke-width:3;stroke-linecap:butt;stroke-linejoin:round"
+             id="g111">
+            <g
+               class="toyplot-Series"
+               id="g110"
+               style="stroke-linecap:butt;stroke-linejoin:round">
+              <path
+                 d="m 132.22993,174.55766 6.8659,-0.97316 6.8659,-1.06162 6.86589,-3.80415 6.8659,-3.98109 6.8659,-6.36974 6.8659,-7.43136 6.8659,-11.23551 6.8659,-10.88164 6.8659,-4.33496 6.8659,-14.9512 6.8659,-6.81208 6.8659,-1.94631 6.8659,-1.238559 6.8659,9.023799 6.8659,-3.62721 6.8659,13.8011 6.86589,11.50092 6.8659,5.75046 6.8659,3.89261 6.8659,8.7584 6.8659,6.28127 6.8659,6.36974 6.8659,2.30018 6.8659,4.5119 6.8659,2.12325 6.8659,1.9463 6.8659,0.88469 6.8659,0.79622 6.8659,-0.0885 6.8659,0.70775 6.8659,0.2654 6.86589,0.0885 6.8659,0.0885 h 6.8659 l 6.8659,-0.0885 6.8659,0.17694 h 6.8659 l 6.8659,-0.0885 L 400,174.823"
+                 style="stroke:#fa8c61;stroke-width:3;stroke-linecap:butt;stroke-linejoin:round;stroke-opacity:1"
+                 id="path109" />
+            </g>
+          </g>
+          <g
+             class="toyplot-mark-FillBoundaries"
+             style="stroke:none;stroke-linecap:butt;stroke-linejoin:round"
+             id="g112">
+            <polygon
+               points="249.71929,175 254.1684,175 258.61751,175 263.06662,175 267.51573,175 271.96484,175 276.41395,175 280.86306,175 285.31217,175 289.76128,175 294.21039,175 298.6595,175 303.10861,175 307.55772,175 312.00683,175 316.45594,175 320.90505,175 325.35416,175 329.80327,175 334.25238,175 338.70149,175 343.1506,175 347.59971,175 352.04882,175 356.49792,175 360.94703,175 365.39614,175 369.84525,175 374.29436,175 374.29436,174.86347 369.84525,174.59042 365.39614,174.59042 360.94703,174.72695 356.49792,174.86347 352.04882,174.59042 347.59971,173.3617 343.1506,173.3617 338.70149,171.45034 334.25238,170.08509 329.80327,167.35458 325.35416,162.16661 320.90505,155.34034 316.45594,152.20026 312.00683,140.18602 307.55772,135.81721 303.10861,121.07246 298.6595,112.33484 294.21039,97.99967 289.76128,92.402128 285.31217,73.01552 280.86306,72.74247 276.41395,75.746029 271.96484,68.783233 267.51573,77.930435 263.06662,83.937553 258.61751,93.494332 254.1684,115.61145 249.71929,118.47848 245.27018,128.03526 240.82107,142.91653 236.37196,153.15593 231.92285,159.02653 227.47374,163.66839 223.02463,168.31026 218.57552,170.22161 214.12641,173.22517 209.6773,174.18085 205.22819,174.4539 200.77908,174.4539 200.77908,175 205.22819,175 209.6773,175 214.12641,175 218.57552,175 223.02463,175 227.47374,175 231.92285,175 236.37196,175 240.82107,175 245.27018,175 "
+               style="opacity:0.3;fill:#8c9eca;fill-opacity:1;stroke:none;stroke-linecap:butt;stroke-linejoin:round"
+               id="polygon111" />
+          </g>
+          <g
+             class="toyplot-mark-FillBoundaries"
+             style="stroke:none;stroke-linecap:butt;stroke-linejoin:round"
+             id="g113">
+            <polygon
+               points="245.27018,175 249.71929,175 254.1684,175 258.61751,175 263.06662,175 267.51573,175 271.96484,175 276.41395,175 280.86306,175 285.31217,175 289.76128,175 294.21039,175 298.6595,175 303.10861,175 307.55772,175 312.00683,175 316.45594,175 320.90505,175 320.90505,155.34034 316.45594,152.20026 312.00683,140.18602 307.55772,135.81721 303.10861,121.07246 298.6595,112.33484 294.21039,97.99967 289.76128,92.402128 285.31217,73.01552 280.86306,72.74247 276.41395,75.746029 271.96484,68.783233 267.51573,77.930435 263.06662,83.937553 258.61751,93.494332 254.1684,115.61145 249.71929,118.47848 245.27018,128.03526 240.82107,142.91653 236.37196,153.15593 231.92285,159.02653 231.92285,175 236.37196,175 240.82107,175 "
+               style="opacity:0.5;fill:#8c9eca;fill-opacity:1;stroke:none;stroke-linecap:butt;stroke-linejoin:round"
+               id="polygon112" />
+          </g>
+          <g
+             class="toyplot-mark-Plot"
+             style="fill:none;stroke-width:3;stroke-linecap:butt;stroke-linejoin:round"
+             id="g115">
+            <g
+               class="toyplot-Series"
+               id="g114"
+               style="stroke-linecap:butt;stroke-linejoin:round">
+              <path
+                 d="m 200.77908,174.4539 h 4.44911 l 4.44911,-0.27305 4.44911,-0.95568 4.44911,-3.00356 4.44911,-1.91135 4.44911,-4.64187 4.44911,-4.64186 4.44911,-5.8706 4.44911,-10.2394 4.44911,-14.88127 4.44911,-9.55678 4.44911,-2.86703 4.44911,-22.117118 4.44911,-9.556779 4.44911,-6.007118 4.44911,-9.147202 4.44911,6.962796 4.44911,-3.003559 4.44911,0.27305 4.44911,19.386608 4.44911,5.597542 4.44911,14.33517 4.44911,8.73762 4.44911,14.74475 4.44911,4.36881 4.44911,12.01424 4.44911,3.14008 4.44911,6.82627 4.44911,5.18797 4.44911,2.73051 4.44911,1.36525 4.44911,1.91136 h 4.44911 l 4.44911,1.22872 4.4491,0.27305 4.44911,-0.13652 4.44911,-0.13653 h 4.44911 l 4.44911,0.27305"
+                 style="stroke:#8c9eca;stroke-width:3;stroke-linecap:butt;stroke-linejoin:round;stroke-opacity:1"
+                 id="path113" />
+            </g>
+          </g>
+          <g
+             class="toyplot-mark-AxisLines"
+             style="stroke:#66c2a3;stroke-width:3;stroke-linecap:butt;stroke-linejoin:round;stroke-dasharray:4, 4;stroke-opacity:1"
+             id="g117">
+            <g
+               class="toyplot-Series"
+               id="g116"
+               style="stroke-linecap:butt;stroke-linejoin:round">
+              <line
+                 class="toyplot-Datum"
+                 x1="123.32055"
+                 x2="123.32055"
+                 y1="50"
+                 y2="175"
+                 style="opacity:1;stroke:#66c2a3;stroke-width:3;stroke-linecap:butt;stroke-linejoin:round;stroke-dasharray:4, 4;stroke-opacity:1"
+                 id="line115" />
+            </g>
+          </g>
+          <g
+             class="toyplot-mark-AxisLines"
+             style="stroke:#fa8c61;stroke-width:3;stroke-linecap:butt;stroke-linejoin:round;stroke-dasharray:4, 4;stroke-opacity:1"
+             id="g119">
+            <g
+               class="toyplot-Series"
+               id="g118"
+               style="stroke-linecap:butt;stroke-linejoin:round">
+              <line
+                 class="toyplot-Datum"
+                 x1="204.5336"
+                 x2="204.5336"
+                 y1="50"
+                 y2="175"
+                 style="opacity:1;stroke:#fa8c61;stroke-width:3;stroke-linecap:butt;stroke-linejoin:round;stroke-dasharray:4, 4;stroke-opacity:1"
+                 id="line117" />
+            </g>
+          </g>
+          <g
+             class="toyplot-mark-AxisLines"
+             style="stroke:#8c9eca;stroke-width:3;stroke-linecap:butt;stroke-linejoin:round;stroke-dasharray:4, 4;stroke-opacity:1"
+             id="g121">
+            <g
+               class="toyplot-Series"
+               id="g120"
+               style="stroke-linecap:butt;stroke-linejoin:round">
+              <line
+                 class="toyplot-Datum"
+                 x1="285.74664"
+                 x2="285.74664"
+                 y1="50"
+                 y2="175"
+                 style="opacity:1;stroke:#8c9eca;stroke-width:3;stroke-linecap:butt;stroke-linejoin:round;stroke-dasharray:4, 4;stroke-opacity:1"
+                 id="line119" />
+            </g>
+          </g>
+        </g>
+        <g
+           class="toyplot-coordinates-Axis"
+           id="g133"
+           transform="translate(50,185)"
+           style="stroke-linecap:butt;stroke-linejoin:round">
+          <line
+             x1="0"
+             y1="0"
+             x2="350"
+             y2="0"
+             style="stroke-width:3;stroke-linecap:butt;stroke-linejoin:round"
+             id="line122" />
+          <g
+             id="g126"
+             style="stroke-linecap:butt;stroke-linejoin:round">
+            <line
+               x1="73.320549"
+               y1="7.5"
+               x2="73.320549"
+               y2="0"
+               style="stroke-width:3;stroke-linecap:butt;stroke-linejoin:round"
+               id="line123" />
+            <line
+               x1="154.5336"
+               y1="7.5"
+               x2="154.5336"
+               y2="0"
+               style="stroke-width:3;stroke-linecap:butt;stroke-linejoin:round"
+               id="line124" />
+            <line
+               x1="235.74664"
+               y1="7.5"
+               x2="235.74664"
+               y2="0"
+               style="stroke-width:3;stroke-linecap:butt;stroke-linejoin:round"
+               id="line125" />
+            <line
+               x1="316.95969"
+               y1="7.5"
+               x2="316.95969"
+               y2="0"
+               style="stroke-width:3;stroke-linecap:butt;stroke-linejoin:round"
+               id="line126" />
+          </g>
+          <g
+             id="g131"
+             style="stroke-linecap:butt;stroke-linejoin:round">
+            <g
+               transform="translate(73.320547,12)"
+               id="g127"
+               style="stroke-linecap:butt;stroke-linejoin:round">
+              <text
+                 x="-26.688"
+                 y="13.688"
+                 style="font-weight:normal;font-size:16px;font-family:helvetica;white-space:pre;fill:#282623;fill-opacity:1;stroke:none;stroke-linecap:butt;stroke-linejoin:round"
+                 id="text126">200000</text>
+            </g>
+            <g
+               transform="translate(154.53359,12)"
+               id="g128"
+               style="stroke-linecap:butt;stroke-linejoin:round">
+              <text
+                 x="-26.688"
+                 y="13.688"
+                 style="font-weight:normal;font-size:16px;font-family:helvetica;white-space:pre;fill:#282623;fill-opacity:1;stroke:none;stroke-linecap:butt;stroke-linejoin:round"
+                 id="text128">300000</text>
+            </g>
+            <g
+               transform="translate(235.74664,12)"
+               id="g129"
+               style="stroke-linecap:butt;stroke-linejoin:round">
+              <text
+                 x="-26.688"
+                 y="13.688"
+                 style="font-weight:normal;font-size:16px;font-family:helvetica;white-space:pre;fill:#282623;fill-opacity:1;stroke:none;stroke-linecap:butt;stroke-linejoin:round"
+                 id="text129">400000</text>
+            </g>
+            <g
+               transform="translate(316.95969,12)"
+               id="g130"
+               style="stroke-linecap:butt;stroke-linejoin:round">
+              <text
+                 x="-26.688"
+                 y="13.688"
+                 style="font-weight:normal;font-size:16px;font-family:helvetica;white-space:pre;fill:#282623;fill-opacity:1;stroke:none;stroke-linecap:butt;stroke-linejoin:round"
+                 id="text130">500000</text>
+            </g>
+          </g>
+          <g
+             class="toyplot-coordinates-Axis-coordinates"
+             style="visibility:hidden;stroke-linecap:butt;stroke-linejoin:round"
+             id="g132">
+            <text
+               x="0"
+               y="-12"
+               style="font-weight:normal;font-size:10px;text-anchor:middle;fill:#6e7f8f;fill-opacity:1;stroke:none;stroke-linecap:butt;stroke-linejoin:round"
+               id="text131" />
+          </g>
+        </g>
+        <g
+           class="toyplot-coordinates-Axis"
+           id="g139"
+           transform="rotate(-90,107.5,67.5)"
+           style="stroke-linecap:butt;stroke-linejoin:round">
+          <line
+             x1="0"
+             y1="0"
+             x2="125"
+             y2="0"
+             style="stroke-width:3.00023;stroke-linecap:butt;stroke-linejoin:round;stroke-dasharray:none"
+             id="line133" />
+          <g
+             id="g137"
+             style="stroke-linecap:butt;stroke-linejoin:round">
+            <line
+               x1="0"
+               y1="-7.5"
+               x2="0"
+               y2="0"
+               style="stroke-width:3;stroke-linecap:butt;stroke-linejoin:round"
+               id="line134" />
+            <line
+               x1="37.396488"
+               y1="-7.5"
+               x2="37.396488"
+               y2="0"
+               style="stroke-width:3;stroke-linecap:butt;stroke-linejoin:round"
+               id="line135" />
+            <line
+               x1="74.792976"
+               y1="-7.5"
+               x2="74.792976"
+               y2="0"
+               style="stroke-width:3;stroke-linecap:butt;stroke-linejoin:round"
+               id="line136" />
+            <line
+               x1="112.18946"
+               y1="-7.5"
+               x2="112.18946"
+               y2="0"
+               style="stroke-width:3;stroke-linecap:butt;stroke-linejoin:round"
+               id="line137" />
+          </g>
+          <g
+             class="toyplot-coordinates-Axis-coordinates"
+             style="visibility:hidden;stroke-linecap:butt;stroke-linejoin:round"
+             id="g138">
+            <text
+               x="0"
+               y="12"
+               style="font-weight:normal;font-size:10px;text-anchor:middle;fill:#6e7f8f;fill-opacity:1;stroke:none;stroke-linecap:butt;stroke-linejoin:round"
+               id="text137" />
+          </g>
+        </g>
+      </g>
+    </g>
+    <path
+       style="fill:#f6f5f4;stroke:#66c2a3;stroke-width:1.59443;stroke-linecap:butt;stroke-linejoin:round;stroke-dashoffset:3.1748;stroke-opacity:1"
+       d="M 144.92257,119.45173 H 166.3147"
+       id="path141" />
+    <path
+       style="fill:#f6f5f4;stroke:#fa8c61;stroke-width:1.59443;stroke-linecap:butt;stroke-linejoin:round;stroke-dashoffset:3.1748;stroke-opacity:1"
+       d="m 168.51443,115.33618 h 37.45471"
+       id="path142" />
+    <path
+       style="fill:#f6f5f4;stroke:#8c9eca;stroke-width:1.59443;stroke-linecap:butt;stroke-linejoin:round;stroke-dashoffset:3.1748;stroke-opacity:1"
+       d="m 190.47749,110.66531 h 26.81798"
+       id="path143" />
+    <text
+       xml:space="preserve"
+       style="font-size:4.25181px;line-height:1.25;font-family:sans-serif;word-spacing:0px;stroke-width:0.531473;stroke-linecap:butt;stroke-linejoin:round"
+       x="133.67792"
+       y="121.02823"
+       id="text143"><tspan
+         sodipodi:role="line"
+         id="tspan143"
+         style="font-size:4.25181px;stroke-width:0.531473"
+         x="133.67792"
+         y="121.02823">148K</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:4.25181px;line-height:1.25;font-family:sans-serif;word-spacing:0px;stroke-width:0.531473;stroke-linecap:butt;stroke-linejoin:round"
+       x="166.99866"
+       y="120.9351"
+       id="text144"><tspan
+         sodipodi:role="line"
+         id="tspan144"
+         style="font-size:4.25181px;stroke-width:0.531473"
+         x="166.99866"
+         y="120.9351">241K</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:4.25181px;line-height:1.25;font-family:sans-serif;word-spacing:0px;stroke-width:0.531473;stroke-linecap:butt;stroke-linejoin:round"
+       x="156.41623"
+       y="116.56685"
+       id="text145"><tspan
+         sodipodi:role="line"
+         id="tspan145"
+         style="font-size:4.25181px;stroke-width:0.531473"
+         x="156.41623"
+         y="116.56685">242K</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:4.25181px;line-height:1.25;font-family:sans-serif;word-spacing:0px;stroke-width:0.531473;stroke-linecap:butt;stroke-linejoin:round"
+       x="206.72778"
+       y="116.56685"
+       id="text146"><tspan
+         sodipodi:role="line"
+         id="tspan146"
+         style="font-size:4.25181px;stroke-width:0.531473"
+         x="206.72778"
+         y="116.56685">400K</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:4.25181px;line-height:1.25;font-family:sans-serif;word-spacing:0px;stroke-width:0.531473;stroke-linecap:butt;stroke-linejoin:round"
+       x="178.91914"
+       y="112.39127"
+       id="text147"><tspan
+         sodipodi:role="line"
+         id="tspan147"
+         style="font-size:4.25181px;stroke-width:0.531473"
+         x="178.91914"
+         y="112.39127">332K</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:4.25181px;line-height:1.25;font-family:sans-serif;word-spacing:0px;stroke-width:0.531473;stroke-linecap:butt;stroke-linejoin:round"
+       x="218.20576"
+       y="112.39127"
+       id="text148"><tspan
+         sodipodi:role="line"
+         id="tspan148"
+         style="font-size:4.25181px;stroke-width:0.531473"
+         x="218.20576"
+         y="112.39127">444K</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:6.76416px;line-height:1.1;font-family:sans-serif;word-spacing:0px;stroke-width:0.391978;stroke-linecap:butt;stroke-linejoin:round"
+       x="116.70211"
+       y="104.21562"
+       id="text149"><tspan
+         sodipodi:role="line"
+         id="tspan149"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.76416px;font-family:Arial;-inkscape-font-specification:Arial;stroke-width:0.391978"
+         x="116.70211"
+         y="104.21562">(b) Joint parameter inference (10Mb)</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:5.55876px;line-height:1.1;font-family:Arial;-inkscape-font-specification:Arial;word-spacing:0px;stroke-width:0.119116;stroke-linecap:butt;stroke-linejoin:round"
+       x="148.82051"
+       y="180.4332"
+       id="text150"><tspan
+         sodipodi:role="line"
+         id="tspan150"
+         style="stroke-width:0.119116"
+         x="148.82051"
+         y="180.4332">Effective population size (Ne)</tspan></text>
+    <rect
+       style="fill:#dcdcdc;stroke-width:0.697388;stroke-linecap:round;stroke-linejoin:round"
+       id="rect150"
+       width="141.74791"
+       height="87.789955"
+       x="111.31129"
+       y="188.56879"
+       ry="5.7205074e-16" />
+    <g
+       id="g152"
+       transform="matrix(2.0087216,0,0,2.0087216,-228.73805,192.68645)"
+       style="stroke-linecap:butt;stroke-linejoin:round">
+      <g
+         transform="matrix(0,-0.14282553,0.14282553,0,176.80405,19.727208)"
+         id="g151"
+         style="font-size:12px;font-family:Helvetica;fill:#282623;fill-opacity:1;stroke:#282623;stroke-width:1;stroke-linecap:butt;stroke-linejoin:round;stroke-opacity:1">
+        <text
+           x="-87.179306"
+           y="-9.3545513"
+           style="font-weight:bold;font-size:20.7879px;font-family:helvetica;white-space:pre;fill:#282623;fill-opacity:1;stroke:none;stroke-linecap:butt;stroke-linejoin:round"
+           id="text151">Posterior density</text>
+      </g>
+    </g>
+    <g
+       style="font-size:12px;font-family:Helvetica;fill:#282623;fill-opacity:1;stroke:#282623;stroke-width:1;stroke-linecap:butt;stroke-linejoin:round;stroke-opacity:1"
+       id="g190"
+       transform="matrix(0.30327134,0,0,0.30327134,120.14507,198.80286)">
+      <g
+         class="toyplot-coordinates-Cartesian"
+         id="g189"
+         style="stroke-linecap:butt;stroke-linejoin:round">
+        <clipPath
+           id="clipPath152">
+          <rect
+             x="40"
+             y="40"
+             width="370"
+             height="145"
+             id="rect152" />
+        </clipPath>
+        <g
+           clip-path="url(#tb8e2e4eff4ef4c9a808bcd2ddccd4a50)"
+           id="g171"
+           style="stroke-linecap:butt;stroke-linejoin:round"
+           transform="translate(143.07864)">
+          <g
+             class="toyplot-mark-FillBoundaries"
+             style="stroke:none;stroke-linecap:butt;stroke-linejoin:round"
+             id="g153">
+            <polygon
+               points="105.44498,175 109.40534,175 113.36569,175 117.32605,175 121.2864,175 125.24676,175 129.20711,175 133.16747,175 137.12783,175 141.08818,175 145.04854,175 149.00889,175 152.96925,175 156.9296,175 160.88996,175 164.85032,175 168.81067,175 172.77103,175 176.73138,175 180.69174,175 184.65209,175 188.61245,175 192.57281,175 196.53316,175 200.49352,175 204.45387,175 204.45387,174.69325 200.49352,174.84663 196.53316,174.84663 192.57281,174.53988 188.61245,174.53988 184.65209,173.46626 180.69174,173.46626 176.73138,171.16564 172.77103,167.79141 168.81067,168.25153 164.85032,161.19632 160.88996,158.89571 156.9296,149.07975 152.96925,145.70552 149.00889,131.13497 145.04854,122.85276 141.08818,104.90798 137.12783,93.865031 133.16747,79.447853 129.20711,58.282209 125.24676,51.380368 121.2864,58.128834 117.32605,59.662577 113.36569,50 109.40534,59.815951 105.44498,74.693252 101.48462,92.791411 97.524269,115.03067 93.563913,130.82822 89.603557,141.10429 85.643202,151.38037 81.682846,161.80982 77.72249,167.79141 73.762134,171.93252 69.801779,173.31288 65.841423,174.23313 61.881067,174.69325 57.920711,174.84663 53.960356,175 50,174.84663 50,175 53.960356,175 57.920711,175 61.881067,175 65.841423,175 69.801779,175 73.762134,175 77.72249,175 81.682846,175 85.643202,175 89.603557,175 93.563913,175 97.524269,175 101.48462,175 "
+               style="opacity:0.3;fill:#66c2a3;fill-opacity:1;stroke:none;stroke-linecap:butt;stroke-linejoin:round"
+               id="polygon152" />
+          </g>
+          <g
+             class="toyplot-mark-FillBoundaries"
+             style="stroke:none;stroke-linecap:butt;stroke-linejoin:round"
+             id="g154">
+            <polygon
+               points="125.24676,51.380368 121.2864,58.128834 117.32605,59.662577 113.36569,50 109.40534,59.815951 105.44498,74.693252 101.48462,92.791411 97.524269,115.03067 93.563913,130.82822 89.603557,141.10429 85.643202,151.38037 81.682846,161.80982 81.682846,175 85.643202,175 89.603557,175 93.563913,175 97.524269,175 101.48462,175 105.44498,175 109.40534,175 113.36569,175 117.32605,175 121.2864,175 125.24676,175 129.20711,175 133.16747,175 137.12783,175 141.08818,175 145.04854,175 149.00889,175 152.96925,175 152.96925,145.70552 149.00889,131.13497 145.04854,122.85276 141.08818,104.90798 137.12783,93.865031 133.16747,79.447853 129.20711,58.282209 "
+               style="opacity:0.5;fill:#66c2a3;fill-opacity:1;stroke:none;stroke-linecap:butt;stroke-linejoin:round"
+               id="polygon153" />
+          </g>
+          <g
+             class="toyplot-mark-Plot"
+             style="fill:none;stroke-width:3;stroke-linecap:butt;stroke-linejoin:round"
+             id="g156">
+            <g
+               class="toyplot-Series"
+               id="g155"
+               style="stroke-linecap:butt;stroke-linejoin:round">
+              <path
+                 d="M 50,174.84663 53.960356,175 l 3.960355,-0.15337 3.960356,-0.15338 3.960356,-0.46012 3.960356,-0.92025 3.960355,-1.38036 3.960356,-4.14111 3.960356,-5.98159 3.960356,-10.42945 3.960355,-10.27608 3.960356,-10.27607 3.960356,-15.79755 3.960351,-22.239259 3.96036,-18.098159 3.96036,-14.877301 L 113.36569,50 l 3.96036,9.662577 3.96035,-1.533743 3.96036,-6.748466 3.96035,6.901841 3.96036,21.165644 3.96036,14.417178 3.96035,11.042949 3.96036,17.94478 3.96035,8.28221 3.96036,14.57055 3.96035,3.37423 3.96036,9.81596 3.96036,2.30061 3.96035,7.05521 3.96036,-0.46012 3.96035,3.37423 3.96036,2.30062 h 3.96035 l 3.96036,1.07362 h 3.96036 l 3.96035,0.30675 h 3.96036 l 3.96035,-0.15338"
+                 style="stroke:#66c2a3;stroke-width:3;stroke-linecap:butt;stroke-linejoin:round;stroke-opacity:1"
+                 id="path154" />
+            </g>
+          </g>
+          <g
+             class="toyplot-mark-FillBoundaries"
+             style="stroke:none;stroke-linecap:butt;stroke-linejoin:round"
+             id="g157">
+            <polygon
+               points="228.35252,175 235.21842,175 242.08432,175 248.95021,175 255.81611,175 262.68201,175 269.54791,175 276.41381,175 283.27971,175 290.14561,175 297.01151,175 303.87741,175 310.74331,175 317.60921,175 324.47511,175 331.34101,175 338.20691,175 345.07281,175 351.9387,175 358.8046,175 365.6705,175 372.5364,175 379.4023,175 386.2682,175 393.1341,175 400,175 400,174.82306 393.1341,174.91153 386.2682,175 379.4023,175 372.5364,174.82306 365.6705,174.91153 358.8046,174.91153 351.9387,174.82306 345.07281,174.73459 338.20691,174.46919 331.34101,173.76144 324.47511,173.84991 317.60921,173.05369 310.74331,172.169 303.87741,170.2227 297.01151,168.09945 290.14561,163.58755 283.27971,161.28737 276.41381,154.91763 269.54791,148.63636 262.68201,139.87796 255.81611,135.98535 248.95021,130.23489 242.08432,118.73397 235.21842,104.93287 228.35252,108.56008 221.48662,99.536281 214.62072,100.77484 207.75482,102.72115 200.88892,109.53323 194.02302,124.48443 187.15712,128.81939 180.29122,139.70103 173.42532,150.93654 166.55942,158.3679 159.69352,164.73764 152.82762,168.71873 145.96173,172.52288 139.09583,173.5845 132.22993,174.55766 132.22993,175 139.09583,175 145.96173,175 152.82762,175 159.69352,175 166.55942,175 173.42532,175 180.29122,175 187.15712,175 194.02302,175 200.88892,175 207.75482,175 214.62072,175 221.48662,175 "
+               style="opacity:0.3;fill:#fa8c61;fill-opacity:1;stroke:none;stroke-linecap:butt;stroke-linejoin:round"
+               id="polygon156" />
+          </g>
+          <g
+             class="toyplot-mark-FillBoundaries"
+             style="stroke:none;stroke-linecap:butt;stroke-linejoin:round"
+             id="g158">
+            <polygon
+               points="235.21842,104.93287 228.35252,108.56008 221.48662,99.536281 214.62072,100.77484 207.75482,102.72115 200.88892,109.53323 194.02302,124.48443 187.15712,128.81939 180.29122,139.70103 173.42532,150.93654 166.55942,158.3679 159.69352,164.73764 159.69352,175 166.55942,175 173.42532,175 180.29122,175 187.15712,175 194.02302,175 200.88892,175 207.75482,175 214.62072,175 221.48662,175 228.35252,175 235.21842,175 242.08432,175 248.95021,175 255.81611,175 262.68201,175 269.54791,175 276.41381,175 283.27971,175 283.27971,161.28737 276.41381,154.91763 269.54791,148.63636 262.68201,139.87796 255.81611,135.98535 248.95021,130.23489 242.08432,118.73397 "
+               style="opacity:0.5;fill:#fa8c61;fill-opacity:1;stroke:none;stroke-linecap:butt;stroke-linejoin:round"
+               id="polygon157" />
+          </g>
+          <g
+             class="toyplot-mark-Plot"
+             style="fill:none;stroke-width:3;stroke-linecap:butt;stroke-linejoin:round"
+             id="g160">
+            <g
+               class="toyplot-Series"
+               id="g159"
+               style="stroke-linecap:butt;stroke-linejoin:round">
+              <path
+                 d="m 132.22993,174.55766 6.8659,-0.97316 6.8659,-1.06162 6.86589,-3.80415 6.8659,-3.98109 6.8659,-6.36974 6.8659,-7.43136 6.8659,-11.23551 6.8659,-10.88164 6.8659,-4.33496 6.8659,-14.9512 6.8659,-6.81208 6.8659,-1.94631 6.8659,-1.238559 6.8659,9.023799 6.8659,-3.62721 6.8659,13.8011 6.86589,11.50092 6.8659,5.75046 6.8659,3.89261 6.8659,8.7584 6.8659,6.28127 6.8659,6.36974 6.8659,2.30018 6.8659,4.5119 6.8659,2.12325 6.8659,1.9463 6.8659,0.88469 6.8659,0.79622 6.8659,-0.0885 6.8659,0.70775 6.8659,0.2654 6.86589,0.0885 6.8659,0.0885 h 6.8659 l 6.8659,-0.0885 6.8659,0.17694 h 6.8659 l 6.8659,-0.0885 L 400,174.823"
+                 style="stroke:#fa8c61;stroke-width:3;stroke-linecap:butt;stroke-linejoin:round;stroke-opacity:1"
+                 id="path158" />
+            </g>
+          </g>
+          <g
+             class="toyplot-mark-FillBoundaries"
+             style="stroke:none;stroke-linecap:butt;stroke-linejoin:round"
+             id="g161">
+            <polygon
+               points="263.06662,175 267.51573,175 271.96484,175 276.41395,175 280.86306,175 285.31217,175 289.76128,175 294.21039,175 298.6595,175 303.10861,175 307.55772,175 312.00683,175 316.45594,175 320.90505,175 325.35416,175 329.80327,175 334.25238,175 338.70149,175 343.1506,175 347.59971,175 352.04882,175 356.49792,175 360.94703,175 365.39614,175 369.84525,175 374.29436,175 374.29436,174.86347 369.84525,174.59042 365.39614,174.59042 360.94703,174.72695 356.49792,174.86347 352.04882,174.59042 347.59971,173.3617 343.1506,173.3617 338.70149,171.45034 334.25238,170.08509 329.80327,167.35458 325.35416,162.16661 320.90505,155.34034 316.45594,152.20026 312.00683,140.18602 307.55772,135.81721 303.10861,121.07246 298.6595,112.33484 294.21039,97.99967 289.76128,92.402128 285.31217,73.01552 280.86306,72.74247 276.41395,75.746029 271.96484,68.783233 267.51573,77.930435 263.06662,83.937553 258.61751,93.494332 254.1684,115.61145 249.71929,118.47848 245.27018,128.03526 240.82107,142.91653 236.37196,153.15593 231.92285,159.02653 227.47374,163.66839 223.02463,168.31026 218.57552,170.22161 214.12641,173.22517 209.6773,174.18085 205.22819,174.4539 200.77908,174.4539 200.77908,175 205.22819,175 209.6773,175 214.12641,175 218.57552,175 223.02463,175 227.47374,175 231.92285,175 236.37196,175 240.82107,175 245.27018,175 249.71929,175 254.1684,175 258.61751,175 "
+               style="opacity:0.3;fill:#8c9eca;fill-opacity:1;stroke:none;stroke-linecap:butt;stroke-linejoin:round"
+               id="polygon160" />
+          </g>
+          <g
+             class="toyplot-mark-FillBoundaries"
+             style="stroke:none;stroke-linecap:butt;stroke-linejoin:round"
+             id="g162">
+            <polygon
+               points="240.82107,175 245.27018,175 249.71929,175 254.1684,175 258.61751,175 263.06662,175 267.51573,175 271.96484,175 276.41395,175 280.86306,175 285.31217,175 289.76128,175 294.21039,175 298.6595,175 303.10861,175 307.55772,175 312.00683,175 316.45594,175 320.90505,175 320.90505,155.34034 316.45594,152.20026 312.00683,140.18602 307.55772,135.81721 303.10861,121.07246 298.6595,112.33484 294.21039,97.99967 289.76128,92.402128 285.31217,73.01552 280.86306,72.74247 276.41395,75.746029 271.96484,68.783233 267.51573,77.930435 263.06662,83.937553 258.61751,93.494332 254.1684,115.61145 249.71929,118.47848 245.27018,128.03526 240.82107,142.91653 236.37196,153.15593 231.92285,159.02653 231.92285,175 236.37196,175 "
+               style="opacity:0.5;fill:#8c9eca;fill-opacity:1;stroke:none;stroke-linecap:butt;stroke-linejoin:round"
+               id="polygon161" />
+          </g>
+          <g
+             class="toyplot-mark-Plot"
+             style="fill:none;stroke-width:3;stroke-linecap:butt;stroke-linejoin:round"
+             id="g164">
+            <g
+               class="toyplot-Series"
+               id="g163"
+               style="stroke-linecap:butt;stroke-linejoin:round">
+              <path
+                 d="m 200.77908,174.4539 h 4.44911 l 4.44911,-0.27305 4.44911,-0.95568 4.44911,-3.00356 4.44911,-1.91135 4.44911,-4.64187 4.44911,-4.64186 4.44911,-5.8706 4.44911,-10.2394 4.44911,-14.88127 4.44911,-9.55678 4.44911,-2.86703 4.44911,-22.117118 4.44911,-9.556779 4.44911,-6.007118 4.44911,-9.147202 4.44911,6.962796 4.44911,-3.003559 4.44911,0.27305 4.44911,19.386608 4.44911,5.597542 4.44911,14.33517 4.44911,8.73762 4.44911,14.74475 4.44911,4.36881 4.44911,12.01424 4.44911,3.14008 4.44911,6.82627 4.44911,5.18797 4.44911,2.73051 4.44911,1.36525 4.44911,1.91136 h 4.44911 l 4.44911,1.22872 4.4491,0.27305 4.44911,-0.13652 4.44911,-0.13653 h 4.44911 l 4.44911,0.27305"
+                 style="stroke:#8c9eca;stroke-width:3;stroke-linecap:butt;stroke-linejoin:round;stroke-opacity:1"
+                 id="path162" />
+            </g>
+          </g>
+          <g
+             class="toyplot-mark-AxisLines"
+             style="stroke:#66c2a3;stroke-width:3;stroke-linecap:butt;stroke-linejoin:round;stroke-dasharray:4, 4;stroke-opacity:1"
+             id="g166">
+            <g
+               class="toyplot-Series"
+               id="g165"
+               style="stroke-linecap:butt;stroke-linejoin:round">
+              <line
+                 class="toyplot-Datum"
+                 x1="123.32055"
+                 x2="123.32055"
+                 y1="50"
+                 y2="175"
+                 style="opacity:1;stroke:#66c2a3;stroke-width:3;stroke-linecap:butt;stroke-linejoin:round;stroke-dasharray:4, 4;stroke-opacity:1"
+                 id="line164" />
+            </g>
+          </g>
+          <g
+             class="toyplot-mark-AxisLines"
+             style="stroke:#fa8c61;stroke-width:3;stroke-linecap:butt;stroke-linejoin:round;stroke-dasharray:4, 4;stroke-opacity:1"
+             id="g168">
+            <g
+               class="toyplot-Series"
+               id="g167"
+               style="stroke-linecap:butt;stroke-linejoin:round">
+              <line
+                 class="toyplot-Datum"
+                 x1="204.5336"
+                 x2="204.5336"
+                 y1="50"
+                 y2="175"
+                 style="opacity:1;stroke:#fa8c61;stroke-width:3;stroke-linecap:butt;stroke-linejoin:round;stroke-dasharray:4, 4;stroke-opacity:1"
+                 id="line166" />
+            </g>
+          </g>
+          <g
+             class="toyplot-mark-AxisLines"
+             style="stroke:#8c9eca;stroke-width:3;stroke-linecap:butt;stroke-linejoin:round;stroke-dasharray:4, 4;stroke-opacity:1"
+             id="g170">
+            <g
+               class="toyplot-Series"
+               id="g169"
+               style="stroke-linecap:butt;stroke-linejoin:round">
+              <line
+                 class="toyplot-Datum"
+                 x1="285.74664"
+                 x2="285.74664"
+                 y1="50"
+                 y2="175"
+                 style="opacity:1;stroke:#8c9eca;stroke-width:3;stroke-linecap:butt;stroke-linejoin:round;stroke-dasharray:4, 4;stroke-opacity:1"
+                 id="line168" />
+            </g>
+          </g>
+        </g>
+        <g
+           class="toyplot-coordinates-Axis"
+           id="g182"
+           transform="translate(193.07858,185)"
+           style="stroke-linecap:butt;stroke-linejoin:round">
+          <path
+             id="line171"
+             style="stroke-width:3"
+             d="M 0,0 678.04735,0"
+             sodipodi:nodetypes="cc" />
+          <g
+             id="g175"
+             style="stroke-linecap:butt;stroke-linejoin:round">
+            <line
+               x1="73.320549"
+               y1="7.5"
+               x2="73.320549"
+               y2="0"
+               style="stroke-width:3;stroke-linecap:butt;stroke-linejoin:round"
+               id="line172" />
+            <line
+               x1="154.5336"
+               y1="7.5"
+               x2="154.5336"
+               y2="0"
+               style="stroke-width:3;stroke-linecap:butt;stroke-linejoin:round"
+               id="line173" />
+            <line
+               x1="235.74664"
+               y1="7.5"
+               x2="235.74664"
+               y2="0"
+               style="stroke-width:3;stroke-linecap:butt;stroke-linejoin:round"
+               id="line174" />
+            <line
+               x1="316.95969"
+               y1="7.5"
+               x2="316.95969"
+               y2="0"
+               style="stroke-width:3;stroke-linecap:butt;stroke-linejoin:round"
+               id="line175" />
+          </g>
+          <g
+             id="g180"
+             style="stroke-linecap:butt;stroke-linejoin:round">
+            <g
+               transform="translate(73.320547,12)"
+               id="g176"
+               style="stroke-linecap:butt;stroke-linejoin:round">
+              <text
+                 x="-26.688"
+                 y="13.688"
+                 style="font-weight:normal;font-size:16px;font-family:helvetica;white-space:pre;fill:#282623;fill-opacity:1;stroke:none;stroke-linecap:butt;stroke-linejoin:round"
+                 id="text175">200000</text>
+            </g>
+            <g
+               transform="translate(154.53359,12)"
+               id="g177"
+               style="stroke-linecap:butt;stroke-linejoin:round">
+              <text
+                 x="-26.688"
+                 y="13.688"
+                 style="font-weight:normal;font-size:16px;font-family:helvetica;white-space:pre;fill:#282623;fill-opacity:1;stroke:none;stroke-linecap:butt;stroke-linejoin:round"
+                 id="text176">300000</text>
+            </g>
+            <g
+               transform="translate(235.74664,12)"
+               id="g178"
+               style="stroke-linecap:butt;stroke-linejoin:round">
+              <text
+                 x="-26.688"
+                 y="13.688"
+                 style="font-weight:normal;font-size:16px;font-family:helvetica;white-space:pre;fill:#282623;fill-opacity:1;stroke:none;stroke-linecap:butt;stroke-linejoin:round"
+                 id="text177">400000</text>
+            </g>
+            <g
+               transform="translate(316.95969,12)"
+               id="g179"
+               style="stroke-linecap:butt;stroke-linejoin:round">
+              <text
+                 x="-26.688"
+                 y="13.688"
+                 style="font-weight:normal;font-size:16px;font-family:helvetica;white-space:pre;fill:#282623;fill-opacity:1;stroke:none;stroke-linecap:butt;stroke-linejoin:round"
+                 id="text178">500000</text>
+            </g>
+          </g>
+          <g
+             class="toyplot-coordinates-Axis-coordinates"
+             style="visibility:hidden;stroke-linecap:butt;stroke-linejoin:round"
+             id="g181">
+            <text
+               x="0"
+               y="-12"
+               style="font-weight:normal;font-size:10px;text-anchor:middle;fill:#6e7f8f;fill-opacity:1;stroke:none;stroke-linecap:butt;stroke-linejoin:round"
+               id="text180" />
+          </g>
+        </g>
+        <g
+           class="toyplot-coordinates-Axis"
+           id="g188"
+           transform="rotate(-90,107.5,67.5)"
+           style="stroke-linecap:butt;stroke-linejoin:round">
+          <line
+             x1="0"
+             y1="0"
+             x2="125"
+             y2="0"
+             style="stroke-width:3.00023;stroke-linecap:butt;stroke-linejoin:round;stroke-dasharray:none"
+             id="line182" />
+          <g
+             id="g186"
+             style="stroke-linecap:butt;stroke-linejoin:round">
+            <line
+               x1="0"
+               y1="-7.5"
+               x2="0"
+               y2="0"
+               style="stroke-width:3;stroke-linecap:butt;stroke-linejoin:round"
+               id="line183" />
+            <line
+               x1="37.396488"
+               y1="-7.5"
+               x2="37.396488"
+               y2="0"
+               style="stroke-width:3;stroke-linecap:butt;stroke-linejoin:round"
+               id="line184" />
+            <line
+               x1="74.792976"
+               y1="-7.5"
+               x2="74.792976"
+               y2="0"
+               style="stroke-width:3;stroke-linecap:butt;stroke-linejoin:round"
+               id="line185" />
+            <line
+               x1="112.18946"
+               y1="-7.5"
+               x2="112.18946"
+               y2="0"
+               style="stroke-width:3;stroke-linecap:butt;stroke-linejoin:round"
+               id="line186" />
+          </g>
+          <g
+             class="toyplot-coordinates-Axis-coordinates"
+             style="visibility:hidden;stroke-linecap:butt;stroke-linejoin:round"
+             id="g187">
+            <text
+               x="0"
+               y="12"
+               style="font-weight:normal;font-size:10px;text-anchor:middle;fill:#6e7f8f;fill-opacity:1;stroke:none;stroke-linecap:butt;stroke-linejoin:round"
+               id="text186" />
+          </g>
+        </g>
+      </g>
+    </g>
+    <path
+       style="fill:#f6f5f4;stroke:#66c2a3;stroke-width:1.59443;stroke-linecap:butt;stroke-linejoin:round;stroke-dashoffset:3.1748;stroke-opacity:1"
+       d="m 188.31451,210.88077 h 21.39213"
+       id="path190" />
+    <path
+       style="fill:#f6f5f4;stroke:#fa8c61;stroke-width:1.59443;stroke-linecap:butt;stroke-linejoin:round;stroke-dashoffset:3.1748;stroke-opacity:1"
+       d="m 211.90637,206.76522 h 37.45471"
+       id="path191" />
+    <path
+       style="fill:#f6f5f4;stroke:#8c9eca;stroke-width:1.59443;stroke-linecap:butt;stroke-linejoin:round;stroke-dashoffset:3.1748;stroke-opacity:1"
+       d="m 233.86943,202.09435 h 26.81798"
+       id="path192" />
+    <text
+       xml:space="preserve"
+       style="font-size:4.25181px;line-height:1.25;font-family:sans-serif;word-spacing:0px;stroke-width:0.531473;stroke-linecap:butt;stroke-linejoin:round"
+       x="177.069"
+       y="212.45728"
+       id="text192"><tspan
+         sodipodi:role="line"
+         id="tspan192"
+         style="font-size:4.25181px;stroke-width:0.531473"
+         x="177.069"
+         y="212.45728">148K</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:4.25181px;line-height:1.25;font-family:sans-serif;word-spacing:0px;stroke-width:0.531473;stroke-linecap:butt;stroke-linejoin:round"
+       x="210.38974"
+       y="212.36415"
+       id="text193"><tspan
+         sodipodi:role="line"
+         id="tspan193"
+         style="font-size:4.25181px;stroke-width:0.531473"
+         x="210.38974"
+         y="212.36415">241K</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:4.25181px;line-height:1.25;font-family:sans-serif;word-spacing:0px;stroke-width:0.531473;stroke-linecap:butt;stroke-linejoin:round"
+       x="199.80731"
+       y="207.9959"
+       id="text194"><tspan
+         sodipodi:role="line"
+         id="tspan194"
+         style="font-size:4.25181px;stroke-width:0.531473"
+         x="199.80731"
+         y="207.9959">242K</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:4.25181px;line-height:1.25;font-family:sans-serif;word-spacing:0px;stroke-width:0.531473;stroke-linecap:butt;stroke-linejoin:round"
+       x="250.11887"
+       y="207.9959"
+       id="text195"><tspan
+         sodipodi:role="line"
+         id="tspan195"
+         style="font-size:4.25181px;stroke-width:0.531473"
+         x="250.11887"
+         y="207.9959">400K</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:4.25181px;line-height:1.25;font-family:sans-serif;word-spacing:0px;stroke-width:0.531473;stroke-linecap:butt;stroke-linejoin:round"
+       x="222.31023"
+       y="203.82031"
+       id="text196"><tspan
+         sodipodi:role="line"
+         id="tspan196"
+         style="font-size:4.25181px;stroke-width:0.531473"
+         x="222.31023"
+         y="203.82031">332K</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:4.25181px;line-height:1.25;font-family:sans-serif;word-spacing:0px;stroke-width:0.531473;stroke-linecap:butt;stroke-linejoin:round"
+       x="261.59702"
+       y="203.82031"
+       id="text197"><tspan
+         sodipodi:role="line"
+         id="tspan197"
+         style="font-size:4.25181px;stroke-width:0.531473"
+         x="261.59702"
+         y="203.82031">444K</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:6.76416px;line-height:1.1;font-family:sans-serif;word-spacing:0px;stroke-width:0.391978;stroke-linecap:butt;stroke-linejoin:round"
+       x="116.70211"
+       y="195.64467"
+       id="text198"><tspan
+         sodipodi:role="line"
+         id="tspan198"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:6.76416px;font-family:Arial;-inkscape-font-specification:Arial;stroke-width:0.391978"
+         x="116.70211"
+         y="195.64467">(b) Joint parameter inference (10Mb)</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:5.55876px;line-height:1.1;font-family:Arial;-inkscape-font-specification:Arial;word-spacing:0px;stroke-width:0.119116;stroke-linecap:butt;stroke-linejoin:round"
+       x="148.82051"
+       y="271.86224"
+       id="text199"><tspan
+         sodipodi:role="line"
+         id="tspan199"
+         style="stroke-width:0.119116"
+         x="148.82051"
+         y="271.86224">Effective population size (Ne)</tspan></text>
+    <rect
+       style="fill:#dcdcdc;stroke-width:0.833737;stroke-linecap:round;stroke-linejoin:round"
+       id="rect199"
+       width="100.08922"
+       height="177.69724"
+       x="5.6446767"
+       y="98.585983"
+       ry="1.1578982e-15" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.79375;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none"
+       d="m 22.285008,110.69238 v 147.34151 h 71.90657"
+       id="path199" />
+    <text
+       xml:space="preserve"
+       style="font-size:12.3472px;line-height:1.1;font-family:Arial;-inkscape-font-specification:Arial;word-spacing:0px;stroke-width:0.264583"
+       x="28.668602"
+       y="273.53836"
+       id="text200"><tspan
+         sodipodi:role="line"
+         id="tspan200"
+         style="stroke-width:0.264583"
+         x="28.668602"
+         y="273.53836">abs(z-score)</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.79375;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none"
+       d="M 59.483249,262.83359 V 107.37581"
+       id="path200" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.79375;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none"
+       d="M 53.212844,122.42861 H 65.878583"
+       id="path201" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.79375;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none"
+       d="M 52.911182,130.07362 H 63.976337"
+       id="path202" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.79375;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none"
+       d="M 52.908179,137.54234 H 72.98776"
+       id="path203" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.79375;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none"
+       d="M 53.212844,155.23715 H 65.878583"
+       id="path204" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.79375;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none"
+       d="M 52.911182,162.88216 H 63.976337"
+       id="path205" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.79375;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none"
+       d="M 52.908179,170.35088 H 72.98776"
+       id="path206" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.79375;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none"
+       d="M 53.212844,188.57486 H 65.878583"
+       id="path207" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.79375;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none"
+       d="M 52.911182,196.21987 H 63.976337"
+       id="path208" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.79375;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none"
+       d="M 52.908179,203.68859 H 72.98776"
+       id="path209" />
+  </g>
+</svg>
