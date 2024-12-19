@@ -4027,7 +4027,7 @@ given a parameterized species tree model.
 % a hierarchical model of relationships and demography among populations
 % or species.
 Beyond its applications for species tree and ARG inference, 
-this work provides a framework for establishing neutral 
+this framework provides a foundation for establishing neutral 
 expectation for the spatial turnover of genealogical 
 relationships across a genome.
 % 
@@ -4036,9 +4036,9 @@ deviations caused by model violations, such as introgression,
 or non-neutral processes like selection.
 % 
 With genome-scale data now widely available, gene tree inference
-is commonly employed in sliding windows across genomes to examine
+is commonly performed in sliding windows across a genome to examine
 the spatial distributions of topological relationships, where
-deviations of patterns from a genome-wide mean are interpreted
+deviations of patterns from a genome-wide average are interpreted
 as evidence of selection or introgression
 \citep{martin_exploring_2017,zhang2016genome,li2019recombination}.
 % \citep{martin_exploring_2017}.
@@ -4048,18 +4048,17 @@ as evidence of selection or introgression
 % \citep{zhang2016genome} and in felids \citep{li2019recombination}. 
 % Similarly, 
 % 
-Such conclusions are often based on the genomic interval lengths over 
-which certain topological gene tree patterns are observed, 
+These interpretations are typically based on the lengths of genomic
+intervals over which particular topologies are observed, 
 sometimes in relation to an estimated recombination map.
 % 
-We suggest that such conclusions should be examined critically 
-when made without reference to a null-model-based expectation. 
+We suggest that such conclusions should be critically evaluated
+when made without reference to a null model-based expectation. 
 % 
 Our results show that neutral expectations for waiting distances between 
-genealogy changes can exhibit high variance, and that this variance will
-be spatially auto-correlated, such that a topology or clade may exist over
-long stretches of the genome simply by chance.
-
+genealogy changes can exhibit considerable variance, and that this 
+variance is spatially auto-correlated, meaning that a clade or topology
+may persist over long intervals of a genome simply by chance.
 
 % 
 % Evo Hypotheses; Null model; improving ARG inference.
@@ -4649,21 +4648,31 @@ feedback.
 	\includegraphics[width=0.79\textwidth]{figures/current/FigSY-smc-approx-bias.pdf}	
 	\caption{
 		\textcolor{red}{
-		Error in MS-SMC waiting distance expectations caused by the SMC' approximation.
-		Error was measured as the mean percent difference between expected waiting distances
-		calculated under the MS-SMC and observed waiting distances in stochastic coalescent
-		simulations. Simulations were performed under both the SMC' approximation (black)
-		and the full coalescent with recombination (orange).
-		The difference in error between data simulated under these two models reveals the
-		impact of the SMC' approximation on MS-SMC inference.
-		Estimated tree-change waiting distances exhibit very little error in all datasets.
-		By contrast, estimated topology-change waiting distances exhibit greater
-		error, especially at low Ne values in the species tree model (c), where
-		topology-change events are very unlikely. When additional samples 
-		are added to each lineage in the species tree model (d) the error in MS-SMC 
-		estimates of topology-change waiting distances is greatly reduced.
-		This suggests that errors in the MS-SMC introduced by the SMC' approximation
-		can generally be avoided by sampling >1 genome per lineage in demographic models.}
+		Error in expected waiting distance to tree or topology-change events calculated
+		under the MS-SMC. 
+		Error was measured as (observed - expected) / expected, where observed is the 
+		spanning distance of the first genealogy in a tree sequence until a tree or 
+		topology-change event, and expected is the predicted waiting distance of that
+		genealogy given its embedding in the species tree model.
+		Tree sequences were simulated for different demographic models across a range 
+		of parameter settings for Ne, and under two different ancestry models
+		(SMC'=black; full coalescent with recombination (Hudson)=orange).
+		}
+		% 
+		% Error was measured as the mean percent difference between expected waiting distances
+		% calculated under the MS-SMC and observed waiting distances in stochastic coalescent
+		% simulations. Simulations were performed under both the SMC' approximation (black)
+		% and the full coalescent with recombination (orange).
+		% The difference in error between data simulated under these two models reveals the
+		% impact of the SMC' approximation on MS-SMC inference.
+		% Estimated tree-change waiting distances exhibit very little error in all datasets.
+		% By contrast, estimated topology-change waiting distances exhibit greater
+		% error, especially at low Ne values in the species tree model (c), where
+		% topology-change events are very unlikely. When additional samples 
+		% are added to each lineage in the species tree model (d) the error in MS-SMC 
+		% estimates of topology-change waiting distances is greatly reduced.
+		% This suggests that errors in the MS-SMC introduced by the SMC' approximation
+		% can generally be avoided by sampling >1 genome per lineage in demographic models.}
 		% \textcolor{red}{
 		% \sout{
 		% Error in MS-SMC’ waiting distance expectations caused by the SMC’ approximation. Error
@@ -4941,6 +4950,8 @@ greater error than a single-population model under most scenarios.}
 \textcolor{red}{\sout{and act in opposing 
 directions such that their combined effect is further reduced.}}
 
+
+\subsubsection{Bias associated with the SMC' approximation}
 % MOVED THIS SENTENCE TO OCCUR EARLIER
 %% "exhibit" here because SMC' per se isn't estimating anything
 %Because our waiting distance predictions are built upon assumptions of 
@@ -4950,52 +4961,118 @@ directions such that their combined effect is further reduced.}}
 % could occur among samples deep in time, but contribute no genetic material
 % to samples at the present. 
 To investigate 
-% MODIFIED
 \textcolor{red}{
 the extent to which the SMC' approximation leads to errors in waiting
 distance estimation, 
 \sout{this source of error in our waiting distance predictions,}
+we repeated the simulations from our validation scenario using the SMC'
+model (msprime setting "ancestry\_model=smc\_prime") as opposed to the 
+full coalescent with recombination model ("ancestry\_model=hudson") that
+we used previously.
 }
-we repeated the simulations from our validation scenario using the 
-\emph{msprime} setting ancestry="smc\_prime" to simulate tree sequences 
-while excluding recombination events that would not occur in the SMC' model.
+\sout{\emph{msprime} setting "ancestry\_model=smc\_prime" to simulate tree sequences 
+that only retain recombination events that would occur in the SMC' model.
+}
 % 
 \textcolor{red}{
-Our validation analysis showed that predicted waiting distances estimated under 
-the MS-SMC align very closely with results of simulations, even when the simulations
-are performed under the full coalescent with recombination model
-(Fig.~\ref{fig:fig-validation}).
-The percent error in these analyses was measured as 100 $\times$ (simulated waiting distance
-- expected waiting distance) / expected waiting distance. Regardless
-of whether data were simulated under the full or SMC' model, the percent error
-in waiting distance estimations rarely exceeded 2\% (Fig.~\ref{fig:figS-bias-smc}).
+We expect that waiting distances in simulations under the SMC' will match 
+our analytical predictions more closely than the waiting distances in 
+simulations under the full coalescent with recombination, since our MS-SMC
+model relies on the assumptions of the SMC'.
 }
+% % 
+For each simulated tree sequence we calculated the expected waiting distance to 
+a tree or topology-change event given the starting genealogy and species tree, 
+and compared this to the observed waiting distance to each event type for the
+starting genealogy in the simulation.
+% 
+We measured the percent error for each genealogy
+\sout{The percent error in these analyses was measured}
+as 100 $\times$ (simulated waiting distance - expected waiting distance) / expected waiting distance.
+This was repeated across 100K tree sequences for each simulation setting, 
+and the mean and standard error were calculated.
+
+% 
+The error in our analytical predictions was very low across all demographic
+models and parameter settings tested, regardless of whether data were simulated
+under the SMC' approximation or not
+(Fig.~\ref{fig:figS-bias-smc}). 
+% 
+The mean percent error in estimated tree-change waiting distances 
+rarely exceeded 1\%, while the error in estimated topology-change 
+waiting distances varied depending on the demographic and simulation 
+models.
+% , and exhibited very little difference whether
+% compared to the SMC' or full coalescent with recombination data.
+% 
+The error in estimated topology-change waiting distances was always
+$<$5\% for data simulated under the SMC', and only exceeded 5\% in
+one scenario tested for simulations under the full coalescent with
+recombination. This scenario represents an extreme case, in the form of
+a "Phylogeny Model" with only a single sample per species, and very low 
+Ne, such that genealogical discordance is very low. This leads to very 
+long expected waiting distances between topology events, and very high 
+variance in the simulated outcomes (Fig.~\ref{fig:figS-bias-smc}c). 
+By simply increasing the number of samples per lineage, such that 
+topology-change events can occur not only between lineages, but also 
+within them, this error is reduced to approximately 2\% for the full 
+coalescent with recombination, and nearly zero for SMC' data 
+(Fig.~\ref{fig:figS-bias-smc}d). 
+
+
+Although tree-change waiting distances did not exhibit consistent errors,
+the error in estimated topology-change waiting distances, when present,
+was consistently in the direction of being under-estimated. The fact that
+this bias is not observed in the distance to tree-change events suggests
+that the effect of the SMC' approximation has little effect on the 
+calculations for an individual genealogy, but that these effects may 
+compound when applied to multiple tree-change events that occur between
+topology-change events. In other words, the SMC' introduces little bias
+to waiting distance estimations by itself, but can interact with a second
+source of bias -- the inhomogeneity of trees between topology-change events,
+discussed below -- to cause a more significant bias that only affects
+estimations of topology-change waiting distances.
+
+
+% closely with the results of simulationsn
+% \sout{
+% showed that predicted waiting distances estimated under 
+% the MS-SMC align very closely with results of simulations, even when the simulations
+% are performed under the full coalescent with recombination model}
+% (Fig.~\ref{fig:fig-validation}).
+
+% Regardless
+% of whether data were simulated under the full or SMC' model, the percent error
+% in waiting distance estimations rarely exceeded 2\% (Fig.~\ref{fig:figS-bias-smc}).
+% }
 % 
 % Less error was observed for tree-change waiting
-\textcolor{red}{
-The error is consistently lower for tree-change than for topology-change 
-distances, and only exceeded 5\% for topology-change waiting distances 
-calculated in the "Phylogeny Model" at low $N_e$ values
-(Fig.~\ref{fig:figS-bias-smc}c), where it reached up to 
-}
-% 
-\textcolor{red}{
-The error rate observed in this scenario is interesting in three respects: 
-(1) the difference between the full and SMC' data; (2) the effect of Ne;
-and (3) the direction of the bias. First, because both the full and SMC' data
-show an elevated error at the lowest Ne value, we believe that some but not 
-all of this error rate is actually caused by the SMC' approximation. This
-raises the question, why is the error greater at low Ne values? We believe
-that this is a consequence of a greater proportion of recombination events
-that 
-}
+% \textcolor{red}{
+% The error is consistently lower for tree-change than for topology-change 
+% distances, and only exceeded 5\% for topology-change waiting distances 
+% calculated in the "Phylogeny Model" at low $N_e$ values
+% (Fig.~\ref{fig:figS-bias-smc}c), a scenario with very little genealogical
+% discordance.
+% }
 
 
-than for topology-change waiting distances. The scenario with the
-greatest error involved topology-change weighting distances calculated in the
-"Phylogeny model" at very low Ne values (Fig.~\ref{fig:figS-bias-smc}c). Here 
-the error calculated for data simulated under the full model greatly exceeds 
-that for the SMC' model, although both increase at low Ne. 
+% \textcolor{red}{
+% The error rate observed in the Phylogeny Model scenario is interesting
+% in three respects: 
+% (1) the difference between the full and SMC' data; (2) the effect of Ne;
+% and (3) the direction of the bias. First, because both the full and SMC' data
+% show an elevated error at the lowest Ne value, we believe that some but not 
+% all of this error rate is actually caused by the SMC' approximation. This
+% raises the question, why is the error greater at low Ne values? We believe
+% that this is a consequence of a greater proportion of recombination events
+% that 
+% }
+
+% than for topology-change waiting distances. The scenario with the
+% greatest error involved topology-change weighting distances calculated in the
+% "Phylogeny model" at very low Ne values (Fig.~\ref{fig:figS-bias-smc}c). Here 
+% the error calculated for data simulated under the full model greatly exceeds 
+% that for the SMC' model, although both increase at low Ne. 
 
 % REMOVED
 % \textcolor{red}{
@@ -5004,29 +5081,29 @@ that for the SMC' model, although both increase at low Ne.
 % recombination (Fig.~\ref{fig:figS-bias-smc}).
 % }}
 % When quantified, 
-As expected, we observe even less error 
-between our predictions and coalescent simulations when data are simulated
-under the SMC' model. 
+% As expected, we observe even less error 
+% between our predictions and coalescent simulations when data are simulated
+% under the SMC' model. 
 % MODIFIED PERCANTAGE ERROR W/ NEW CALCULATION
 % Whereas the error rate is generally below 
 % \textcolor{red}{2\%}
 % REAPLACED
 % 5\% 
 % 
-when data are simulated under the full coalescent
-with recombination model 
-% REPLACED
-\textcolor{red}{(only exceeding this in some very low Ne scenarios)}
-% (only exceeding this at the lowest
-% $N_e$ values examined) 
-mean error rates do not exceed 5\% in any 
-models for data simulated under the SMC' assumptions. 
-This shows that the SMC' assumption does contribute a relatively small error 
-to our waiting distance predictions, especially at low $N_e$ values,
-where it can lead to over-estimated waiting distances.
+% when data are simulated under the full coalescent
+% with recombination model 
+% % REPLACED
+% \textcolor{red}{(only exceeding this in some very low Ne scenarios)}
+% % (only exceeding this at the lowest
+% % $N_e$ values examined) 
+% mean error rates do not exceed 5\% in any 
+% models for data simulated under the SMC' assumptions. 
+% This shows that the SMC' assumption does contribute a relatively small error 
+% to our waiting distance predictions, especially at low $N_e$ values,
+% where it can lead to over-estimated waiting distances.
 
-% WHAT KIND OF SMC' bias did we observe
-\textcolor{red}{T}
+% % WHAT KIND OF SMC' bias did we observe
+% \textcolor{red}{T}
 % 
 % HOW DO WE EXPLAIN THIS
 %
@@ -5034,6 +5111,9 @@ where it can lead to over-estimated waiting distances.
 % WHAT KING OF TOPO-CHANGE INHOMOGENEITY APPROX BIAS DO 
 %
 % REMOVE THIS\
+
+\subsubsection{Bias associated with inhomogeneity between topology-change events}
+Work in progress...
 \textcolor{red}{\sout{
 The SMC' approximation to the full coalescent with recombination is expected 
 to deviate increasingly far from the full model that it is approximating 
