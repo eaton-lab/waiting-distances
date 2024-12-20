@@ -4648,15 +4648,24 @@ feedback.
 	\includegraphics[width=0.79\textwidth]{figures/current/FigSY-smc-approx-bias.pdf}	
 	\caption{
 		\textcolor{red}{
-		Error in expected waiting distance to tree or topology-change events calculated
-		under the MS-SMC. 
+		Error in the expected waiting distances to tree or topology-change events 
+		calculated under the MS-SMC.
 		Error was measured as (observed - expected) / expected, where observed is the 
-		spanning distance of the first genealogy in a tree sequence until a tree or 
-		topology-change event, and expected is the predicted waiting distance of that
-		genealogy given its embedding in the species tree model.
+		spanning distance of the first genealogy in a tree sequence until the next 
+		tree or topology-change event, and expected is the predicted waiting distance
+		for the first genealogy until each event type given its embedding in the 
+		species tree model.
 		Tree sequences were simulated for different demographic models across a range 
-		of parameter settings for Ne, and under two different ancestry models
+		of parameter settings for $N_e$, and under two different ancestry models
 		(SMC'=black; full coalescent with recombination (Hudson)=orange).
+		(a-d) Estimated tree-change waiting distances exhibit very little error across
+		all models and parameters tested. Estimated topology-change waiting distances
+		exhibit elevated error at low $N_e$ values in highly structured models, when
+		the probability of a topology-change event is very low.
+		(c) The error between analytical predictions and simulated data was greatest 
+		when the data were simulated under the full coalescent with recombination. The
+		(d) When more genomes are sampled per lineage the magnitude of error is greatly
+		reduced.
 		}
 		% 
 		% Error was measured as the mean percent difference between expected waiting distances
@@ -4690,24 +4699,51 @@ feedback.
 
 \begin{figure}[p]
 	\centering
-	\includegraphics[width=0.99\textwidth]{figures/current/FigS-bias-fold-topo-first.pdf}
+	\includegraphics[width=0.99\textwidth]{figures/current/FigS-bias-fold-topo-first-2.pdf}
 	\caption{
 		\textcolor{red}{
-		...
+		Variation between the first and second genealogies within topology-change 
+		intervals, and its impact on estimated waiting distances.
+		Results are shown for 1K tree sequences simulated across a range of 
+		demographic models, $N_e$ values, and numbers of genomes sampled per lineage.
+		% 
+		For each scenario, plots show the distribution of fold-change differences
+		between the first and second genealogies in summed edge lengths (L(G)),
+		the probability of a topology change (P(topo)), and the product of these
+		metrics. The variance is shown above each distribution.
+		% 
+		% (a-c) Fold-change difference between the first and second genealogies within
+		% a topology-change interval for a single population model.
+		(a-c) Single population demographic models consistently show high variance
+		in the fold-change of each individual metric, but low variance in the
+		fold-change of the product.
+		(d-i) The two-population and phylogeny models typically exhibit less 
+		variance, except in the lowest $N_e$ scenarios (e.g., red rectangle),
+		where the product sometimes exhibits higher variance in fold-change.
+		% more strongly with $N_e$ and the number of genomes sampled per lineage.
+		% (g-i) The phylogeny model exhibits the least variance in L(G) and P(topo), 
+		% and typically very low variance in their product. However, in the scenario
+		% at the lowest $N_e$ value and number of samples per lineage (red rectangle),
+		% the variance in the fold-change of their product is highest. 
+		This suggests that the potential for tree-change events occurring within a 
+		topology-change interval to bias estimates of the waiting distance to a
+		topology-change, is only a concern in scenarios where topology-change events
+		are very unlikely. (e,g,h,i) Sampling more genomes per lineage greatly 
+		reduces this bias.
 		}
-		% OLD FIGURE LEGEND
-		Variance in the fold-change for components affecting the expected waiting 
-		distance to a topology-change event between the starting tree and a subsequent
-		tree which has experienced a tree-change event, changing the coalescent times
-		but not the topology. The sum of genealogical edge lengths (L(G)), the 
-		P(topology-change | S,G), and the product of these two terms are shown for
-		three different demographic models and
-		\textcolor{red}{\sout{with} at} different constant $N_e$ values, 
-		and numbers of samples per lineage.
-		When the fold-change in the product exhibits low variance around 1 the 
-		MS-SMC approximation for the expected waiting distance until a topology-change 
-		is expected to be more accurate. Larger effective population sizes and 
-		numbers of samples per lineage yield lower variance in the product.
+		% % OLD FIGURE LEGEND
+		% Variance in the fold-change for components affecting the expected waiting 
+		% distance to a topology-change event between the starting tree and a subsequent
+		% tree which has experienced a tree-change event, changing the coalescent times
+		% but not the topology. The sum of genealogical edge lengths (L(G)), the 
+		% P(topology-change | S,G), and the product of these two terms are shown for
+		% three different demographic models and
+		% \textcolor{red}{\sout{with} at} different constant $N_e$ values, 
+		% and numbers of samples per lineage.
+		% When the fold-change in the product exhibits low variance around 1 the 
+		% MS-SMC approximation for the expected waiting distance until a topology-change 
+		% is expected to be more accurate. Larger effective population sizes and 
+		% numbers of samples per lineage yield lower variance in the product.
 	}
      \label{fig:figS-bias-topo-first}
 \end{figure}
@@ -4715,24 +4751,45 @@ feedback.
 
 \begin{figure}[p]
 	\centering
-	\includegraphics[width=0.99\textwidth]{figures/current/FigS-bias-fold-topo-last.pdf}
+	\includegraphics[width=0.99\textwidth]{figures/current/FigS-bias-fold-topo-last-2.pdf}
 	\caption{
 		\textcolor{red}{
-		...
+		Variation between the first and last genealogies within topology-change 
+		intervals, and its impact on estimated waiting distances.
+		Results are shown for 1K tree sequences simulated across a range of 
+		demographic models, $N_e$ values, and numbers of genomes sampled per lineage.
+		% 
+		For each scenario, plots show the distribution of fold-change differences
+		between the first and last genealogies in summed edge lengths (L(G)),
+		the probability of a topology change (P(topo)), and the product of these
+		metrics. The variance is shown above each distribution.
+		% 
+		(a-c) Single population demographic models consistently show high variance
+		in the fold-change of each individual metric, but low variance in the
+		fold-change of the product.
+		(d-i) The two-population and phylogeny models typically exhibit less 
+		variance, except in the lowest $N_e$ scenarios (e.g., red rectangle),
+		where the product sometimes exhibits higher variance in fold-change.
+		% 
+		This suggests that the potential for tree-change events occurring within a 
+		topology-change interval to bias estimates of the waiting distance to a
+		topology-change, is only a concern in scenarios where topology-change events
+		are very unlikely. (e,g,h,i) Sampling more genomes per lineage greatly 
+		reduces this bias.		
 		}
 		% OLD FIGURE LEGEND
-		Variance in the fold-change for components affecting the expected waiting 
-		distance to a topology-change event between the starting tree and a subsequent
-		tree which has experienced a tree-change event, changing the coalescent times
-		but not the topology. The sum of genealogical edge lengths (L(G)), the 
-		P(topology-change | S,G), and the product of these two terms are shown for
-		three different demographic models and
-		\textcolor{red}{\sout{with} at} different constant $N_e$ values, 
-		and numbers of samples per lineage.
-		When the fold-change in the product exhibits low variance around 1 the 
-		MS-SMC approximation for the expected waiting distance until a topology-change 
-		is expected to be more accurate. Larger effective population sizes and 
-		numbers of samples per lineage yield lower variance in the product.
+		% Variance in the fold-change for components affecting the expected waiting 
+		% distance to a topology-change event between the starting tree and a subsequent
+		% tree which has experienced a tree-change event, changing the coalescent times
+		% but not the topology. The sum of genealogical edge lengths (L(G)), the 
+		% P(topology-change | S,G), and the product of these two terms are shown for
+		% three different demographic models and
+		% \textcolor{red}{\sout{with} at} different constant $N_e$ values, 
+		% and numbers of samples per lineage.
+		% When the fold-change in the product exhibits low variance around 1 the 
+		% MS-SMC approximation for the expected waiting distance until a topology-change 
+		% is expected to be more accurate. Larger effective population sizes and 
+		% numbers of samples per lineage yield lower variance in the product.
 	}
      \label{fig:figS-bias-topo-last}
 \end{figure}
@@ -4980,6 +5037,27 @@ our analytical predictions more closely than the waiting distances in
 simulations under the full coalescent with recombination, since our MS-SMC
 model relies on the assumptions of the SMC'.
 }
+% \textcolor{red}{\sout{
+% The SMC' approximation to the full coalescent with recombination is expected 
+% to deviate increasingly far from the full model that it is approximating 
+% as the number of recombination events that the SMC' does not model 
+% (i.e., those that are among ancestors who do not contribute genetic 
+% material to sampled descendants) increases. 
+% }}
+% ADDED
+% REMOVED THIS
+% By not modeling this subset of recombination events, the SMC' will tend to 
+% exhibit greater waiting distances between tree or topology change events than the full model. 
+% 
+% ADDED THIS
+% The SMC' approximation to the full coalescent with recombination performs
+% more efficiently by not modeling the ancestry of samples that do not contribute
+% genetic material to the sampled descendants. Therefore, we expect that when
+% a greater proportion of the history of a sample does in fact contribute
+% genetic material to the descendants, such as in low Ne scenarios, results
+% from the SMC' approximation will deviate more significantly from the full
+% model. 
+% the sample includes a greater proportion
 % % 
 For each simulated tree sequence we calculated the expected waiting distance to 
 a tree or topology-change event given the starting genealogy and species tree, 
@@ -5023,37 +5101,24 @@ coalescent with recombination, and nearly zero for SMC' data
 Although tree-change waiting distances did not exhibit consistent errors,
 the error in estimated topology-change waiting distances, when present,
 was consistently in the direction of being under-estimated. The fact that
-this bias is not observed in the distance to tree-change events suggests
-that the effect of the SMC' approximation has little effect on the 
-calculations for an individual genealogy, but that these effects may 
-compound when applied to multiple tree-change events that occur between
-topology-change events. In other words, the SMC' introduces little bias
-to waiting distance estimations by itself, but can interact with a second
-source of bias -- the inhomogeneity of trees between topology-change events,
-discussed below -- to cause a more significant bias that only affects
-estimations of topology-change waiting distances.
-
-
-% closely with the results of simulationsn
-% \sout{
-% showed that predicted waiting distances estimated under 
-% the MS-SMC align very closely with results of simulations, even when the simulations
-% are performed under the full coalescent with recombination model}
-% (Fig.~\ref{fig:fig-validation}).
-
-% Regardless
-% of whether data were simulated under the full or SMC' model, the percent error
-% in waiting distance estimations rarely exceeded 2\% (Fig.~\ref{fig:figS-bias-smc}).
-% }
+this bias is not observed in the distance to tree-change events, but only
+for topology-change events, suggests that the SMC' approximation has
+little effect on the accuracy of estimation for an individual genealogy,
+but can lead to more detectable errors when compounded over many tree-change
+events occurring between a topology-change event.
 % 
-% Less error was observed for tree-change waiting
-% \textcolor{red}{
-% The error is consistently lower for tree-change than for topology-change 
-% distances, and only exceeded 5\% for topology-change waiting distances 
-% calculated in the "Phylogeny Model" at low $N_e$ values
-% (Fig.~\ref{fig:figS-bias-smc}c), a scenario with very little genealogical
-% discordance.
-% }
+In other words, the SMC' approximation does not introduce a significant
+bias on its own, but does contribute to increased error in topology-change 
+change waiting distances through its interaction with a second source of error,
+the inhomogeneity of genealogies between topology-change events (examined
+further below). 
+% 
+We expect that the reason this bias tends to occur in the direction
+of under-estimated waiting distances to a topology-change is because 
+the intervening tree-change events can cause the genealogy to enter a 
+space where the probability of a topology-change is much less likely 
+than it was on the tree at the start of the interval. 
+% 
 
 
 % \textcolor{red}{
@@ -5113,81 +5178,97 @@ estimations of topology-change waiting distances.
 % REMOVE THIS\
 
 \subsubsection{Bias associated with inhomogeneity between topology-change events}
-Work in progress...
-\textcolor{red}{\sout{
-The SMC' approximation to the full coalescent with recombination is expected 
-to deviate increasingly far from the full model that it is approximating 
-as the number of recombination events that the SMC' does not model 
-(i.e., those that are among ancestors who do not contribute genetic 
-material to sampled descendants) increases. 
-}}
-% REMOVED THIS
-By not modeling this subset of recombination events, the SMC' will tend to 
-exhibit greater waiting distances between tree or topology change events than the full model. 
+
+To investigate the impact of genealogical variation within a topology-change interval
+on the accuracy of its estimated waiting distance, we measured how much genealogies vary
+within these intervals, and how much this impacts probabilities of topology-change.
 % 
-% ADDED THIS
-The SMC' approximation to the full coalescent with recombination performs
-more efficiently by not modeling the ancestry of samples that do not contribute
-genetic material to the sampled descendants. Therefore, we expect that when
-a greater proportion of the history of a sample does in fact contribute
-genetic material to the descendants, such as in low Ne scenarios, results
-from the SMC' approximation will deviate more significantly from the full
-model. 
-
-the sample includes a greater proportion
-% ADDED
-We predicted that the SMC' would tend to exhibit greater waiting distances
-until a tree or topology change event than the full model, and that this 
-would be increased at low $N_e$ values, where 
-
-. However, we
-did not observe a significant directional error. Regardless of the demographic model examined, and 
-its parameters, the error in tree-change waiting distances was not 
-significantly different when the data were simulated under the SMC' versus
-full coalescent with recombination models (Fig.~\ref{fig:figS-bias-smc}a-d).
-Notably, we do see a significantly greater error arise ...
+Because topology-change waiting distances are calculated based on the genealogy
+at the start of an interval, we compared the first genealogy to both the second
+and last genealogy in each interval.
+% 
+For each tree we calculated the genealogy length ($L(\mathcal{G})$), 
+the probability of a topology-change given $\mathcal{G}$ and $\mathcal{S}$,
+and the product of these two metrics, which equates to the waiting distance 
+rate parameter (equations 7, 8, 10).
+% 
+\citet{deng_distribution_2021} noted that for a single population with constant $N_e$
+there is an inverse relationship between genealogy length and the probability of a 
+topology change, such that their product exhibits little variation even if genealogies
+vary across an interval.
+% 
+It was not clear whether this is also true for an MSC model, since the embedding of
+a genealogy into the species tree affects the probability of a topology change in 
+addition to the edge lengths of the genealogy. 
+% 
 
 
+Therefore, we examined genealogical variation across three demographic models, 
+at three different values for $N_e$, and for different numbers of genomes sampled
+per population. We simulated 1,000 tree sequences for each scenario using the 
+coalescent with recombination ancestry model. 
+% 
+For each tree sequence we extracted information from one topology-change interval. 
+To select the interval we advanced to the first interval after the first topology-change 
+event that included at least one tree-change event within it.
+For this interval we measured $L(\mathcal{G})$, 
+$\mathbb{P}(\textrm{topology-change}| \mathcal{S}, \mathcal{G})$ and their
+product, for the first genealogy, second genealogy, and last genealogy in the interval.
+We measured the fold-change for each variable between the first and second 
+genealogies, and between the first and last genealogies.
+% 
 
-We also investigated whether inhomogeneity in the probability of topology 
-changes during the waiting distance between topology-change events 
-causes bias. 
-% caused by tree-change events. 
-For this, we employed a similar approach to \citet{deng_distribution_2021}, 
-who examined the fold-difference in parameters affecting waiting distance
-estimations between a starting tree and a subsequent genealogy that 
-experienced a tree-change but not a topology-change. 
-% In the case of MSC models, because this probability is a product 
-% of 
-% is a product of both L($\mathcal{G}$) and 
-% $\mathbb{P}(\text{topology-change} | \mathcal{S}, \mathcal{G})$,
-% We examined the fold difference in the genealogy length, the probability
-% of topology change, and 
-% these parameters separately, and in 
-Because MSC model parameters affect both the length of genealogies and
-the probability of topology-change, we also examined variation in each of these 
-parameters at different constant $N_e$ values of 50K, 100K, or 500K. 
-For each setting we examined one topology-change event from 1K tree sequences. 
 
-In a single population model with constant $N_e$, \citet{deng_distribution_2021}
-previously showed that the bias in topology-change waiting distances is negligible
-because of an inverse relationship between the length of a genealogy
-and the probability of a topology change. Our analysis confirms this result,
-showing that variance in the product of these two parameters, 
-which equates to the waiting distance rate parameter (equations 7, 8, 10), 
-is very low (Fig.~\ref{fig:figS-bias-topo}a) and becomes smaller as more 
-gene copies are sampled (Fig.~\ref{fig:figS-bias-topo}b-c). In the 2-population
-and 8-population MSC-type models we find the same result. Here, constraints 
-imposed by population structure lead to less variance in both the 
-length of genealogies and probabilities of topology-change
-(Fig.~\ref{fig:figS-bias-topo}d-i). When $N_e$ is low, there is very 
-little variation between subsequent genealogies, and thus the waiting 
-distance expectation exhibits little heterogeneity. When $N_e$ is high,
-there is little population structure, and so the waiting distance 
-expectation remains relatively constant for the same reason as in a 
-single population model. Overall, MSC models do not appear to exhibit a greater
-bias from this source than single population models.
+Across all simulations our results confirm and extend the conclusions of 
+\citet{deng_distribution_2021}, showing that although $L(\mathcal{G})$ 
+and $\mathbb{P}$ can both exhibit high variance in fold-change between the 
+first and second genealogies in an interval (Fig.~\ref{fig:figS-bias-topo-first}), 
+and between the first and last genealogies in an interval (Fig.~\ref{fig:figS-bias-topo-last}),
+the product of these two metrics almost always exhibits lower variance in
+fold-change, and is centered on one.
+% 
+In a single population model the variance in the fold-change of the product of
+these two metrics was approximately 0.02, and did not vary with $N_e$, or 
+depending on whether we compared the first and second, or first and last
+trees in an interval. The variance in the product was reduced by nearly 
+an order of magnitude when the number of genomes sampled was increased 
+(Fig.~\ref{fig:figS-bias-topo-first}a-c,\ref{fig:figS-bias-topo-last}a-c).
+We can conclude that genealogical heterogeneity has a very small effect
+on estimated waiting distances to topology-changes in a single population model.
 
+% 
+In the two-population and phylogeny models the variance in the fold change of 
+$L(\mathcal{G})$, $\mathbb{P}$, and their product was strongly affected by the
+model $N_e$, and consistently smaller between the first and second genealogy, 
+than between the first and last genealogy in an interval.
+(Fig.~\ref{fig:figS-bias-topo-first}d-i,\ref{fig:figS-bias-topo-last}d-i). 
+% 
+Despite this, the variance in fold-change of the product was of a similar
+magnitude or lower than in the single-population model across nearly 
+all of the multi-species scenarios tested.
+% 
+The only exception is the extreme case noted previously, representing the
+Phylogeny Model with only a single genome sampled per tip, examined at the 
+lowest $N_e$ value (50K), where the probability of a topology-change is 
+very low because the probability of coalescence within each species tree
+interval is very high
+(Fig.~\ref{fig:figS-bias-topo-first}g,\ref{fig:figS-bias-topo-last}g).
+% 
+At only slightly higher values of $N_e$ (100K) the variance in the fold-change
+difference between trees is of a similar magnitude, or lower, than that
+seen in the single population model. 
+% 
+Thus, we can conclude that genealogical heterogeneity has only a small 
+effect on estimated waiting distances to topology-changes in most 
+multi-species coalescent models, but that care should be taken when 
+interpreting MS-SMC estimated waiting distances to topology-changes estimated
+on datasets that lack genealogical discordance. 
+% 
+As noted previously, simply increasing the number of sampled genomes
+per lineage, to a number that allows topology-change events to occur both
+within and between lineages, reduces the variation in topology-change 
+probabilities across within intervals to negligible values
+(Fig.~\ref{fig:figS-bias-topo-first}i,\ref{fig:figS-bias-topo-last}i).
 
 
 
