@@ -113,8 +113,8 @@ relationships among multiple genomes vary spatially across different genomic
 regions. 
 \textcolor{red}{
 \sout{Expectations for the amount of g}
-G}
-enealogical variation among unlinked 
+}
+Genealogical variation among unlinked 
 (uncorrelated) genomic regions is well described for either a single 
 population (coalescent) or multiple structured populations (multispecies coalescent).
 However, the expected similarity among genealogies at linked regions of a 
@@ -140,7 +140,7 @@ datasets, and provide a new likelihood framework for linking demographic models
 with local ancestry inference across genomes.
 }
 We implemented our model in the Python package \emph{ipcoal} and validated its
-accuracy against against stochastic coalescent simulations. Using a novel
+accuracy against stochastic coalescent simulations. Using a novel
 likelihood framework we show that tree and topology-change waiting distances
 can be used to fit species tree model parameters, demonstrating an application
 of our model for developing new methods for genome-wide phylogenetic inference.
@@ -730,9 +730,9 @@ sizes.
 In addition, we have implemented a novel likelihood framework for inferring 
 parameters of an MSC model from observed waiting distances between genealogies.
 }
-In addition, we present a novel application of our MS-SMC model, leveraging
-a likelihood framework to estimate MSC model parameters based on waiting
-distances between tree or topology change events.
+In addition, we introduce a novel application of our MS-SMC model, utilizing
+a likelihood-based framework to estimate MSC model parameters from the waiting
+distances between tree-change and topology-change events.
 }
 % likelihood implementation that makes
 % use of the probability density of waiting distances to fit species tree
@@ -806,26 +806,106 @@ of samples.
 % number of samples increases
 % in ancestral population intervals when descendant branch intervals are merged.
 
-Based on this generative framework for sampling genealogies, 
+
+% 1. G probabilities can be calculated.
+% 2. The probability of a G is calculated from its coalescent times.
+% 3. 
+Based on this generative framework for sampling genealogies 
 \textcolor{red}{
-\sout{likelihood solutions}
-likelihood-based solutions
-} 
-have been developed to fit coalescent model parameters, such as 
-$N_e$ in single population models \citep{kingman1982coalescent},
-or multiple $N_e$ and $W$ parameters in MSC models \citep{rannala2003bayes}, 
-based on inferred coalescence times. 
-In the latter framework, each species tree branch interval is treated independently, 
-such that the likelihood of a genealogy embedding is calculated from the joint
-probability of observing each distribution of coalescent waiting times within
-each species tree branch interval. A key feature of these equations is that 
-when $k$ lineages are present, we can use the coalescent rate parameters 
-($\lambda_k$)
-% \hl{the inverse of} equation 1 as a rate parameter ($\lambda$)
-to calculate the likelihood of observed waiting times between coalescent 
-events ($t_k$) in each population interval from 
-\textcolor{red}{\sout{an} the}
-exponential probability density function:
+under a demographic model, 
+the probabilities of observed genealogies can also be calculated under 
+a demographic model.
+% 
+The probability of a genealogy embedded in a single population model is
+the product of the probability densities of each waiting time between 
+coalescent events \citep{kingman1982coalescent}. 
+% 
+The process is similar for a genealogy embedded in a species tree model, but
+requires evaluating the probabilities of coalescent waiting times within each
+species tree interval separately -- 
+including the probability that all gene copies do not coalesce before the 
+end of the interval \citep{rannala2003bayes}.
+% 
+A key feature of this framework is that for each coalescent interval 
+with $k$ gene copies and effective population size $N_e$, we can 
+calculate the coalescent rate ($\lambda_k$) and use the exponential probability
+density function (Equation 2) to evaluate the likelihood of the 
+demographic model parameters based on the distributions of coalescent 
+times in one or more genealogies.
+% 
+% The  of model parameters, such as $N_e$ for a single population model, 
+% or multiple $N_e$ and $W$ parameters for a species tree model, that jointly
+% maximize the likelihood represent the best fit to the data.
+}
+
+% waiting probabilities of waiting 
+
+% , whereas
+% the probability of a genealogy under a species tree model requires 
+% calculating the probability of coalescent events within each species
+% tree interval separately, as well as the probability that gene copies
+% do not coalesce before the end of an interval
+% \citep{kingman1982coalescent, rannala2003bayes}.
+% % 
+% Because the waiting times between coalescent events are exponentially
+% distributed, likelihood-based methods have been developed for estimating
+% demographic model parameters, such as $N_e$ and $W$, by evaluating 
+% the probabilities of genealogies calculated from the distributions of
+% their coalescent times \citep{kingman1982coalescent, rannala2003bayes}.
+% % 
+% A key feature is that for each interval between coalescent events 
+% we can calculate the coalescent rate parameter ($\lambda_k$) based 
+% on the current $k$ and $N_e$, and use the the exponential probability
+% density function (Equation 2) to evaluate the likelihood of the model
+% parameters given the distribution of waiting times.
+% }
+% For a genealogy embedded in a species tree this process is similar, 
+% but requires evaluating the probability of each coalescent event within
+% each parameterized species tree interval, as well as the probability 
+% that gene copies do not coalesce in an interval
+% \citep{rannala2003bayes}.
+% 
+%  given the (lamb) to calculate the 
+% likelihood of 
+% observed waiting times between coalescent events (t k ) in
+% each population interval from an the exponential probability density function:
+% The waiting times between coalescent events
+% % 
+% In a single population model with constant $N_e$, the genealogy 
+% probability is calculated as the product of the probabilities of
+% each waiting distance between coalescent events. 
+
+% probability of
+% a genealogy is the product of the probabilities of each coalescent event
+% \citep{kingman1982coalescent}. For a species tree this process is
+% similar, but involves calculating the probability of coalescent events
+% within each species tree interval separately, in addition to the probability
+% that they do not coalesce before the end of an interval
+% \citep{rannala2003bayes,mirarab_multispecies_2021}.
+% A likelihood function can then be used find the model parameters that
+% maximize the likelihood, to estimate $N_e$ for a single population model,
+% or jointly estimate $N_e$ and $W$ parameters of a species tree model.
+% 
+% \textcolor{red}{
+% \sout{likelihood solutions}
+% likelihood-based solutions
+% } 
+% have been developed to fit coalescent model parameters, such as 
+% $N_e$ in single population models \citep{kingman1982coalescent},
+% or multiple $N_e$ and $W$ parameters in MSC models \citep{rannala2003bayes,mirarab_multispecies_2021}, 
+% based on inferred coalescence times. 
+% In the latter framework, each species tree branch interval is treated independently, 
+% such that the likelihood of a genealogy embedding is calculated from the joint
+% probability of observing each distribution of coalescent waiting times within
+% each species tree branch interval. A key feature of these equations is that 
+% when $k$ lineages are present, we can use the coalescent rate parameters 
+% ($\lambda_k$)
+% % \hl{the inverse of} equation 1 as a rate parameter ($\lambda$)
+% to calculate the \textcolor{red}{probability}\sout{likelihood}}
+% of observed waiting times between coalescent 
+% events ($t_k$) in each population interval from 
+% \textcolor{red}{\sout{an} the}
+% exponential probability density function:
 % for the expected rate
 % of coalescence
 % between when $k$ and $k$ - 1 lineages exist. 
@@ -1942,9 +2022,15 @@ This software includes functions that accept a parameterized MSC model and
 initial genealogy as input and return the probabilities of different 
 recombination event types. These probabilities can be calculated for specific 
 branches and times, for entire branches, or for entire genealogies. 
-Functions are also available to calculate expected waiting distances 
-and the likelihoods of observed waiting distances in an ARG 
-an exponential probability density parameterized by the MS-SMC.
+Functions are also available to calculate the expected waiting distances 
+for a genealogy embedded in an MSC model,
+and the likelihood 
+\textcolor{red}{
+of MSC model parameters given a distribution of waiting distances 
+between tree-change or topology-change events in an ARG.
+}
+% of observed waiting distances in an ARG 
+% an exponential probability density parameterized by the MS-SMC.
 %Tree-based operations are performed with 
 Our implementation is built upon \emph{toytree} \citep{eaton_toytree_2020}, 
 \emph{scipy} \citep{2020SciPy-NMeth}, and 
@@ -1970,30 +2056,71 @@ at \url{https://github.com/eaton-lab/waiting-distances}.
 	\centering
 	\includegraphics[width=0.99\textwidth]{figures/current/Fig4-embedding-with-probabilities.pdf}
 	\caption{
-		\textcolor{red}{ \sout{
-		The MS-SMC models the probability of different recombination outcomes 
-		given a genealogy embedded in a multispecies coalescent (MSC) model.
-		(a) A parameterized MSC model is composed of multiple discrete population
-		intervals with associated effective population sizes ($N_e$) and divergence 
-		times ($W$). Given an embedded genealogy, each interval can be further divided 
-		at coalescence events (e.g., $t_9$) into a series of smaller intervals
-		with constant coalescent rates. The parameters of these intervals make up a 
-		genealogy embedding table (see Table 1).
-		The probabilities of each outcome as calculated under the MS-SMC 
-		are shown for three arbitrary branches. 
-		These probabilities are a function of the time ($t_r$) and branch 
-		on which recombination occurs.	
-		}}
-		The MS-SMC is a model of the probability of different categorical
-		recombination event types. (a) The event type probabilities are a 
-		function of a genealogy embedded in a parameterized MSC model.
-		(b-d) A recombination event leads to one of three possible recombination 
+		% \textcolor{red}{ \sout{
+		% The MS-SMC models the probability of different recombination outcomes 
+		% given a genealogy embedded in a multispecies coalescent (MSC) model.
+		% (a) A parameterized MSC model is composed of multiple discrete population
+		% intervals with associated effective population sizes ($N_e$) and divergence 
+		% times ($W$). Given an embedded genealogy, each interval can be further divided 
+		% at coalescence events (e.g., $t_9$) into a series of smaller intervals
+		% with constant coalescent rates. The parameters of these intervals make up a 
+		% genealogy embedding table (see Table 1).
+		% The probabilities of each outcome as calculated under the MS-SMC 
+		% are shown for three arbitrary branches. 
+		% These probabilities are a function of the time ($t_r$) and branch 
+		% on which recombination occurs.	
+		% }}
+		\textcolor{red}{
+		The MS-SMC is a model of the probability of different categorical event
+		outcomes given recombination occurring uniformly on a genealogy embedded
+		in a parameterized MSC model (a). 
+		% 
+		A recombination event can cause one of three possible recombination 
 		event types between two sequential genealogies in a genome: 
 		\emph{no-change}, \emph{tree-change}, or \emph{topology-change}.
-		For the example genealogy and parameterized species tree, 
-		the probability of each event type is shown for 
-		three selected genealogy branches (2: red; 5: blue; and 7: purple) computed
-		for each position along their branch lengths where recombination could occur.
+		% 
+		The probability of these event types are calculated by integrating over
+		each branch on the genealogy on which recombination can occur; which
+		in turn is calculated by integrating over each position on a genealogy
+		branch at which recombination can occur.
+		% 
+		(b-d) The probability that a recombination event causes a no-change, tree-change, or topology-change event, for the example genealogy 
+		embedded in a species tree, was calculated for three selected 
+		genealogy branches (2: red; 5: blue; and 7: purple), at each position
+		along the branch where recombination could occur.
+		}
+		% , for each position along their length where recombination
+		% cour
+		% The probability of each event occuring 
+		% the probabilities of recombination occurring on each branch and causing
+		% the event type. 
+		%  all
+		% branches on which recombination could occur. The probability of each
+		% event type on each branch is calculated by integrating over all positions
+		% on that branch on which recombination could occur. 
+		% probabilities are calculated by integrating over all 
+		% positions along each genealogy branch where recombination could occur.
+		% % 
+		% (b-d) The probabilities of each event type are shown for each position
+		% along the length of three selected genealogy 
+		% probability of each event type calculated on each branch ($b$)
+		% and over 
+		% as a function of the
+		% MSC model parameters ($\mathcal{S}$), genealogy ($\mathcal{G}$), and the
+		% branch and timing on which recombination occurs ($b$, and $t_r$, 
+		% respectively).
+		% % 
+		% % (a) Coalescence and species divergence events delimit intervals within
+		% % species tree intervals within which the rate of coalescence is constant
+		% % (dashed lines).
+		% % (a) The event type probabilities are a 
+		% % function of a genealogy embedded in a parameterized MSC model.
+		% This is shown for 
+		% % For the example genealogy and MSC model the probability of each event 
+		% % type is shown for 
+		% three selected genealogy branches (2: red; 5: blue; and 7: purple) computed
+		% for each position along their branch lengths where recombination could occur.
+		% }
 	}
 	\label{fig:edge-probabilities}
 \end{figure}
@@ -2109,7 +2236,7 @@ same or different available branches) where a detached subtree could re-coalesce
 % while also incorporating potentially variable coalescence rates within 
 % different species tree intervals.
 
-\textcolor{red}{Genealogy \sout{B}}branch 7 provides a clear example for examining the probabilities of 
+\textcolor{red}{Genealogy} branch 7 provides a clear example for examining the probabilities of 
 tree- and topology-change events. Of particular interest is the 
 % (added suspended hyphen above after "tree")
 interval from $W_{AB}$ to $W_{ABC}$ where these probabilities diverge 
@@ -2274,8 +2401,8 @@ we recorded which event type (including no-change events) was the first to occur
 after the starting tree in each tree sequence. 
 The MS-SMC probabilities of each event type were computed in \emph{ipcoal} by 
 embedding the starting tree of each tree sequence into the parameterized MSC model.
-Expected waiting distances under the MS-SMC were computed as the product of 
-the event probabilities, $r$, and $L(\mathcal{G})$ of the starting tree.
+Expected waiting distances under the MS-SMC were computed as 1 over the product 
+of the event probabilities, $r$, and $L(\mathcal{G})$ of the starting tree.
 }
 % THIS TEXT WAS REPLACED BY THE BLOCK ABOVE
 \textcolor{red}{\sout{For each value of $N_e$, 10K tree sequences were simulated that
@@ -2516,13 +2643,11 @@ tances in models with low $N_e$. Future work can likely find a correction for th
 % Given a species tree of different sizes, and with different number of 
 % sampled genomes per species, and for different 
 
-\textcolor{red}{
 \subsection{
-	\textcolor{red}{
-		A Likelihood Framework for Modeling Waiting Distances 
-		\sout{MS-SMC’ likelihood inference framework}
-	}
+\textcolor{red}{A Likelihood-based Framework for Evaluating Waiting Distances}
 }
+
+\textcolor{red}{
 \sout{
 Based on the expectation that waiting distances are informative 
 about MSC model parameters, we developed a maximum likelihood framework 
@@ -2536,15 +2661,19 @@ sequence data.
 % \subsection{\textcolor{red}{Likelihood of a Species Tree Given an ARG}}
 \textcolor{red}{
 % this first paragraph is repetitive with the one above...
-The MS-SMC is a statistical model of the waiting distances between 
-different types of genealogy changes in an ARG, given a parameterized MSC model. 
+The MS-SMC is a statistical model of the waiting distances between different
+types of genealogy changes in an ARG, given a parameterized MSC model. 
 Since waiting distances between recombination events follow an exponential 
 distribution, we can use the exponential probability density (equation 8) 
-as the likelihood function to model the joint probability of observed 
-(or estimated) waiting distances in an ARG.
-In the case of tree and topology-change waiting distances, 
-this likelihood function is dependent on MSC model parameters, and thus
-we expect that it can provide information for estimating these parameters.
+as the likelihood function to assess observed (or estimated) waiting
+distances in an ARG, by modeling the probability of these waiting distances
+as a function of demographic model parameters.
+% 
+% model the joint probability of observed 
+% (or estimated) waiting distances in an ARG.
+% In the case of tree and topology-change waiting distances, 
+% this likelihood function is dependent on MSC model parameters, and thus
+% we expect that it can provide information for estimating these parameters.
 We propose that applications of this approach can provide 
 improvements to ARG and demographic model inference methods. Below, we
 describe and demonstrate one such application.
@@ -2581,26 +2710,38 @@ their interval lengths in a genome,
 a subset of genealogies and intervals can be extracted that represent 
 the combined intervals between a specific type of event
 (Fig.~\ref{fig:likelihood-calculation}a).
-For example, G$_g$ = ($\mathcal{G}_1, \mathcal{G}_j, ...$) can represent
+For example, $\boldsymbol{\mathcal{G}_g}$ = ($\mathcal{G}_1, \mathcal{G}_j, ...$)
+can represent
 the subset of genealogies that occur between tree-change events
-and X$_g$ = ($\sum_{i=1}^j x_i, \sum_{i=j}^{k} x_i, ..., $) the summed
-lengths of intervals between tree-change events
+and $\boldsymbol{X_g}$ = ($\sum_{i=1}^j x_i, \sum_{i=j}^{k} x_i, ..., $)
+the summed lengths of intervals between tree-change events
 (Fig.~\ref{fig:likelihood-calculation}b-c).
 The same can be done for topology-change events.
 Given a parameterized MSC model and recombination rate
 we can then obtain a set of exponential rate parameters
-$\Lambda_g = (\lambda_1, \lambda_j, ...)$ for the waiting distance 
+$\boldsymbol{\Lambda_g} = (\lambda_1, \lambda_j, ...)$ for the waiting distance 
 until the next tree-change for each genealogy in G$_g$ 
 (equation 10; Fig.~\ref{fig:likelihood-calculation}d).
-Finally, the likelihood of each observed waiting distance in X$_g$
-can be calculated from the exponential probability density function 
-using the rate parameters in $\Lambda_g$
+% 
+Finally, using the exponential probability density function,
+the likelihood of the MSC model parameters is calculated as the
+product of the probability densities for each waiting distance
+in X$_g$, evaluated using the corresponding rate parameters in 
+$\boldsymbol{\Lambda_g}$
+% of each observed waiting distance in X$_g$
+% can be calculated from the exponential probability density function 
+% using the rate parameters in $\Lambda_g$
 (Fig.~\ref{fig:likelihood-calculation}e).
 % The closer the MSC model paramaters are to the true values, the closer
 % the predicted waiting distances should be to the observed data.
-A maximum likelihood optimization of MSC model parameters can be obtained
-by searching for the set of parameters -- which affect $\Lambda_g$ -- 
-that maximize the summed log-likelihood of the observed data.
+Maximum likelihood optimization of the model parameters can be achieved
+by identifying the set of parameters -- affecting $\boldsymbol{\Lambda_g}$ -- that
+maximize the likelihood function, which quantifies the probability of 
+the observed data given the model.
+% 
+% A maximum likelihood optimization of MSC model parameters can be obtained
+% by searching for the set of parameters -- which affect $\Lambda_g$ -- 
+% that maximize the summed log-likelihood of the observed data.
 }
 
 % OLD COPY 
@@ -2630,27 +2771,30 @@ that maximize the summed log-likelihood of the observed waiting distances.
 
 \begin{figure}[tp]
 	\centering
-	\includegraphics[width=0.99\textwidth]{figures/current/Fig6-ARG-likelihood-steps.pdf}	
+	\includegraphics[width=0.99\textwidth]{figures/current/Fig6-ARG-likelihood-steps-full.pdf}
 	\caption{
+	\textcolor{red}{	
 		A likelihood framework for fitting MSC model parameters from waiting distances
 		between categorical types of recombination events in an ARG.
 		(a) An ARG represents a sequence of genealogies ($\mathcal{G}$) and their
 		interval lengths ($x$) over a genomic region. Intervals can be delimited 
 		by all recombination events, or by a subset representing only tree-change, 
 		or only topology-change events.
-		(b) The set of genealogies ($\mathcal{G}$) occurring between each event
-		type can be extracted, and similarly, 
-		(c) the set of associated interval lengths (X) between each event 
-		type can be extracted.
-		(d) An exponential rate parameter ($\lambda$) can then be estimated 
-		under the MS-SMC for the waiting distance until each type of recombination
-		event, for each genealogy, given its embedding in a parameterized MSC model
+		(b) The set of genealogies ($\boldsymbol{\mathcal{G}}$) occurring between
+		each event type can be extracted, and similarly, 
+		(c) the set of associated interval lengths ($\boldsymbol{X}$) between
+		each event type can be extracted.
+		(d) A set of exponential rate parameters ($\boldsymbol{\Lambda}$) can 
+		then be estimated under the MS-SMC for the waiting distance until 
+		each type of recombination event, for each genealogy, given its 
+		embedding in a parameterized MSC model
 		($\mathcal{S}$) and the recombination rate ($r$).
-		(e) The likelihood of each observed distance between each type of 
-		recombination event in the ARG can be calculated using the exponential 
-		probability density with the rate parameter estimated for each genealogy.
-		% The likelihoods of multiple event types can be combined.
-	}
+		(e) Using the exponential probability density function, the likelihood 
+		of the MSC model parameters is calculated as the product of the 
+		probability densities for each waiting distance in $\boldsymbol{X}$,
+		evaluated using the corresponding rate parameters in 
+		$\boldsymbol{\Lambda}$.
+	}}
 	\label{fig:likelihood-calculation}
 \end{figure}
 
@@ -2679,7 +2823,7 @@ $N_e$=50K to 800K.
 		Implementation of a likelihood framework for fitting MSC model parameters
 		to waiting distances in an ARG. Tree sequences were simulated under a 
 		2-population demographic model with four MSC parameters ($N_e$0=200K, 
-		$N_e$1=300K, $N_e$2=400K, T=1M) and recombination rate $r$=2 x 10$^{-9}$. 
+		$N_e$1=300K, $N_e$2=400K, $W$=1M) and recombination rate $r$=2 x 10$^{-9}$. 
 		Log-likelihood surfaces are shown for two parameters at a time while fixing
 		other parameters to their true value. True values are marked by an X.
 		(a-c) Waiting distances between all recombination events provide no information
@@ -2694,12 +2838,12 @@ $N_e$=50K to 800K.
 \end{figure}
 
 
-
 % simulation setup for likelihood surfaces and MSC optimization
-We implemented this approach to infer MSC model parameters from waiting
-distances in an ARG simulated under a two-population MSC model with 
+\textcolor{red}{
+We implemented this approach to evaluate MSC model parameters 
+using waiting distances in an ARG simulated under a two-population MSC model with 
 variable $N_e$ ($N_e$0=200K, $N_e$1=300K, and $N_e$2=400K), a divergence time
-of T=1M generations, and recombination rate of 2e-9. We sampled four 
+$W$=1M generations, and recombination rate $r$=2e-9. We sampled four 
 genomes per population, and simulated 50 independent tree sequences 
 each 400Kb in length (20Mb total) under the full coalescent with 
 recombination model.
@@ -2712,25 +2856,52 @@ and 59,288 intervals between topology-change events
 (mean +/- S.D. length = 336.93 +/- 441.72).
 % 
 To examine the information contained in different waiting distance data
-sets we visualized 2D log-likelihood surfaces over a grid of
+sets we visualized 2D log-likelihood surfaces over a grid of 
 values for pairs of MSC model parameters, while keeping all other 
 parameters fixed at their true values.
+}
 
-The log-likelihood surfaces show that waiting distance information
-in an ARG can be informative for estimating MSC model parameters 
-when analyzed under our MS-SMC model framework
-(Fig.~\ref{fig:likelihood-surfaces}). 
+\textcolor{red}{
 We compared log-likelihood surfaces for four different sources of waiting
 distance information, comprising the waiting distances between all 
 recombination events, between only tree-change events, between only 
 topology-change events, and for the combined log-likelihoods from both 
 tree-change and topology-change waiting distances. 
-Note that our equation for the probability of a topology-change event is
-conditional only on $\mathcal{S}$ and $\mathcal{G}$, and not on
-the probability of one or more tree-change events. 
-Consequently, we can treat these two probabilities as independent, and 
-combine the likelihoods for each type of waiting distance observation.
+(Fig.~\ref{fig:likelihood-calculation}e). 
+% 
+% Add paragraph here on combining.
+Note that combining tree-change and topology-change likelihoods may seem 
+like double-counting of information, since topology-change events are a
+subset of the events that compose a tree-change event, in our terminology.
+However, our equation for the probability of a topology-change event is 
+conditional only on $\mathcal{S}$ and $\mathcal{G}$, and not on the probability 
+of one or more tree-change events.
+% 
+In addition, it is clear conceptually that these two types of event 
+probabilities have different relationships with a species tree.
+% 
+As an example, consider a genealogy that has two genomes sampled per species,
+and is embedded in a species tree with very low $N_e$ such that ILS is nearly 
+impossible. The probability of a topology-change event approaches zero
+in this scenario, whereas the probability of a tree-change event is
+much less affected by species tree barriers, since this event type can still 
+occur within each species tree interval as a change in coalescent times.
+% 
+We demonstrate below how the likelihood of a demographic model can be more
+robustly assessed by jointly incorporating both types of waiting distance
+observations into the likelihood calculation.
+% 
+% Consequently, we can treat these two probabilities as independent, and 
+% combine the likelihoods for each type of waiting distance observation.
+}
 
+% 
+\textcolor{red}{
+The log-likelihood surfaces show that waiting distance information
+in an ARG is informative for estimating MSC model parameters when 
+analyzed under our MS-SMC model framework
+(Fig.~\ref{fig:likelihood-surfaces}). 
+% 
 The waiting distances between all recombination events, which do not take into
 account the event type, provide no information for estimating MSC model 
 parameters. By contrast, tree-change and topology-change waiting distances 
@@ -2742,9 +2913,9 @@ exhibit distinct ridges or peaks near the true parameter values
 A ridge in the likelihood surface suggests some uncertainty and potential
 correlation structure. However, the rounder surface with more distinct peaks,
 seen in the combined likelihood surface from both tree-change and 
-topology-change waiting distances, exhibits less uncertainly and 
+topology-change waiting distances, exhibits less uncertainty and 
 correlation, suggesting the combined information from multiple waiting distance
-types can provide the most accurate inference
+types provides the most accurate inference 
 (Fig.~\ref{fig:likelihood-surfaces}a-c).
 % The likelihood surfaces for joint Ne values sometimes exhibit a ridge
 % when estimated from tree-change or topology-change distances, suggesting
@@ -2752,15 +2923,16 @@ types can provide the most accurate inference
 % However, their
 % combined likelihood surface exhibits a more round shape with a peak 
 % near the true values, suggesting less uncertainty and correlation.
-We also used the same waiting distance datasets, simulated under a two-population
-model with six parameters, to examine the likelihood surface for an incorrect 
+We also used the same ARGs, simulated under a two-population
+model with five parameters, to examine the likelihood surface under an incorrect 
 demographic model, based on a single population model with two parameters.
 (Fig.~\ref{fig:likelihood-surfaces}d). 
 Here, the waiting distance data are a poor fit to the model, providing
-inaccurate estimates of both $r$ and $N_e$0, especially from topology-change 
+inaccurate estimates of model parameters, especially from topology-change 
 waiting distances. This suggests that topology-change waiting distances may be
 particularly informative for model selection between demographic models, 
 such as comparing species tree topologies.
+}
 
 % This yielded 40,720 tree-change events, with a mean length of 123 sites, 
 % and 15,274 topology-change events, with a mean length of 325 sites. To visualize
@@ -2811,24 +2983,35 @@ such as comparing species tree topologies.
 	% \includegraphics[width=0.95\textwidth]{figures/current/Fig8-likelihood-posteriors.pdf}
 	\caption{
 		\textcolor{red}{
-		A comparison of the information contained in the likelihoods of genealogies
-		and the intervals lengths that they span in an ARG. 
-		The joint log-likelihood surfaces for parameters Ne1 and Ne2 based on 
-		(a) waiting distance likelihoods computed under the MS-SMC; and (b) genealogy
-		likelihoods computed under the MSC. 
-		(c) The combined log-likelihood surfaces from the sum of genealogy likelihoods
-		and one or more waiting distance likelihoods provide more accurate
-		and unbiased surfaces than from waiting distances alone. 
+		A comparison of likelihood-based model inference under the MS-SMC 
+		versus MSC models -- i.e., when analyzing the waiting distances of
+		genealogies versus the coalescent times in genealogies, respectively.
+		% 
+		% A comparison of the information contained in the likelihoods of genealogies
+		% and the intervals lengths that they span in an ARG. 
+		(a-c) Log-likelihood surfaces for parameters $N_e$1 and $N_e$2 based on 
+		(a) waiting distance likelihoods computed under the MS-SMC;  
+		(b) genealogy likelihoods computed under the MSC; or
+		(c) the combined log-likelihoods of both types of data. 
+		% 
+		Note, MSC log-likelihoods are greater than MS-SMC log-likelihoods and 
+		were down-weighted to a similar scale when combined.
+		% 
+		% In the latter case, the MSC log-likelihoods are multiplied by 0.001 to 
+		% be on a similar scale as MS-SMC
+		% from the sum of genealogy likelihoods
+		% and one or more waiting distance likelihoods provide more accurate
+		% and unbiased surfaces than from waiting distances alone. 
 		(d-f) The marginal posterior distributions of demographic model parameters 
-		$N_e$0, $N_e$1, $N_e$2, W, and $r$ estimated using Bayesian inference.
-		True values are indicated by a dashed black line, above which the marginal
-		posterior mean and 95\% HPD interval are shown.
-		(d) Marginal posteriors inferred from the waiting distances between 
-		tree-change and topology-change events.
-		(e) Marginal posteriors inferred from the coalescent times on genealogies between 
-		tree-change events.
-		(f) Marginal posteriors inferred from the coalescent times on genealogies between 
-		tree-change events and waiting distances between tree-change and topology-change events.
+		$N_e$0, $N_e$1, $N_e$2, $W$, and $r$ jointly estimated using Bayesian inference.
+		% 
+		True demographic model parameters are indicated by a dashed black line, above 
+		which the marginal posterior mean and 95\% HPD interval are shown.
+		The marginal posterior distributions correspond to model parameter inference
+		from (d) combined tree-change and topology-change waiting distances;
+		(e) coalescent times of genealogies between tree-change events; and 
+		(f) the combined likelihoods of the data used in the previous two analyses, 
+		equally weighted.
 		}
 	}
 	\label{fig:likelihood-posteriors}
@@ -2843,7 +3026,7 @@ Carlo (MCMC) algorithm to obtain the joint posterior probability distribution of
 all parameters. For this, we set uninformative uniform priors on each parameter,
 using U(1e5, 1e6) for $N_e$ parameters, U(1e5, 2e6) for $W$, and U(1e-9, 3e-9) for $r$.
 Four separate MCMC chains were each initiated from different random seeds, and 
-each run on the same simulated waiting distance dataset from above, using the
+each run on the same simulated ARGs from above, using the
 combined likelihood of both tree-change and topology-change waiting distances.
 The first 500 iterations were excluded as burn-in and used to tune the proposal 
 mechanism to achieve approximately 60\% acceptance rates. From each chain, we sampled
@@ -2860,107 +3043,109 @@ $N_e$ parameters, as well as the divergence time and recombination rate
 Note that the marginal posterior for the divergence time ($W$) is truncated 
 slightly above the true value, since values above this do not allow for
 all genealogies to be embedded in the demographic model, and were thus
-rejected. This could be handled more smoothly using more advanced priors on W. 
+rejected. 
+% 
+This could be handled more appropriately by using more advanced priors on $W$. 
 Across all parameters of the demographic model the true simulated values
 fall within the inferred marginal 95\% highest posterior density (HPD) intervals.
-This demonstrates that tree-change and topology-change interval waiting 
-distances contain sufficient information when examined under the MS-SMC model
-to jointly infer all parameters of a complex demographic model.
-
-% Similarly, across all parameters the posterior mean deviated by less than one 
-% standard deviation of the posterior from the true value.
 % 
-% The marginal posterior distributions of T and $r$ are highly concentrated, 
-% indicating high certainty in these values, whereas the marginal posteriors
-% of Ne parameters were generally wider. 
-% For each parameter we computed a Z-score as the difference between the posterior 
-% mean and the true value, divided by the posterior standard deviation. All parameters 
-% had Z<1, meaning that the marginal posterior mean deviates less than one standard 
-% deviation from the true value. 
+This demonstrates that the tree-change and topology-change waiting distances
+in an ARG contain sufficient information when evaluated under the MS-SMC model
+to jointly infer all parameters of a reasonably complex demographic model.
+
+
 
 \subsection{Combining MS-SMC and MSC likelihoods}
 Finally, we compared the information contained in the lengths of 
 genealogy or topology intervals (i.e., waiting distances examined under the
 MS-SMC) to the information contained in the trees within those intervals 
 (i.e., coalescent waiting times examined under the MSC). 
-Using the same simulated tree sequences from above, we used \emph{ipcoal} to
-compute the MSC log-likelihood of each genealogy between tree-change or
-topology-change events.
-Here, the likelihood of each genealogy was weighted by the length of sequence
-that it spanned, to provide a length-weighted multi-species coalescent
-likelihood.%, which we refer to as simply an MSC likelihood.
-Unlike for waiting distances, we could not combine the likelihoods 
-from the sets of tree between tree-change and topology-change events,
-as it would represent double-counting.
+% 
+Using the same simulated ARGs from above, we computed the log-likelihood
+of MSC model parameters by evaluating the probabilities of only the 
+genealogies between tree-change or topology-change events under the MSC,
+only the waiting distances of those genealogies under the MS-SMC, 
+or using both log-likelihoods combined.
+% 
+For MSC calculations, the probability of each genealogy was weighted 
+by the length of sequence that it spanned, as this greatly improved
+accuracy compared to equal weighting, and provides the same precision 
+of ARG information to the MSC model as is provided to the MS-SMC model.
+% 
+For MSC calculations we did not combine the probabilities of genealogies
+that occur between both tree-change and topology-change events, as this
+would represent double-counting of the same exact trees.
+
 
 The log-likelihood surface of $N_e$ parameters computed under the MSC model
 was less tightly concentrated near the true values than under the MS-SMC model,
 but exhibited a more round shape, suggesting less uncertainty and minimal 
 correlation between parameters 
 (Fig.~\ref{fig:likelihood-posteriors}a-b).
-The summed log-likelihood of the genealogy data is approximately three 
-orders of magnitude greater than that of the waiting distance data,
+The log-likelihood of the true parameter values under the MSC model
+was approximately 12 times greater than under the MS-SMC model, 
 reflecting that there is generally much more information in the coalescent 
-times in a tree than in the interval length that it spans.
+times in a genealogy than in the interval length that it spans.
+Similarly, the $\Delta$log-likelihood across the examined parameter space 
+was much larger under the MSC model.
 % 
-To examine the potential to combine these two sources of data, we first 
-multiplied the MSC log-likelihoods by 0.001 to appear on a similar scale
-as MS-SMC log-likelihoods, and then summed their values
-(Fig.~\ref{fig:likelihood-posteriors}c). The combined likelihood surfaces 
-are more narrowly concentrated around the true values than under the 
-MSC model alone, and generally exhibit rounder more peaked surfaces 
-than under the MS-SMC model alone. 
 
-% based on both MSC and MS-SMC data show more distinct peaks close to the 
-% true values than under the MS-SMC model alone, and exhibit a much rounder 
-% shape with less correlation structure than under the MS-SMC model alone.
+When evaluating model parameters based on multiple criteria, inference can 
+be improved if the corresponding likelihood surfaces exhibit orthogonal or 
+complementary structures, as we observed here between the MSC and MS-SMC
+likelihood surfaces. 
 % 
+Such differences in their shapes allow each criterion to provide unique 
+information about the parameter space, which can improve the precision 
+and robustness of optimization, as we showed previously for combining tree-
+and topology-change waiting distances.
+% To effectively combine
+% the likelihood terms that are on different scales, prior distributions are 
+% sometimes introduced to appropriately weight each term. 
+Here, we implemented a simple weighting scheme, 
+by uniformly dividing the MSC log-likelihoods by 1000, as this 
+visually led to an intermediate shape of the likelihood surface.
+% by uniformly dividing the MSC log-likelihoods by 12, so that the maximum 
+% likelihood at the true parameter values would be similar under each model.
 % 
-We next applied our Bayesian joint inference framework to fit all five 
+The resulting combined likelihood surfaces (Fig.~\ref{fig:likelihood-posteriors}c)
+are more narrowly concentrated around the true values than under the MSC
+model alone, and generally exhibit rounder more peaked surfaces than under
+the MS-SMC model alone. 
+
+
+We next applied our Bayesian joint inference framework to estimate all five 
 parameters using genealogy likelihoods, or combined genealogy and waiting 
-distance likelihoods. Here we calculated the length-weighted MSC 
-log-likelihood for all genealogies between tree-change events, and the 
-summed MS-SMC log-likelihoods from the intervals between tree-change and 
-topology-change events. As before, MSC log-likelihoods were scaled by 0.001
-to have similar weight as MS-SMC log-likelihoods. Each analysis was run 
-with four chains that were checked for convergence and then combined.
+distance likelihoods. 
+As before, four separate MCMC chains were run on the same ARGs from different
+starting seeds, checked for convergence criteria, and then combined.
 % 
 The marginal posterior distributions inferred from genealogy likelihoods 
 were very narrow for all parameters except $r$, for which the MSC model
 provides no information, and thus returned the prior
 (Fig.~\ref{fig:likelihood-posteriors}e). 
+% 
 The true values did not fall within the 95\% HPD intervals for the $N_e$
 parameters, despite the posterior means being very close to the true 
 values. 
-This may reflect a small bias within or MCMC implementation, or be caused
+This may reflect a slight bias within our MCMC implementation, or be caused
 by the non-independence of genealogies being analyzed under the MSC model.
-% Is there a bias in the MSC using this approach??? 
-% effect of violating the assumption of the MSC model that by fitting
-% coalescent times from among non-independent genealogies.
+% 
 Despite this, we predicted that the combined information from genealogies
 and waiting distances will provide a more accurate estimate of MSC 
 parameters than from waiting distances alone, since the combined data 
 tend to exhibit a more peaked and uncorrelated log-likelihood surface.
-% showed that the intersection of these two sources of information provided
-% a rounder and less correlated
-% based on our likelihood surface
-% analyses that the combined information from both genealogies and
-% waiting distances will provide more accurate estimates than from waiting
-% distances alone, since the intersection of this information provided a 
-% less correlated likelihood surface.
-% Nevertheless, based on our likelihood surface analyses, we expect that
-% the intersection of genealogy and waiting distance likelihoods would 
-% provide more accurate inferences than from waiting distances alone, 
-% As suggested by our likelihood surface analysis, the combined information
-% from waiting distances and genealogies provided a more narrow and accurate
-% posterior distribution than from waiting distances alone
+% 
 As predicted, the marginal posterior distributions inferred from these data
 are more narrow and accurate than from waiting distances alone
 (Fig.~\ref{fig:likelihood-posteriors}f), with all true values falling 
 within the inferred 95\% HPD intervals.
-This confirms that tree and topology waiting distance likelihoods can be 
-combined with genealogy likelihoods to obtain accurate joint inference
-of demographic model parameters, including the recombination rate. 
+% 
+This confirms that the information contained in tree- and topology-change
+waiting distances is not redundant with the information contained in 
+genealogy coalescent times, and that these observations can be combined
+to provide additional information to evaluate the fit of an observed
+or proposed ARG to a demographic model.
 % Overall, this shows that the intersection of information contained 
 % in genealogies and waiting distances, i.e., the information
 % in an ARG, can be used to obtain accurate estimates of demographic
@@ -2990,23 +3175,11 @@ of demographic model parameters, including the recombination rate.
 % waiting distance likelihoods provided the most accurate demographic model 
 % parameter inference
 % (Fig.~\ref{fig:likelihood-posteriors}f).
-
-\textcolor{red}{\sout{
-All parameters converged with ESS values exceeding 2000, 
-and the 95\% highest posterior density intervals (HPDI) for
-each posterior probability distribution included the true 
-parameter
-(Fig.~\ref{fig:likelihood-posteriors}b).
-This suggests that multiple MSC model parameters can be accurately 
-inferred from waiting distance information alone. 
-}}
-
+% 
 % The range of the 50\% HPD for the ancestral population (Ne2) is larger than for the two
 % extant populations, and has a mean that deviates farthest from the true value. This
 % may be because fewer coalescent events occur in this interval, or because few 
-
-
-
+% 
 % We implemented a Bayesian inference using a Metropolis-Hastings Markov 
 % chain Monte Carlo (MCMC) algorithm to compute a joint posterior 
 % probability distribution of the five model parameters. 
@@ -3348,7 +3521,7 @@ span.
 }
 % 
 Within \textcolor{red}{\sout{our} this}
-framework, MSC model parameters determine probabilities of coalescence
+framework, demographic model parameters determine probabilities of coalescence
 in species tree intervals and prevent coalescence between lineages that
 are separated by species divergence events. 
 \textcolor{red}{
@@ -3421,24 +3594,23 @@ The analytical solutions presented here not only enable
 calculating and comparing the expected interval lengths that different 
 genealogies will span given their embedding in the same species tree, 
 but also enabled the development of a statistical framework for computing 
-the likelihood of a waiting distance spanned by a genealogy 
-as a function of the genealogy and species tree parameters.
-\sout{
-fast calculations but also the opportunity to develop likelihood-based
-methods for fitting models that link MSC parameters to ARGs.
-}
+the probability of an observed waiting distance spanned by a genealogy 
+as a function of the species tree model.
 }
 
 % FINAL MAIN DISCUSSION PARAGRAPH ABOUT LIKELIHOODS
 \textcolor{red}{
-The multi-species coalescent is the foundation of most modern 
-phylogenetic methods that aim to infer a species tree as a hierarchical
-model within which genealogical variation can be embedded. 
+The multi-species coalescent is the foundation of modern phylogenetic 
+methods that aim to infer a species tree as a hierarchical model within
+which genealogical variation can be embedded
+\citep{maddison1997gene,degnan2009gene,maddison2006inferring}.
 % 
 The parameters of this model can be estimated from the distribution
-of coalescent times in genealogies, or similarly, from the divergence
-among molecular sequences modeled as evolving on those genealogies
-\citep{maddison1997gene,maddison2006inferring,rannala2003bayes}. 
+of coalescent times in genealogies, and many methods have been developed
+on this framework including full likelihood based analyses of molecular
+sequence data \citep{rannala2003bayes}, and pseudo-likelihood or summary
+based methods that analyze inferred gene tree distributions
+\citep{mirarab_multispecies_2021}. 
 % The process of integrating over genealogical variation in multi-locus
 % genomic datasets has become a foundation of modern methods in evolutionary
 % genomics. 
@@ -3453,7 +3625,7 @@ among molecular sequences modeled as evolving on those genealogies
 Here, we demonstrated that the parameters of a species tree model can 
 alternatively be estimated from a completely new source of information,
 in the form of the waiting distances between recombination events causing
-a tree-change or topology-change between sequential genealogies
+a tree-change or topology-change between sequential genealogies in an ARG
 (Fig.~\ref{fig:likelihood-posteriors}d).
 % 
 Examination of joint likelihood surfaces revealed that these two 
@@ -3463,30 +3635,21 @@ combined they can intersect to provide more accurate estimates of
 model parameters
 (Fig.~\ref{fig:likelihood-surfaces}a-b). 
 % 
-Although the information contained in waiting distances spanned by
-genealogies is much less than that contained in the coalescent times
-of the same genealogies, they similarly provide complementary sources
-of information. We showed that when combined they can provide 
-highly accurate MSC parameter inference
+Similarly, although the information contained in tree- and topology-change
+waiting distances is less than that contained in the coalescent times of the
+same genealogies, we showed that these two sources of data can be combined,
+and are also complementary and non-redundant
 (Fig.~\ref{fig:likelihood-posteriors}c,f).
 % 
-% The information contained in the waiting distances spanned by 
-% genealogies is much less than that contained in the coalescent times
-% of the same genealogies. 
-% % 
-% Nevertheless, there are many scenarios,
-% such as ARG inference, where there is insufficient information to 
-% accurately infer coalescent times. These methods can benefit from
-% incorporating additional information from the same dataset, in the form
-% of waiting distances, which can further constrain the space of likely
-% outcomes given the species tree model.
-% 
-% As a proof-of-concept, we showed that waiting distance
-% information can be combined with coalescent times to provide 
-% accurate MSC parameter inference 
-% (Fig.~\ref{fig:likelihood-posteriors}c,f).
-We envision many future applications can build upon this framework
-to improve methods for both species tree and ARG inference.
+We envision many future applications can build upon this joint framework for
+evaluating the fit of ARGs to a demographic model using not only the
+probabilities of genealogies within the ARG, but also the probabilities of
+the spanning distances of topological features of those genealogies.
+% between tree- and topology-change events.
+Below we describe several of these envisioned applications.
+%
+% We envision many future applications can build upon this framework
+% to improve methods for both species tree and ARG inference.
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -3544,17 +3707,18 @@ spur the development of new theoretical advances.
 }
 
 \textcolor{red}{
-Another more practical application of MS-SMC waiting distance expectations
+Another more practical application of the MS-SMC 
+%waiting distance expectations
 is to guide the selection of appropriate locus lengths to use for gene
 tree inference. In theory, each locus or window should correspond to a
 single genealogical tree or topology.
 % 
-However, the expected waiting distance between topology-change events in
+However, the mean waiting distance between topology-change events in
 multi-species datasets is typically much shorter (e.g., 10-100 bp) than the 
-average locus lengths of common subgenomic markers 
+mean locus lengths of common subgenomic markers 
 \citep[e.g., $>$300 bp;][]{mckenzie_multispecies_2020},
 and certainly much shorter than the size of genomic sliding windows 
-commonly employed at genome-wide scales 
+commonly employed at genome-wide analysis scales 
 \citep[e.g., 100 Kb;][]{li2019recombination}.
 When repeated across many loci, concatenation artifacts can cause the distribution
 of gene trees, or their summary statistics, to deviate from expectations under
@@ -3566,12 +3730,13 @@ Simulation studies under a range of species tree models and parameters
 have shown that some inference methods are more sensitive to errors caused
 by intra-locus recombination than others
 \citep{lanier2012recombination,zhu2022simulation}, but this has not 
-facilitated general recommendations that can apply to all datasets.
+facilitated general recommendations that can apply to all datasets and 
+methods.
 % 
-Topology-change probabilities and waiting distances calculated under
-the MS-SMC provide a framework to formalize this debate around common
-metrics that can be computed for any species tree, filling a theoretical
-gap specifically noted by \citet{zhu2022simulation}.
+Topology-change probabilities calculated under the MS-SMC provide a framework
+to formalize this debate around common metrics that can be computed for any 
+species tree, filling a theoretical gap specifically noted by 
+\citet{zhu2022simulation}.
 }
 
 % CANNOT GET THIS \SOUT TO WORK HERE!
@@ -3632,13 +3797,146 @@ gap specifically noted by \citet{zhu2022simulation}.
 % }
 
 
+\subsection{Applications of the MS-SMC to ARG Inference}
+\textcolor{red}{
+While our demonstration of the MS-SMC framework focused on inferring
+species trees from ARGs, its most impactful applications may lie 
+in the inverse approach: inferring ARGs given a demographic model.
+% within the context of a species tree model, or jointly inferring
+% both a species tree and one or more ARGs.
+% 
+ARG inference is notoriously challenging due to the vast state
+space of potential ARGs and the limited information contained
+within intervals between recombination events, which complicates
+the accurate reconstruction of local genealogies.
+However, linkage information between neighboring intervals provides
+a critical source of information that can be explicitly
+modeled to propose ARGs that are statistically consistent with
+an underlying evolutionary model, such as the SMC'.
+% 
+Nevertheless, integrating this linkage information while navigating
+the immense state space of possible ARGs remains a computationally
+demanding task. 
+% Even so, exploring the vast space of possible ARGs while 
+% integrating this information remains computationally intensive.
+Despite these challenges, 
+a number of powerful tools have been developed to efficiently 
+infer ARGs and quantify uncertainty, typically through Bayesian 
+posterior sampling methods
+\citep{y_c_brandt_evaluation_2022,lewanski_era_2024}.
+}
+
+\textcolor{red}{
+Several challenges currently limit the application and accuracy
+of ARG inference at deeper phylogenetic scales. One notable limitation
+is the assumption that samples originate from a single population,
+which can bias estimates when the true demographic model involves 
+population structure, as demonstrated in our example of model 
+misspecification (Fig.~\ref{fig:likelihood-surfaces}d). 
+Some methods already address this limitation, such as ARGweaver-D,
+which allows users to specify a demographic model upon which ARGs 
+will be conditionally sampled 
+\citep{hubisz2020inference}.
+% 
+This approach generates ARGs with changes between sequential genealogies 
+that are consistent with the SMC' process occurring within a structured
+demographic model -- i.e., consistent with the MS-SMC. 
+% 
+However, the resulting tree- and topology-change waiting distances that 
+arise in proposed ARGs are not currently incorporated into the 
+likelihood calculation.
+% 
+We propose that our new framework, which allows computing the likelihood 
+of a species tree model from the tree-change and topology-change waiting
+distances in an ARG, 
+could enhance both the accuracy and convergence of ARG inference by 
+providing additional criteria for assessing the fit of proposed ARGs
+to a species tree model.
+}
+
+% % % - interval size paragraph
+% Another challenge for ARG inference at deeper evolutionary scales
+% is the diminishing size of intervals between recombination events.
+% This has the effect of reducing the amount of information contained
+% within any interval, and increasing the complexity of 
+% the ARG that must be inferred.
+% % % 
+% The MS-SMC has the potential to reduce the complexity of ARG inference
+% by reducing the problem from inferring a genealogy and interval length
+% between every recombination event, to inferring genealogies and intervals
+% between only a subset of events, such as tree-change or topology-change events. 
+% % 
+% Because the 
+
+% We do not expect that this would introduce a bias, since as we
+% demonstrated in our results, recombination rates can still be accurately
+% inferred under the MS-SMC from the interval lengths between tree- and/or
+% topology-change events alone (Fig.~\ref{fig:likelihood-posteriors}d). 
+% % 
+% Because topology-change events occur less frequently, 
+
+% % The MS-SMC could provide advantages by reducing the
+% problem of ARG inference from inferring all genealogies
+% and breakpoints, to one of only inferring the genealogies
+% and breakpoints between topology-change events. Our simulation
+% study suggests that the recombination rate can be accurately
+% estimated from the waiting distance between topology-change
+% events, given a parameterized species tree model. This would
+% extend the size of the intervals within which genealogies
+% can be inferred, presumably increasing the computational
+% efficiency of ARG inference.
+% 
+% \citep{lewanski_era_2024}, \citep{y_c_brandt_evaluation_2022}.
+\textcolor{red}{
+% 1. reduce the problem.
+Another potential application of the MS-SMC is to reduce the problem of 
+ARG inference from inferring a genealogy and interval length between 
+every recombination event, to instead infer genealogies and intervals between
+only a subset of events, such as tree-change or topology-change events. 
+% 2. longer and more detectable intervals.
+For example, topology-change events in particular leave more detectable
+signatures in sequence data for identifying break points, and occur less
+frequently. This could particularly benefit ARG inference above the
+species-level, where the lengths of intervals between recombination events
+can become very small, even to the extent that more than one 
+recombination event occurs between two sequential sites, which 
+would violate assumptions of the SMC' \citep{rasmussen2014genome}. 
+In these scenarios, the distance between topology-change events 
+will always be much longer.
+% ut the lengths between topology-change events
+% are much longer. 
+% 
+% , providing longer and more informative intervals for inferring
+% local genealogies. 
+% 3. ignoring other recomb events is OK.
+We do not expect that delimiting ARGs on topology-change events 
+would introduce a significant bias, since as we demonstrated in 
+our results, the recombination rate can still be very accurately 
+inferred under the MS-SMC from the interval lengths between tree- 
+and/or topology-change events alone 
+(Fig.~\ref{fig:likelihood-posteriors}d). 
+% 4. phylogenetic scales
+% By requiring fewer This could particularly benefit ARG analyses above the species-level,
+% where the lengths of intervals between recombination events can become 
+% very small, but the lengths between topology-change events remain much
+% longer.
+% 5. speed and efficiency.
+By reducing the number of breakpoints and genealogies that must be inferred,
+this would effectively reduce the complexity of the ARG inference problem, 
+which could improve the efficiency and mixing of MCMC algorithms used to 
+sample ARGs.%, and thus increase the speed of ARG inference.
+% Moreover, by reducing the complexity of a ARG to many fewer intervals, 
+% this would increase the speed and efficiency of ARG inference, and allow
+% for improved mixing of MCMC algorithms for posterior sampling of ARGs.
+}
+
+
 \subsection{Applications of the MS-SMC to Species Tree Inference}
  % and Extensions of the MS-SMC}
 % \subsection{Applications of the MS-SMC}
 
-\textcolor{red}{
 In contrast to current species tree inference methods 
-\sout{phylogenomic inference approaches}
+\textcolor{red}{\sout{phylogenomic inference approaches}}
 which tend to either ignore genetic linkage, or to discard the vast majority
 of sequenced data in effort to avoid it, one could envision an alternative, 
 spatially-aware phylogenetic inference framework that more effectively 
@@ -3646,88 +3944,211 @@ utilizes linked genomic data. This would mark a major transition in phylogenetic
 where recombination could be viewed as a source of information rather than a 
 source of error. 
 We see the MS-SMC as an important step in this direction. 
-}
 
 % we showed waiting distances are informative for MSC
 \textcolor{red}{
-As a first application of the MS-SMC, we demonstrated that it
-can be used to fit MSC model parameters from an ARG based on the 
-distribution of tree-change and topology-change waiting distances.
+As a first application of the MS-SMC, we demonstrated a likelihood-based
+framework to fit demographic model parameters from a known ARG based on
+the distribution of tree-change and topology-change waiting distances. 
+% 
 When waiting distances were simulated under one demographic model, 
 but used to fit parameters of a different one, 
 topology-change waiting distances were particularly informative in
 revealing that the incorrect model was a poor fit to the data.
-% we showed that 
-% topology-change waiting distances, in particular, were highly informative
-% that the incorrect model was a poor fit to the data.
 % 
-This suggests that the distinct waiting distance distributions 
-generated by different species tree models can be useful for
-distinguishing between species trees.
+This suggests that the distinct tree and topology waiting 
+distance distributions within ARGs generated under one species
+tree model versus another can be useful for distinguishing 
+between models, which is an important component of species
+tree inference, network inference, and species delimitation.
 % 
-While this is clearly useful for species tree inference, another
-case where it can be useful is when genealogies are derived from a
-mixture of multiple species trees, as in the case of a 
-phylogenetic network. In network models, each genealogy can trace
-back a coalescent history through one or more paths in the network 
-with different probabilities, corresponding to an embedding of the
-genealogy into different species tree models
-% in the context of phylogenetic networks.
-% Phylogenetic networks can be represented as an amalgamation of two or more
-% species trees, where each genealogy traces back a coalescent history 
-% through a distinct path in the network that corresponds to an
-% embedding of the genealogy into a different species tree model
-\citep{wen_bayesian_2016, degnan2018modeling}. % ...
-% Genealogies within the ARG of a small genomic region are likely to
-% trace back the same path, whereas ARGs from different genomic regions
-% may trace back through different species tree paths. If the two paths
-% are highly similar, it can be hard to distinguish them based on coalescent
-% times alone.
-% ARGs sampled from different genomic regions are likely to trace back
-% one network path or another, but if the two paths are highly similar it
-% can be hard to distinguish them based on coalescent times alone. 
-The distributions of waiting distances within and across ARGs can provide
-additional information about the number of underlying network paths, and
-which path each genealogy is most likely derived from.
-% ,
-Incorporating both coalescent times and waiting distances from linked
-genomic data in ARGs could prove valuable towards resolving intractable
-problems in species tree and network inference, by moving beyond the 
-limited information available from the frequencies of unlinked genealogies.
+In this context, our likelihood-based framework for analyzing 
+waiting distances could contribute to the analysis of 
+linked genomic data not only for improving the inference of 
+ARGs conditional on a demographic model, but also for 
+comparing the fit of alternative demographic models.
+% 
+% This 
+% for complex inference problems, such 
+% as the joint inference of ARGs and a species tree; the inference 
+% of ARGs conditional on a species trees; or the inference of a 
+% species tree conditional on one or more ARGs.
+% distance probabilities towards the joint inference of ARGs and a 
+% species tree; the inference of ARGs conditional on a species trees;
+% or the inference of a species tree conditional on one or more ARGs.
+% 
+However, the most significant challenge to incorporating waiting distance
+information into an inference framework is the fact that ARGs, and thus 
+the waiting distances contained within them, are not directly observable, 
+and must instead be inferred from observed sequence variation. 
+% 
+One solution to this problem is to evaluate demographic models by 
+marginalizing over uncertainty in a posterior sample of ARGs; 
+another solution is to try to bypass ARG inference altogether.
+We discuss each of these approaches below.
+% 
 }
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+% 0. ARG inference tools can be used to evaluate species trees.
+% 1. infer each ARG under both species tree models.
+% 2. 
+% 3. 
+Given the inherent complexity of ARG inference, the development 
+of a joint framework for simultaneous inference of ARGs and species 
+trees remains a significant challenge. 
+However, if the analysis is restricted to a small number of 
+competing species tree hypotheses, existing ARG inference tools
+can already offer a powerful framework for demographic model 
+comparison.
 % 
-\textcolor{red}{
-Perhaps the most significant challenge to incorporating waiting distance 
-information into species tree inference is the fact that ARGs, and thus the
-waiting distances contained within them, are not directly observable, and 
-must instead be inferred from observed sequence variation. 
+Tools like ARGWeaver-D, for instance, not only generate posterior
+samples of ARGs but also calculate the likelihood of the 
+user-defined demographic model -- though note that demographic model
+parameters are typically first inferred separately from unlinked
+genomic data prior to this analysis and then fixed
+\citep{hubisz2020inference}.
 % 
-One solution to this problem is to try to bypass ARG inference altogether.
-This approach would be conceptually similar to the implementation of SNAPP, 
-which infers species trees from unlinked SNP data by integrating over a 
-distribution of genealogies that could produce each SNP \citep{bryant2012inferring}.
+% 
+% Currently, this can be accomplished in tools like ARGWeaver-D,
+% which in addition to generating a posterior sample of ARGs, also
+% calculates the demographic model likelihood (although note that
+% demographic model parameters are usually first inferred 
+% separately from unlinked genomic data and then in this 
+% analysis) 
+% \citep{hubisz2020inference}.
+% The model likelihood is calculated from the joint probability 
+% of an ARG and sequence alignment given the model parameters, 
+% and computed within a hidden Markov model framework 
+% 
+While this approach does not yet scale well to large demographic
+models of the size that are often investigated during species
+tree inference, it can theoretically provide additional benefits
+over the analysis of unlinked data, including greater power to 
+infer accurate local genealogies by incorporating linkage information,
+and the ability to examine local genealogies as a byproduct.
+% and examining their discordance with a
+In addition, by generating ARGs as a byproduct, this would 
+provide the ability to analyze tree- and topology-change waiting 
+distances as additional criteria for evaluating demographic 
+model likelihoods. 
+% species tree model.
+% local 
+% disentangling incomplete lineage sorting, introgression, and 
+% local genealogical discordance.
+% 
+In this context, our description above of the multiple potential
+applications of the MS-SMC to improve ARG inference conditioned 
+on a demographic model, also represent ways in which the MS-SMC
+could improve methods for evaluating and comparing demographic models.
+% incorporating waiting distance information 
+% analyzed under the MS-SMC into the calculation of ARG 
+% probabilities, could benefit not only ARG inference, but 
+% also the efficiency and accuracy of demographic model 
+% evaluation and comparison.
+% % 
+
+A situation where this may be particularly rewarding is in 
+the evaluation of complex demographic models with migration, 
+which are also often represented as phylogenetic networks.
+% 
+In network models, each genealogy can trace back a coalescent 
+history through one or more paths in a model with different 
+probabilities, corresponding to an embedding of the genealogy 
+into one species tree model or another
+\citep{wen_bayesian_2016, degnan2018modeling}. % ...
+% 
+When each genealogy is analyzed individually, as in the case of 
+unlinked genomic data, each provides little information about the
+network, and whether discordant genealogies correspond to 
+introgression versus incomplete lineage sorting (ILS).
+% 
+Furthermore, many alternative network hypotheses are often 
+unidentifiable based on the frequencies of gene tree patterns
+alone \citep{solis-lemus_inferring_2016}.
+% 
+By contrast, ARG inference-based methods for evaluating 
+structured demographic models with migration 
+\citep{hubisz2020inference, guo_recombination-aware_2022}
+have shown great power to infer demographic migration parameters
+and distinguish between ILS and introgression in the history of
+local genealogies.
+% 
+Given our expectation that waiting distance distributions are highly
+informative about alternative species tree models, we predict
+that incorporating waiting distance probabilities into local ARG 
+inference could further improve the power of these methods to map
+genealogies into alternative coalescent paths through phylogenetic
+networks.
+% 
+% This could encourage a multi-step inference approach, where the
+% analysis of unlinked genomic data provides a fast initial method 
+% to identify network hypotheses; full likelihood-based methods are
+% applied to unlinked data to infer parameters on fixed network 
+% models; and finally ARG inference methods are applied to linked
+% genomic data to evaluate the likelihoods among few alternative 
+% models using genome-wide information.
+
+% additional contribution of waiting
+% distance information, and the potential benefits of reducing
+% ARG complexiity 
+% s between tree and
+% topology-change 
+% % 
+% complex conditional sampling method
+% % 
+% ...
+% of the sequence data given the proposed genealogy at each site, 
+% ...
+% species trees, the model likelihoods can be compared to evaluate
+% which 
+% % 
+% possible to compare the fit of different species tree models
+% using linked genome data by inferring ARGs from sequence data
+% under each model. For example, ARGWeaver-D [CITE] can be used
+% to sample a posterior sample of ARGs conditional on a user-defined
+% species tree. One could infer species tree parameters under each
+% tree from unlinked genome data; sample ARGs based on the analysis
+% of linked genome data given a species tree hypothesis; and then 
+% evaluate the fit of the ARGs to each model. 
+% Species tree inference is an easier problem than ARG inference. 
+% In fact, species trees can be accurately inferred from unlinked
+% genomic data, begging the question of why we should attempt to 
+% analyze linked genomic data for phylogenetic inference at all.
+% 
+
+Finally, we envision that our framework for evaluating the 
+likelihood of demographic models based only on the waiting distances
+in ARGs could serve as the basis for the development of demographic
+inference methods for analyzing linked genome data that do 
+not require ARG inference.
+% 
+Conceptually, a method that aims to bypass ARG inference when 
+analyzing waiting distance distributions would be similar to 
+the implementation of SNAPP, which aims to bypass the problem of 
+gene tree inference when inferring species trees 
+\citep{bryant2012inferring}.
+In SNAPP, this is accomplished through a Bayesian implementation
+for evaluating SNP patterns that integrates over the distribution
+of genealogies that could produce each SNP.
 % 
 Recent work has pointed out drawbacks of this approach when applied to
-pools of unlinked SNPs, since assuming independence among SNPs can lead to a
-loss of information \citep{zhu2021complexity}. 
+pools of unlinked SNPs, since assuming independence among SNPs can 
+lead to a loss of information \citep{zhu2021complexity}. 
 % 
-A theoretical ARG-based extension of SNAPP would address this concern by
-specifically modeling the linkage between non-independent SNPs as a 
-source of information.
+Our vision for a theoretical ARG-based extension of SNAPP would 
+address this concern by specifically modeling the linkage between 
+non-independent SNPs as a source of information.
 % 
-For example, linked SNPs that evolve on conflicting topologies can provide 
-information about the probability of a topology-change event occurring
-within the distance that separates them. 
+For example, linked SNPs that evolve on conflicting topologies can 
+provide information about the probability of a topology-change event 
+occurring within the distance that separates them. 
+% 
 Because topology-change waiting distances are inherently linked to both
 the genealogy and species tree, these waiting distances could contribute
 to evaluating species trees in the form of waiting distance likelihoods,
-and could also possibly feedback to improve the calculation of coalescent likelihoods, by providing information that constrains the space of 
-possible genealogies at each SNP.
-}
-% 
-% 
+and could also possibly feedback to improve the calculation of coalescent
+likelihoods, by providing information that constrains the space of 
+possible genealogies at each SNP. 
 % 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -3768,69 +4189,23 @@ possible genealogies at each SNP.
 % the MS-SMC provides a more efficient framework that could potentially
 % make methods linking ARGs and species tree inference possible.
 
-\subsection{Applications of the MS-SMC to ARG Inference}
-
-While our implementation of the MS-SMC focused on inferring
-species trees from ARGs, we anticipate that its most impactful
-applications may arise from the inverse approach: inferring ARGs
-within the context of a species tree model, or jointly inferring
-both a species tree and one or more ARGs.
 % 
-ARG inference is notoriously challenging due to the limited 
-information within intervals between recombination events, 
-which often makes it difficult to accurately infer local
-genealogies. However, linkage between neighboring intervals
-serves as a valuable source of information that can be explicitly
-modeled to propose ARGs that are statistically consistent with
-an underlying evolutionary model, such as the SMC'.
+% The spatial distribution of genealogical topologies is also typically 
+% the metric of greatest interest at this scale. 
 % 
-Even so, exploring the vast space of possible ARGs while 
-integrating this information remains computationally intensive.
-Despite this, a number of poewrful tools have been developed
-to efficiently infer ARGs and quantify uncertainty, typically
-through Bayesian posterior sampling
-\citep{y_c_brandt_evaluation_2022}.
+% This could be useful for inferring ARGs for more highly divergent samples,
+% such as at phylogenetic-scales, where the spatial distribution of genealogical
+% topology-changes may be of greatest interest. 
 
-Several challenges currently limit the application and accuracy
-of ARG inference at deeper phylogenetic scales. One notable issue
-is the common assumption that all samples originate from a single
-population, which can bias estimates when the true demographic 
-model involves population structure, as demonstrated in our 
-example of model misspecification
-(Fig.~\ref{fig:likelihood-surfaces}d). 
-ARGweaver-D addresses this limitation by allowing users to
-specify a demographic model 
-upon which ARGs will be conditionally sampled 
-% for conditional sampling of ARGs
-\citep{hubisz2020inference}.
-This approach generates ARGs with waiting distances between 
-tree and topology-change events that align with the SMC'
-framework embedded in an MSC model -- i.e., consistent with
-the MS-SMC. However, these waiting distances are not currently
-incorporated into the likelihood calculation for proposed ARGs.
-We propose that our new framework, which computes the likelihood
-of tree and topology waiting distances given a genealogy and
-species tree, could enhance both the accuracy and convergence
-of ARG inference by providing additional information that 
-better links proposed ARGs to the species tree model.
 
-% % - interval size paragraph
-% Another challenge for ARG inference at deeper evolutionary scales
-% is the diminishing size of intervals between recombination events.
-% This has the effect of reducing the amount of information 
-% contained within any interval, and increasing the complexity of
-% the ARG that must be inferred.
-% % 
-% The MS-SMC could provide advantages by reducing the
-% problem of ARG inference from inferring all genealogies
-% and breakpoints, to one of only inferring the genealogies
-% and breakpoints between topology-change events. Our simulation
-% study suggests that the recombination rate can be accurately
-% estimated from the waiting distance between topology-change
-% events, given a parameterized species tree model. This would
-% extend the size of the intervals within which genealogies
-% can be inferred, presumably increasing the computational
-% efficiency of ARG inference.
+% By reducing the complexity of ARG inference to a problem of windows between 
+% topology-change events, as opposed to any two recombination events, 
+% the MS-SMC provides a more efficient framework that could potentially
+% make methods linking ARGs and species tree inference possible.
+
+% information that 
+% better links proposed ARGs to the species tree model.
+
 
 
 % % 
@@ -4018,7 +4393,7 @@ better links proposed ARGs to the species tree model.
 % frameworks. 
 
 \subsection{Conclusions}
-
+\textcolor{red}{
 We derived a generalized model for the distribution of waiting
 distances between changes in a genealogical tree or topology, 
 given a parameterized species tree model.
@@ -4059,7 +4434,12 @@ Our results show that neutral expectations for waiting distances between
 genealogy changes can exhibit considerable variance, and that this 
 variance is spatially auto-correlated, meaning that a clade or topology
 may persist over long intervals of a genome simply by chance.
-
+% 
+By providing analytical solutions for the distribution of the waiting
+distance to tree and topology changes under a demographic model, 
+our results provide a new statistical framework for evaluating 
+local genealogical patterns.
+}
 % 
 % Evo Hypotheses; Null model; improving ARG inference.
 % Finally, a common goal of many local ancestry inference methods is to test 
@@ -4486,8 +4866,9 @@ may persist over long intervals of a genome simply by chance.
 This work was supported by the National Science Foundation 
 (NSF DEB-2046813 awarded to D.A.R.E. and NSF Graduate Research Fellowship 
 DGE 16-44869 awarded to P.F.M.). Thanks to Yun Deng for discussion
-on waiting distance methods, and to members of the Eaton Lab for valuable
-feedback.
+on waiting distance methods, to Jerome Kelleher for and two anonymous 
+reviewers for suggestions that improved the manuscript, and to members of 
+the Eaton Lab for valuable feedback.
 
 
 %\subsection{Citations}
