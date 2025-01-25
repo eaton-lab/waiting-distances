@@ -63,7 +63,7 @@ class Mcmc2:
         prior_dists: Sequence[stats.rv_continuous],
         seed: int,
         msc: bool,
-        smc: bool,
+        smc: Optional[int],
         outpath: Path,
         fixed_params: Sequence[float],
         # jumpsize: int,
@@ -133,13 +133,26 @@ class Mcmc2:
         # logger.warning(self.smc)
         # logger.warning(self._embedding)
         # logger.warning(self._params)
-        if self.smc == 1:
+
+        # Note: self.smc will be set to None if no SMC is set.
+        
+        # any recomb event distance likelihood
+        if self.smc == 0:
+            loglik += get_ms_smc_loglik_from_embedding(
+                embedding=self._embedding,  # only uses length data
+                recombination_rate=self._params[-1],
+                lengths=self._embedding.sarr,
+                event_type=0,
+            )       
+        # tree-distance likelihood
+        elif self.smc == 1:
             loglik += get_ms_smc_loglik_from_embedding(
                 embedding=self._embedding,
                 recombination_rate=self._params[-1],
                 lengths=self.tree_spans,
                 event_type=1,
             )
+        # topo-distance likelihood
         elif self.smc == 2:
             loglik += get_ms_smc_loglik_from_embedding(
                 embedding=self._embedding,
@@ -148,6 +161,7 @@ class Mcmc2:
                 event_type=2,
                 idxs=self.topo_idxs,
             )
+        # tree and topo-distance likelihood
         elif self.smc == 3:
             loglik += get_ms_smc_loglik_from_embedding(
                 embedding=self._embedding,
@@ -549,7 +563,7 @@ def main(
     mcmc_burnin: int,
     msc: bool,
     smc: bool,
-    smc_data_type: str,
+    smc_event_type: str,
     force: bool,
     append: bool,
     fixed_params: Sequence[int],
@@ -620,7 +634,7 @@ def main(
         recomb=true_recomb,
         seed_trees=seed_trees,
         discrete_genome=False,
-        ancestry_model="smc_prime",
+        # ancestry_model="smc_prime",
     )
 
     # get mapping of sample names to lineages
@@ -633,6 +647,7 @@ def main(
     # get MS-SMC ARG data from model
     logger.info("extracting interval lengths from tree sequences")
     # tree_spans, topo_spans, topo_idxs, trees = get_ms_smc_data_from_model(model)
+    event_spans = None
     tree_spans, topo_spans, topo_idxs, trees = get_waiting_distance_data_from_model(model)
 
     # get initial embedding
@@ -655,14 +670,19 @@ def main(
 
     # smc is currently boolean, and smc_data_type is a str
     if not smc:
-        smc = 0
+        smc = None
     else:
-        if smc_data_type == "combined":
+        if smc_event_type == "combined":
             smc = 3
-        elif smc_data_type == "topology":
+        elif smc_event_type == "topology":
             smc = 2
-        else:
+        elif smc_event_type == "tree":
             smc = 1
+        elif smc_event_type == "event":
+            smc = 0
+            event_spans = model.df.nbps.values
+        else:
+            raise ValueError("bad 'smc_event_type' arg")
 
     # ...
     mcmc = Mcmc2(
@@ -672,6 +692,7 @@ def main(
         embedding=edata,
         tree_spans=tree_spans,
         topo_spans=topo_spans,
+        # event_spans=event_spans,
         topo_idxs=topo_idxs,
         init_params=true_params,
         prior_dists=prior_dists,
@@ -723,7 +744,7 @@ def command_line():
         --threads 4 \
         --force True \
         --log-level DEBUG \
-        --data-type combined
+        --smc-event-type combined
     """
     parser = argparse.ArgumentParser(description="MCMC model fit for MS-SMC")
     # parser.add_argument(
@@ -770,9 +791,9 @@ def command_line():
     parser.add_argument(
         '--smc', action="store_true", help='Calculate SMC likelihood.')
     parser.add_argument(
-        '--smc-data-type', type=str, default="combined", help='tree, topology, or combined')
-    parser.add_argument(
         '--msc-tree-type', type=str, default="weighted", help='weighted or sampled')
+    parser.add_argument(
+        '--smc-event-type', type=str, default="combined", help='event, tree, topology, or combined')
     # parser.add_argument(
     #     '--mcmc-jumpsize', type=float, default=[10_000, 20_000, 30_000], nargs="*", help='MCMC jump size.')
     parser.add_argument(
