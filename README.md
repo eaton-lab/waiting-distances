@@ -9,7 +9,8 @@ Manuscript and reproducible notebooks for waiting-times manuscript
 - scripts: Python scripts for execution on HPC.  
 
 ### Reproducible notebooks
-
+The following command will install the Python package `ipcoal` and its
+dependencies that are needed to run the notebooks below.
 ```bash
 conda install ipcoal -c conda-forge 
 ```
