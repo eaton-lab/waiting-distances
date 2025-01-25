@@ -3,15 +3,9 @@
 """Posterior sampling of demographic model parameters under the MS-SMC'
 by Metropolis-Hastings MCMC.
 
-TODO
-----
-[x] implement topo_idxs to reduce embeddings needed.
-[x] append (resume) method for existing analysis.
-[x] print ESS at checkpoints and end if optional arviz is installed.
-[ ] implement event option for any recomb event.
-[ ] implement concatenation tree (one tree per locus)
-[ ] consider: re-embed for tau changes using the relate table.
-[ ] consider: store Ne values in separate array from the emb.
+Ideas....
+- re-embed for tau changes using the relate table.
+- store Ne values in separate array from the emb?
 """
 
 from typing import Dict, Sequence, Optional
@@ -39,12 +33,12 @@ from ipcoal.smc.src.utils import get_waiting_distance_data_from_model
 from ipcoal.smc.src.embedding import _jit_update_neff
 
 # optional. If installed the ESS will be printed.
-try:
-    import arviz as az
-except ImportError:
-    pass
+# try:
+#     import arviz as az
+# except ImportError:
+#     pass
 
-# logging
+
 logger = logger.bind(name="ipcoal")
 
 
@@ -66,6 +60,8 @@ class Mcmc2:
         smc: Optional[int],
         outpath: Path,
         fixed_params: Sequence[float],
+        msc_scaler: float,
+        ancestry_model: str,
         # jumpsize: int,
     ):
         # store the inputs
@@ -94,6 +90,10 @@ class Mcmc2:
         """: calculate smc likelihood."""
         self.msc = msc
         """: calculate msc likelihood."""
+        self.msc_scaler = msc_scaler
+        """: optional scaler to downweight msc relative to smc"""
+        self.ancestry_model = ancestry_model
+        """: msprime ancestry model"""
         self.max_taus = np.full(self.params.size, 1e12)
 
         # get proposal sampler of param indices
@@ -130,10 +130,6 @@ class Mcmc2:
         such as the population Ne and diverence times.
         """
         loglik = 0
-        # logger.warning(self.smc)
-        # logger.warning(self._embedding)
-        # logger.warning(self._params)
-
         # Note: self.smc will be set to None if no SMC is set.
         
         # any recomb event distance likelihood
@@ -176,11 +172,14 @@ class Mcmc2:
                 event_type=2,
                 idxs=self.topo_idxs,
             )
+
+        # coalescent likelihood
         if self.msc:
-            loglik += get_msc_loglik_from_embedding(
+            msc_loglik = get_msc_loglik_from_embedding(
                 embedding=self._embedding.emb,
                 dists=self.tree_spans,
             )
+            loglik += msc_loglik * self.msc_scaler
         return loglik
 
     def get_proposal(self, index: int) -> np.ndarray:
@@ -206,8 +205,10 @@ class Mcmc2:
         array needs to be completely reconstructed. If recomb changed
         then no change is needed.
         """
-        # select the next parameter to change by random weighted sampling
+        # select the next parameter to change
         if pidx is None:
+            # cycle through proposal idxs
+            # pidx = next(self._proposal_idx)
             # randomly sample weighted proposal types
             pidx = self.rng.choice(self._proposal_idxs, p=self._proposal_weights)
             # logger.debug(f"propose change to param {pidx}")
@@ -521,13 +522,13 @@ class Mcmc2:
                     logger.info(f"MCMC mean proposal acc rate={rates}")
 
                     # print mcmc if optional pkg arviz is installed.
-                    if sys.modules.get("arviz"):
-                        ess_vals = []
-                        for col in range(posterior.shape[1]):
-                            azdata = az.convert_to_dataset(posterior[:sidx, col])
-                            ess = az.ess(azdata).x.values
-                            ess_vals.append(int(ess))
-                        logger.info(f"MCMC current posterior ESS ={ess_vals}\n")
+                    # if sys.modules.get("arviz"):
+                    #     ess_vals = []
+                    #     for col in range(posterior.shape[1]):
+                    #         azdata = az.convert_to_dataset(posterior[:sidx, col])
+                    #         ess = az.ess(azdata).x.values
+                    #         ess_vals.append(int(ess))
+                    #     logger.info(f"MCMC current posterior ESS ={ess_vals}\n")
                     pidx = sidx
 
                 # # adjust tuning of the jumpsize during burnin
@@ -564,11 +565,14 @@ def main(
     msc: bool,
     smc: bool,
     smc_event_type: str,
+    msc_scaler: float,
+    ancestry_model: str,
     force: bool,
     append: bool,
     fixed_params: Sequence[int],
     init_values: Sequence[float],
     log_level: str,
+    ancestry_model: str,
     *args,
     **kwargs,
 ) -> None:
@@ -597,21 +601,13 @@ def main(
     if force and outpath.exists():
         outpath.unlink()
     if (not append) and (not force) and outpath.exists():
-        msg = f"outfile '{outpath}' already exists. Use --force or --append."
-        logger.error(msg)
-        raise IOError(msg)
+        raise IOError(f"outfile '{outpath}' already exists. Use --force or --append.")
     if append and (not outpath.exists()):
-        msg = f"cannot append, outfile {outpath} does not exist."
-        logger.error(msg)
-        raise ValueError(msg)
+        raise ValueError(f"cannot append, outfile {outpath} does not exist.")
     if append:
         # load starting values from previous result and set burnin to 0
         posterior = np.load(outpath)
         init_values = posterior[-1, :-1]
-
-    # warning if no data selected
-    if not (smc or msc):
-        logger.warning("No data selected (--smc or --msc) only the prior will be returned.")
 
     # get species tree topology
     sptree = toytree.tree(tree)
@@ -634,7 +630,11 @@ def main(
         recomb=true_recomb,
         seed_trees=seed_trees,
         discrete_genome=False,
-        # ancestry_model="smc_prime",
+<<<<<<< HEAD
+        ancestry_model=ancestry_model,
+=======
+        ancestry_model="smc_prime",
+>>>>>>> 1dd54c676af73f2829e7a0b9f3de98ad3d60d721
     )
 
     # get mapping of sample names to lineages
@@ -668,7 +668,7 @@ def main(
             raise ValueError("prior not supported.")
         prior_dists.append(dist)
 
-    # smc is currently boolean, and smc_data_type is a str
+    # smc
     if not smc:
         smc = None
     else:
@@ -701,6 +701,8 @@ def main(
         smc=smc,
         outpath=outpath,
         fixed_params=fixed_params,
+        msc_scaler=msc_scaler,
+        ancestry_model=ancestry_model,
     )
 
     # report loglik at true params and then set back to start params
@@ -791,9 +793,11 @@ def command_line():
     parser.add_argument(
         '--smc', action="store_true", help='Calculate SMC likelihood.')
     parser.add_argument(
-        '--msc-tree-type', type=str, default="weighted", help='weighted or sampled')
-    parser.add_argument(
         '--smc-event-type', type=str, default="combined", help='event, tree, topology, or combined')
+    parser.add_argument(
+        '--msc-scaler', type=float, default=1.0, help='msc log-likelihood scaler')
+    parser.add_argument(
+        '--ancestry-model', type=str, default="hudson", help='hudson or smcprime')
     # parser.add_argument(
     #     '--mcmc-jumpsize', type=float, default=[10_000, 20_000, 30_000], nargs="*", help='MCMC jump size.')
     parser.add_argument(
@@ -802,8 +806,12 @@ def command_line():
         '--fixed-params', type=int, default=None, nargs="*", help='Fixed params at true values')
     parser.add_argument(
         '--init-values', type=float, default=None, nargs="*", help='Fixed params at true values')
+    parser.add_argument(
+        '--ancestry-model', type=str, default="smc_prime", help='hudson or smc_prime')
     return parser.parse_args()
 
+
+# TODO: RESUME?
 
 
 if __name__ == "__main__":
@@ -824,7 +832,4 @@ if __name__ == "__main__":
         set_num_threads(cli_args.threads)
 
     # run main
-    try:
-        main(**vars(cli_args))
-    except KeyboardInterrupt as kbd:
-        raise SystemExit("Interrupted by user") from kbd
+    main(**vars(cli_args))
